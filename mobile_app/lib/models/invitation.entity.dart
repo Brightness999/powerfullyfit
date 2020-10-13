@@ -1,0 +1,3 @@
+class Invitation {
+  int id;
+}
