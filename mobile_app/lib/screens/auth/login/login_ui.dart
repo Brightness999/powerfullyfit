@@ -27,7 +27,7 @@ class LoginScreen extends StatelessWidget {
                 Scaffold.of(context).showSnackBar(snackBar);
 
               return PrimaryButton(
-                content: Text('button'),
+                child: Text('button'),
                 onPressed: () {
                   loginBloc.eventSink.add(LoginEvent.LoginLoading);
                 },

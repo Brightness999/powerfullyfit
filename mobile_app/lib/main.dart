@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mobile_app/screens/auth/invitation/invitation_ui.dart';
 
 import 'screens/auth/login/login_ui.dart';
 
@@ -32,6 +33,6 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(body: LoginScreen());
+    return Scaffold(body: InvitationScreen());
   }
 }
