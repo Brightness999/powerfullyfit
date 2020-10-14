@@ -1,0 +1,1 @@
+enum PostEvent { PostLoaded }

@@ -1,0 +1,1 @@
+enum ChatListEvent { ChatListLoaded }

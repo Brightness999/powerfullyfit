@@ -1,6 +1,6 @@
 import 'dart:async';
 
-import './login_events.dart';
+import 'login_events.dart';
 
 class LoginBloc {
   static final LoginBloc _singleton = new LoginBloc._internal();
