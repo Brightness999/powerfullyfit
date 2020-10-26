@@ -5,7 +5,7 @@ class PrimaryButton extends StatefulWidget {
   final Function onPressed;
   final bool disabled;
 
-  PrimaryButton({this.child, this.onPressed, this.disabled});
+  PrimaryButton({this.child, this.onPressed, this.disabled = false});
 
   @override
   _PrimaryButton createState() => _PrimaryButton(child, onPressed, disabled);

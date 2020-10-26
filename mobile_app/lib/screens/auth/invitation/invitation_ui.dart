@@ -16,7 +16,6 @@ class InvitationScreen extends StatelessWidget {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          AppTextField(),
           StreamBuilder<InvitationEvent>(
             stream: invitationBloc.stateStream,
             initialData: InvitationEvent.InvitationLoading,
@@ -26,7 +25,7 @@ class InvitationScreen extends StatelessWidget {
                 return Text('error');
 
               return PrimaryButton(
-                child: Text('Accept'),
+                child: Text('Coach Invitation Screen'),
                 disabled: false,
                 onPressed: () {
                   invitationBloc.eventSink
