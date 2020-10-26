@@ -13,7 +13,7 @@ class LoginBloc {
     int counter = 0;
 
     this.eventStream.listen((LoginEvent event) {
-      stateSink.add(counter++);
+      stateSink.add(event);
     });
   }
 
@@ -24,8 +24,9 @@ class LoginBloc {
   Stream<LoginEvent> get eventStream => eventController.stream;
 
   // state pipe
-  StreamController<int> stateController = new StreamController<int>();
+  StreamController<LoginEvent> stateController =
+      new StreamController<LoginEvent>();
 
-  StreamSink<int> get stateSink => stateController.sink;
-  Stream<int> get stateStream => stateController.stream;
+  StreamSink<LoginEvent> get stateSink => stateController.sink;
+  Stream<LoginEvent> get stateStream => stateController.stream;
 }
