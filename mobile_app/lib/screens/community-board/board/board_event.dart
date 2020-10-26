@@ -1,0 +1,1 @@
+enum BoardEvent { BoardLoaded }

@@ -1,0 +1,1 @@
+enum WorkoutEvent { WorkoutLoading, WorkoutLoaded }
