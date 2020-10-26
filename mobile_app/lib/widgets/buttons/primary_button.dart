@@ -1,23 +1,28 @@
 import 'package:flutter/material.dart';
 
 class PrimaryButton extends StatefulWidget {
-  final Widget content;
+  final Widget child;
   final Function onPressed;
+  final bool disabled;
 
-  PrimaryButton({this.content, this.onPressed});
+  PrimaryButton({this.child, this.onPressed, this.disabled = false});
 
   @override
-  _PrimaryButton createState() => _PrimaryButton(content, onPressed);
+  _PrimaryButton createState() => _PrimaryButton(child, onPressed, disabled);
 }
 
 class _PrimaryButton extends State<PrimaryButton> {
   Widget _content;
   Function _onPressed;
+  bool disabled;
 
-  _PrimaryButton(this._content, this._onPressed);
+  _PrimaryButton(this._content, this._onPressed, this.disabled);
 
   @override
   Widget build(BuildContext context) {
-    return FlatButton(onPressed: this._onPressed, child: this._content);
+    return FlatButton(
+      onPressed: disabled ? null : this._onPressed,
+      child: this._content,
+    );
   }
 }
