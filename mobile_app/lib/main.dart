@@ -18,6 +18,8 @@ import 'package:rxdart/rxdart.dart';
 
 import 'screens/auth/login/login_ui.dart';
 
+import 'package:adv_fab/adv_fab.dart';
+
 void main() {
   runApp(MyApp());
 }
@@ -51,6 +53,14 @@ final BehaviorSubject<menuState> menuStream =
     new BehaviorSubject<menuState>.seeded(menuState.IsClosed);
 
 class _MyHomePageState extends State<MyHomePage> {
+  AdvFabController mabialaFABController;
+
+  @override
+  void initState() {
+    super.initState();
+    mabialaFABController = AdvFabController();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -83,24 +93,124 @@ class _MyHomePageState extends State<MyHomePage> {
         ],
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
-      floatingActionButton: Column(
-        mainAxisAlignment: MainAxisAlignment.end,
-        children: [
-          FlatButton(onPressed: null, child: null),
-          FloatingActionButton(
-            onPressed: _handleMenuState,
-            child: StreamBuilder(
-              stream: menuStream.stream,
-              builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
-                if (snapshot.data == menuState.IsClosed) return Icon(Icons.add);
-
-                return Icon(Icons.remove);
-              },
+      floatingActionButton: AdvFab(
+        showLogs: true,
+        onFloatingActionButtonTapped: () {
+          mabialaFABController.setExpandedWidgetConfiguration(
+            showLogs: true,
+            heightToExpandTo: 75,
+            expendedBackgroundColor: Colors.grey[500].withOpacity(.7),
+            withChild: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Container(
+                width: (MediaQuery.of(context).size.width),
+                height: (MediaQuery.of(context).size.height / 100) * 20,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget>[
+                    Expanded(
+                      flex: 5,
+                      child: Column(
+                        children: [
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            children: [
+                              GestureDetector(
+                                onTapUp: (TapUpDetails tapUpDetails) {
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(builder: (context) {
+                                      return EducationScreen();
+                                    }),
+                                  );
+                                },
+                                child: Container(
+                                  color: Colors.green,
+                                  height: (MediaQuery.of(context).size.height /
+                                          100) *
+                                      20,
+                                  width: (MediaQuery.of(context).size.width /
+                                          100) *
+                                      20,
+                                  child: Center(
+                                    child: Text(
+                                      "Education",
+                                    ),
+                                  ),
+                                ),
+                              ),
+                              Container(
+                                color: Colors.green,
+                                height:
+                                    (MediaQuery.of(context).size.height / 100) *
+                                        20,
+                                width:
+                                    (MediaQuery.of(context).size.width / 100) *
+                                        20,
+                                child: Center(
+                                  child: Text(
+                                    "Education",
+                                  ),
+                                ),
+                              ),
+                              Container(
+                                color: Colors.green,
+                                height:
+                                    (MediaQuery.of(context).size.height / 100) *
+                                        20,
+                                width:
+                                    (MediaQuery.of(context).size.width / 100) *
+                                        20,
+                                child: Center(
+                                  child: Text(
+                                    "Education",
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+              ),
             ),
-            backgroundColor: Colors.pink,
-          ),
-        ],
+          );
+          mabialaFABController.isCollapsed
+              ? mabialaFABController.expandFAB()
+              : mabialaFABController.collapseFAB();
+        },
+        floatingActionButtonIcon: Icons.add,
+        floatingActionButtonIconColor: Colors.red,
+        navigationBarIconActiveColor: Colors.pink,
+        navigationBarIconInactiveColor: Colors.pink[200].withOpacity(0.6),
+        floatingActionButtonExpendedWidth:
+            (MediaQuery.of(context).size.width / 100) * 30,
+        collapsedColor: Colors.grey[200],
+        useAsFloatingActionButton: true,
+        controller: mabialaFABController,
+        animationDuration: Duration(milliseconds: 350),
       ),
+      // floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
+      // floatingActionButton: Column(
+      //   mainAxisAlignment: MainAxisAlignment.end,
+      //   children: [
+      //     FlatButton(onPressed: null, child: null),
+      //     FloatingActionButton(
+      //       onPressed: _handleMenuState,
+      //       child: StreamBuilder(
+      //         stream: menuStream.stream,
+      //         builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
+      //           if (snapshot.data == menuState.IsClosed) return Icon(Icons.add);
+
+      //           return Icon(Icons.remove);
+      //         },
+      //       ),
+      //       backgroundColor: Colors.pink,
+      //     ),
+      //   ],
+      // ),
     );
   }
 
