@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:mobile_app/main_screen.bloc.dart';
 import 'package:mobile_app/screens/auth/invitation/invitation_ui.dart';
 import 'package:mobile_app/screens/community-board/board/board_ui.dart';
 import 'package:mobile_app/screens/community-board/post/post_ui.dart';
@@ -13,9 +14,11 @@ import 'package:mobile_app/screens/user-management/user-screen/user-screen_ui.da
 import 'package:mobile_app/screens/workout/exercise/exercise_ui.dart';
 import 'package:mobile_app/screens/workout/program/program_ui.dart';
 import 'package:mobile_app/screens/workout/workout/workout_ui.dart';
+import 'package:mobile_app/widgets/appbar/appbar.dart';
+import 'package:mobile_app/widgets/menu/menu-item.dart';
 import 'package:mobile_app/widgets/menu/menu.dart';
-import 'package:rxdart/rxdart.dart';
 
+import 'main_screen.state.dart';
 import 'screens/auth/login/login_ui.dart';
 
 import 'package:adv_fab/adv_fab.dart';
@@ -39,42 +42,21 @@ class MyApp extends StatelessWidget {
 }
 
 class MyHomePage extends StatefulWidget {
-  MyHomePage({Key key, this.title}) : super(key: key);
-
-  final String title;
-
   @override
   _MyHomePageState createState() => _MyHomePageState();
 }
 
-enum menuState { IsOpen, IsClosed }
-enum screenState {
-  Workout,
-  Education,
-  CommunityBoard,
-}
-
-final BehaviorSubject<menuState> menuStream =
-    new BehaviorSubject<menuState>.seeded(menuState.IsClosed);
-
-final BehaviorSubject<screenState> screenStream =
-    new BehaviorSubject<screenState>.seeded(screenState.Workout);
-
 class _MyHomePageState extends State<MyHomePage> {
-  AdvFabController mabialaFABController;
-
-  @override
-  void initState() {
-    super.initState();
-    mabialaFABController = AdvFabController();
-  }
+  AdvFabController mabialaFABController = AdvFabController();
+  MainScreenBloc mainScreenBloc = MainScreenBloc();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: StreamBuilder(
-        stream: screenStream,
+        stream: mainScreenBloc.stream,
         builder: (BuildContext context, AsyncSnapshot<screenState> snapshot) {
+          if (snapshot.data == screenState.Login) return LoginScreen();
           if (snapshot.data == screenState.Workout) return WorkoutScreen();
           if (snapshot.data == screenState.Education) return EducationScreen();
           if (snapshot.data == screenState.CommunityBoard) return BoardScreen();
@@ -82,141 +64,10 @@ class _MyHomePageState extends State<MyHomePage> {
         },
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
-      floatingActionButton: AdvFab(
-        showLogs: true,
-        onFloatingActionButtonTapped: () {
-          mabialaFABController.setExpandedWidgetConfiguration(
-            showLogs: true,
-            heightToExpandTo: 75,
-            expendedBackgroundColor: Colors.grey[500].withOpacity(.7),
-            withChild: Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Container(
-                width: (MediaQuery.of(context).size.width),
-                height: (MediaQuery.of(context).size.height / 100) * 20,
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: <Widget>[
-                    Expanded(
-                      flex: 5,
-                      child: Column(
-                        children: [
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                            children: [
-                              GestureDetector(
-                                onTapUp: (TapUpDetails tapUpDetails) {
-                                  screenStream.add(screenState.Workout);
-                                  mabialaFABController.collapseFAB();
-                                },
-                                child: Container(
-                                  color: Colors.green,
-                                  height: (MediaQuery.of(context).size.height /
-                                          100) *
-                                      10,
-                                  width: (MediaQuery.of(context).size.width /
-                                          100) *
-                                      20,
-                                  child: Center(
-                                    child: Text(
-                                      "Workouts",
-                                    ),
-                                  ),
-                                ),
-                              ),
-                              GestureDetector(
-                                onTapUp: (TapUpDetails tapUpDetails) {
-                                  screenStream.add(screenState.Education);
-                                  mabialaFABController.collapseFAB();
-                                },
-                                child: Container(
-                                  color: Colors.green,
-                                  height: (MediaQuery.of(context).size.height /
-                                          100) *
-                                      10,
-                                  width: (MediaQuery.of(context).size.width /
-                                          100) *
-                                      20,
-                                  child: Center(
-                                    child: Text(
-                                      "Education",
-                                    ),
-                                  ),
-                                ),
-                              ),
-                              GestureDetector(
-                                onTapUp: (TapUpDetails tapUpDetails) {
-                                  screenStream.add(screenState.CommunityBoard);
-                                  mabialaFABController.collapseFAB();
-                                },
-                                child: Container(
-                                  color: Colors.green,
-                                  height: (MediaQuery.of(context).size.height /
-                                          100) *
-                                      10,
-                                  width: (MediaQuery.of(context).size.width /
-                                          100) *
-                                      20,
-                                  child: Center(
-                                    child: Text(
-                                      "Community",
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
-                        ],
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            ),
-          );
-          mabialaFABController.isCollapsed
-              ? mabialaFABController.expandFAB()
-              : mabialaFABController.collapseFAB();
-        },
-        floatingActionButtonIcon: Icons.add,
-        floatingActionButtonIconColor: Colors.red,
-        navigationBarIconActiveColor: Colors.pink,
-        navigationBarIconInactiveColor: Colors.pink[200].withOpacity(0.6),
-        floatingActionButtonExpendedWidth:
-            (MediaQuery.of(context).size.width / 100) * 30,
-        collapsedColor: Colors.grey[200],
-        useAsFloatingActionButton: true,
-        controller: mabialaFABController,
-        animationDuration: Duration(milliseconds: 300),
+      floatingActionButton: AppMenu(
+        mabialaFABController: mabialaFABController,
+        stateStream: mainScreenBloc.stream,
       ),
-      // floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
-      // floatingActionButton: Column(
-      //   mainAxisAlignment: MainAxisAlignment.end,
-      //   children: [
-      //     FlatButton(onPressed: null, child: null),
-      //     FloatingActionButton(
-      //       onPressed: _handleMenuState,
-      //       child: StreamBuilder(
-      //         stream: menuStream.stream,
-      //         builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
-      //           if (snapshot.data == menuState.IsClosed) return Icon(Icons.add);
-
-      //           return Icon(Icons.remove);
-      //         },
-      //       ),
-      //       backgroundColor: Colors.pink,
-      //     ),
-      //   ],
-      // ),
     );
-  }
-
-  _handleMenuState() {
-    print(menuStream.value);
-
-    if (menuStream.value == menuState.IsClosed)
-      menuStream.add(menuState.IsOpen);
-    else
-      menuStream.add(menuState.IsClosed);
   }
 }
