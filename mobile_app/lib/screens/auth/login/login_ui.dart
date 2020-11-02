@@ -7,33 +7,34 @@ import 'package:mobile_app/widgets/buttons/primary_button.dart';
 class LoginScreen extends StatelessWidget {
   final snackBar = SnackBar(content: Text('Yay! A SnackBar!'));
 
-  final LoginBloc loginBloc = new LoginBloc();
-
   @override
   Widget build(BuildContext context) {
-    final _formKey = GlobalKey<FormState>();
-
-    return Form(
-      key: _formKey,
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          // AppTextField(),
-          StreamBuilder<LoginEvent>(
-            stream: loginBloc.stateStream,
-            initialData: LoginEvent.LoginError,
-            builder: (context, snapshot) {
-              if (snapshot.data == LoginEvent.LoginLoading) {
-                print('loading');
-                // Scaffold.of(context).showSnackBar(snackBar);
-              }
-
-              return Center(
-                child: Text('Login'),
-              );
-            },
-          ),
-        ],
+    return Scaffold(
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Text('Login Screen'),
+            FlatButton(
+              color: Colors.green,
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) {
+                    return LoginScreen();
+                  }),
+                );
+              },
+              child: Text(
+                'Login',
+                style: TextStyle(
+                  color: Colors.white,
+                ),
+              ),
+            )
+          ],
+        ),
       ),
     );
   }
