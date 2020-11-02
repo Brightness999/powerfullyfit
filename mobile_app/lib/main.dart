@@ -48,9 +48,17 @@ class MyHomePage extends StatefulWidget {
 }
 
 enum menuState { IsOpen, IsClosed }
+enum screenState {
+  Workout,
+  Education,
+  CommunityBoard,
+}
 
 final BehaviorSubject<menuState> menuStream =
     new BehaviorSubject<menuState>.seeded(menuState.IsClosed);
+
+final BehaviorSubject<screenState> screenStream =
+    new BehaviorSubject<screenState>.seeded(screenState.Workout);
 
 class _MyHomePageState extends State<MyHomePage> {
   AdvFabController mabialaFABController;
@@ -64,33 +72,14 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Stack(
-        children: [
-          ExerciseScreen(),
-          StreamBuilder(
-            stream: menuStream.stream,
-            builder: (context, snapshot) {
-              if (snapshot.data == menuState.IsClosed) return Container();
-
-              return Container(
-                alignment: Alignment.bottomCenter,
-                padding: EdgeInsets.only(
-                  bottom: 100,
-                ),
-                child: Container(
-                  width: 450,
-                  height: 450,
-                  color: Colors.red,
-                  child: Row(
-                    children: [
-                      FlatButton(onPressed: null, child: null),
-                    ],
-                  ),
-                ),
-              );
-            },
-          ),
-        ],
+      body: StreamBuilder(
+        stream: screenStream,
+        builder: (BuildContext context, AsyncSnapshot<screenState> snapshot) {
+          if (snapshot.data == screenState.Workout) return WorkoutScreen();
+          if (snapshot.data == screenState.Education) return EducationScreen();
+          if (snapshot.data == screenState.CommunityBoard) return BoardScreen();
+          return EducationScreen();
+        },
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       floatingActionButton: AdvFab(
@@ -117,18 +106,34 @@ class _MyHomePageState extends State<MyHomePage> {
                             children: [
                               GestureDetector(
                                 onTapUp: (TapUpDetails tapUpDetails) {
-                                  Navigator.push(
-                                    context,
-                                    MaterialPageRoute(builder: (context) {
-                                      return EducationScreen();
-                                    }),
-                                  );
+                                  screenStream.add(screenState.Workout);
+                                  mabialaFABController.collapseFAB();
                                 },
                                 child: Container(
                                   color: Colors.green,
                                   height: (MediaQuery.of(context).size.height /
                                           100) *
+                                      10,
+                                  width: (MediaQuery.of(context).size.width /
+                                          100) *
                                       20,
+                                  child: Center(
+                                    child: Text(
+                                      "Workouts",
+                                    ),
+                                  ),
+                                ),
+                              ),
+                              GestureDetector(
+                                onTapUp: (TapUpDetails tapUpDetails) {
+                                  screenStream.add(screenState.Education);
+                                  mabialaFABController.collapseFAB();
+                                },
+                                child: Container(
+                                  color: Colors.green,
+                                  height: (MediaQuery.of(context).size.height /
+                                          100) *
+                                      10,
                                   width: (MediaQuery.of(context).size.width /
                                           100) *
                                       20,
@@ -139,31 +144,23 @@ class _MyHomePageState extends State<MyHomePage> {
                                   ),
                                 ),
                               ),
-                              Container(
-                                color: Colors.green,
-                                height:
-                                    (MediaQuery.of(context).size.height / 100) *
-                                        20,
-                                width:
-                                    (MediaQuery.of(context).size.width / 100) *
-                                        20,
-                                child: Center(
-                                  child: Text(
-                                    "Education",
-                                  ),
-                                ),
-                              ),
-                              Container(
-                                color: Colors.green,
-                                height:
-                                    (MediaQuery.of(context).size.height / 100) *
-                                        20,
-                                width:
-                                    (MediaQuery.of(context).size.width / 100) *
-                                        20,
-                                child: Center(
-                                  child: Text(
-                                    "Education",
+                              GestureDetector(
+                                onTapUp: (TapUpDetails tapUpDetails) {
+                                  screenStream.add(screenState.CommunityBoard);
+                                  mabialaFABController.collapseFAB();
+                                },
+                                child: Container(
+                                  color: Colors.green,
+                                  height: (MediaQuery.of(context).size.height /
+                                          100) *
+                                      10,
+                                  width: (MediaQuery.of(context).size.width /
+                                          100) *
+                                      20,
+                                  child: Center(
+                                    child: Text(
+                                      "Community",
+                                    ),
                                   ),
                                 ),
                               ),
@@ -190,7 +187,7 @@ class _MyHomePageState extends State<MyHomePage> {
         collapsedColor: Colors.grey[200],
         useAsFloatingActionButton: true,
         controller: mabialaFABController,
-        animationDuration: Duration(milliseconds: 350),
+        animationDuration: Duration(milliseconds: 300),
       ),
       // floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       // floatingActionButton: Column(
