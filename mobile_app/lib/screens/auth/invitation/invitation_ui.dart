@@ -12,29 +12,31 @@ class InvitationScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     Invitation currentInvitation = null;
 
-    return Center(
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          StreamBuilder<InvitationEvent>(
-            stream: invitationBloc.stateStream,
-            initialData: InvitationEvent.InvitationLoading,
-            builder: (BuildContext context,
-                AsyncSnapshot<InvitationEvent> snapshot) {
-              if (snapshot.data == InvitationEvent.InvitationError)
-                return Text('error');
+    return Scaffold(
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            StreamBuilder<InvitationEvent>(
+              stream: invitationBloc.stateStream,
+              initialData: InvitationEvent.InvitationLoading,
+              builder: (BuildContext context,
+                  AsyncSnapshot<InvitationEvent> snapshot) {
+                if (snapshot.data == InvitationEvent.InvitationError)
+                  return Text('error');
 
-              return PrimaryButton(
-                child: Text('Coach Invitation Screen'),
-                disabled: false,
-                onPressed: () {
-                  invitationBloc.eventSink
-                      .add(InvitationEvent.InvitationLoading);
-                },
-              );
-            },
-          )
-        ],
+                return PrimaryButton(
+                  child: Text('Coach Invitation Screen'),
+                  disabled: false,
+                  onPressed: () {
+                    invitationBloc.eventSink
+                        .add(InvitationEvent.InvitationLoading);
+                  },
+                );
+              },
+            )
+          ],
+        ),
       ),
     );
   }

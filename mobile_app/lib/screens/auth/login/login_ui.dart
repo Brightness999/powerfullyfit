@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:mobile_app/screens/auth/invitation/invitation_ui.dart';
 import 'package:mobile_app/screens/auth/login/login_events.dart';
+import 'package:mobile_app/screens/home/home_screen.ui.dart';
 import 'package:mobile_app/widgets/fields/text_field.dart';
 import 'login_bloc.dart';
 import 'package:mobile_app/widgets/buttons/primary_button.dart';
@@ -19,15 +21,32 @@ class LoginScreen extends StatelessWidget {
             FlatButton(
               color: Colors.green,
               onPressed: () {
-                Navigator.push(
+                Navigator.pushReplacement(
                   context,
-                  MaterialPageRoute(builder: (context) {
-                    return LoginScreen();
+                  MaterialPageRoute(builder: (BuildContext context) {
+                    return HomeScreen();
                   }),
                 );
               },
               child: Text(
                 'Login',
+                style: TextStyle(
+                  color: Colors.white,
+                ),
+              ),
+            ),
+            FlatButton(
+              color: Colors.green,
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (BuildContext context) {
+                    return InvitationScreen();
+                  }),
+                );
+              },
+              child: Text(
+                'invitation',
                 style: TextStyle(
                   color: Colors.white,
                 ),
