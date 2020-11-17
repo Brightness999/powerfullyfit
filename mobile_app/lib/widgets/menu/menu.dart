@@ -18,6 +18,9 @@ class AppMenu extends StatelessWidget {
   Widget build(BuildContext context) {
     return AdvFab(
       showLogs: true,
+      onPannelTapped: () {
+        print('onPannelTapped');
+      },
       onFloatingActionButtonTapped: () {
         mabialaFABController.setExpandedWidgetConfiguration(
           showLogs: true,

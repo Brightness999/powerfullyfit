@@ -12,49 +12,89 @@ class LoginScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            Text('Login Screen'),
-            FlatButton(
-              color: Colors.green,
-              onPressed: () {
-                Navigator.pushReplacement(
-                  context,
-                  MaterialPageRoute(builder: (BuildContext context) {
-                    return HomeScreen();
-                  }),
-                );
-              },
-              child: Text(
-                'Login',
-                style: TextStyle(
-                  color: Colors.white,
+      body: LayoutBuilder(
+          builder: (BuildContext context, BoxConstraints viewportConstraints) {
+        return SingleChildScrollView(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Container(
+                margin: EdgeInsets.symmetric(
+                  vertical: MediaQuery.of(context).size.height * .1,
+                  horizontal: MediaQuery.of(context).size.width * .15,
+                ),
+                child: Image.asset(
+                  'assets/logo.png',
+                  width: MediaQuery.of(context).size.width * .9,
+                  // scale: 0.8,
+                  // fit: BoxFit.,
                 ),
               ),
-            ),
-            FlatButton(
-              color: Colors.green,
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (BuildContext context) {
-                    return InvitationScreen();
-                  }),
-                );
-              },
-              child: Text(
-                'invitation',
-                style: TextStyle(
-                  color: Colors.white,
+              Container(
+                margin: EdgeInsets.symmetric(
+                  horizontal: MediaQuery.of(context).size.width * .1,
+                  vertical: MediaQuery.of(context).size.width * .1,
+                ),
+                child: TextField(
+                  decoration: InputDecoration(
+                      filled: true,
+                      fillColor: Colors.white,
+                      border: InputBorder.none,
+                      hintText: 'Email'),
                 ),
               ),
-            )
-          ],
-        ),
-      ),
+              Container(
+                margin: EdgeInsets.symmetric(
+                  horizontal: MediaQuery.of(context).size.width * .1,
+                ),
+                child: TextField(
+                  decoration: InputDecoration(
+                      filled: true,
+                      fillColor: Colors.white,
+                      border: InputBorder.none,
+                      hintText: 'Password'),
+                  obscureText: true,
+                ),
+              ),
+              Container(
+                margin: EdgeInsets.symmetric(
+                  vertical: MediaQuery.of(context).size.width * .15,
+                ),
+                child: FlatButton(
+                  color: Colors.brown,
+                  onPressed: () {
+                    Navigator.pushReplacement(
+                      context,
+                      MaterialPageRoute(builder: (BuildContext context) {
+                        return HomeScreen();
+                      }),
+                    );
+                  },
+                  child: Container(
+                    decoration: BoxDecoration(
+                      borderRadius:
+                          BorderRadius.all(Radius.circular(10)), //here
+                    ),
+                    margin: EdgeInsets.symmetric(
+                      vertical: MediaQuery.of(context).size.width * .05,
+                    ),
+                    width: MediaQuery.of(context).size.width * .7,
+                    child: Center(
+                      child: Text(
+                        'LOG IN',
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 28,
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+              )
+            ],
+          ),
+        );
+      }),
     );
   }
 }

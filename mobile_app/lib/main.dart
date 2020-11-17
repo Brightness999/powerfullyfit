@@ -15,6 +15,7 @@ class MyApp extends StatelessWidget {
       title: 'Powerfully Fit',
       theme: ThemeData(
         primarySwatch: Colors.blue,
+        scaffoldBackgroundColor: const Color(0xFF3F3F3F),
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
       home: MyHomePage(),
