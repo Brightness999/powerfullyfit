@@ -10,7 +10,7 @@ environment:
 
 dependencies:
   rxdart: ^0.24.1
-  flare_flutter: ^2.0.6 
+  flare_flutter: ^2.0.6
   adv_fab: ^1.0.5
   flutter:
     sdk: flutter
@@ -23,3 +23,5 @@ dev_dependencies:
 
 flutter:
   uses-material-design: true
+  assets:
+    - assets/logo.png

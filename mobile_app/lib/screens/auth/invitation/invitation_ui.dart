@@ -26,11 +26,14 @@ class InvitationScreen extends StatelessWidget {
                   return Text('error');
 
                 return PrimaryButton(
-                  child: Text('Coach Invitation Screen'),
+                  child: Text(
+                    'Coach Invitation Screen',
+                  ),
                   disabled: false,
                   onPressed: () {
-                    invitationBloc.eventSink
-                        .add(InvitationEvent.InvitationLoading);
+                    invitationBloc.eventSink.add(
+                      InvitationEvent.InvitationLoading,
+                    );
                   },
                 );
               },
