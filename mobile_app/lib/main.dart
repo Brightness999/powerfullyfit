@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:mobile_app/models/login.entity.dart';
-import 'package:mobile_app/screens/auth/login/login_ui.dart';
 
-import 'package:mobile_app/screens/home/home_screen.ui.dart';
+import 'package:mobile_app/screens/auth/login/login_ui.dart';
 
 void main() {
   runApp(MyApp());
@@ -16,6 +14,11 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
         scaffoldBackgroundColor: const Color(0xFF3F3F3F),
+        textTheme: TextTheme(
+          bodyText1: TextStyle(
+            color: Colors.white,
+          ),
+        ),
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
       home: MyHomePage(),

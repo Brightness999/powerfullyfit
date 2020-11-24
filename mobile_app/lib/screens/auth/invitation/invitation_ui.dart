@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:mobile_app/models/invitation.entity.dart';
+import 'package:mobile_app/entities/invitation.entity.dart';
 import 'package:mobile_app/screens/auth/invitation/invitation_bloc.dart';
 import 'package:mobile_app/screens/auth/invitation/invitation_events.dart';
 import 'package:mobile_app/widgets/buttons/primary_button.dart';

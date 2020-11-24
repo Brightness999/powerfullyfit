@@ -21,8 +21,56 @@ class WorkoutScreen extends StatelessWidget {
           )
         ],
       ),
-      body: Center(
-        child: Text('a workout has many exercises'),
+      body: Container(
+        margin: EdgeInsets.symmetric(
+          vertical: MediaQuery.of(context).size.height * .05,
+        ),
+        child: Column(
+          children: [
+            Text(
+              '',
+              style: TextStyle(
+                color: Colors.white,
+                fontSize: 20,
+              ),
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                FlatButton(
+                  onPressed: () {},
+                  color: Colors.brown,
+                  child: Text(
+                    'START',
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 20,
+                    ),
+                  ),
+                ),
+                Text(
+                  "0:00",
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 38,
+                  ),
+                ),
+              ],
+            ),
+            Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                Text(
+                  'exercises',
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 20,
+                  ),
+                )
+              ],
+            )
+          ],
+        ),
       ),
     );
   }
