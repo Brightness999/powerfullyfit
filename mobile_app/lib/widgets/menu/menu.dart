@@ -20,6 +20,7 @@ class AppMenu extends StatelessWidget {
       showLogs: true,
       onPannelTapped: () {
         print('onPannelTapped');
+        mabialaFABController.collapseFAB();
       },
       onFloatingActionButtonTapped: () {
         mabialaFABController.setExpandedWidgetConfiguration(
@@ -92,10 +93,10 @@ class AppMenu extends StatelessWidget {
             : mabialaFABController.collapseFAB();
       },
       floatingActionButtonIcon: Icons.menu,
-      floatingActionButtonIconColor: Colors.white,
+      floatingActionButtonIconColor: Colors.brown,
       floatingActionButtonExpendedWidth:
           (MediaQuery.of(context).size.width / 100) * 20,
-      collapsedColor: Colors.blue,
+      collapsedColor: Colors.black12,
       useAsFloatingActionButton: true,
       controller: mabialaFABController,
       animationDuration: Duration(milliseconds: 300),

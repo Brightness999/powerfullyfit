@@ -11,5 +11,5 @@ class HomeScreenBloc {
   HomeScreenBloc._internal() {}
 
   final BehaviorSubject<screenState> stream =
-      new BehaviorSubject<screenState>.seeded(screenState.Workout);
+      new BehaviorSubject<screenState>.seeded(screenState.Summary);
 }
