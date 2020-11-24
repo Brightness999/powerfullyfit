@@ -1,76 +1,121 @@
 import 'package:flutter/material.dart';
-import 'package:mobile_app/screens/auth/login/login_ui.dart';
 
-class WorkoutScreen extends StatelessWidget {
+class WorkoutScreen extends StatefulWidget {
+  _WorkoutScreen createState() => _WorkoutScreen();
+}
+
+class _WorkoutScreen extends State<WorkoutScreen> {
+  bool isOpen = false;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Workout Screen'),
-        actions: [
-          IconButton(
-            icon: Icon(Icons.logout),
-            onPressed: () {
-              Navigator.pushReplacement(
-                context,
-                MaterialPageRoute(builder: (context) {
-                  return LoginScreen();
-                }),
-              );
-            },
-          )
-        ],
-      ),
-      body: Container(
-        margin: EdgeInsets.symmetric(
-          vertical: MediaQuery.of(context).size.height * .05,
-        ),
-        child: Column(
-          children: [
-            Text(
-              '',
-              style: TextStyle(
-                color: Colors.white,
-                fontSize: 20,
+      body: CustomScrollView(
+        slivers: [
+          SliverAppBar(
+            floating: true,
+            pinned: true,
+            snap: false,
+            backgroundColor: Colors.transparent,
+            expandedHeight: MediaQuery.of(context).size.height * .27,
+            flexibleSpace: FlexibleSpaceBar(
+              title: Container(
+                constraints: BoxConstraints.expand(
+                  height: MediaQuery.of(context).size.height * .27,
+                ),
+                alignment: Alignment.bottomLeft,
+                padding: EdgeInsets.only(left: 16.0, bottom: 8.0),
+                decoration: BoxDecoration(
+                  image: DecorationImage(
+                    image: AssetImage('assets/today-workout.png'),
+                    fit: BoxFit.cover,
+                  ),
+                ),
+                child: Text(
+                  'Biceps & Abs Workout - 30 mins',
+                  style: new TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 23.0,
+                    color: Colors.white,
+                  ),
+                ),
               ),
             ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                FlatButton(
-                  onPressed: () {},
-                  color: Colors.brown,
-                  child: Text(
-                    'START',
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 20,
+            actions: <Widget>[],
+          ),
+          SliverList(
+            delegate: SliverChildListDelegate(
+              [
+                SizedBox(
+                  height: 50,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: [
+                    FlatButton(
+                      onPressed: () {},
+                      color: Colors.grey,
+                      textColor: Colors.white,
+                      child: Text(
+                        "START",
+                        style: new TextStyle(
+                          fontSize: 25.0,
+                          color: Colors.white,
+                        ),
+                      ),
+                      padding: EdgeInsets.all(36),
+                      shape: CircleBorder(),
                     ),
+                    Text(
+                      "0:00",
+                      style: new TextStyle(
+                        fontSize: 73.0,
+                        color: Colors.white,
+                      ),
+                    )
+                  ],
+                ),
+                SizedBox(
+                  height: 50,
+                ),
+                Container(
+                  margin: EdgeInsets.only(left: 16.0, bottom: 16.0),
+                  child: Text(
+                    "Exercises",
+                    style: new TextStyle(
+                        fontSize: 25.0,
+                        color: Colors.white,
+                        fontWeight: FontWeight.bold),
                   ),
                 ),
-                Text(
-                  "0:00",
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 38,
-                  ),
+                ExpansionPanelList(
+                  expansionCallback: (int index, bool isExpanded) {
+                    setState(() {
+                      isOpen = !isOpen;
+                    });
+                  },
+                  children: [
+                    ExpansionPanel(
+                      canTapOnHeader: true,
+                      headerBuilder: (BuildContext context, bool isExpanded) {
+                        return Text(
+                          "Bicep Curls",
+                          textAlign: TextAlign.left,
+                          style: TextStyle(
+                            fontSize: 20.0,
+                            fontWeight: FontWeight.w400,
+                          ),
+                        );
+                      },
+                      isExpanded: isOpen,
+                      body: Text(""),
+                    )
+                  ],
                 ),
               ],
             ),
-            Column(
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: [
-                Text(
-                  'exercises',
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 20,
-                  ),
-                )
-              ],
-            )
-          ],
-        ),
+          )
+        ],
       ),
     );
   }

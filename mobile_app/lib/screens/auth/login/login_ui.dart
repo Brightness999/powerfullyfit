@@ -61,7 +61,7 @@ class LoginScreen extends StatelessWidget {
                   vertical: MediaQuery.of(context).size.width * .15,
                 ),
                 child: FlatButton(
-                  color: Colors.brown,
+                  color: Color(0xff99755A),
                   onPressed: () {
                     Navigator.pushReplacement(
                       context,
@@ -72,13 +72,14 @@ class LoginScreen extends StatelessWidget {
                   },
                   child: Container(
                     decoration: BoxDecoration(
-                      borderRadius:
-                          BorderRadius.all(Radius.circular(10)), //here
+                      borderRadius: BorderRadius.all(
+                        Radius.circular(25),
+                      ), //here
                     ),
                     margin: EdgeInsets.symmetric(
                       vertical: MediaQuery.of(context).size.width * .05,
                     ),
-                    width: MediaQuery.of(context).size.width * .7,
+                    width: MediaQuery.of(context).size.width * .75,
                     child: Center(
                       child: Text(
                         'LOG IN',

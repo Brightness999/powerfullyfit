@@ -52,7 +52,7 @@ class AppMenu extends StatelessWidget {
                               name: 'Workouts',
                               icon: Icons.fitness_center,
                               onPressed: () {
-                                stateStream.add(screenState.Workout);
+                                stateStream.add(screenState.WorkoutList);
                                 mabialaFABController.collapseFAB();
                               },
                             ),
@@ -93,7 +93,7 @@ class AppMenu extends StatelessWidget {
             : mabialaFABController.collapseFAB();
       },
       floatingActionButtonIcon: Icons.menu,
-      floatingActionButtonIconColor: Colors.brown,
+      floatingActionButtonIconColor: Color(0xff99755A),
       floatingActionButtonExpendedWidth:
           (MediaQuery.of(context).size.width / 100) * 20,
       collapsedColor: Colors.black12,
