@@ -9,6 +9,8 @@ environment:
   sdk: ">=2.7.0 <3.0.0"
 
 dependencies:
+  step_progress_indicator: ^0.2.4+7
+  table_calendar: ^2.3.1
   rxdart: ^0.24.1
   flare_flutter: ^2.0.6
   adv_fab: ^1.0.5
@@ -25,3 +27,4 @@ flutter:
   uses-material-design: true
   assets:
     - assets/logo.png
+    - assets/today-workout.png
