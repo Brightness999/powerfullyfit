@@ -25,60 +25,89 @@ class AppMenu extends StatelessWidget {
       onFloatingActionButtonTapped: () {
         mabialaFABController.setExpandedWidgetConfiguration(
           showLogs: true,
-          heightToExpandTo: 75,
+          heightToExpandTo: 80,
           expendedBackgroundColor: Colors.grey[600].withOpacity(
             .7,
           ),
           withChild: Padding(
             padding: const EdgeInsets.all(
-              8.0,
+              2.0,
             ),
             child: Container(
               width: (MediaQuery.of(context).size.width),
               height: (MediaQuery.of(context).size.height / 100) * 20,
               child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.center,
                 children: <Widget>[
                   Expanded(
-                    flex: 5,
+                    flex: 6,
                     child: Column(
                       children: [
-                        Wrap(
-                          direction: Axis.horizontal,
-                          runAlignment: WrapAlignment.spaceEvenly,
-                          spacing: 10.0,
-                          children: [
-                            MenuItem(
-                              name: 'Workouts',
-                              icon: Icons.fitness_center,
-                              onPressed: () {
-                                stateStream.add(screenState.WorkoutList);
-                                mabialaFABController.collapseFAB();
-                              },
-                            ),
-                            MenuItem(
-                              name: 'Education',
-                              icon: Icons.school,
-                              onPressed: () {
-                                stateStream.add(screenState.Education);
-                                mabialaFABController.collapseFAB();
-                              },
-                            ),
-                            MenuItem(
-                              name: 'Comunity',
-                              icon: Icons.people,
-                              onPressed: () {
-                                stateStream.add(screenState.CommunityBoard);
-                                mabialaFABController.collapseFAB();
-                              },
-                            ),
-                            Align(
-                              alignment: Alignment.bottomCenter,
-                              child: Text(
-                                '-',
+                        Expanded(
+                          child: Wrap(
+                            direction: Axis.horizontal,
+                            runAlignment: WrapAlignment.spaceEvenly,
+                            spacing: 9.0,
+                            runSpacing: 10.0,
+                            children: [
+                              MenuItem(
+                                name: 'Workouts',
+                                icon: Icons.fitness_center,
+                                onPressed: () {
+                                  stateStream.add(screenState.WorkoutList);
+                                  mabialaFABController.collapseFAB();
+                                },
                               ),
-                            ),
-                          ],
+                              MenuItem(
+                                name: 'Nutrition',
+                                icon: Icons.emoji_food_beverage_sharp,
+                                onPressed: () {
+                                  stateStream.add(screenState.Education);
+                                  mabialaFABController.collapseFAB();
+                                },
+                              ),
+                              MenuItem(
+                                name: 'Inbox',
+                                icon: Icons.chat,
+                                onPressed: () {
+                                  stateStream.add(screenState.Education);
+                                  mabialaFABController.collapseFAB();
+                                },
+                              ),
+                              MenuItem(
+                                name: 'Education',
+                                icon: Icons.school,
+                                onPressed: () {
+                                  stateStream.add(screenState.Education);
+                                  mabialaFABController.collapseFAB();
+                                },
+                              ),
+                              MenuItem(
+                                name: 'Comunity',
+                                icon: Icons.people,
+                                onPressed: () {
+                                  stateStream.add(screenState.CommunityBoard);
+                                  mabialaFABController.collapseFAB();
+                                },
+                              ),
+                              MenuItem(
+                                name: 'Progress',
+                                icon: Icons.bar_chart,
+                                onPressed: () {
+                                  stateStream.add(screenState.Progress);
+                                  mabialaFABController.collapseFAB();
+                                },
+                              ),
+                              MenuItem(
+                                name: 'Help',
+                                icon: Icons.bar_chart,
+                                onPressed: () {
+                                  stateStream.add(screenState.Progress);
+                                  mabialaFABController.collapseFAB();
+                                },
+                              ),
+                            ],
+                          ),
                         ),
                       ],
                     ),
@@ -95,8 +124,8 @@ class AppMenu extends StatelessWidget {
       floatingActionButtonIcon: Icons.menu,
       floatingActionButtonIconColor: Color(0xff99755A),
       floatingActionButtonExpendedWidth:
-          (MediaQuery.of(context).size.width / 100) * 20,
-      collapsedColor: Colors.black12,
+          (MediaQuery.of(context).size.width) * .22,
+      collapsedColor: Color(0xff22272c),
       useAsFloatingActionButton: true,
       controller: mabialaFABController,
       animationDuration: Duration(milliseconds: 300),

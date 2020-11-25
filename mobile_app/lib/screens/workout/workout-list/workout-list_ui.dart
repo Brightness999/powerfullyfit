@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:mobile_app/screens/workout/workout/workout_ui.dart';
+import 'package:mobile_app/widgets/cards/calendar.card.dart';
+import 'package:mobile_app/widgets/cards/today-workout.card.dart';
 import 'package:table_calendar/table_calendar.dart';
 
 class WorkoutListScreen extends StatefulWidget {
@@ -7,7 +9,7 @@ class WorkoutListScreen extends StatefulWidget {
 }
 
 class _WorkoutListScreen extends State<WorkoutListScreen> {
-  CalendarController _calendarController = CalendarController();
+  CalendarController calendarController = CalendarController();
 
   @override
   Widget build(BuildContext context) {
@@ -17,105 +19,38 @@ class _WorkoutListScreen extends State<WorkoutListScreen> {
         title: Text("My Workouts"),
       ),
       body: SingleChildScrollView(
-        child: Column(
-          children: [
-            Container(
-              margin: EdgeInsets.only(
-                bottom: MediaQuery.of(context).size.height * .03,
+        child: Container(
+          margin: EdgeInsets.symmetric(
+            vertical: MediaQuery.of(context).size.height * .01,
+            horizontal: MediaQuery.of(context).size.width * .03,
+          ),
+          child: Column(
+            children: [
+              CalendarCard(calendarController: calendarController),
+              TodayWorkoutCard(
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (BuildContext context) {
+                      return WorkoutScreen();
+                    }),
+                  );
+                },
               ),
-              padding: EdgeInsets.all(
-                MediaQuery.of(context).size.height * .02,
-              ),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Container(
-                    decoration: BoxDecoration(
-                      color: Color(0xff22272c),
-                      borderRadius: BorderRadius.all(
-                        Radius.circular(25),
-                      ),
-                    ),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        TableCalendar(
-                          calendarController: _calendarController,
-                          calendarStyle: CalendarStyle(
-                            weekdayStyle: TextStyle(
-                              color: Colors.white,
-                            ),
-                            selectedColor: Color(0xff99755A),
-                          ),
-                          headerStyle: HeaderStyle(
-                            formatButtonTextStyle: TextStyle(
-                              color: Colors.white,
-                            ),
-                            titleTextStyle: TextStyle(
-                              color: Colors.white,
-                            ),
-                          ),
-                          initialCalendarFormat: CalendarFormat.week,
-                        ),
-                      ],
-                    ),
+              SizedBox(height: 20),
+              Align(
+                alignment: Alignment.centerLeft,
+                child: Text(
+                  "Upcoming Workouts",
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 25,
+                    fontWeight: FontWeight.bold,
                   ),
-                ],
-              ),
-            ),
-            GestureDetector(
-              onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (BuildContext context) {
-                    return WorkoutScreen();
-                  }),
-                );
-              },
-              child: Container(
-                margin: EdgeInsets.all(
-                  MediaQuery.of(context).size.height * .01,
                 ),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      "Today's Workout",
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 25,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                    SizedBox(
-                      height: 20,
-                    ),
-                    Container(
-                      constraints: BoxConstraints.expand(
-                        height: 200.0,
-                      ),
-                      alignment: Alignment.bottomLeft,
-                      padding: EdgeInsets.only(left: 16.0, bottom: 8.0),
-                      decoration: BoxDecoration(
-                        image: DecorationImage(
-                          image: AssetImage('assets/today-workout.png'),
-                          fit: BoxFit.cover,
-                        ),
-                      ),
-                      child: Text(
-                        'Biceps & Abs - 30 mins',
-                        style: new TextStyle(
-                          fontWeight: FontWeight.bold,
-                          fontSize: 20.0,
-                          color: Colors.white,
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            )
-          ],
+              )
+            ],
+          ),
         ),
       ),
     );

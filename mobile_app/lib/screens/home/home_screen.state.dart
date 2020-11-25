@@ -5,4 +5,5 @@ enum screenState {
   CommunityBoard,
   Summary,
   Login,
+  Progress
 }

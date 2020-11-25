@@ -24,8 +24,8 @@ class MenuItem extends StatelessWidget {
         ),
         color: Color(0xFF3F3F3F),
       ),
-      height: (MediaQuery.of(context).size.height / 100) * 10,
-      width: (MediaQuery.of(context).size.width / 100) * 24,
+      height: (MediaQuery.of(context).size.height) * .10,
+      width: (MediaQuery.of(context).size.width) * .24,
       child: FlatButton(
         onPressed: onPressed,
         child: Center(

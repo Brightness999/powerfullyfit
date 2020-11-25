@@ -109,7 +109,97 @@ class _WorkoutScreen extends State<WorkoutScreen> {
                       },
                       isExpanded: isOpen,
                       body: Text(""),
-                    )
+                    ),
+                    ExpansionPanel(
+                      canTapOnHeader: true,
+                      headerBuilder: (BuildContext context, bool isExpanded) {
+                        return Text(
+                          "Bicep Curls",
+                          textAlign: TextAlign.left,
+                          style: TextStyle(
+                            fontSize: 20.0,
+                            fontWeight: FontWeight.w400,
+                          ),
+                        );
+                      },
+                      isExpanded: isOpen,
+                      body: Text(""),
+                    ),
+                    ExpansionPanel(
+                      canTapOnHeader: true,
+                      headerBuilder: (BuildContext context, bool isExpanded) {
+                        return Text(
+                          "Bicep Curls",
+                          textAlign: TextAlign.left,
+                          style: TextStyle(
+                            fontSize: 20.0,
+                            fontWeight: FontWeight.w400,
+                          ),
+                        );
+                      },
+                      isExpanded: isOpen,
+                      body: Text(""),
+                    ),
+                    ExpansionPanel(
+                      canTapOnHeader: true,
+                      headerBuilder: (BuildContext context, bool isExpanded) {
+                        return Text(
+                          "Bicep Curls",
+                          textAlign: TextAlign.left,
+                          style: TextStyle(
+                            fontSize: 20.0,
+                            fontWeight: FontWeight.w400,
+                          ),
+                        );
+                      },
+                      isExpanded: isOpen,
+                      body: Text(""),
+                    ),
+                    ExpansionPanel(
+                      canTapOnHeader: true,
+                      headerBuilder: (BuildContext context, bool isExpanded) {
+                        return Text(
+                          "Bicep Curls",
+                          textAlign: TextAlign.left,
+                          style: TextStyle(
+                            fontSize: 20.0,
+                            fontWeight: FontWeight.w400,
+                          ),
+                        );
+                      },
+                      isExpanded: isOpen,
+                      body: Text(""),
+                    ),
+                    ExpansionPanel(
+                      canTapOnHeader: true,
+                      headerBuilder: (BuildContext context, bool isExpanded) {
+                        return Text(
+                          "Bicep Curls",
+                          textAlign: TextAlign.left,
+                          style: TextStyle(
+                            fontSize: 20.0,
+                            fontWeight: FontWeight.w400,
+                          ),
+                        );
+                      },
+                      isExpanded: isOpen,
+                      body: Text(""),
+                    ),
+                    ExpansionPanel(
+                      canTapOnHeader: true,
+                      headerBuilder: (BuildContext context, bool isExpanded) {
+                        return Text(
+                          "Bicep Curls",
+                          textAlign: TextAlign.left,
+                          style: TextStyle(
+                            fontSize: 20.0,
+                            fontWeight: FontWeight.w400,
+                          ),
+                        );
+                      },
+                      isExpanded: isOpen,
+                      body: Text(""),
+                    ),
                   ],
                 ),
               ],
