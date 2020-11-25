@@ -10,12 +10,12 @@ import 'package:mobile_app/widgets/cards/today-workout.card.dart';
 import 'package:step_progress_indicator/step_progress_indicator.dart';
 import 'package:table_calendar/table_calendar.dart';
 
-class SummaryScreen extends StatefulWidget {
+class ProgressScreen extends StatefulWidget {
   @override
-  _SummaryScreen createState() => _SummaryScreen();
+  _ProgressScreen createState() => _ProgressScreen();
 }
 
-class _SummaryScreen extends State {
+class _ProgressScreen extends State {
   AdvFabController mabialaFABController = AdvFabController();
   CalendarController calendarController = CalendarController();
 
