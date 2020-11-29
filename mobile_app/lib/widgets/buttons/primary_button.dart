@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:mobile_app/theme/colors.dart';
 
-class PrimaryButton extends StatefulWidget {
+class PrimaryButton extends StatelessWidget {
   final Widget child;
   final Function onPressed;
   final bool disabled;
@@ -8,21 +9,27 @@ class PrimaryButton extends StatefulWidget {
   PrimaryButton({this.child, this.onPressed, this.disabled = false});
 
   @override
-  _PrimaryButton createState() => _PrimaryButton(child, onPressed, disabled);
-}
-
-class _PrimaryButton extends State<PrimaryButton> {
-  Widget _content;
-  Function _onPressed;
-  bool disabled;
-
-  _PrimaryButton(this._content, this._onPressed, this.disabled);
-
-  @override
   Widget build(BuildContext context) {
     return FlatButton(
-      onPressed: disabled ? null : this._onPressed,
-      child: this._content,
+      shape: new RoundedRectangleBorder(
+        borderRadius: new BorderRadius.circular(
+          30.0,
+        ),
+      ),
+      onPressed: onPressed,
+      color: appBrown,
+      child: Container(
+        padding: EdgeInsets.all(
+          MediaQuery.of(context).size.height * .02,
+        ),
+        width: MediaQuery.of(context).size.width,
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.all(
+            Radius.circular(25),
+          ),
+        ),
+        child: child,
+      ),
     );
   }
 }

@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:mobile_app/screens/auth/login/login_ui.dart';
 import 'package:mobile_app/screens/community-board/board/board_ui.dart';
 import 'package:mobile_app/screens/education/education/education_ui.dart';
+import 'package:mobile_app/screens/messaging/chat-list/chat-list_ui.dart';
 import 'package:mobile_app/screens/progress/progress_screen.ui.dart';
 import 'package:mobile_app/screens/summary/summary_screen.ui.dart';
 import 'package:mobile_app/screens/home/home_screen.bloc.dart';
@@ -28,6 +29,7 @@ class _HomeScreen extends State {
         stream: mainScreenBloc.stream,
         builder: (BuildContext context, AsyncSnapshot<screenState> snapshot) {
           if (snapshot.data == screenState.Login) return LoginScreen();
+          if (snapshot.data == screenState.Inbox) return ChatListScreen();
           if (snapshot.data == screenState.Workout) return WorkoutScreen();
           if (snapshot.data == screenState.WorkoutList)
             return WorkoutListScreen();

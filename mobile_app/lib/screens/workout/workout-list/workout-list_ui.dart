@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:mobile_app/screens/workout/workout/workout_ui.dart';
 import 'package:mobile_app/widgets/cards/calendar.card.dart';
+import 'package:mobile_app/widgets/cards/settings-option.card.dart';
 import 'package:mobile_app/widgets/cards/today-workout.card.dart';
 import 'package:table_calendar/table_calendar.dart';
 
@@ -16,7 +17,14 @@ class _WorkoutListScreen extends State<WorkoutListScreen> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.transparent,
-        title: Text("My Workouts"),
+        title: Text(
+          "My Workouts",
+          style: new TextStyle(
+            fontWeight: FontWeight.bold,
+            fontSize: 26.0,
+            color: Colors.white,
+          ),
+        ),
       ),
       body: SingleChildScrollView(
         child: Container(
@@ -27,6 +35,7 @@ class _WorkoutListScreen extends State<WorkoutListScreen> {
           child: Column(
             children: [
               CalendarCard(calendarController: calendarController),
+              SizedBox(height: 20),
               TodayWorkoutCard(
                 onTap: () {
                   Navigator.push(
@@ -37,7 +46,7 @@ class _WorkoutListScreen extends State<WorkoutListScreen> {
                   );
                 },
               ),
-              SizedBox(height: 20),
+              SizedBox(height: 30),
               Align(
                 alignment: Alignment.centerLeft,
                 child: Text(
@@ -48,7 +57,26 @@ class _WorkoutListScreen extends State<WorkoutListScreen> {
                     fontWeight: FontWeight.bold,
                   ),
                 ),
-              )
+              ),
+              SizedBox(
+                height: 10,
+              ),
+              SettingsOptionCard(
+                title: "Tue. - Leg",
+                label: "HIIT",
+              ),
+              SettingsOptionCard(
+                title: "Wed. - Triceps & Shoulders",
+                label: "",
+              ),
+              SettingsOptionCard(
+                title: "Thur. - Back",
+                label: "",
+              ),
+              SettingsOptionCard(
+                title: "Fri. - Core & Glutes",
+                label: "HIIT",
+              ),
             ],
           ),
         ),

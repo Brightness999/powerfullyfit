@@ -14,40 +14,65 @@ class TodayWorkoutCard extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(
-              "Today's Workout",
-              style: TextStyle(
-                color: Colors.white,
-                fontSize: 25,
-                fontWeight: FontWeight.bold,
+            Container(
+              margin: EdgeInsets.only(
+                bottom: MediaQuery.of(context).size.height * .01,
               ),
-            ),
-            SizedBox(
-              height: 20,
+              child: Text(
+                "Today's Workout",
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 25,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
             ),
             Container(
               constraints: BoxConstraints.expand(
-                height: MediaQuery.of(context).size.height * .20,
+                height: MediaQuery.of(context).size.height * .25,
               ),
               alignment: Alignment.bottomLeft,
-              padding: EdgeInsets.only(left: 16.0, bottom: 8.0),
               decoration: BoxDecoration(
+                borderRadius: BorderRadius.all(
+                  Radius.circular(25),
+                ),
                 image: DecorationImage(
                   image: AssetImage('assets/today-workout.png'),
                   fit: BoxFit.cover,
                 ),
               ),
               child: Container(
-                decoration: BoxDecoration(
-                  color: Color(0xff22272c),
+                width: MediaQuery.of(context).size.width,
+                padding: EdgeInsets.only(
+                  left: 16.0,
+                  bottom: 8.0,
+                  top: 8.0,
+                  right: 10.0,
                 ),
-                child: Text(
-                  'Biceps & Abs - 30 mins',
-                  style: new TextStyle(
-                    fontWeight: FontWeight.bold,
-                    fontSize: 20.0,
-                    color: Colors.white,
+                decoration: BoxDecoration(
+                  color: Color(0xdd22272c),
+                  borderRadius: BorderRadius.only(
+                    bottomLeft: Radius.circular(25),
+                    bottomRight: Radius.circular(25),
                   ),
+                ),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      'Biceps & Abs - 30 mins',
+                      style: new TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 24.0,
+                        color: Colors.white,
+                      ),
+                    ),
+                    Icon(
+                      Icons.chevron_right,
+                      color: Colors.white,
+                      size: 24.0,
+                    )
+                  ],
                 ),
               ),
             )
