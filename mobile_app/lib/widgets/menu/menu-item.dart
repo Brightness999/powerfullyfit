@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:mobile_app/theme/colors.dart';
 
 class MenuItem extends StatelessWidget {
   final Function onPressed;
@@ -22,10 +23,10 @@ class MenuItem extends StatelessWidget {
             10,
           ),
         ),
-        color: Color(0xFF3F3F3F),
+        color: appGrey,
       ),
-      height: (MediaQuery.of(context).size.height) * .10,
-      width: (MediaQuery.of(context).size.width) * .24,
+      height: (MediaQuery.of(context).size.height) * .12,
+      width: (MediaQuery.of(context).size.width) * .26,
       child: FlatButton(
         onPressed: onPressed,
         child: Center(
@@ -35,7 +36,7 @@ class MenuItem extends StatelessWidget {
               Icon(
                 icon,
                 size: 30.0,
-                color: Colors.white,
+                color: appBrown,
               ),
               Text(
                 name,

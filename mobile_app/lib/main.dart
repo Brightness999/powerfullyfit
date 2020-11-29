@@ -1,9 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 import 'package:mobile_app/screens/auth/login/login_ui.dart';
+import 'package:mobile_app/theme/colors.dart';
 
 void main() {
-  runApp(MyApp());
+  WidgetsFlutterBinding.ensureInitialized();
+  SystemChrome.setPreferredOrientations(
+      [DeviceOrientation.portraitUp, DeviceOrientation.portraitDown]).then((_) {
+    runApp(MyApp());
+  });
 }
 
 class MyApp extends StatelessWidget {
@@ -12,11 +18,22 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Powerfully Fit',
       theme: ThemeData(
-        primarySwatch: Colors.blue,
-        scaffoldBackgroundColor: const Color(0xFF3F3F3F),
-        textTheme: TextTheme(
-          bodyText1: TextStyle(
+        // primarySwatch: Colors.grey,
+        appBarTheme: AppBarTheme(
+          color: appGrey,
+        ),
+        scaffoldBackgroundColor: appGrey,
+        textTheme: Theme.of(context).textTheme.apply(
+              bodyColor: Colors.white,
+              displayColor: Colors.white,
+            ),
+        primaryIconTheme:
+            Theme.of(context).primaryIconTheme.copyWith(color: Colors.white),
+        primaryTextTheme: TextTheme(
+          headline6: TextStyle(
             color: Colors.white,
+            fontWeight: FontWeight.bold,
+            fontSize: 30.0,
           ),
         ),
         visualDensity: VisualDensity.adaptivePlatformDensity,

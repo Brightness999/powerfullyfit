@@ -1,7 +1,9 @@
-import 'package:adv_fab/adv_fab.dart';
 import 'package:flutter/material.dart';
+import 'package:mobile_app/screens/nutrition/macros-list/macros-list.ui.dart';
+import 'package:mobile_app/theme/colors.dart';
 import 'package:mobile_app/widgets/cards/daily-nutrition-goal.card.dart';
 import 'package:step_progress_indicator/step_progress_indicator.dart';
+import 'package:mobile_app/widgets/buttons/primary_button.dart';
 
 class DailyNutritionScreen extends StatefulWidget {
   @override
@@ -13,7 +15,7 @@ class _DailyNutritionScreen extends State {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Color(0xFF3F3F3F),
+        backgroundColor: appGrey,
         title: Text(
           "Daily Nutrition",
           style: TextStyle(
@@ -22,64 +24,70 @@ class _DailyNutritionScreen extends State {
           ),
         ),
       ),
-      body: Column(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          SizedBox(
-            height: 30,
-          ),
-          CircularStepProgressIndicator(
-            totalSteps: 100,
-            currentStep: 72,
-            stepSize: 9,
-            selectedColor: Colors.greenAccent,
-            unselectedColor: Colors.grey[200],
-            padding: 0,
-            height: 300,
-            width: 300,
-            selectedStepSize: 20,
-            roundedCap: (_, __) => true,
-            child: Center(
-              child: CircularStepProgressIndicator(
-                totalSteps: 100,
-                currentStep: 32,
-                stepSize: 9,
-                selectedColor: Colors.redAccent,
-                unselectedColor: Colors.grey[200],
-                padding: 0,
-                height: 230,
-                width: 230,
-                selectedStepSize: 20,
-                roundedCap: (_, __) => true,
-              ),
+      body: Container(
+        padding: EdgeInsets.symmetric(
+          horizontal: MediaQuery.of(context).size.height * .01,
+        ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            SizedBox(
+              height: 30,
             ),
-          ),
-          SizedBox(
-            height: 30,
-          ),
-          DailyNutrition(),
-          Container(
-            padding: EdgeInsets.all(
-              MediaQuery.of(context).size.height * .02,
-            ),
-            decoration: BoxDecoration(
-              color: Color(0xff99755A),
-              borderRadius: BorderRadius.all(
-                Radius.circular(25),
-              ),
-            ),
-            child: FlatButton(
-              onPressed: () {},
-              child: Text(
-                "Enter New Macros",
-                style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 33,
+            CircularStepProgressIndicator(
+              totalSteps: 100,
+              currentStep: 72,
+              stepSize: 9,
+              selectedColor: Colors.greenAccent,
+              unselectedColor: Colors.grey[200],
+              padding: 0,
+              height: 300,
+              width: 300,
+              selectedStepSize: 20,
+              roundedCap: (_, __) => true,
+              child: Center(
+                child: CircularStepProgressIndicator(
+                  totalSteps: 100,
+                  currentStep: 32,
+                  stepSize: 9,
+                  selectedColor: Colors.redAccent,
+                  unselectedColor: Colors.grey[200],
+                  padding: 0,
+                  height: 230,
+                  width: 230,
+                  selectedStepSize: 20,
+                  roundedCap: (_, __) => true,
                 ),
               ),
             ),
-          ),
-        ],
+            SizedBox(
+              height: 30,
+            ),
+            DailyNutrition(),
+            SizedBox(
+              height: 30,
+            ),
+            PrimaryButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (BuildContext context) {
+                    return MacrosListScreen();
+                  }),
+                );
+              },
+              child: Center(
+                child: Text(
+                  'Enter Macros',
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 28,
+                  ),
+                ),
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }

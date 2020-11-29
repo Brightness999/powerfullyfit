@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:mobile_app/screens/account/account_screen.ui.dart';
 import 'package:mobile_app/screens/home/home_screen.bloc.dart';
 import 'package:mobile_app/screens/nutrition/daily-nutrition/daily-nutrition.ui.dart';
+import 'package:mobile_app/widgets/cards/weekly-goals.card.dart';
 import 'package:mobile_app/screens/workout/workout/workout_ui.dart';
 import 'package:mobile_app/widgets/cards/daily-nutrition-goal.card.dart';
 import 'package:mobile_app/widgets/cards/calendar.card.dart';
@@ -38,7 +39,7 @@ class _SummaryScreen extends State {
                 children: [
                   Flexible(
                     child: Container(
-                      width: MediaQuery.of(context).size.width * .6,
+                      width: MediaQuery.of(context).size.width * .8,
                       child: Text(
                         "Take a look at your fitness Summary.",
                         style: TextStyle(
@@ -58,8 +59,8 @@ class _SummaryScreen extends State {
                       );
                     },
                     child: Container(
-                      height: MediaQuery.of(context).size.width * .15,
-                      width: MediaQuery.of(context).size.width * .15,
+                      height: MediaQuery.of(context).size.width * .12,
+                      width: MediaQuery.of(context).size.width * .12,
                       decoration: new BoxDecoration(
                           shape: BoxShape.circle,
                           image: DecorationImage(
@@ -72,113 +73,18 @@ class _SummaryScreen extends State {
                   )
                 ],
               ),
-              Container(
-                margin: EdgeInsets.only(
-                  bottom: MediaQuery.of(context).size.height * .01,
-                  top: MediaQuery.of(context).size.height * .03,
-                ),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      "My Weekly Goals",
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 25,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                    SizedBox(
-                      height: 10,
-                    ),
-                    Container(
-                      height: MediaQuery.of(context).size.height * .23,
-                      padding: EdgeInsets.all(
-                        MediaQuery.of(context).size.height * .02,
-                      ),
-                      decoration: BoxDecoration(
-                        color: Color(0xff22272c),
-                        borderRadius: BorderRadius.all(
-                          Radius.circular(25),
-                        ),
-                      ),
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.spaceAround,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Text(
-                                "Weekly Workouts (2/4)",
-                                style: TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 17,
-                                ),
-                              ),
-                              Icon(
-                                Icons.keyboard_arrow_down,
-                                color: Colors.white,
-                              )
-                            ],
-                          ),
-                          StepProgressIndicator(
-                            totalSteps: 4,
-                            currentStep: 2,
-                            size: 36,
-                            selectedColor: Colors.black,
-                            unselectedColor: Colors.grey[200],
-                            customStep: (index, color, _) =>
-                                color == Colors.black
-                                    ? Container(
-                                        child: Icon(
-                                          Icons.check_circle,
-                                          color: Colors.greenAccent,
-                                        ),
-                                      )
-                                    : Container(
-                                        child: Icon(
-                                          Icons.stop_circle,
-                                          color: Colors.blueAccent,
-                                        ),
-                                      ),
-                          ),
-                          Text(
-                            "Macros milestone reached (4/5)",
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 17,
-                            ),
-                          ),
-                          StepProgressIndicator(
-                            totalSteps: 5,
-                            currentStep: 4,
-                            size: 36,
-                            selectedColor: Colors.black,
-                            unselectedColor: Colors.grey[200],
-                            customStep: (index, color, _) =>
-                                color == Colors.black
-                                    ? Container(
-                                        child: Icon(
-                                          Icons.check_circle,
-                                          color: Colors.greenAccent,
-                                        ),
-                                      )
-                                    : Container(
-                                        child: Icon(
-                                          Icons.stop_circle,
-                                          color: Colors.blueAccent,
-                                        ),
-                                      ),
-                          )
-                        ],
-                      ),
-                    ),
-                  ],
-                ),
+              SizedBox(
+                height: 40,
+              ),
+              WeeklyGoals(),
+              SizedBox(
+                height: 20,
               ),
               CalendarCard(
                 calendarController: calendarController,
+              ),
+              SizedBox(
+                height: 20,
               ),
               DailyNutrition(
                 title: "Your Progress",
