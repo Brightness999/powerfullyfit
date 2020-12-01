@@ -1,5 +1,6 @@
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
+import 'package:mobile_app/theme/colors.dart';
 
 class LineChartSample1 extends StatefulWidget {
   @override
@@ -15,7 +16,7 @@ class LineChartSample1State extends State<LineChartSample1> {
   @override
   Widget build(BuildContext context) {
     return AspectRatio(
-      aspectRatio: 1.23,
+      aspectRatio: 1.03,
       child: Container(
         child: Stack(
           children: <Widget>[
@@ -27,27 +28,55 @@ class LineChartSample1State extends State<LineChartSample1> {
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(
-                      'Weight Watch',
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 25,
-                        fontWeight: FontWeight.bold,
-                        letterSpacing: 2,
-                      ),
-                      textAlign: TextAlign.center,
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          'Weight Watch',
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 18,
+                            fontWeight: FontWeight.normal,
+                            letterSpacing: 2,
+                          ),
+                          textAlign: TextAlign.center,
+                        ),
+                        SizedBox(
+                          height: 20,
+                        ),
+                        Container(
+                          padding: EdgeInsets.all(8),
+                          decoration: BoxDecoration(
+                            color: Colors.orangeAccent,
+                            borderRadius: BorderRadius.all(
+                              Radius.circular(10),
+                            ),
+                          ),
+                          child: Text(
+                            '165.4 lb',
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 20,
+                              fontWeight: FontWeight.bold,
+                              letterSpacing: 2,
+                            ),
+                            textAlign: TextAlign.center,
+                          ),
+                        ),
+                      ],
                     ),
                     Container(
                       padding: EdgeInsets.all(8),
                       decoration: BoxDecoration(
-                        color: Color(0xff000000),
+                        color: Colors.blueAccent,
                         borderRadius: BorderRadius.all(
                           Radius.circular(10),
                         ),
                       ),
                       child: Text(
-                        'Goal 148',
+                        'Goal: 148',
                         style: TextStyle(
                           color: Colors.white,
                           fontSize: 20,
@@ -67,7 +96,9 @@ class LineChartSample1State extends State<LineChartSample1> {
                     padding: const EdgeInsets.only(right: 16.0, left: 6.0),
                     child: LineChart(
                       sampleData1(),
-                      swapAnimationDuration: const Duration(milliseconds: 250),
+                      swapAnimationDuration: const Duration(
+                        milliseconds: 250,
+                      ),
                     ),
                   ),
                 ),
@@ -126,17 +157,17 @@ class LineChartSample1State extends State<LineChartSample1> {
           getTitles: (value) {
             switch (value.toInt()) {
               case 1:
-                return '1m';
+                return '0';
               case 2:
-                return '2m';
+                return '50';
               case 3:
-                return '3m';
+                return '100';
               case 4:
-                return '5m';
+                return '150';
             }
             return '';
           },
-          margin: 8,
+          // margin: 8,
           reservedSize: 30,
         ),
       ),

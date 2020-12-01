@@ -56,7 +56,7 @@ class AppMenu extends StatelessWidget {
                       name: 'Nutrition',
                       icon: Icons.emoji_food_beverage_sharp,
                       onPressed: () {
-                        stateStream.add(screenState.Education);
+                        stateStream.add(screenState.Nutrition);
                         mabialaFABController.collapseFAB();
                       },
                     ),
@@ -97,7 +97,7 @@ class AppMenu extends StatelessWidget {
                         name: 'Help',
                         icon: Icons.info,
                         onPressed: () {
-                          stateStream.add(screenState.Progress);
+                          stateStream.add(screenState.Help);
                           mabialaFABController.collapseFAB();
                         },
                       ),
@@ -125,7 +125,7 @@ class AppMenu extends StatelessWidget {
             ? mabialaFABController.expandFAB()
             : mabialaFABController.collapseFAB();
       },
-      floatingActionButtonIcon: Icons.menu,
+      floatingActionButtonIcon: Icons.add,
       floatingActionButtonIconColor: appBrown,
       floatingActionButtonExpendedWidth:
           (MediaQuery.of(context).size.width) * .22,

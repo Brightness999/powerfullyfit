@@ -27,9 +27,9 @@ class PrimaryCard extends StatelessWidget {
             ),
           ),
         Container(
-          padding: EdgeInsets.all(
-            MediaQuery.of(context).size.height * .01,
-          ),
+          // padding: EdgeInsets.all(
+          //   MediaQuery.of(context).size.height * .01,
+          // ),
           decoration: BoxDecoration(
             color: appDarkGrey,
             borderRadius: BorderRadius.all(

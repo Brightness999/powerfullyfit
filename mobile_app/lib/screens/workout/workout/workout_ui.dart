@@ -1,12 +1,26 @@
+import 'package:expansion_tile_card/expansion_tile_card.dart';
 import 'package:flutter/material.dart';
+import 'package:mobile_app/entities/Exercise.entity.dart';
 import 'package:mobile_app/theme/colors.dart';
+
+import 'package:expansion_card/expansion_card.dart';
+import 'package:mobile_app/widgets/cards/primary-card.ui.dart';
 
 class WorkoutScreen extends StatefulWidget {
   _WorkoutScreen createState() => _WorkoutScreen();
 }
 
 class _WorkoutScreen extends State<WorkoutScreen> {
-  bool isOpen = false;
+  final GlobalKey<ExpansionTileCardState> cardA = new GlobalKey();
+  final GlobalKey<ExpansionTileCardState> cardB = new GlobalKey();
+
+  List<Exercise> exercises = [
+    Exercise(name: "Bicep Curls"),
+    Exercise(name: "Barbell Curls"),
+    Exercise(name: "Situps"),
+    Exercise(name: "Pushups"),
+    Exercise(name: "Planks"),
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -76,7 +90,11 @@ class _WorkoutScreen extends State<WorkoutScreen> {
                           ),
                         ),
                         padding: EdgeInsets.all(36),
-                        shape: CircleBorder(),
+                        shape: CircleBorder(
+                          side: BorderSide(
+                            color: Colors.greenAccent,
+                          ),
+                        ),
                       ),
                       Text(
                         "0:00",
@@ -88,7 +106,7 @@ class _WorkoutScreen extends State<WorkoutScreen> {
                     ],
                   ),
                   SizedBox(
-                    height: 50,
+                    height: 30,
                   ),
                   Container(
                     margin: EdgeInsets.only(left: 16.0, bottom: 16.0),
@@ -101,126 +119,64 @@ class _WorkoutScreen extends State<WorkoutScreen> {
                     ),
                   ),
                   Container(
-                    margin: EdgeInsets.symmetric(horizontal: 16.0),
-                    child: ExpansionPanelList(
-                      expansionCallback: (int index, bool isExpanded) {
-                        setState(() {
-                          isOpen = !isOpen;
-                        });
-                      },
+                    margin: EdgeInsets.symmetric(
+                        horizontal: MediaQuery.of(context).size.width * .01),
+                    child: Column(
                       children: [
-                        ExpansionPanel(
-                          canTapOnHeader: true,
-                          headerBuilder:
-                              (BuildContext context, bool isExpanded) {
-                            return Text(
-                              "Bicep Curls",
-                              textAlign: TextAlign.left,
-                              style: TextStyle(
-                                fontSize: 20.0,
-                                fontWeight: FontWeight.w400,
+                        ...exercises.map((Exercise exercise) {
+                          return Container(
+                            margin: EdgeInsets.only(
+                                bottom:
+                                    MediaQuery.of(context).size.height * .01),
+                            child: ExpansionTileCard(
+                              baseColor: appDarkGrey,
+                              expandedColor: appDarkGrey,
+                              // key: cardA,
+                              leading: CircleAvatar(
+                                child: Icon(
+                                  Icons.fitness_center,
+                                ),
                               ),
-                            );
-                          },
-                          isExpanded: isOpen,
-                          body: Text(""),
-                        ),
-                        ExpansionPanel(
-                          canTapOnHeader: true,
-                          headerBuilder:
-                              (BuildContext context, bool isExpanded) {
-                            return Text(
-                              "Bicep Curls",
-                              textAlign: TextAlign.left,
-                              style: TextStyle(
-                                fontSize: 20.0,
-                                fontWeight: FontWeight.w400,
+                              title: Text(
+                                exercise.name.toString(),
                               ),
-                            );
-                          },
-                          isExpanded: isOpen,
-                          body: Text(""),
-                        ),
-                        ExpansionPanel(
-                          canTapOnHeader: true,
-                          headerBuilder:
-                              (BuildContext context, bool isExpanded) {
-                            return Text(
-                              "Bicep Curls",
-                              textAlign: TextAlign.left,
-                              style: TextStyle(
-                                fontSize: 20.0,
-                                fontWeight: FontWeight.w400,
-                              ),
-                            );
-                          },
-                          isExpanded: isOpen,
-                          body: Text(""),
-                        ),
-                        ExpansionPanel(
-                          canTapOnHeader: true,
-                          headerBuilder:
-                              (BuildContext context, bool isExpanded) {
-                            return Text(
-                              "Bicep Curls",
-                              textAlign: TextAlign.left,
-                              style: TextStyle(
-                                fontSize: 20.0,
-                                fontWeight: FontWeight.w400,
-                              ),
-                            );
-                          },
-                          isExpanded: isOpen,
-                          body: Text(""),
-                        ),
-                        ExpansionPanel(
-                          canTapOnHeader: true,
-                          headerBuilder:
-                              (BuildContext context, bool isExpanded) {
-                            return Text(
-                              "Bicep Curls",
-                              textAlign: TextAlign.left,
-                              style: TextStyle(
-                                fontSize: 20.0,
-                                fontWeight: FontWeight.w400,
-                              ),
-                            );
-                          },
-                          isExpanded: isOpen,
-                          body: Text(""),
-                        ),
-                        ExpansionPanel(
-                          canTapOnHeader: true,
-                          headerBuilder:
-                              (BuildContext context, bool isExpanded) {
-                            return Text(
-                              "Bicep Curls",
-                              textAlign: TextAlign.left,
-                              style: TextStyle(
-                                fontSize: 20.0,
-                                fontWeight: FontWeight.w400,
-                              ),
-                            );
-                          },
-                          isExpanded: isOpen,
-                          body: Text(""),
-                        ),
-                        ExpansionPanel(
-                          canTapOnHeader: true,
-                          headerBuilder:
-                              (BuildContext context, bool isExpanded) {
-                            return Text(
-                              "Bicep Curls",
-                              textAlign: TextAlign.left,
-                              style: TextStyle(
-                                fontSize: 20.0,
-                                fontWeight: FontWeight.w400,
-                              ),
-                            );
-                          },
-                          isExpanded: isOpen,
-                          body: Text(""),
-                        ),
+                              children: <Widget>[
+                                Divider(
+                                  thickness: 1.0,
+                                  height: 1.0,
+                                ),
+                                Align(
+                                  alignment: Alignment.centerLeft,
+                                  child: Padding(
+                                    padding: const EdgeInsets.symmetric(
+                                      horizontal: 16.0,
+                                      vertical: 8.0,
+                                    ),
+                                    child: Column(
+                                      children: [
+                                        ...exercise.sets
+                                            .map(
+                                              (e) => Container(
+                                                margin: const EdgeInsets.only(
+                                                  bottom: 10.0,
+                                                ),
+                                                child: Text(
+                                                  "Set 1 (4x12)",
+                                                  style: TextStyle(
+                                                    fontSize: 18,
+                                                  ),
+                                                ),
+                                              ),
+                                            )
+                                            .toList(),
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          );
+                        }).toList(),
                       ],
                     ),
                   ),

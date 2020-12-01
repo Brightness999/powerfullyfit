@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:mobile_app/theme/colors.dart';
-import 'package:step_progress_indicator/step_progress_indicator.dart';
 
 class SettingsOptionCard extends StatelessWidget {
-  final String title;
+  final Widget child;
   final String label;
   final Function onTap;
 
-  SettingsOptionCard({this.title = "", this.label = "", this.onTap});
+  SettingsOptionCard({this.child, this.label = "", this.onTap});
 
   @override
   Widget build(BuildContext context) {
@@ -28,12 +27,7 @@ class SettingsOptionCard extends StatelessWidget {
           title: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text(
-                title,
-                style: TextStyle(
-                  color: Colors.white,
-                ),
-              ),
+              child,
               if (label != null && label.isNotEmpty)
                 Container(
                   padding: EdgeInsets.all(8),
