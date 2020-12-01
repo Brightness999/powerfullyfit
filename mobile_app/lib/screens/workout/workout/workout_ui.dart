@@ -145,34 +145,35 @@ class _WorkoutScreen extends State<WorkoutScreen> {
                                   thickness: 1.0,
                                   height: 1.0,
                                 ),
-                                Align(
-                                  alignment: Alignment.centerLeft,
-                                  child: Padding(
-                                    padding: const EdgeInsets.symmetric(
-                                      horizontal: 16.0,
-                                      vertical: 8.0,
-                                    ),
-                                    child: Column(
-                                      children: [
-                                        ...exercise.sets
-                                            .map(
-                                              (e) => Container(
-                                                margin: const EdgeInsets.only(
-                                                  bottom: 10.0,
-                                                ),
-                                                child: Text(
-                                                  "Set 1 (4x12)",
-                                                  style: TextStyle(
-                                                    fontSize: 18,
+                                if (exercise.sets != null)
+                                  Align(
+                                    alignment: Alignment.centerLeft,
+                                    child: Padding(
+                                      padding: const EdgeInsets.symmetric(
+                                        horizontal: 16.0,
+                                        vertical: 8.0,
+                                      ),
+                                      child: Column(
+                                        children: [
+                                          ...exercise.sets
+                                              .map(
+                                                (e) => Container(
+                                                  margin: const EdgeInsets.only(
+                                                    bottom: 10.0,
+                                                  ),
+                                                  child: Text(
+                                                    "Set 1 (4x12)",
+                                                    style: TextStyle(
+                                                      fontSize: 18,
+                                                    ),
                                                   ),
                                                 ),
-                                              ),
-                                            )
-                                            .toList(),
-                                      ],
+                                              )
+                                              .toList(),
+                                        ],
+                                      ),
                                     ),
                                   ),
-                                ),
                               ],
                             ),
                           );
