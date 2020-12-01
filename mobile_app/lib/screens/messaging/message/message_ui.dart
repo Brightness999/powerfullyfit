@@ -5,7 +5,7 @@ class MessageScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Message Screen'),
+        title: Text('Sam Davis'),
       ),
       body: Center(
         child: Text('Message'),

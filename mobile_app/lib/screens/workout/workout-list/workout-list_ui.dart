@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:mobile_app/entities/workout.dart';
+import 'package:mobile_app/models/workout-type.enum.dart';
 import 'package:mobile_app/screens/workout/workout/workout_ui.dart';
 import 'package:mobile_app/widgets/cards/calendar.card.dart';
 import 'package:mobile_app/widgets/cards/settings-option.card.dart';
@@ -11,6 +13,13 @@ class WorkoutListScreen extends StatefulWidget {
 
 class _WorkoutListScreen extends State<WorkoutListScreen> {
   CalendarController calendarController = CalendarController();
+
+  List<Workout> upcomingWorkouts = [
+    Workout(name: "Leg", type: WorkoutType.HIIT),
+    Workout(name: "Triceps & Shoulders"),
+    Workout(name: "Back"),
+    Workout(name: "Core & Glutes", type: WorkoutType.HIIT),
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -61,22 +70,47 @@ class _WorkoutListScreen extends State<WorkoutListScreen> {
               SizedBox(
                 height: 10,
               ),
-              SettingsOptionCard(
-                title: "Tue. - Leg",
-                label: "HIIT",
-              ),
-              SettingsOptionCard(
-                title: "Wed. - Triceps & Shoulders",
-                label: "",
-              ),
-              SettingsOptionCard(
-                title: "Thur. - Back",
-                label: "",
-              ),
-              SettingsOptionCard(
-                title: "Fri. - Core & Glutes",
-                label: "HIIT",
-              ),
+              ...upcomingWorkouts.map((Workout workout) {
+                return SettingsOptionCard(
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (BuildContext context) {
+                        return WorkoutScreen();
+                      }),
+                    );
+                  },
+                  child: Row(
+                    children: [
+                      Text(
+                        "Tue.",
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      Text(" - ${workout.name}"),
+                      if (workout.type != null)
+                        Container(
+                          padding: EdgeInsets.all(8),
+                          margin: EdgeInsets.only(left: 13),
+                          decoration: BoxDecoration(
+                            color: Color(0xff000000),
+                            borderRadius: BorderRadius.all(
+                              Radius.circular(5),
+                            ),
+                          ),
+                          child: Text(
+                            "HIIT",
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                        ),
+                    ],
+                  ),
+                );
+              }).toList()
             ],
           ),
         ),

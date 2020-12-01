@@ -9,20 +9,28 @@ class AppTextField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return TextField(
-      obscureText: obscureText,
-      decoration: InputDecoration(
-        labelText: hintText,
-        labelStyle: TextStyle(
-          fontSize: 20,
+    return Container(
+      margin: EdgeInsets.symmetric(
+        vertical: MediaQuery.of(context).size.height * .015,
+      ),
+      child: TextField(
+        obscureText: obscureText,
+        style: TextStyle(
+          color: Colors.black,
         ),
-        border: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(10.0),
+        decoration: InputDecoration(
+          labelText: hintText,
+          labelStyle: TextStyle(
+            fontSize: 20,
+          ),
+          border: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(10.0),
+          ),
+          filled: true,
+          fillColor: Colors.white,
+          hintText: hintText,
+          suffixIcon: suffixIcon,
         ),
-        filled: true,
-        fillColor: Colors.white,
-        hintText: hintText,
-        suffixIcon: suffixIcon,
       ),
     );
   }

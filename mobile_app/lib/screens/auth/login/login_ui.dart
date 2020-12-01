@@ -40,9 +40,9 @@ class LoginScreen extends StatelessWidget {
                         AppTextField(
                           hintText: 'Email',
                         ),
-                        SizedBox(
-                          height: 40,
-                        ),
+                        // SizedBox(
+                        //   height: 40,
+                        // ),
                         StreamBuilder(
                           stream: loginBloc.stateStream,
                           builder: (context, AsyncSnapshot<LoginEvent> data) {
@@ -69,9 +69,6 @@ class LoginScreen extends StatelessWidget {
                               obscureText: data.data != LoginEvent.ShowPassword,
                             );
                           },
-                        ),
-                        SizedBox(
-                          height: 60,
                         ),
                         PrimaryButton(
                           onPressed: () {

@@ -75,9 +75,9 @@ class _AccountScreen extends State {
               SizedBox(
                 height: 10,
               ),
-              SettingsOptionCard(title: "Username"),
-              SettingsOptionCard(title: "Physical & Activity"),
-              SettingsOptionCard(title: "MyTrainer"),
+              SettingsOptionCard(child: Text("Username")),
+              SettingsOptionCard(child: Text("Physical & Activity")),
+              SettingsOptionCard(child: Text("MyTrainer")),
               SizedBox(
                 height: 20,
               ),
@@ -95,9 +95,9 @@ class _AccountScreen extends State {
               SizedBox(
                 height: 10,
               ),
-              SettingsOptionCard(title: "Email"),
-              SettingsOptionCard(title: "Phone"),
-              SettingsOptionCard(title: "Subscription"),
+              SettingsOptionCard(child: Text("Email")),
+              SettingsOptionCard(child: Text("Phone")),
+              SettingsOptionCard(child: Text("Subscription")),
               SizedBox(
                 height: 20,
               ),
@@ -115,10 +115,10 @@ class _AccountScreen extends State {
               SizedBox(
                 height: 10,
               ),
-              SettingsOptionCard(title: "Password"),
-              SettingsOptionCard(title: "Privacy & Data"),
+              SettingsOptionCard(child: Text("Password")),
+              SettingsOptionCard(child: Text("Privacy & Data")),
               SettingsOptionCard(
-                title: "Logout",
+                child: Text("Logout"),
                 onTap: () {
                   displayModalBottomSheet(context);
                 },

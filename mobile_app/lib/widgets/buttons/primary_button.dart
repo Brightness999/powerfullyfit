@@ -10,25 +10,30 @@ class PrimaryButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return FlatButton(
-      shape: new RoundedRectangleBorder(
-        borderRadius: new BorderRadius.circular(
-          30.0,
-        ),
+    return Container(
+      margin: EdgeInsets.symmetric(
+        vertical: MediaQuery.of(context).size.height * .02,
       ),
-      onPressed: onPressed,
-      color: appBrown,
-      child: Container(
-        padding: EdgeInsets.all(
-          MediaQuery.of(context).size.height * .02,
-        ),
-        width: MediaQuery.of(context).size.width,
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.all(
-            Radius.circular(25),
+      child: FlatButton(
+        shape: new RoundedRectangleBorder(
+          borderRadius: new BorderRadius.circular(
+            10.0,
           ),
         ),
-        child: child,
+        onPressed: onPressed,
+        color: appBrown,
+        child: Container(
+          padding: EdgeInsets.all(
+            MediaQuery.of(context).size.height * .02,
+          ),
+          width: MediaQuery.of(context).size.width,
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.all(
+              Radius.circular(25),
+            ),
+          ),
+          child: child,
+        ),
       ),
     );
   }

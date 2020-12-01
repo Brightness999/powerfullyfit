@@ -64,26 +64,29 @@ class _MacrosListScreen extends State<MacrosListScreen> {
                 height: 10,
               ),
               SettingsOptionCard(
-                title: "Tue. - Leg",
+                child: Text("Tue. - Leg"),
               ),
               SettingsOptionCard(
-                title: "Wed. - Triceps & Shoulders",
+                child: Text("Wed. - Triceps & Shoulders"),
               ),
               SettingsOptionCard(
-                title: "Thur. - Back",
+                child: Text("Thur. - Back"),
               ),
               SettingsOptionCard(
-                title: "Fri. - Core & Glutes",
+                child: Text("Fri. - Core & Glutes"),
               ),
               SettingsOptionCard(
-                title: "Fri. - Core & Glutes",
+                child: Text("Fri. - Core & Glutes"),
               ),
               SettingsOptionCard(
-                title: "Fri. - Core & Glutes",
+                child: Text("Fri. - Core & Glutes"),
               ),
               SettingsOptionCard(
-                title: "Fri. - Core & Glutes",
+                child: Text("Fri. - Core & Glutes"),
               ),
+              SizedBox(
+                height: 20,
+              )
             ],
           ),
         ),

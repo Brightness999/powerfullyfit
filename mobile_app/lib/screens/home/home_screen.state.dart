@@ -6,5 +6,7 @@ enum screenState {
   Summary,
   Login,
   Progress,
-  Inbox
+  Inbox,
+  Help,
+  Nutrition
 }
