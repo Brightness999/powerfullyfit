@@ -1,6 +1,8 @@
+import 'package:mobile_app/entities/user.entity.dart';
+
 import 'client.entity.dart';
 
-class Coach {
+class Coach extends User {
   int id;
 
   String name;

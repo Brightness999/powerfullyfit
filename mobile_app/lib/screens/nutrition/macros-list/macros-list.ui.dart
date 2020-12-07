@@ -16,13 +16,8 @@ class _MacrosListScreen extends State<MacrosListScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: appGrey,
         title: Text(
           "Daily Nutrition",
-          style: TextStyle(
-            color: Colors.white,
-            fontSize: 25,
-          ),
         ),
       ),
       body: SingleChildScrollView(
@@ -34,7 +29,7 @@ class _MacrosListScreen extends State<MacrosListScreen> {
             children: [
               DailyNutrition(),
               SizedBox(
-                height: 30,
+                height: 5,
               ),
               PrimaryButton(
                 child: Center(
@@ -61,28 +56,19 @@ class _MacrosListScreen extends State<MacrosListScreen> {
                 ),
               ),
               SizedBox(
-                height: 10,
+                height: 5,
               ),
               SettingsOptionCard(
-                child: Text("Tue. - Leg"),
+                child: Text("Lemon Chicken"),
               ),
               SettingsOptionCard(
-                child: Text("Wed. - Triceps & Shoulders"),
+                child: Text("Almonds"),
               ),
               SettingsOptionCard(
-                child: Text("Thur. - Back"),
+                child: Text("Vegan Chips"),
               ),
               SettingsOptionCard(
-                child: Text("Fri. - Core & Glutes"),
-              ),
-              SettingsOptionCard(
-                child: Text("Fri. - Core & Glutes"),
-              ),
-              SettingsOptionCard(
-                child: Text("Fri. - Core & Glutes"),
-              ),
-              SettingsOptionCard(
-                child: Text("Fri. - Core & Glutes"),
+                child: Text("Chai Tea"),
               ),
               SizedBox(
                 height: 20,

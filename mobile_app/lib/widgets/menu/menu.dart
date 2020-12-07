@@ -1,5 +1,6 @@
 import 'package:adv_fab/adv_fab.dart';
 import 'package:flutter/material.dart';
+import 'package:mobile_app/screens/messaging/message/message_ui.dart';
 import 'package:mobile_app/theme/colors.dart';
 import 'package:rxdart/subjects.dart';
 
@@ -64,8 +65,14 @@ class AppMenu extends StatelessWidget {
                       name: 'Inbox',
                       icon: Icons.chat,
                       onPressed: () {
-                        stateStream.add(screenState.Inbox);
                         mabialaFABController.collapseFAB();
+
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (BuildContext context) {
+                            return MessageScreen();
+                          }),
+                        );
                       },
                     ),
                     MenuItem(

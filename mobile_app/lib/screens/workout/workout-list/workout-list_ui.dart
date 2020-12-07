@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:mobile_app/entities/workout.dart';
 import 'package:mobile_app/models/workout-type.enum.dart';
+import 'package:mobile_app/screens/summary/summary_screen.ui.dart';
 import 'package:mobile_app/screens/workout/workout/workout_ui.dart';
+import 'package:mobile_app/widgets/buttons/return_summary.button.dart';
 import 'package:mobile_app/widgets/cards/calendar.card.dart';
 import 'package:mobile_app/widgets/cards/settings-option.card.dart';
 import 'package:mobile_app/widgets/cards/today-workout.card.dart';
@@ -25,7 +27,7 @@ class _WorkoutListScreen extends State<WorkoutListScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.transparent,
+        leading: ReturnSummaryButton(),
         title: Text(
           "My Workouts",
           style: new TextStyle(

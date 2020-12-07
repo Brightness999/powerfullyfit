@@ -14,59 +14,54 @@ class _WeeklyGoals extends State<WeeklyGoals> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      // title: "My Weekly Goals",
       child: Container(
-        // padding: EdgeInsets.all(10),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Container(
               margin: EdgeInsets.only(
-                  bottom: MediaQuery.of(context).size.height * .01),
+                bottom: MediaQuery.of(context).size.height * .01,
+              ),
               child: ExpansionTileCard(
                 borderRadius: new BorderRadius.circular(
                   20.0,
                 ),
                 baseColor: appDarkGrey,
+                // trailing: Icon(Icons.arrow_back),
                 expandedColor: appDarkGrey,
                 title: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Container(
                       margin: EdgeInsets.only(
-                        top: 20,
+                        top: 10,
                       ),
                       child: Text(
                         "Weekly Workouts (2/4)",
                       ),
                     ),
-                    Container(
-                      margin: EdgeInsets.only(
-                        top: MediaQuery.of(context).size.height * .01,
-                      ),
-                      child: StepProgressIndicator(
-                        totalSteps: 4,
-                        currentStep: 2,
-                        size: 36,
-                        selectedColor: Colors.black,
-                        unselectedColor: Colors.grey[200],
-                        customStep: (index, color, _) => color == Colors.black
-                            ? Container(
-                                child: Icon(
-                                  Icons.check_circle,
-                                  color: Colors.greenAccent,
-                                ),
-                              )
-                            : Container(
-                                child: Icon(
-                                  Icons.stop_circle,
-                                  color: Colors.blueAccent,
-                                ),
-                              ),
-                      ),
-                    ),
                   ],
+                ),
+                subtitle: StepProgressIndicator(
+                  totalSteps: 4,
+                  currentStep: 2,
+                  size: 36,
+                  selectedColor: Colors.black,
+                  unselectedColor: Colors.grey[200],
+                  customStep: (index, color, _) => color == Colors.black
+                      ? Container(
+                          child: Icon(
+                            Icons.check_circle,
+                            color: Colors.greenAccent,
+                          ),
+                        )
+                      : Container(
+                          child: Icon(
+                            Icons.stop_circle,
+                            color: Colors.blueAccent,
+                          ),
+                        ),
                 ),
                 children: <Widget>[
                   Divider(

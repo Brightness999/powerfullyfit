@@ -9,6 +9,8 @@ environment:
   sdk: ">=2.7.0 <3.0.0"
 
 dependencies:
+  flutter_sms: ^2.1.1
+  flutter_chat_bubble: ^1.0.2
   expansion_tile_card: ^1.1.0
   fl_chart: ^0.12.0
   expansion_card: ^0.1.0
