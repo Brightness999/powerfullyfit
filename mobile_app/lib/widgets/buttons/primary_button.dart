@@ -17,7 +17,7 @@ class PrimaryButton extends StatelessWidget {
       child: FlatButton(
         shape: new RoundedRectangleBorder(
           borderRadius: new BorderRadius.circular(
-            10.0,
+            30.0,
           ),
         ),
         onPressed: onPressed,

@@ -21,14 +21,23 @@ class MyApp extends StatelessWidget {
         // primarySwatch: Colors.grey,
         appBarTheme: AppBarTheme(
           color: appGrey,
+          elevation: 0.0,
+          textTheme: TextTheme(
+            headline6: TextStyle(
+              color: Colors.white,
+              fontWeight: FontWeight.bold,
+              fontSize: 20.0,
+            ),
+          ),
         ),
         scaffoldBackgroundColor: appGrey,
         textTheme: Theme.of(context).textTheme.apply(
               bodyColor: Colors.white,
               displayColor: Colors.white,
             ),
-        primaryIconTheme:
-            Theme.of(context).primaryIconTheme.copyWith(color: Colors.white),
+        primaryIconTheme: IconThemeData(
+          color: Colors.white,
+        ),
         primaryTextTheme: TextTheme(
           headline6: TextStyle(
             color: Colors.white,

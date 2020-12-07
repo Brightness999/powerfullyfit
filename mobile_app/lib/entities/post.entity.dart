@@ -1,7 +1,7 @@
 import 'package:mobile_app/entities/user.entity.dart';
 
-class Client extends User {
+class Post {
   int id;
 
-  String name;
+  User author;
 }

@@ -1,12 +1,15 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:mobile_app/screens/workout/workout-list/workout-list_ui.dart';
 import 'package:mobile_app/theme/colors.dart';
+import 'package:mobile_app/widgets/buttons/return_summary.button.dart';
 
 class EducationScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        leading: ReturnSummaryButton(),
         title: Text(
           'Education Screen',
           style: TextStyle(
@@ -24,12 +27,12 @@ class EducationScreen extends StatelessWidget {
           children: [
             GestureDetector(
               onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (BuildContext context) {
-                    return WorkoutListScreen();
-                  }),
-                );
+                // Navigator.push(
+                //   context,
+                //   MaterialPageRoute(builder: (BuildContext context) {
+                //     return WorkoutListScreen();
+                //   }),
+                // );
               },
               child: Container(
                 margin: EdgeInsets.only(

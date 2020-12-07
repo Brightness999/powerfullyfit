@@ -21,10 +21,10 @@ class HomeScreen extends StatefulWidget {
   _HomeScreen createState() => _HomeScreen();
 }
 
-class _HomeScreen extends State {
-  AdvFabController mabialaFABController = AdvFabController();
-  HomeScreenBloc mainScreenBloc = HomeScreenBloc();
+AdvFabController mabialaFABController = AdvFabController();
+HomeScreenBloc mainScreenBloc = HomeScreenBloc();
 
+class _HomeScreen extends State {
   @override
   Widget build(BuildContext context) {
     return Scaffold(

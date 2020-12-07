@@ -14,7 +14,7 @@ class DailyNutrition extends StatelessWidget {
     return PrimaryCard(
       title: title,
       child: Container(
-        padding: EdgeInsets.all(10),
+        padding: EdgeInsets.all(15),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -29,7 +29,7 @@ class DailyNutrition extends StatelessWidget {
               height: 20,
             ),
             Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
                 Column(
                   children: [

@@ -44,6 +44,7 @@ class _SummaryScreen extends State {
                         "Take a look at your fitness Summary.",
                         style: TextStyle(
                           color: Colors.white,
+                          fontWeight: FontWeight.bold,
                           fontSize: 28,
                         ),
                       ),
@@ -62,13 +63,14 @@ class _SummaryScreen extends State {
                       height: MediaQuery.of(context).size.width * .12,
                       width: MediaQuery.of(context).size.width * .12,
                       decoration: new BoxDecoration(
-                          shape: BoxShape.circle,
-                          image: DecorationImage(
-                            fit: BoxFit.fill,
-                            image: NetworkImage(
-                              'https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fhips.hearstapps.com%2Fhbz.h-cdn.co%2Fassets%2F16%2F43%2Fhbz-dark-blonde-hair-magdalena-frackowiak.jpg%3Fcrop%3D1.0xw%3A1xh%3Bcenter%2Ctop%26resize%3D768%3A*&f=1&nofb=1',
-                            ),
-                          )),
+                        shape: BoxShape.circle,
+                        image: DecorationImage(
+                          fit: BoxFit.fill,
+                          image: NetworkImage(
+                            'https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fhips.hearstapps.com%2Fhbz.h-cdn.co%2Fassets%2F16%2F43%2Fhbz-dark-blonde-hair-magdalena-frackowiak.jpg%3Fcrop%3D1.0xw%3A1xh%3Bcenter%2Ctop%26resize%3D768%3A*&f=1&nofb=1',
+                          ),
+                        ),
+                      ),
                     ),
                   )
                 ],
