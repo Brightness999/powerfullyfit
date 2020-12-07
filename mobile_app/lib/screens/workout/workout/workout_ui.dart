@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:expansion_tile_card/expansion_tile_card.dart';
 import 'package:flutter/material.dart';
 import 'package:mobile_app/entities/Exercise.entity.dart';
@@ -15,15 +17,63 @@ class _WorkoutScreen extends State<WorkoutScreen> {
   final GlobalKey<ExpansionTileCardState> cardB = new GlobalKey();
 
   List<Exercise> exercises = [
-    Exercise(name: "Bicep Curls"),
-    Exercise(name: "Barbell Curls"),
-    Exercise(name: "Situps"),
-    Exercise(name: "Pushups"),
-    Exercise(name: "Planks"),
+    Exercise.example(
+      name: "Bicep Curls",
+      isDone: true,
+    ),
+    Exercise.example(
+      name: "Barbell Curls",
+      isDone: true,
+    ),
+    Exercise.example(name: "Situps"),
+    Exercise.example(name: "Pushups"),
+    Exercise.example(name: "Planks"),
   ];
+
+  static const duration = const Duration(seconds: 1);
+
+  int secondsPassed = 0;
+  bool isActive = false;
+
+  Timer timer;
+
+  void handleTick() {
+    if (mounted) {
+      print(secondsPassed.toString());
+      if (isActive) {
+        setState(() {
+          secondsPassed = secondsPassed + 1;
+        });
+      }
+    }
+  }
+
+  void resetTimer() {
+    if (mounted) {
+      setState(() {
+        secondsPassed = 0;
+      });
+    }
+  }
+
+  @override
+  void dispose() {
+    this.timer = null;
+
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
+    if (timer == null)
+      timer = Timer.periodic(duration, (Timer t) {
+        handleTick();
+      });
+
+    int seconds = secondsPassed % 60;
+    int minutes = secondsPassed ~/ 60;
+    int hours = secondsPassed ~/ (60 * 60);
+
     return Scaffold(
       body: CustomScrollView(
         slivers: [
@@ -49,19 +99,48 @@ class _WorkoutScreen extends State<WorkoutScreen> {
                 child: Wrap(
                   children: [
                     Text(
-                      'Biceps & Abs Workout',
+                      'Biceps & Abs Workout - 30 mins',
                       style: new TextStyle(
                         fontWeight: FontWeight.bold,
                         fontSize: 26.0,
                         color: Colors.white,
                       ),
                     ),
-                    Text(
-                      '- 30 min',
-                      style: new TextStyle(
-                        fontSize: 23.0,
-                        color: Colors.white,
-                      ),
+                    // Text(
+                    //   '- 30 min',
+                    //   style: new TextStyle(
+                    //     fontSize: 23.0,
+                    //     color: Colors.white,
+                    //   ),
+                    // ),
+                    Row(
+                      children: [
+                        Container(
+                          padding: EdgeInsets.all(
+                            MediaQuery.of(context).size.height * .005,
+                          ),
+                          decoration: BoxDecoration(
+                            color: Colors.black,
+                            borderRadius: BorderRadius.all(
+                              Radius.circular(5),
+                            ),
+                          ),
+                          child: Text(
+                            'HIIT',
+                            style: new TextStyle(
+                              fontSize: 17.0,
+                            ),
+                          ),
+                        ),
+                        SizedBox(
+                          width: 10,
+                        ),
+                        Text(
+                          'Complete',
+                          style: new TextStyle(
+                              fontSize: 17.0, color: Colors.greenAccent),
+                        ),
+                      ],
                     ),
                   ],
                 ),
@@ -79,11 +158,17 @@ class _WorkoutScreen extends State<WorkoutScreen> {
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
                       FlatButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          print("start");
+
+                          setState(() {
+                            isActive = !isActive;
+                          });
+                        },
                         color: appDarkGrey,
                         textColor: Colors.white,
                         child: Text(
-                          "START",
+                          isActive ? "STOP" : "START",
                           style: new TextStyle(
                             fontSize: 25.0,
                             color: Colors.white,
@@ -92,17 +177,21 @@ class _WorkoutScreen extends State<WorkoutScreen> {
                         padding: EdgeInsets.all(36),
                         shape: CircleBorder(
                           side: BorderSide(
-                            color: Colors.greenAccent,
+                            color: isActive
+                                ? Colors.redAccent
+                                : Colors.greenAccent,
                           ),
                         ),
                       ),
                       Text(
-                        "0:00",
+                        minutes.toString().padLeft(2, '0') +
+                            ":" +
+                            seconds.toString().padLeft(2, '0'),
                         style: new TextStyle(
                           fontSize: 73.0,
                           color: Colors.white,
                         ),
-                      )
+                      ),
                     ],
                   ),
                   SizedBox(
@@ -126,8 +215,8 @@ class _WorkoutScreen extends State<WorkoutScreen> {
                         ...exercises.map((Exercise exercise) {
                           return Container(
                             margin: EdgeInsets.only(
-                                bottom:
-                                    MediaQuery.of(context).size.height * .01),
+                              bottom: MediaQuery.of(context).size.height * .01,
+                            ),
                             child: ExpansionTileCard(
                               baseColor: appDarkGrey,
                               expandedColor: appDarkGrey,
@@ -137,6 +226,17 @@ class _WorkoutScreen extends State<WorkoutScreen> {
                                   Icons.fitness_center,
                                 ),
                               ),
+                              trailing: exercise.isDone
+                                  ? CircleAvatar(
+                                      radius: 13,
+                                      backgroundColor: Colors.greenAccent,
+                                      child: Icon(
+                                        Icons.check_sharp,
+                                        color: Colors.black,
+                                        size: 23,
+                                      ),
+                                    )
+                                  : null,
                               title: Text(
                                 exercise.name.toString(),
                               ),
@@ -154,23 +254,21 @@ class _WorkoutScreen extends State<WorkoutScreen> {
                                         vertical: 8.0,
                                       ),
                                       child: Column(
-                                        children: [
-                                          ...exercise.sets
-                                              .map(
-                                                (e) => Container(
-                                                  margin: const EdgeInsets.only(
-                                                    bottom: 10.0,
-                                                  ),
-                                                  child: Text(
-                                                    "Set 1 (4x12)",
-                                                    style: TextStyle(
-                                                      fontSize: 18,
-                                                    ),
+                                        children: exercise.sets
+                                            .map(
+                                              (e) => Container(
+                                                margin: const EdgeInsets.only(
+                                                  bottom: 16.0,
+                                                ),
+                                                child: Text(
+                                                  "Set 1 (4x12)",
+                                                  style: TextStyle(
+                                                    fontSize: 18,
                                                   ),
                                                 ),
-                                              )
-                                              .toList(),
-                                        ],
+                                              ),
+                                            )
+                                            .toList(),
                                       ),
                                     ),
                                   ),
