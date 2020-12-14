@@ -37,7 +37,7 @@ class TodayWorkoutCard extends StatelessWidget {
                   Radius.circular(25),
                 ),
                 image: DecorationImage(
-                  image: AssetImage('assets/today-workout.png'),
+                  image: AssetImage('assets/images/today-workout-alt.jpeg'),
                   fit: BoxFit.cover,
                 ),
               ),
@@ -50,7 +50,11 @@ class TodayWorkoutCard extends StatelessWidget {
                   right: 10.0,
                 ),
                 decoration: BoxDecoration(
-                  color: Color(0xdd22272c),
+                  color: Color(0xbb22272c),
+                  border: Border.all(
+                    color: Color(0xff22272c),
+                    width: 2,
+                  ),
                   borderRadius: BorderRadius.only(
                     bottomLeft: Radius.circular(25),
                     bottomRight: Radius.circular(25),

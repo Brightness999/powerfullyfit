@@ -41,7 +41,7 @@ class DailyNutrition extends StatelessWidget {
                       ),
                     ),
                     SizedBox(
-                      height: 15,
+                      height: 10,
                     ),
                     CircularStepProgressIndicator(
                       totalSteps: 100,
@@ -73,7 +73,7 @@ class DailyNutrition extends StatelessWidget {
                       ),
                     ),
                     SizedBox(
-                      height: 15,
+                      height: 10,
                     ),
                     CircularStepProgressIndicator(
                       totalSteps: 100,
@@ -85,7 +85,7 @@ class DailyNutrition extends StatelessWidget {
                       width: MediaQuery.of(context).size.height * .07,
                       child: Center(
                         child: Text(
-                          "1586",
+                          "786",
                           style: TextStyle(
                             color: Colors.white,
                             fontSize: 15,
@@ -105,7 +105,7 @@ class DailyNutrition extends StatelessWidget {
                       ),
                     ),
                     SizedBox(
-                      height: 15,
+                      height: 10,
                     ),
                     CircularStepProgressIndicator(
                       totalSteps: 100,
@@ -117,7 +117,7 @@ class DailyNutrition extends StatelessWidget {
                       width: MediaQuery.of(context).size.height * .07,
                       child: Center(
                         child: Text(
-                          "1586",
+                          "495",
                           style: TextStyle(
                             color: Colors.white,
                             fontSize: 15,
@@ -137,19 +137,19 @@ class DailyNutrition extends StatelessWidget {
                       ),
                     ),
                     SizedBox(
-                      height: 15,
+                      height: 10,
                     ),
                     CircularStepProgressIndicator(
                       totalSteps: 100,
                       currentStep: 62,
-                      selectedColor: Colors.blueGrey,
+                      selectedColor: Colors.blueAccent,
                       unselectedColor: Colors.grey[200],
                       padding: 0,
                       height: MediaQuery.of(context).size.height * .07,
                       width: MediaQuery.of(context).size.height * .07,
                       child: Center(
                         child: Text(
-                          "1586",
+                          "1386",
                           style: TextStyle(
                             color: Colors.white,
                             fontSize: 15,

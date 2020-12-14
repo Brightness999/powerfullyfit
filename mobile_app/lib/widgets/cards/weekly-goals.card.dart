@@ -1,5 +1,6 @@
 import 'package:expansion_tile_card/expansion_tile_card.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:mobile_app/theme/colors.dart';
 import 'package:mobile_app/widgets/cards/primary-card.ui.dart';
 
@@ -28,14 +29,13 @@ class _WeeklyGoals extends State<WeeklyGoals> {
                   20.0,
                 ),
                 baseColor: appDarkGrey,
-                // trailing: Icon(Icons.arrow_back),
                 expandedColor: appDarkGrey,
                 title: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Container(
-                      margin: EdgeInsets.only(
-                        top: 10,
+                      margin: EdgeInsets.symmetric(
+                        vertical: 5,
                       ),
                       child: Text(
                         "Weekly Workouts (2/4)",
@@ -46,6 +46,7 @@ class _WeeklyGoals extends State<WeeklyGoals> {
                 subtitle: StepProgressIndicator(
                   totalSteps: 4,
                   currentStep: 2,
+                  size: 28,
                   selectedColor: Colors.black,
                   unselectedColor: Colors.grey[200],
                   customStep: (index, color, _) => color == Colors.black
@@ -57,7 +58,7 @@ class _WeeklyGoals extends State<WeeklyGoals> {
                         )
                       : Container(
                           child: Icon(
-                            Icons.stop_circle,
+                            FontAwesomeIcons.dotCircle,
                             color: Colors.blueAccent,
                           ),
                         ),
@@ -86,12 +87,12 @@ class _WeeklyGoals extends State<WeeklyGoals> {
                           ),
                           Container(
                             margin: EdgeInsets.only(
-                              top: MediaQuery.of(context).size.height * .02,
+                              top: MediaQuery.of(context).size.height * .01,
                             ),
                             child: StepProgressIndicator(
                               totalSteps: 5,
                               currentStep: 4,
-                              size: 36,
+                              size: 30,
                               selectedColor: Colors.black,
                               unselectedColor: Colors.grey[200],
                               customStep: (index, color, _) =>
@@ -104,7 +105,7 @@ class _WeeklyGoals extends State<WeeklyGoals> {
                                         )
                                       : Container(
                                           child: Icon(
-                                            Icons.stop_circle,
+                                            FontAwesomeIcons.dotCircle,
                                             color: Colors.blueAccent,
                                           ),
                                         ),

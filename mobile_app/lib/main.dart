@@ -45,6 +45,8 @@ class MyApp extends StatelessWidget {
             fontSize: 30.0,
           ),
         ),
+        accentColor: Colors.white,
+        unselectedWidgetColor: Colors.white,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
       home: MyHomePage(),
