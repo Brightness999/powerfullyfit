@@ -1,5 +1,6 @@
 import 'package:adv_fab/adv_fab.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:mobile_app/screens/account/account_screen.ui.dart';
 import 'package:mobile_app/screens/home/home_screen.bloc.dart';
 import 'package:mobile_app/screens/nutrition/daily-nutrition/daily-nutrition.ui.dart';
@@ -104,12 +105,21 @@ class _SummaryScreen extends State {
                       top: MediaQuery.of(context).size.height * .03,
                     ),
                     child: Center(
-                      child: Text(
-                        "See Overall Progress",
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 20,
-                        ),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text(
+                            "See Overall Progress",
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 17,
+                            ),
+                          ),
+                          // Icon(
+                          //   FontAwesomeIcons.longArrowAltRight,
+                          //   color: Colors.white,
+                          // )
+                        ],
                       ),
                     ),
                   ),

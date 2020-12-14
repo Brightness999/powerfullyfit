@@ -16,11 +16,6 @@ class DailyNutritionScreen extends StatefulWidget {
 }
 
 class _DailyNutritionScreen extends State {
-  double width = 300.0;
-  double height = 300.0;
-  double maxHeight = 200.0;
-  double maxWidth = 200.0;
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(

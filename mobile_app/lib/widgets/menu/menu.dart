@@ -111,19 +111,6 @@ class AppMenu extends StatelessWidget {
                     ),
                   ],
                 ),
-                // Spacer(flex: 1),
-                // Container(
-                //   child: Align(
-                //     alignment: Alignment.bottomCenter,
-                //     child: IconButton(
-                //       icon: Icon(
-                //         Icons.remove_circle,
-                //         size: 70,
-                //       ),
-                //       onPressed: () {},
-                //     ),
-                //   ),
-                // )
               ],
             ),
           ),
@@ -135,7 +122,7 @@ class AppMenu extends StatelessWidget {
       floatingActionButtonIcon: Icons.add,
       floatingActionButtonIconColor: appBrown,
       floatingActionButtonExpendedWidth:
-          (MediaQuery.of(context).size.width) * .22,
+          (MediaQuery.of(context).size.width) * .23,
       collapsedColor: appDarkGrey,
       useAsFloatingActionButton: true,
       controller: mabialaFABController,
