@@ -4,41 +4,133 @@ import 'package:flutter_chat_bubble/bubble_type.dart';
 import 'package:flutter_chat_bubble/chat_bubble.dart';
 
 import 'package:flutter_chat_bubble/clippers/chat_bubble_clipper_3.dart';
+import 'package:mobile_app/entities/message.entity.dart';
+import 'package:mobile_app/entities/user.entity.dart';
+import 'package:mobile_app/theme/colors.dart';
 import 'package:mobile_app/widgets/fields/text_field.dart';
 
-class MessageScreen extends StatelessWidget {
+class ChatScreen extends StatefulWidget {
+  final User user = sam;
+
   @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('Sam Davis'),
-      ),
-      body: Column(
-        children: [
-          ListView(
-            children: <Widget>[
-              getSenderView(
-                  ChatBubbleClipper3(type: BubbleType.sendBubble), context),
-              getReceiverView(
-                  ChatBubbleClipper3(type: BubbleType.receiverBubble), context),
-            ],
+  _ChatScreenState createState() => _ChatScreenState();
+}
+
+class _ChatScreenState extends State<ChatScreen> {
+  _buildMessage(Message message, bool isMe) {
+    if (isMe)
+      return getReceiverView(
+        ChatBubbleClipper3(type: BubbleType.receiverBubble),
+        context,
+      );
+
+    return getSenderView(
+      ChatBubbleClipper3(type: BubbleType.sendBubble),
+      context,
+    );
+  }
+
+  _buildMessageComposer() {
+    return Container(
+      padding: EdgeInsets.symmetric(horizontal: 8.0),
+      height: 70.0,
+      color: appGrey,
+      child: Row(
+        children: <Widget>[
+          IconButton(
+            icon: Icon(Icons.photo),
+            iconSize: 25.0,
+            color: Theme.of(context).primaryColor,
+            onPressed: () {},
           ),
-          Align(
-            alignment: Alignment.bottomCenter,
-            child: AppTextField(),
-          )
+          Expanded(
+            child: TextField(
+              textCapitalization: TextCapitalization.sentences,
+              onChanged: (value) {},
+              decoration: InputDecoration.collapsed(
+                hintText: 'Send a message...',
+                hintStyle: TextStyle(
+                  color: Colors.white,
+                ),
+              ),
+            ),
+          ),
+          IconButton(
+            icon: Icon(Icons.send),
+            iconSize: 25.0,
+            color: Theme.of(context).primaryColor,
+            onPressed: () {},
+          ),
         ],
       ),
     );
   }
 
-  getTitleText(String title) => Text(
-        title,
-        style: TextStyle(
-          color: Colors.black,
-          fontSize: 20,
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            CircleAvatar(
+              radius: MediaQuery.of(context).size.height * .02,
+              backgroundImage: AssetImage(sam.imageUrl),
+            ),
+            SizedBox(width: 10),
+            Text(
+              widget.user.name,
+              style: TextStyle(
+                fontSize: 23.0,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+          ],
         ),
-      );
+        elevation: 0.0,
+        actions: <Widget>[
+          IconButton(
+            icon: Icon(Icons.more_horiz),
+            iconSize: 30.0,
+            color: Colors.white,
+            onPressed: () {},
+          ),
+        ],
+      ),
+      body: GestureDetector(
+        onTap: () => FocusScope.of(context).unfocus(),
+        child: Column(
+          children: <Widget>[
+            Expanded(
+              child: Container(
+                padding: EdgeInsets.only(bottom: 15),
+                decoration: BoxDecoration(
+                  color: appDarkGrey,
+                ),
+                child: ClipRRect(
+                  borderRadius: BorderRadius.only(
+                    topLeft: Radius.circular(30.0),
+                    topRight: Radius.circular(30.0),
+                  ),
+                  child: ListView.builder(
+                    reverse: true,
+                    padding: EdgeInsets.only(top: 15.0),
+                    itemCount: messages.length,
+                    itemBuilder: (BuildContext context, int index) {
+                      final Message message = messages[index];
+                      final bool isMe = message.sender.id == currentUser.id;
+                      return _buildMessage(message, isMe);
+                    },
+                  ),
+                ),
+              ),
+            ),
+            _buildMessageComposer(),
+          ],
+        ),
+      ),
+    );
+  }
 
   getSenderView(CustomClipper clipper, BuildContext context) => ChatBubble(
         clipper: clipper,

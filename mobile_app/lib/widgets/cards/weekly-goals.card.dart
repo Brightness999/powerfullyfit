@@ -46,7 +46,6 @@ class _WeeklyGoals extends State<WeeklyGoals> {
                 subtitle: StepProgressIndicator(
                   totalSteps: 4,
                   currentStep: 2,
-                  size: 36,
                   selectedColor: Colors.black,
                   unselectedColor: Colors.grey[200],
                   customStep: (index, color, _) => color == Colors.black

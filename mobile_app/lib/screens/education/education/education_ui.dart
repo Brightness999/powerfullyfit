@@ -27,12 +27,12 @@ class EducationScreen extends StatelessWidget {
           children: [
             GestureDetector(
               onTap: () {
-                // Navigator.push(
-                //   context,
-                //   MaterialPageRoute(builder: (BuildContext context) {
-                //     return WorkoutListScreen();
-                //   }),
-                // );
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (BuildContext context) {
+                    return WorkoutListScreen();
+                  }),
+                );
               },
               child: Container(
                 margin: EdgeInsets.only(

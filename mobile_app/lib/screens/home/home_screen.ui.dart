@@ -35,7 +35,7 @@ class _HomeScreen extends State {
             builder:
                 (BuildContext context, AsyncSnapshot<screenState> snapshot) {
               if (snapshot.data == screenState.Login) return LoginScreen();
-              if (snapshot.data == screenState.Inbox) return MessageScreen();
+              if (snapshot.data == screenState.Inbox) return ChatScreen();
               if (snapshot.data == screenState.Workout) return WorkoutScreen();
               if (snapshot.data == screenState.WorkoutList)
                 return WorkoutListScreen();
