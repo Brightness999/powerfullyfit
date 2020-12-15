@@ -16,14 +16,14 @@ class SettingsOptionCard extends StatelessWidget {
         margin: EdgeInsets.symmetric(vertical: 5.0),
         padding: EdgeInsets.all(5),
         decoration: BoxDecoration(
-          color: appDarkGrey,
+          color: darkGrey,
           borderRadius: BorderRadius.all(
             Radius.circular(15),
           ),
         ),
         child: ListTile(
           onTap: onTap,
-          tileColor: appDarkGrey,
+          tileColor: darkGrey,
           title: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [

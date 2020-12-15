@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mobile_app/models/nutrition-day.dart';
 import 'package:mobile_app/theme/colors.dart';
 import 'package:mobile_app/widgets/cards/primary-card.ui.dart';
 import 'package:step_progress_indicator/step_progress_indicator.dart';
@@ -6,6 +7,17 @@ import 'package:step_progress_indicator/step_progress_indicator.dart';
 class DailyNutrition extends StatelessWidget {
   final String title;
   final Widget child;
+
+  NutritionDay nutritionDay = NutritionDay(
+    currentCalories: 1789,
+    caloryGoal: 2000,
+    currentProtein: 789,
+    proteinGoal: 2000,
+    currentCarbs: 1589,
+    carbsGoal: 2000,
+    currentFats: 1089,
+    fatGoal: 2000,
+  );
 
   DailyNutrition({this.title, this.child});
 
@@ -43,23 +55,11 @@ class DailyNutrition extends StatelessWidget {
                     SizedBox(
                       height: 10,
                     ),
-                    CircularStepProgressIndicator(
-                      totalSteps: 100,
-                      currentStep: 80,
-                      selectedColor: Colors.redAccent,
-                      unselectedColor: Colors.grey[200],
-                      padding: 0,
-                      height: MediaQuery.of(context).size.height * .07,
-                      width: MediaQuery.of(context).size.height * .07,
-                      child: Center(
-                        child: Text(
-                          "1586",
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 15,
-                          ),
-                        ),
-                      ),
+                    _buildProgressCircle(
+                      context,
+                      color: pink,
+                      currentSteps: nutritionDay.currentCalories,
+                      totalSteps: nutritionDay.caloryGoal,
                     )
                   ],
                 ),
@@ -75,23 +75,11 @@ class DailyNutrition extends StatelessWidget {
                     SizedBox(
                       height: 10,
                     ),
-                    CircularStepProgressIndicator(
-                      totalSteps: 100,
-                      currentStep: 52,
-                      selectedColor: Colors.greenAccent,
-                      unselectedColor: Colors.grey[200],
-                      padding: 0,
-                      height: MediaQuery.of(context).size.height * .07,
-                      width: MediaQuery.of(context).size.height * .07,
-                      child: Center(
-                        child: Text(
-                          "786",
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 15,
-                          ),
-                        ),
-                      ),
+                    _buildProgressCircle(
+                      context,
+                      color: green,
+                      currentSteps: nutritionDay.currentProtein,
+                      totalSteps: nutritionDay.proteinGoal,
                     )
                   ],
                 ),
@@ -107,23 +95,11 @@ class DailyNutrition extends StatelessWidget {
                     SizedBox(
                       height: 10,
                     ),
-                    CircularStepProgressIndicator(
-                      totalSteps: 100,
-                      currentStep: 32,
-                      selectedColor: appBrown,
-                      unselectedColor: Colors.grey[200],
-                      padding: 0,
-                      height: MediaQuery.of(context).size.height * .07,
-                      width: MediaQuery.of(context).size.height * .07,
-                      child: Center(
-                        child: Text(
-                          "495",
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 15,
-                          ),
-                        ),
-                      ),
+                    _buildProgressCircle(
+                      context,
+                      color: brown,
+                      currentSteps: nutritionDay.currentCarbs,
+                      totalSteps: nutritionDay.caloryGoal,
                     )
                   ],
                 ),
@@ -139,30 +115,41 @@ class DailyNutrition extends StatelessWidget {
                     SizedBox(
                       height: 10,
                     ),
-                    CircularStepProgressIndicator(
-                      totalSteps: 100,
-                      currentStep: 62,
-                      selectedColor: Colors.blueAccent,
-                      unselectedColor: Colors.grey[200],
-                      padding: 0,
-                      height: MediaQuery.of(context).size.height * .07,
-                      width: MediaQuery.of(context).size.height * .07,
-                      child: Center(
-                        child: Text(
-                          "1386",
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 15,
-                          ),
-                        ),
-                      ),
-                    ),
+                    _buildProgressCircle(
+                      context,
+                      color: blue,
+                      currentSteps: nutritionDay.currentFats,
+                      totalSteps: nutritionDay.fatGoal,
+                    )
                   ],
                 )
               ],
             ),
             if (child != null) child
           ],
+        ),
+      ),
+    );
+  }
+
+  Widget _buildProgressCircle(context,
+      {Color color = Colors.grey,
+      int totalSteps = 100,
+      int currentSteps = 33}) {
+    return CircularStepProgressIndicator(
+      totalSteps: totalSteps,
+      currentStep: currentSteps,
+      selectedColor: color,
+      unselectedColor: Colors.grey[200],
+      height: MediaQuery.of(context).size.height * .07,
+      width: MediaQuery.of(context).size.height * .07,
+      child: Center(
+        child: Text(
+          currentSteps.toString(),
+          style: TextStyle(
+            color: Colors.white,
+            fontSize: 15,
+          ),
         ),
       ),
     );

@@ -31,7 +31,7 @@ class PrimaryCard extends StatelessWidget {
           //   MediaQuery.of(context).size.height * .01,
           // ),
           decoration: BoxDecoration(
-            color: appDarkGrey,
+            color: darkGrey,
             borderRadius: BorderRadius.all(
               Radius.circular(25),
             ),

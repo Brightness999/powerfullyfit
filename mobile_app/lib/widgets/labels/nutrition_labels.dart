@@ -16,7 +16,7 @@ class _NutritionLabels extends State<NutritionLabels> {
           child: Row(
             children: [
               Container(
-                color: Colors.redAccent,
+                color: pink,
                 height: MediaQuery.of(context).size.height * .01,
                 width: MediaQuery.of(context).size.height * .01,
               ),
@@ -31,7 +31,7 @@ class _NutritionLabels extends State<NutritionLabels> {
           child: Row(
             children: [
               Container(
-                color: Colors.greenAccent,
+                color: green,
                 height: MediaQuery.of(context).size.height * .01,
                 width: MediaQuery.of(context).size.height * .01,
               ),
@@ -46,7 +46,7 @@ class _NutritionLabels extends State<NutritionLabels> {
           child: Row(
             children: [
               Container(
-                color: appBrown,
+                color: brown,
                 height: MediaQuery.of(context).size.height * .01,
                 width: MediaQuery.of(context).size.height * .01,
               ),
@@ -61,7 +61,7 @@ class _NutritionLabels extends State<NutritionLabels> {
           child: Row(
             children: [
               Container(
-                color: Colors.blueAccent,
+                color: blue,
                 height: MediaQuery.of(context).size.height * .01,
                 width: MediaQuery.of(context).size.height * .01,
               ),

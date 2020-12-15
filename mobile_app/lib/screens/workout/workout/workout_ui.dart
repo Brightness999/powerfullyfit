@@ -1,25 +1,33 @@
 import 'package:expansion_tile_card/expansion_tile_card.dart';
 import 'package:flutter/material.dart';
 import 'package:mobile_app/entities/Exercise.entity.dart';
+import 'package:mobile_app/entities/workout.dart';
+import 'package:mobile_app/models/workout-type.enum.dart';
 import 'package:mobile_app/theme/colors.dart';
 
 import 'package:mobile_app/widgets/timer/timer.dart';
 
 // ignore: must_be_immutable
 class WorkoutScreen extends StatelessWidget {
-  List<Exercise> exercises = [
-    Exercise.example(
-      name: "Bicep Curls",
-      isDone: true,
-    ),
-    Exercise.example(
-      name: "Barbell Curls",
-      isDone: true,
-    ),
-    Exercise.example(name: "Situps"),
-    Exercise.example(name: "Pushups"),
-    Exercise.example(name: "Planks"),
-  ];
+  Workout workout = Workout(
+    name: "Biceps & Abs Workout",
+    duration: "30 mins",
+    type: WorkoutType.HIIT,
+    status: 'Complete',
+    exercises: [
+      Exercise.example(
+        name: "Bicep Curls",
+        isDone: true,
+      ),
+      Exercise.example(
+        name: "Barbell Curls",
+        isDone: true,
+      ),
+      Exercise.example(name: "Situps"),
+      Exercise.example(name: "Pushups"),
+      Exercise.example(name: "Planks"),
+    ],
+  );
 
   @override
   Widget build(BuildContext context) {
@@ -38,21 +46,41 @@ class WorkoutScreen extends StatelessWidget {
                   height: MediaQuery.of(context).size.height * .27,
                 ),
                 alignment: Alignment.bottomLeft,
-                padding: EdgeInsets.only(left: 16.0, bottom: 8.0),
+                padding: EdgeInsets.only(
+                  left: 16.0,
+                  bottom: 8.0,
+                ),
                 decoration: BoxDecoration(
                   image: DecorationImage(
-                    image: AssetImage('assets/today-workout.png'),
+                    image: AssetImage(workout.picture),
                     fit: BoxFit.cover,
                   ),
                 ),
                 child: Wrap(
                   children: [
-                    Text(
-                      'Biceps & Abs Workout - 30 mins',
-                      style: new TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 26.0,
-                        color: Colors.white,
+                    RichText(
+                      text: TextSpan(
+                        children: [
+                          TextSpan(
+                            text: workout.name,
+                            style: new TextStyle(
+                              fontWeight: FontWeight.bold,
+                              fontSize: 26.0,
+                            ),
+                          ),
+                          TextSpan(
+                            text: " - ",
+                            style: new TextStyle(
+                              fontSize: 26.0,
+                            ),
+                          ),
+                          TextSpan(
+                            text: workout.duration,
+                            style: new TextStyle(
+                              fontSize: 26.0,
+                            ),
+                          ),
+                        ],
                       ),
                     ),
                     Row(
@@ -68,7 +96,7 @@ class WorkoutScreen extends StatelessWidget {
                             ),
                           ),
                           child: Text(
-                            'HIIT',
+                            workout.type.toString().split('.').last,
                             style: new TextStyle(
                               fontSize: 17.0,
                             ),
@@ -78,9 +106,11 @@ class WorkoutScreen extends StatelessWidget {
                           width: 10,
                         ),
                         Text(
-                          'Complete',
+                          workout.status,
                           style: new TextStyle(
-                              fontSize: 17.0, color: Colors.greenAccent),
+                            fontSize: 17.0,
+                            color: Colors.greenAccent,
+                          ),
                         ),
                       ],
                     ),
@@ -112,14 +142,14 @@ class WorkoutScreen extends StatelessWidget {
                         horizontal: MediaQuery.of(context).size.width * .01),
                     child: Column(
                       children: [
-                        ...exercises.map((Exercise exercise) {
+                        ...workout.exercises.map((Exercise exercise) {
                           return Container(
                             margin: EdgeInsets.only(
                               bottom: MediaQuery.of(context).size.height * .01,
                             ),
                             child: ExpansionTileCard(
-                              baseColor: appDarkGrey,
-                              expandedColor: appDarkGrey,
+                              baseColor: darkGrey,
+                              expandedColor: darkGrey,
                               // key: cardA,
                               leading: CircleAvatar(
                                 child: Icon(
