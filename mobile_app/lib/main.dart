@@ -20,7 +20,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         // primarySwatch: Colors.grey,
         appBarTheme: AppBarTheme(
-          color: appGrey,
+          color: grey,
           elevation: 0.0,
           textTheme: TextTheme(
             headline6: TextStyle(
@@ -30,7 +30,7 @@ class MyApp extends StatelessWidget {
             ),
           ),
         ),
-        scaffoldBackgroundColor: appGrey,
+        scaffoldBackgroundColor: grey,
         textTheme: Theme.of(context).textTheme.apply(
               bodyColor: Colors.white,
               displayColor: Colors.white,

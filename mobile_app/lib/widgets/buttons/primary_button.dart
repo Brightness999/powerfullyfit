@@ -21,7 +21,7 @@ class PrimaryButton extends StatelessWidget {
           ),
         ),
         onPressed: onPressed,
-        color: appBrown,
+        color: brown,
         child: Container(
           padding: EdgeInsets.all(
             MediaQuery.of(context).size.height * .02,

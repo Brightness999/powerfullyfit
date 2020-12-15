@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:mobile_app/entities/workout.dart';
 
 class TodayWorkoutCard extends StatelessWidget {
-  final String title;
+  final String title = "Today's Workout";
   final Function onTap;
 
-  TodayWorkoutCard({this.title, this.onTap});
+  Workout todaysWorkout = Workout(name: 'Biceps & Abs', duration: '30 mins');
+
+  TodayWorkoutCard({this.onTap});
 
   @override
   Widget build(BuildContext context) {
@@ -19,9 +22,8 @@ class TodayWorkoutCard extends StatelessWidget {
                 bottom: MediaQuery.of(context).size.height * .01,
               ),
               child: Text(
-                "Today's Workout",
+                title,
                 style: TextStyle(
-                  color: Colors.white,
                   fontSize: 25,
                   fontWeight: FontWeight.bold,
                 ),
@@ -37,7 +39,9 @@ class TodayWorkoutCard extends StatelessWidget {
                   Radius.circular(25),
                 ),
                 image: DecorationImage(
-                  image: AssetImage('assets/images/today-workout-alt.jpeg'),
+                  image: AssetImage(
+                    todaysWorkout.picture,
+                  ),
                   fit: BoxFit.cover,
                 ),
               ),
@@ -63,13 +67,28 @@ class TodayWorkoutCard extends StatelessWidget {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Text(
-                      'Biceps & Abs - 30 mins',
-                      style: new TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 24.0,
-                        color: Colors.white,
-                      ),
+                    Row(
+                      children: [
+                        Text(
+                          todaysWorkout.name,
+                          style: new TextStyle(
+                            fontWeight: FontWeight.bold,
+                            fontSize: 24.0,
+                          ),
+                        ),
+                        Text(
+                          ' - ',
+                          style: new TextStyle(
+                            fontSize: 24.0,
+                          ),
+                        ),
+                        Text(
+                          todaysWorkout.duration,
+                          style: new TextStyle(
+                            fontSize: 24.0,
+                          ),
+                        ),
+                      ],
                     ),
                     Icon(
                       Icons.chevron_right,

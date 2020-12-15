@@ -120,10 +120,10 @@ class AppMenu extends StatelessWidget {
             : mabialaFABController.collapseFAB();
       },
       floatingActionButtonIcon: Icons.add,
-      floatingActionButtonIconColor: appBrown,
+      floatingActionButtonIconColor: brown,
       floatingActionButtonExpendedWidth:
           (MediaQuery.of(context).size.width) * .23,
-      collapsedColor: appDarkGrey,
+      collapsedColor: darkGrey,
       useAsFloatingActionButton: true,
       controller: mabialaFABController,
       animationDuration: Duration(milliseconds: 300),

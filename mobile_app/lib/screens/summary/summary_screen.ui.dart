@@ -1,6 +1,7 @@
 import 'package:adv_fab/adv_fab.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:mobile_app/models/nutrition-day.dart';
 import 'package:mobile_app/screens/account/account_screen.ui.dart';
 import 'package:mobile_app/screens/home/home_screen.bloc.dart';
 import 'package:mobile_app/screens/nutrition/daily-nutrition/daily-nutrition.ui.dart';
@@ -22,6 +23,9 @@ class _SummaryScreen extends State {
   CalendarController calendarController = CalendarController();
 
   HomeScreenBloc mainScreenBloc = HomeScreenBloc();
+
+  int weeklyWorkouts = 2;
+  int reachedMacrosMilestone = 4;
 
   @override
   Widget build(BuildContext context) {

@@ -44,7 +44,7 @@ class EducationScreen extends StatelessWidget {
                 width: MediaQuery.of(context).size.width,
                 height: MediaQuery.of(context).size.height * .18,
                 decoration: BoxDecoration(
-                  color: appBrown,
+                  color: brown,
                   borderRadius: BorderRadius.all(
                     Radius.circular(25),
                   ),
@@ -88,7 +88,7 @@ class EducationScreen extends StatelessWidget {
               width: MediaQuery.of(context).size.width,
               height: MediaQuery.of(context).size.height * .18,
               decoration: BoxDecoration(
-                color: appBrown,
+                color: brown,
                 borderRadius: BorderRadius.all(
                   Radius.circular(25),
                 ),

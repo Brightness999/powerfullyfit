@@ -61,7 +61,7 @@ class _WorkoutTimer extends State<WorkoutTimer> {
               isActive = !isActive;
             });
           },
-          color: appDarkGrey,
+          color: darkGrey,
           textColor: Colors.white,
           child: Text(
             isActive ? "STOP" : "START",
@@ -84,7 +84,6 @@ class _WorkoutTimer extends State<WorkoutTimer> {
               seconds.toString().padLeft(2, '0'),
           style: new TextStyle(
             fontSize: 73.0,
-            color: Colors.white,
           ),
         ),
       ],

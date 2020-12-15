@@ -10,35 +10,41 @@ import 'package:mobile_app/theme/colors.dart';
 import 'package:mobile_app/widgets/fields/text_field.dart';
 
 class ChatScreen extends StatefulWidget {
-  final User user = sam;
-
   @override
   _ChatScreenState createState() => _ChatScreenState();
 }
 
 class _ChatScreenState extends State<ChatScreen> {
+  final User user = sam;
+
   _buildMessage(Message message, bool isMe) {
     if (isMe)
       return getReceiverView(
         ChatBubbleClipper3(type: BubbleType.receiverBubble),
         context,
+        message: message,
       );
 
     return getSenderView(
       ChatBubbleClipper3(type: BubbleType.sendBubble),
       context,
+      message: message,
     );
   }
 
   _buildMessageComposer() {
     return Container(
-      padding: EdgeInsets.symmetric(horizontal: 8.0),
+      padding: EdgeInsets.symmetric(
+        horizontal: 8.0,
+      ),
       height: 70.0,
-      color: appGrey,
+      color: grey,
       child: Row(
         children: <Widget>[
           IconButton(
-            icon: Icon(Icons.photo),
+            icon: Icon(
+              Icons.photo,
+            ),
             iconSize: 25.0,
             color: Theme.of(context).primaryColor,
             onPressed: () {},
@@ -56,7 +62,9 @@ class _ChatScreenState extends State<ChatScreen> {
             ),
           ),
           IconButton(
-            icon: Icon(Icons.send),
+            icon: Icon(
+              Icons.send,
+            ),
             iconSize: 25.0,
             color: Theme.of(context).primaryColor,
             onPressed: () {},
@@ -79,7 +87,7 @@ class _ChatScreenState extends State<ChatScreen> {
             ),
             SizedBox(width: 10),
             Text(
-              widget.user.name,
+              user.name,
               style: TextStyle(
                 fontSize: 23.0,
                 fontWeight: FontWeight.bold,
@@ -90,7 +98,9 @@ class _ChatScreenState extends State<ChatScreen> {
         elevation: 0.0,
         actions: <Widget>[
           IconButton(
-            icon: Icon(Icons.more_horiz),
+            icon: Icon(
+              Icons.more_horiz,
+            ),
             iconSize: 30.0,
             color: Colors.white,
             onPressed: () {},
@@ -103,18 +113,26 @@ class _ChatScreenState extends State<ChatScreen> {
           children: <Widget>[
             Expanded(
               child: Container(
-                padding: EdgeInsets.only(bottom: 15),
+                padding: EdgeInsets.only(
+                  bottom: 15,
+                ),
                 decoration: BoxDecoration(
-                  color: appDarkGrey,
+                  color: darkGrey,
                 ),
                 child: ClipRRect(
                   borderRadius: BorderRadius.only(
-                    topLeft: Radius.circular(30.0),
-                    topRight: Radius.circular(30.0),
+                    topLeft: Radius.circular(
+                      30.0,
+                    ),
+                    topRight: Radius.circular(
+                      30.0,
+                    ),
                   ),
                   child: ListView.builder(
                     reverse: true,
-                    padding: EdgeInsets.only(top: 15.0),
+                    padding: EdgeInsets.only(
+                      top: 15.0,
+                    ),
                     itemCount: messages.length,
                     itemBuilder: (BuildContext context, int index) {
                       final Message message = messages[index];
@@ -132,7 +150,12 @@ class _ChatScreenState extends State<ChatScreen> {
     );
   }
 
-  getSenderView(CustomClipper clipper, BuildContext context) => ChatBubble(
+  getSenderView(
+    CustomClipper clipper,
+    BuildContext context, {
+    Message message,
+  }) =>
+      ChatBubble(
         clipper: clipper,
         alignment: Alignment.topRight,
         margin: EdgeInsets.only(top: 20),
@@ -142,13 +165,18 @@ class _ChatScreenState extends State<ChatScreen> {
             maxWidth: MediaQuery.of(context).size.width * 0.7,
           ),
           child: Text(
-            "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+            message.text,
             style: TextStyle(color: Colors.white),
           ),
         ),
       );
 
-  getReceiverView(CustomClipper clipper, BuildContext context) => ChatBubble(
+  getReceiverView(
+    CustomClipper clipper,
+    BuildContext context, {
+    Message message,
+  }) =>
+      ChatBubble(
         clipper: clipper,
         backGroundColor: Color(0xffE7E7ED),
         margin: EdgeInsets.only(top: 20),
@@ -157,8 +185,10 @@ class _ChatScreenState extends State<ChatScreen> {
             maxWidth: MediaQuery.of(context).size.width * 0.7,
           ),
           child: Text(
-            "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat",
-            style: TextStyle(color: Colors.black),
+            message.text,
+            style: TextStyle(
+              color: Colors.black,
+            ),
           ),
         ),
       );

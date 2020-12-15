@@ -28,8 +28,8 @@ class _WeeklyGoals extends State<WeeklyGoals> {
                 borderRadius: new BorderRadius.circular(
                   20.0,
                 ),
-                baseColor: appDarkGrey,
-                expandedColor: appDarkGrey,
+                baseColor: darkGrey,
+                expandedColor: darkGrey,
                 title: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -52,13 +52,13 @@ class _WeeklyGoals extends State<WeeklyGoals> {
                   customStep: (index, color, _) => color == Colors.black
                       ? Container(
                           child: Icon(
-                            Icons.check_circle,
-                            color: Colors.greenAccent,
+                            FontAwesomeIcons.dotCircle,
+                            color: green,
                           ),
                         )
                       : Container(
                           child: Icon(
-                            FontAwesomeIcons.dotCircle,
+                            FontAwesomeIcons.circle,
                             color: Colors.blueAccent,
                           ),
                         ),
@@ -99,13 +99,13 @@ class _WeeklyGoals extends State<WeeklyGoals> {
                                   color == Colors.black
                                       ? Container(
                                           child: Icon(
-                                            Icons.check_circle,
-                                            color: Colors.greenAccent,
+                                            FontAwesomeIcons.dotCircle,
+                                            color: green,
                                           ),
                                         )
                                       : Container(
                                           child: Icon(
-                                            FontAwesomeIcons.dotCircle,
+                                            FontAwesomeIcons.circle,
                                             color: Colors.blueAccent,
                                           ),
                                         ),

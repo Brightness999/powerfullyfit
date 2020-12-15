@@ -30,27 +30,32 @@ class _HomeScreen extends State {
     return Scaffold(
       body: Stack(
         children: [
-          StreamBuilder(
-            stream: mainScreenBloc.stream,
-            builder:
-                (BuildContext context, AsyncSnapshot<screenState> snapshot) {
-              if (snapshot.data == screenState.Login) return LoginScreen();
-              if (snapshot.data == screenState.Inbox) return ChatScreen();
-              if (snapshot.data == screenState.Workout) return WorkoutScreen();
-              if (snapshot.data == screenState.WorkoutList)
-                return WorkoutListScreen();
-              if (snapshot.data == screenState.Progress)
-                return ProgressScreen();
-              if (snapshot.data == screenState.Education)
-                return EducationScreen();
-              if (snapshot.data == screenState.CommunityBoard)
-                return BoardScreen();
-              if (snapshot.data == screenState.Summary) return SummaryScreen();
-              if (snapshot.data == screenState.Help) return HelpScreen();
-              if (snapshot.data == screenState.Nutrition)
-                return DailyNutritionScreen();
-              return SummaryScreen();
-            },
+          GestureDetector(
+            onTap: () => mabialaFABController.collapseFAB(),
+            child: StreamBuilder(
+              stream: mainScreenBloc.stream,
+              builder:
+                  (BuildContext context, AsyncSnapshot<screenState> snapshot) {
+                if (snapshot.data == screenState.Login) return LoginScreen();
+                if (snapshot.data == screenState.Inbox) return ChatScreen();
+                if (snapshot.data == screenState.Workout)
+                  return WorkoutScreen();
+                if (snapshot.data == screenState.WorkoutList)
+                  return WorkoutListScreen();
+                if (snapshot.data == screenState.Progress)
+                  return ProgressScreen();
+                if (snapshot.data == screenState.Education)
+                  return EducationScreen();
+                if (snapshot.data == screenState.CommunityBoard)
+                  return BoardScreen();
+                if (snapshot.data == screenState.Summary)
+                  return SummaryScreen();
+                if (snapshot.data == screenState.Help) return HelpScreen();
+                if (snapshot.data == screenState.Nutrition)
+                  return DailyNutritionScreen();
+                return SummaryScreen();
+              },
+            ),
           ),
         ],
       ),

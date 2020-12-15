@@ -153,7 +153,7 @@ class _AccountScreen extends State {
 
   void displayModalBottomSheet(context) {
     showModalBottomSheet(
-      backgroundColor: appDarkGrey,
+      backgroundColor: darkGrey,
       context: context,
       builder: (BuildContext bc) {
         return Container(
@@ -203,12 +203,12 @@ class _AccountScreen extends State {
                         vertical: 5,
                       ),
                       decoration: BoxDecoration(
-                        color: appBrown,
+                        color: brown,
                         borderRadius: BorderRadius.all(
                           Radius.circular(100),
                         ),
                         border: Border.all(
-                          color: appBrown,
+                          color: brown,
                           width: 2,
                         ),
                       ),
@@ -234,7 +234,7 @@ class _AccountScreen extends State {
                       ),
                       decoration: BoxDecoration(
                         border: Border.all(
-                          color: appBrown,
+                          color: brown,
                           width: 2,
                         ),
                         borderRadius: BorderRadius.all(
@@ -264,7 +264,7 @@ class _AccountScreen extends State {
 
   void displayDeleteAccountBottomSheet(context) {
     showModalBottomSheet(
-      backgroundColor: appDarkGrey,
+      backgroundColor: darkGrey,
       context: context,
       builder: (BuildContext bc) {
         return Container(
@@ -302,12 +302,12 @@ class _AccountScreen extends State {
                         vertical: 5,
                       ),
                       decoration: BoxDecoration(
-                        color: appBrown,
+                        color: brown,
                         borderRadius: BorderRadius.all(
                           Radius.circular(100),
                         ),
                         border: Border.all(
-                          color: appBrown,
+                          color: brown,
                           width: 2,
                         ),
                       ),
@@ -334,7 +334,7 @@ class _AccountScreen extends State {
                       ),
                       decoration: BoxDecoration(
                         border: Border.all(
-                          color: appBrown,
+                          color: brown,
                           width: 2,
                         ),
                         borderRadius: BorderRadius.all(

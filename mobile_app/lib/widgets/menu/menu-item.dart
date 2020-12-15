@@ -23,7 +23,7 @@ class MenuItem extends StatelessWidget {
             10,
           ),
         ),
-        color: appGrey,
+        color: grey,
       ),
       height: (MediaQuery.of(context).size.height) * .12,
       width: (MediaQuery.of(context).size.width) * .25,
@@ -36,7 +36,7 @@ class MenuItem extends StatelessWidget {
               Icon(
                 icon,
                 size: 30.0,
-                color: appBrown,
+                color: brown,
               ),
               Text(
                 name,
