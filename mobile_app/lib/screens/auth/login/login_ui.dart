@@ -70,6 +70,11 @@ class LoginScreen extends StatelessWidget {
                             );
                           },
                         ),
+                        Checkbox(
+                            value: false,
+                            onChanged: (bool newValue) {
+                              print(newValue);
+                            }),
                         PrimaryButton(
                           onPressed: () {
                             Navigator.pushReplacement(
@@ -90,9 +95,7 @@ class LoginScreen extends StatelessWidget {
                             ),
                           ),
                         ),
-                        SizedBox(
-                          height: 40,
-                        ),
+
                         Center(
                           child: InkWell(
                             child: new Text(
