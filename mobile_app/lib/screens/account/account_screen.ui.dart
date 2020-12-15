@@ -12,6 +12,7 @@ class _AccountScreen extends State {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(),
       body: SingleChildScrollView(
         child: Container(
           margin: EdgeInsets.symmetric(
@@ -22,7 +23,6 @@ class _AccountScreen extends State {
             children: [
               Container(
                 margin: EdgeInsets.only(
-                  top: MediaQuery.of(context).size.height * .07,
                   bottom: MediaQuery.of(context).size.height * .01,
                 ),
                 child: Row(
