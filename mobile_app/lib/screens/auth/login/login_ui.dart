@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mobile_app/constants/app-images.dart';
 import 'package:mobile_app/screens/auth/forgot-password/forgot_password.dart';
 import 'package:mobile_app/screens/auth/login/login_bloc.dart';
 import 'package:mobile_app/screens/home/home_screen.ui.dart';
@@ -10,17 +11,16 @@ import 'login_events.dart';
 class LoginScreen extends StatelessWidget {
   final snackBar = SnackBar(content: Text('Yay! A SnackBar!'));
 
-  LoginBloc loginBloc = LoginBloc();
+  final LoginBloc loginBloc = LoginBloc();
 
   @override
   Widget build(BuildContext context) {
-    bool checked = false;
     return Scaffold(
       body: LayoutBuilder(
         builder: (BuildContext context, BoxConstraints viewportConstraints) {
-          return SingleChildScrollView(
-            child: GestureDetector(
-              onTap: () => FocusScope.of(context).unfocus(),
+          return GestureDetector(
+            onTap: () => FocusScope.of(context).unfocus(),
+            child: SingleChildScrollView(
               child: Container(
                 height: MediaQuery.of(context).size.height * .9,
                 margin: EdgeInsets.symmetric(
@@ -33,7 +33,7 @@ class LoginScreen extends StatelessWidget {
                   children: [
                     Container(
                       child: Image.asset(
-                        'assets/logo.png',
+                        appImages.logo,
                         width: MediaQuery.of(context).size.width,
                       ),
                     ),

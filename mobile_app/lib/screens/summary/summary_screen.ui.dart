@@ -1,7 +1,8 @@
 import 'package:adv_fab/adv_fab.dart';
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:mobile_app/models/nutrition-day.dart';
+import 'package:mobile_app/entities/client.entity.dart';
+import 'package:mobile_app/entities/user.entity.dart';
+import 'package:mobile_app/repositories/user.repository.dart';
 import 'package:mobile_app/screens/account/account_screen.ui.dart';
 import 'package:mobile_app/screens/home/home_screen.bloc.dart';
 import 'package:mobile_app/screens/nutrition/daily-nutrition/daily-nutrition.ui.dart';
@@ -10,7 +11,6 @@ import 'package:mobile_app/screens/workout/workout/workout_ui.dart';
 import 'package:mobile_app/widgets/cards/daily-nutrition-goal.card.dart';
 import 'package:mobile_app/widgets/cards/calendar.card.dart';
 import 'package:mobile_app/widgets/cards/today-workout.card.dart';
-import 'package:step_progress_indicator/step_progress_indicator.dart';
 import 'package:table_calendar/table_calendar.dart';
 
 class SummaryScreen extends StatefulWidget {
@@ -23,9 +23,19 @@ class _SummaryScreen extends State {
   CalendarController calendarController = CalendarController();
 
   HomeScreenBloc mainScreenBloc = HomeScreenBloc();
+  UserRepository userRepository;
 
   int weeklyWorkouts = 2;
   int reachedMacrosMilestone = 4;
+
+  @override
+  initState() {
+    super.initState();
+
+    UserRepository.getUserById(5).listen((Client client) {
+      print(client.coach.organization.toJson());
+    });
+  }
 
   @override
   Widget build(BuildContext context) {

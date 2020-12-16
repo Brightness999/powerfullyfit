@@ -36,6 +36,11 @@ export class WorkoutController {
     return this.workoutService.findOne(id);
   }
 
+  @Get('today-workout')
+  findTodaysWorkout() {
+    return this.workoutService.findOne(1);
+  }
+
   @Patch(':id')
   update(
     @Param('id', ParseIntPipe) id: number,

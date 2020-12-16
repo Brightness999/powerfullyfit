@@ -7,7 +7,39 @@ import 'package:flutter_chat_bubble/clippers/chat_bubble_clipper_3.dart';
 import 'package:mobile_app/entities/message.entity.dart';
 import 'package:mobile_app/entities/user.entity.dart';
 import 'package:mobile_app/theme/colors.dart';
-import 'package:mobile_app/widgets/fields/text_field.dart';
+
+// YOU - current user
+final User currentUser = User(
+  id: 0,
+  firstname: 'Current User',
+  imageUrl: 'assets/images/greg.jpg',
+);
+
+final User sam = User(
+  id: 5,
+  firstname: 'Sam Davis',
+  imageUrl: 'assets/images/sam.jpg',
+);
+
+// EXAMPLE MESSAGES IN CHAT SCREEN
+List<Message> messages = [
+  Message(
+    sender: currentUser,
+    time: '4:30 PM',
+    text: 'Just walked my doge. She was super duper cute. The best pupper!!',
+    isLiked: false,
+    unread: true,
+  ),
+  Message(
+    sender: sam,
+    time: '2:30 PM',
+    text: 'Nice! What kind of food did you eat?',
+    isLiked: false,
+    unread: true,
+  ),
+];
+
+final User user = sam;
 
 class ChatScreen extends StatefulWidget {
   @override
@@ -15,8 +47,6 @@ class ChatScreen extends StatefulWidget {
 }
 
 class _ChatScreenState extends State<ChatScreen> {
-  final User user = sam;
-
   _buildMessage(Message message, bool isMe) {
     if (isMe)
       return getReceiverView(
@@ -87,7 +117,7 @@ class _ChatScreenState extends State<ChatScreen> {
             ),
             SizedBox(width: 10),
             Text(
-              user.name,
+              user.firstname,
               style: TextStyle(
                 fontSize: 23.0,
                 fontWeight: FontWeight.bold,
