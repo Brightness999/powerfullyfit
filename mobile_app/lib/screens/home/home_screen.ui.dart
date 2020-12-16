@@ -31,7 +31,9 @@ class _HomeScreen extends State {
       body: Stack(
         children: [
           GestureDetector(
-            onTap: () => mabialaFABController.collapseFAB(),
+            onTap: () => mabialaFABController.isCollapsed
+                ? null
+                : mabialaFABController.collapseFAB(),
             child: StreamBuilder(
               stream: mainScreenBloc.stream,
               builder:

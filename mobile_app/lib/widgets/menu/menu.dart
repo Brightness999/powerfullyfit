@@ -66,7 +66,6 @@ class AppMenu extends StatelessWidget {
                       icon: Icons.chat,
                       onPressed: () {
                         mabialaFABController.collapseFAB();
-
                         Navigator.push(
                           context,
                           MaterialPageRoute(builder: (BuildContext context) {

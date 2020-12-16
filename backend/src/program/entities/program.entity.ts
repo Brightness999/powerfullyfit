@@ -3,8 +3,12 @@ import {
   Column,
   PrimaryGeneratedColumn,
   OneToMany,
+  ManyToOne,
   JoinTable,
+  ChildEntity,
 } from 'typeorm';
+
+import { Coach } from '@app/user/entities/coach.entity';
 
 @Entity()
 export class Program {
@@ -18,4 +22,10 @@ export class Program {
 
   @Column({ default: new Date() })
   createTime: Date;
+
+  @ManyToOne(
+    type => Coach,
+    coach => coach.programs,
+  )
+  coach: Coach;
 }

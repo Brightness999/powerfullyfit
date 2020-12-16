@@ -1,11 +1,16 @@
+import 'package:json_annotation/json_annotation.dart';
+
 class User {
-  final int id;
-  final String name;
-  final String imageUrl;
+  int id;
+  String firstname;
+  String lastname;
+  String imageUrl;
+  DateTime createTime;
 
   User({
     this.id,
-    this.name,
+    this.firstname,
+    this.lastname,
     this.imageUrl,
   });
 }

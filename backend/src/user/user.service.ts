@@ -47,7 +47,9 @@ export class UserService {
   }
 
   async findOneClient(id: number) {
-    const user = await this.clientRepository.findOne(id);
+    const user = await this.clientRepository.findOne(id, {
+      relations: ['coach', 'coach.organization'],
+    });
 
     if (!user)
       throw new NotFoundException(`Client with id: ${id} was not Found`);

@@ -17,8 +17,6 @@ import { Organization } from '@app/organization/entities/organization.entity';
 
 @ChildEntity()
 export class Client extends User {
-    
-
   @ManyToOne(
     type => Coach,
     coach => coach.clients,

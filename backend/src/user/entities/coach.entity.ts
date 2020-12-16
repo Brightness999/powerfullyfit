@@ -14,6 +14,7 @@ import { externalAsset } from './../../common/entities/external-asset.entity';
 import { User } from './user.entity';
 import { Client } from './client.entity';
 import { Organization } from '@app/organization/entities/organization.entity';
+import { Program } from '@app/program/entities/program.entity';
 
 @ChildEntity()
 export class Coach extends User {
@@ -29,6 +30,13 @@ export class Coach extends User {
     client => client.coach,
   )
   clients: Client[];
+
+  @JoinTable()
+  @OneToMany(
+    type => Program,
+    program => program.coach,
+  )
+  programs: Program[];
 
   @ManyToOne(
     type => Organization,
