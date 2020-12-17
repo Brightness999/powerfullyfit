@@ -48,7 +48,7 @@ export class UserService {
 
   async findOneClient(id: number) {
     const user = await this.clientRepository.findOne(id, {
-      relations: ['coach', 'coach.organization'],
+      relations: ['coach', 'coach.organization', 'assignedPrograms'],
     });
 
     if (!user)

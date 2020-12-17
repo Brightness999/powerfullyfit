@@ -1,11 +1,29 @@
-import { Injectable } from '@nestjs/common';
+import {
+  Injectable,
+  ForbiddenException,
+  NotFoundException,
+} from '@nestjs/common';
+
+import { InjectRepository } from '@nestjs/typeorm';
+import { Repository } from 'typeorm';
+
+import { Program } from './entities/program.entity';
 import { CreateProgramDto } from './dto/create-program.dto';
 import { UpdateProgramDto } from './dto/update-program.dto';
 
 @Injectable()
 export class ProgramService {
+  constructor(
+    @InjectRepository(Program)
+    private readonly programRepository: Repository<Program>,
+  ) {}
+
   create(createProgramDto: CreateProgramDto) {
-    return 'This action adds a new program';
+    const program = this.programRepository.create(
+      createProgramDto,
+    );
+
+    return this.programRepository.save(program);
   }
 
   findAll() {
