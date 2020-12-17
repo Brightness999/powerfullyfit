@@ -272,6 +272,7 @@ class _WorkoutScreen extends State {
   _showMaterialDialog() {
     showDialog(
       context: context,
+      barrierDismissible: false,
       builder: (_) => new AlertDialog(
         title: new Text("Material Dialog"),
         content: FutureBuilder(

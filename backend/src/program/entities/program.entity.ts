@@ -9,6 +9,7 @@ import {
 } from 'typeorm';
 
 import { Coach } from '@app/user/entities/coach.entity';
+import { AssignedProgram } from './assigned-program.entity';
 
 @Entity()
 export class Program {
@@ -28,4 +29,11 @@ export class Program {
     coach => coach.programs,
   )
   coach: Coach;
+
+  @JoinTable()
+  @OneToMany(
+    type => AssignedProgram,
+    assignedProgram => assignedProgram.program,
+  )
+  assignedPrograms: AssignedProgram[];
 }
