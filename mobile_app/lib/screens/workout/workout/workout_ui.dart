@@ -6,9 +6,18 @@ import 'package:mobile_app/models/workout-type.enum.dart';
 import 'package:mobile_app/theme/colors.dart';
 
 import 'package:mobile_app/widgets/timer/timer.dart';
+import 'package:video_player/video_player.dart';
 
 // ignore: must_be_immutable
-class WorkoutScreen extends StatelessWidget {
+class WorkoutScreen extends StatefulWidget {
+  @override
+  _WorkoutScreen createState() => _WorkoutScreen();
+}
+
+class _WorkoutScreen extends State {
+  VideoPlayerController _controller;
+  Future<void> _initializeVideoPlayerFuture;
+
   Workout workout = Workout(
     name: "Biceps & Abs Workout",
     duration: "30 mins",
@@ -28,6 +37,17 @@ class WorkoutScreen extends StatelessWidget {
       Exercise.example(name: "Planks"),
     ],
   );
+
+  @override
+  initState() {
+    _controller = VideoPlayerController.network(
+      'https://flutter.github.io/assets-for-api-docs/assets/videos/butterfly.mp4',
+    );
+
+    _initializeVideoPlayerFuture = _controller.initialize();
+
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -147,61 +167,84 @@ class WorkoutScreen extends StatelessWidget {
                             margin: EdgeInsets.only(
                               bottom: MediaQuery.of(context).size.height * .01,
                             ),
-                            child: ExpansionTileCard(
-                              baseColor: darkGrey,
-                              expandedColor: darkGrey,
-                              // key: cardA,
-                              leading: CircleAvatar(
-                                child: Icon(
-                                  Icons.fitness_center,
-                                ),
-                              ),
-                              trailing: exercise.isDone
-                                  ? CircleAvatar(
-                                      radius: 13,
-                                      backgroundColor: Colors.greenAccent,
+                            child: Row(
+                              children: [
+                                Expanded(
+                                  child: ExpansionTileCard(
+                                    baseColor: darkGrey,
+                                    expandedColor: darkGrey,
+                                    // key: cardA,
+                                    leading: CircleAvatar(
                                       child: Icon(
-                                        Icons.check_sharp,
-                                        color: Colors.black,
-                                        size: 23,
-                                      ),
-                                    )
-                                  : null,
-                              title: Text(
-                                exercise.name.toString(),
-                              ),
-                              children: <Widget>[
-                                Divider(
-                                  thickness: 1.0,
-                                  height: 1.0,
-                                ),
-                                if (exercise.sets != null)
-                                  Align(
-                                    alignment: Alignment.centerLeft,
-                                    child: Padding(
-                                      padding: const EdgeInsets.symmetric(
-                                        horizontal: 16.0,
-                                        vertical: 8.0,
-                                      ),
-                                      child: Column(
-                                        children: exercise.sets
-                                            .map(
-                                              (e) => Container(
-                                                margin: const EdgeInsets.only(
-                                                  bottom: 16.0,
-                                                ),
-                                                child: Text(
-                                                  "Set 1 (4x12)",
-                                                  style: TextStyle(
-                                                    fontSize: 18,
-                                                  ),
-                                                ),
-                                              ),
-                                            )
-                                            .toList(),
+                                        Icons.fitness_center,
                                       ),
                                     ),
+                                    trailing: exercise.isDone
+                                        ? CircleAvatar(
+                                            radius: 13,
+                                            backgroundColor: Colors.greenAccent,
+                                            child: Icon(
+                                              Icons.check_sharp,
+                                              color: Colors.black,
+                                              size: 23,
+                                            ),
+                                          )
+                                        : null,
+                                    title: Text(
+                                      exercise.name.toString(),
+                                    ),
+                                    children: <Widget>[
+                                      Divider(
+                                        thickness: 1.0,
+                                        height: 1.0,
+                                      ),
+                                      if (exercise.sets != null)
+                                        Align(
+                                          alignment: Alignment.centerLeft,
+                                          child: Padding(
+                                            padding: const EdgeInsets.symmetric(
+                                              horizontal: 16.0,
+                                              vertical: 8.0,
+                                            ),
+                                            child: Column(
+                                              children: exercise.sets
+                                                  .map(
+                                                    (e) => Container(
+                                                      margin:
+                                                          const EdgeInsets.only(
+                                                        bottom: 16.0,
+                                                      ),
+                                                      child: Text(
+                                                        "Set 1 (4x12)",
+                                                        style: TextStyle(
+                                                          fontSize: 18,
+                                                        ),
+                                                      ),
+                                                    ),
+                                                  )
+                                                  .toList(),
+                                            ),
+                                          ),
+                                        ),
+                                    ],
                                   ),
+                                ),
+                                RawMaterialButton(
+                                  onPressed: _showMaterialDialog,
+                                  fillColor: darkGrey,
+                                  child: Icon(
+                                    Icons.play_arrow,
+                                    size: 25.0,
+                                    color: Colors.white,
+                                  ),
+                                  padding: EdgeInsets.all(15.0),
+                                  shape: CircleBorder(
+                                    side: BorderSide(
+                                      width: 2,
+                                      color: Colors.greenAccent,
+                                    ),
+                                  ),
+                                ),
                               ],
                             ),
                           );
@@ -212,6 +255,50 @@ class WorkoutScreen extends StatelessWidget {
                 ],
               ),
             ),
+          )
+        ],
+      ),
+    );
+  }
+
+  @override
+  void dispose() {
+    // Ensure disposing of the VideoPlayerController to free up resources.
+    _controller.dispose();
+
+    super.dispose();
+  }
+
+  _showMaterialDialog() {
+    showDialog(
+      context: context,
+      builder: (_) => new AlertDialog(
+        title: new Text("Material Dialog"),
+        content: FutureBuilder(
+          future: _initializeVideoPlayerFuture,
+          builder: (context, snapshot) {
+            if (snapshot.connectionState == ConnectionState.done) {
+              _controller.play();
+              // If the VideoPlayerController has finished initialization, use
+              // the data it provides to limit the aspect ratio of the VideoPlayer.
+              return AspectRatio(
+                aspectRatio: _controller.value.aspectRatio,
+                // Use the VideoPlayer widget to display the video.
+                child: VideoPlayer(_controller),
+              );
+            } else {
+              // If the VideoPlayerController is still initializing, show a
+              // loading spinner.
+              return Center(child: CircularProgressIndicator());
+            }
+          },
+        ),
+        actions: <Widget>[
+          FlatButton(
+            child: Text('Close me!'),
+            onPressed: () {
+              Navigator.of(context).pop();
+            },
           )
         ],
       ),

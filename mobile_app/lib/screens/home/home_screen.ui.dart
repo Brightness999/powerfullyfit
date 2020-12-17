@@ -7,7 +7,7 @@ import 'package:mobile_app/screens/help/help_screen.ui.dart';
 import 'package:mobile_app/screens/messaging/chat-list/chat-list_ui.dart';
 import 'package:mobile_app/screens/messaging/message/message_ui.dart';
 import 'package:mobile_app/screens/nutrition/daily-nutrition/daily-nutrition.ui.dart';
-import 'package:mobile_app/screens/progress/progress_screen.ui.dart';
+import 'package:mobile_app/screens/progress/overall-progress/overall_progress_screen.ui.dart';
 import 'package:mobile_app/screens/summary/summary_screen.ui.dart';
 import 'package:mobile_app/screens/home/home_screen.bloc.dart';
 import 'package:mobile_app/screens/workout/workout-list/workout-list_ui.dart';
@@ -45,7 +45,7 @@ class _HomeScreen extends State {
                 if (snapshot.data == screenState.WorkoutList)
                   return WorkoutListScreen();
                 if (snapshot.data == screenState.Progress)
-                  return ProgressScreen();
+                  return OverallProgressScreen();
                 if (snapshot.data == screenState.Education)
                   return EducationScreen();
                 if (snapshot.data == screenState.CommunityBoard)

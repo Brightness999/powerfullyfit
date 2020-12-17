@@ -9,7 +9,11 @@ environment:
   sdk: ">=2.7.0 <3.0.0"
 
 dependencies:
-  json_annotation: 
+  video_player: 
+  path_provider:
+  path:
+  camera:
+  json_annotation:
   http: ^0.12.2
   vector_math: ^2.0.8
   font_awesome_flutter: ^8.10.1
