@@ -73,6 +73,9 @@ class LoginScreen extends StatelessWidget {
                             },
                           ),
                           PrimaryButton(
+                            margin: EdgeInsets.symmetric(
+                              vertical: 20,
+                            ),
                             onPressed: () {
                               Navigator.pushReplacement(
                                 context,
@@ -88,6 +91,7 @@ class LoginScreen extends StatelessWidget {
                                 style: TextStyle(
                                   color: Colors.white,
                                   fontSize: 28,
+                                  // fontFamily: 'Gotham-Black',
                                 ),
                               ),
                             ),

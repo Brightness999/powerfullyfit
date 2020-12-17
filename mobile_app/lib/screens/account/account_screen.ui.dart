@@ -203,12 +203,12 @@ class _AccountScreen extends State {
                         vertical: 5,
                       ),
                       decoration: BoxDecoration(
-                        color: brown,
+                        color: lightBrown,
                         borderRadius: BorderRadius.all(
                           Radius.circular(100),
                         ),
                         border: Border.all(
-                          color: brown,
+                          color: lightBrown,
                           width: 2,
                         ),
                       ),
@@ -234,7 +234,7 @@ class _AccountScreen extends State {
                       ),
                       decoration: BoxDecoration(
                         border: Border.all(
-                          color: brown,
+                          color: lightBrown,
                           width: 2,
                         ),
                         borderRadius: BorderRadius.all(
@@ -302,12 +302,12 @@ class _AccountScreen extends State {
                         vertical: 5,
                       ),
                       decoration: BoxDecoration(
-                        color: brown,
+                        color: lightBrown,
                         borderRadius: BorderRadius.all(
                           Radius.circular(100),
                         ),
                         border: Border.all(
-                          color: brown,
+                          color: lightBrown,
                           width: 2,
                         ),
                       ),
@@ -334,7 +334,7 @@ class _AccountScreen extends State {
                       ),
                       decoration: BoxDecoration(
                         border: Border.all(
-                          color: brown,
+                          color: lightBrown,
                           width: 2,
                         ),
                         borderRadius: BorderRadius.all(
