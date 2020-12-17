@@ -1,6 +1,7 @@
 import 'dart:ui';
 
-const Color brown = const Color(0xff99755A);
+const Color darkBrown = const Color(0xff99755A);
+const Color lightBrown = const Color(0xffE3B787);
 const Color grey = const Color(0xFF3F3F3F);
 const Color darkGrey = const Color(0xff22272c);
 const Color pink = const Color(0xffC58380);

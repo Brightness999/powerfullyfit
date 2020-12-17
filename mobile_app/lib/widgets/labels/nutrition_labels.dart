@@ -46,7 +46,7 @@ class _NutritionLabels extends State<NutritionLabels> {
           child: Row(
             children: [
               Container(
-                color: brown,
+                color: lightBrown,
                 height: MediaQuery.of(context).size.height * .01,
                 width: MediaQuery.of(context).size.height * .01,
               ),

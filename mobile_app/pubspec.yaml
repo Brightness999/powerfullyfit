@@ -9,7 +9,7 @@ environment:
   sdk: ">=2.7.0 <3.0.0"
 
 dependencies:
-  video_player: 
+  video_player:
   path_provider:
   path:
   camera:
@@ -45,7 +45,8 @@ flutter:
   assets:
     - assets/
     - assets/images/
-  # fonts:
-  #   - family: Raleway
-  #     fonts:
-  #       - asset: fonts/Raleway-Regular.ttf
+  fonts:
+    - family: Gotham
+      fonts:
+        - asset: fonts/Gotham-Black.ttf
+        - asset: fonts/Gotham-Medium5.ttf

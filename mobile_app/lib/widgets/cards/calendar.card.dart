@@ -56,7 +56,7 @@ class CalendarCard extends StatelessWidget {
                           weekendStyle: TextStyle(
                             color: Colors.white,
                           ),
-                          selectedColor: brown,
+                          selectedColor: lightBrown,
                         ),
                         headerStyle: HeaderStyle(
                           formatButtonTextStyle: TextStyle(

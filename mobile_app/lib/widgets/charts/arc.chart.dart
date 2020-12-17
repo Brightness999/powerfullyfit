@@ -38,7 +38,7 @@ class _ArcChart extends State<ArcChart> {
         ),
         _buildArc(
           pi * (2 / 3),
-          color: brown,
+          color: lightBrown,
           currentFill: 25,
           totalSteps: 100,
         ),

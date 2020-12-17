@@ -97,7 +97,7 @@ class DailyNutrition extends StatelessWidget {
                     ),
                     _buildProgressCircle(
                       context,
-                      color: brown,
+                      color: lightBrown,
                       currentSteps: nutritionDay.currentCarbs,
                       totalSteps: nutritionDay.caloryGoal,
                     )
