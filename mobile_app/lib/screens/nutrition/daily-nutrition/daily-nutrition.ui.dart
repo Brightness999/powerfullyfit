@@ -39,6 +39,9 @@ class DailyNutritionScreen extends StatelessWidget {
                 child: DailyNutrition(),
               ),
               PrimaryButton(
+                margin: EdgeInsets.only(
+                  bottom: 30,
+                ),
                 onPressed: () {
                   Navigator.push(
                     context,
@@ -49,7 +52,26 @@ class DailyNutritionScreen extends StatelessWidget {
                 },
                 child: Center(
                   child: Text(
-                    'Enter Macros',
+                    'Nutrition Guide',
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 28,
+                    ),
+                  ),
+                ),
+              ),
+              PrimaryButton(
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (BuildContext context) {
+                      return MacrosListScreen();
+                    }),
+                  );
+                },
+                child: Center(
+                  child: Text(
+                    'View Meals',
                     style: TextStyle(
                       color: Colors.white,
                       fontSize: 28,

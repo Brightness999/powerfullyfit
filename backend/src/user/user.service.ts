@@ -9,6 +9,7 @@ import { Repository } from 'typeorm';
 
 import { Coach } from './entities/coach.entity';
 import { Client } from './entities/client.entity';
+import { User } from './entities/user.entity';
 
 import { CreateClientDto } from './dto/create-client.dto';
 import { CreateCoachDto } from './dto/create-coach.dto';
@@ -20,6 +21,8 @@ import { UpdateClientDto } from './dto/update-client.dto';
 @Injectable()
 export class UserService {
   constructor(
+    @InjectRepository(User)
+    private readonly userRepository: Repository<User>,
     @InjectRepository(Coach)
     private readonly coachRepository: Repository<Coach>,
     @InjectRepository(Client)
@@ -44,6 +47,14 @@ export class UserService {
 
   findAllCoaches() {
     return this.coachRepository.find();
+  }
+
+  async findOneByUserName(username: string) {
+    const user = await this.userRepository.findOne({
+      where: [{ firstname: username }],
+    });
+
+    return user;
   }
 
   async findOneClient(id: number) {

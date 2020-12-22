@@ -40,7 +40,9 @@ class DisplayPictureScreen extends StatelessWidget {
                 shape: CircleBorder(),
               ),
               RawMaterialButton(
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.pop(context);
+                },
                 elevation: 2.0,
                 fillColor: Colors.redAccent,
                 child: Icon(
