@@ -11,6 +11,8 @@ import { ProgramModule } from './program/program.module';
 import { OrganizationModule } from './organization/organization.module';
 import { WorkoutModule } from './workout/workout.module';
 import { ExerciseModule } from './exercise/exercise.module';
+import { AuthModule } from './auth/auth.module';
+import { AppController } from './app.controller';
 
 @Module({
   imports: [
@@ -28,13 +30,14 @@ import { ExerciseModule } from './exercise/exercise.module';
       rootPath: join(__dirname, '..', 'client'),
       exclude: ['/api*'],
     }),
+    AuthModule,
     UserModule,
     OrganizationModule,
     ProgramModule,
     WorkoutModule,
     ExerciseModule,
   ],
-  controllers: [],
+  controllers: [AppController],
   providers: [],
 })
 export class AppModule {}

@@ -8,9 +8,16 @@ import {
   Param,
   Delete,
   ParseIntPipe,
+  UseGuards,
 } from '@nestjs/common';
 
+import { AuthGuard } from '@nestjs/passport';
+import { LocalAuthGuard } from '@app/auth/guards/local-auth.guard';
+import { AuthService } from '@app/auth/auth.service';
+
 import { ApiTags } from '@nestjs/swagger';
+
+import { CurrentUser } from '@app/common/decorators/current-user.decorator'
 
 import { WorkoutService } from './workout.service';
 import { CreateWorkoutDto } from './dto/create-workout.dto';
@@ -18,6 +25,7 @@ import { UpdateWorkoutDto } from './dto/update-workout.dto';
 
 @ApiTags('workout')
 @Controller('workout')
+@UseGuards(LocalAuthGuard)
 export class WorkoutController {
   constructor(private readonly workoutService: WorkoutService) {}
 
@@ -32,7 +40,8 @@ export class WorkoutController {
   }
 
   @Get(':id')
-  findOne(@Param('id', ParseIntPipe) id: number) {
+  findOne(@Param('id', ParseIntPipe) id: number, @CurrentUser() user: any) {
+    console.log(user)
     return this.workoutService.findOne(id);
   }
 

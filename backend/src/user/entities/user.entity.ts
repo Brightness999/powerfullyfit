@@ -9,7 +9,7 @@ import {
 
 import { externalAsset } from './../../common/entities/external-asset.entity';
 
-@Entity("app_user")
+@Entity('app_user')
 @TableInheritance({ column: { type: 'varchar', name: 'type' } })
 export class User {
   @PrimaryGeneratedColumn()
@@ -20,6 +20,9 @@ export class User {
 
   @Column()
   lastname: string;
+
+  @Column()
+  password: string;
 
   logo: externalAsset; // TODO: external asset
 

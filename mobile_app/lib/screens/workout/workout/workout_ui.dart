@@ -74,6 +74,10 @@ class _WorkoutScreen extends State {
                   image: DecorationImage(
                     image: AssetImage(workout.picture),
                     fit: BoxFit.cover,
+                    colorFilter: ColorFilter.mode(
+                      Colors.grey[400],
+                      BlendMode.multiply,
+                    ),
                   ),
                 ),
                 child: Wrap(

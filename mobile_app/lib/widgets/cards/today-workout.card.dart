@@ -43,6 +43,10 @@ class TodayWorkoutCard extends StatelessWidget {
                     todaysWorkout.picture,
                   ),
                   fit: BoxFit.cover,
+                  colorFilter: ColorFilter.mode(
+                    Colors.grey[300],
+                    BlendMode.multiply,
+                  ),
                 ),
               ),
               child: Container(
