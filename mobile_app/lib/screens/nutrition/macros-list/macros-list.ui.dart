@@ -31,18 +31,18 @@ class _MacrosListScreen extends State<MacrosListScreen> {
               SizedBox(
                 height: 5,
               ),
-              PrimaryButton(
-                child: Center(
-                  child: Text(
-                    'Enter Macros',
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 28,
-                    ),
-                  ),
-                ),
-                onPressed: () {},
-              ),
+              // PrimaryButton(
+              //   child: Center(
+              //     child: Text(
+              //       'Enter Macros',
+              //       style: TextStyle(
+              //         color: Colors.white,
+              //         fontSize: 28,
+              //       ),
+              //     ),
+              //   ),
+              //   onPressed: () {},
+              // ),
               SizedBox(height: 30),
               Align(
                 alignment: Alignment.centerLeft,

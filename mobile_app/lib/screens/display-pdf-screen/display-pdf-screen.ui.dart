@@ -1,87 +1,138 @@
 import 'dart:async';
-import 'dart:io';
-import 'dart:typed_data';
 
 import 'package:flutter/material.dart';
-import 'package:http/http.dart' as http;
-import 'package:path_provider/path_provider.dart';
-import 'package:pdf_viewer_plugin/pdf_viewer_plugin.dart';
 
-class MyApp extends StatefulWidget {
-  @override
-  _MyAppState createState() => _MyAppState();
-}
+import 'package:flutter_cached_pdfview/flutter_cached_pdfview.dart';
 
-class _MyAppState extends State<MyApp> {
-  String path;
+class PDFViewerFromUrl extends StatelessWidget {
+  const PDFViewerFromUrl({Key key, @required this.url}) : super(key: key);
 
-  Future<String> get _localPath async {
-    final directory = await getApplicationDocumentsDirectory();
-
-    return directory.path;
-  }
-
-  Future<File> get _localFile async {
-    final path = await _localPath;
-    return File('$path/teste.pdf');
-  }
-
-  Future<File> writeCounter(Uint8List stream) async {
-    final file = await _localFile;
-
-    // Write the file
-    return file.writeAsBytes(stream);
-  }
-
-  Future<bool> existsFile() async {
-    final file = await _localFile;
-    return file.exists();
-  }
-
-  Future<Uint8List> fetchPost() async {
-    final response = await http.get(
-        'https://expoforest.com.br/wp-content/uploads/2017/05/exemplo.pdf');
-    final responseJson = response.bodyBytes;
-
-    return responseJson;
-  }
-
-  void loadPdf() async {
-    await writeCounter(await fetchPost());
-    await existsFile();
-    path = (await _localFile).path;
-
-    if (!mounted) return;
-
-    setState(() {});
-  }
+  final String url;
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      home: Scaffold(
-        appBar: AppBar(
-          title: Text('Plugin example app'),
-        ),
-        body: Center(
-          child: Column(
-            children: <Widget>[
-              if (path != null)
-                Container(
-                  height: 300.0,
-                  child: PdfView(
-                    path: path,
-                  ),
-                )
-              else
-                Text("Pdf is not Loaded"),
-              RaisedButton(
-                child: Text("Load pdf"),
-                onPressed: loadPdf,
-              ),
-            ],
-          ),
-        ),
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Nutrition Guide'),
+      ),
+      body: const PDF().fromUrl(
+        url,
+        placeholder: (double progress) => Center(child: Text('$progress %')),
+        errorWidget: (dynamic error) => Center(child: Text(error.toString())),
+      ),
+    );
+  }
+}
+
+class PDFViewerCachedFromUrl extends StatelessWidget {
+  const PDFViewerCachedFromUrl({Key key, @required this.url}) : super(key: key);
+
+  final String url;
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Cached PDF From Url'),
+      ),
+      body: const PDF().cachedFromUrl(
+        url,
+        placeholder: (double progress) => Center(child: Text('$progress %')),
+        errorWidget: (dynamic error) => Center(child: Text(error.toString())),
+      ),
+    );
+  }
+}
+
+class PDFViewerFromAsset extends StatelessWidget {
+  PDFViewerFromAsset({Key key, @required this.pdfAssetPath}) : super(key: key);
+  final String pdfAssetPath;
+  final Completer<PDFViewController> _pdfViewController =
+      Completer<PDFViewController>();
+  final StreamController<String> _pageCountController =
+      StreamController<String>();
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('PDF From Asset'),
+        actions: <Widget>[
+          StreamBuilder<String>(
+              stream: _pageCountController.stream,
+              builder: (_, AsyncSnapshot<String> snapshot) {
+                if (snapshot.hasData) {
+                  return Center(
+                    child: Container(
+                      padding: const EdgeInsets.all(16),
+                      decoration: BoxDecoration(
+                        shape: BoxShape.circle,
+                        color: Colors.blue[900],
+                      ),
+                      child: Text(snapshot.data),
+                    ),
+                  );
+                }
+                return const SizedBox();
+              }),
+        ],
+      ),
+      body: PDF(
+        enableSwipe: true,
+        swipeHorizontal: true,
+        autoSpacing: false,
+        pageFling: false,
+        onPageChanged: (int current, int total) =>
+            _pageCountController.add('${current + 1} - $total'),
+        onViewCreated: (PDFViewController pdfViewController) async {
+          _pdfViewController.complete(pdfViewController);
+          final int currentPage = await pdfViewController.getCurrentPage();
+          final int pageCount = await pdfViewController.getPageCount();
+          _pageCountController.add('${currentPage + 1} - $pageCount');
+        },
+      ).fromAsset(
+        pdfAssetPath,
+        errorWidget: (dynamic error) => Center(child: Text(error.toString())),
+      ),
+      floatingActionButton: FutureBuilder<PDFViewController>(
+        future: _pdfViewController.future,
+        builder: (_, AsyncSnapshot<PDFViewController> snapshot) {
+          if (snapshot.hasData && snapshot.data != null) {
+            return Row(
+              mainAxisSize: MainAxisSize.max,
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: <Widget>[
+                FloatingActionButton(
+                  heroTag: '-',
+                  child: const Text('-'),
+                  onPressed: () async {
+                    final PDFViewController pdfController = snapshot.data;
+                    final int currentPage =
+                        await pdfController.getCurrentPage() - 1;
+                    if (currentPage >= 0) {
+                      await pdfController.setPage(currentPage);
+                    }
+                  },
+                ),
+                FloatingActionButton(
+                  heroTag: '+',
+                  child: const Text('+'),
+                  onPressed: () async {
+                    final PDFViewController pdfController = snapshot.data;
+                    final int currentPage =
+                        await pdfController.getCurrentPage() + 1;
+                    final int numberOfPages =
+                        await pdfController.getPageCount();
+                    if (numberOfPages > currentPage) {
+                      await pdfController.setPage(currentPage);
+                    }
+                  },
+                ),
+              ],
+            );
+          }
+          return const SizedBox();
+        },
       ),
     );
   }

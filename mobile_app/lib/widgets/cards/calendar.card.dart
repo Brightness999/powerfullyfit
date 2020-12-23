@@ -72,8 +72,8 @@ class CalendarCard extends StatelessWidget {
                           CalendarFormat.week: "Week"
                         },
                         startingDayOfWeek: _getStartingDayOftheWeek(),
-                        startDay: DateTime.utc(2020, 12, 12),
-                        endDay: DateTime.utc(2020, 22, 12),
+                        // startDay: DateTime.now(),
+                        // endDay: DateTime.utc(2020, 22, 12),
                       ),
                     ),
                   ),
