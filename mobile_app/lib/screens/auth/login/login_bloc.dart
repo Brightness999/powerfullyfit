@@ -19,13 +19,13 @@ class LoginBloc {
 
   // event Pipe
   StreamController<LoginEvent> eventController =
-      new StreamController<LoginEvent>();
+      new StreamController<LoginEvent>.broadcast();
   StreamSink<LoginEvent> get eventSink => eventController.sink;
   Stream<LoginEvent> get eventStream => eventController.stream;
 
   // state pipe
   StreamController<LoginEvent> stateController =
-      new StreamController<LoginEvent>();
+      new StreamController<LoginEvent>.broadcast();
 
   StreamSink<LoginEvent> get stateSink => stateController.sink;
   Stream<LoginEvent> get stateStream => stateController.stream;
