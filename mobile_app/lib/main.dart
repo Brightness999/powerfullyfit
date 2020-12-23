@@ -1,115 +1,55 @@
-import 'dart:async';
-
 import 'package:flutter/material.dart';
-import 'package:mobile_app/screens/auth/invitation/invitation_ui.dart';
-import 'package:mobile_app/screens/community-board/board/board_ui.dart';
-import 'package:mobile_app/screens/community-board/post/post_ui.dart';
-import 'package:mobile_app/screens/education/education/education_ui.dart';
-import 'package:mobile_app/screens/messaging/chat-list/chat-list_ui.dart';
-import 'package:mobile_app/screens/messaging/message/message_ui.dart';
-import 'package:mobile_app/screens/user-management/edit-profile/edit-profile_ui.dart';
-import 'package:mobile_app/screens/user-management/image-upload/image-upload_ui.dart';
-import 'package:mobile_app/screens/user-management/user-screen/user-screen_ui.dart';
-import 'package:mobile_app/screens/workout/exercise/exercise_ui.dart';
-import 'package:mobile_app/screens/workout/program/program_ui.dart';
-import 'package:mobile_app/screens/workout/workout/workout_ui.dart';
-import 'package:mobile_app/widgets/menu/menu.dart';
-import 'package:rxdart/rxdart.dart';
+import 'package:flutter/services.dart';
 
-import 'screens/auth/login/login_ui.dart';
+import 'package:mobile_app/screens/auth/login/login_ui.dart';
+import 'package:mobile_app/theme/colors.dart';
+import 'package:mobile_app/widgets/wrapper/app-wrapper.dart';
 
 void main() {
-  runApp(MyApp());
+  WidgetsFlutterBinding.ensureInitialized();
+  SystemChrome.setPreferredOrientations(
+      [DeviceOrientation.portraitUp, DeviceOrientation.portraitDown]).then((_) {
+    runApp(MyApp());
+  });
 }
 
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'WL',
+      title: 'Powerfully Fit',
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        appBarTheme: AppBarTheme(
+          color: grey,
+          elevation: 0.0,
+          textTheme: TextTheme(
+            headline6: TextStyle(
+              color: Colors.white,
+              fontWeight: FontWeight.bold,
+              fontSize: 20.0,
+            ),
+          ),
+        ),
+        scaffoldBackgroundColor: grey,
+        textTheme: Theme.of(context).textTheme.apply(
+              bodyColor: Colors.white,
+              displayColor: Colors.white,
+            ),
+        primaryIconTheme: IconThemeData(
+          color: Colors.white,
+        ),
+        primaryTextTheme: TextTheme(
+          headline6: TextStyle(
+            color: Colors.white,
+            fontWeight: FontWeight.bold,
+            fontSize: 30.0,
+          ),
+        ),
+        accentColor: Colors.white,
+        unselectedWidgetColor: Colors.white,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: MyHomePage(),
+      home: LoginScreen(),
     );
-  }
-}
-
-class MyHomePage extends StatefulWidget {
-  MyHomePage({Key key, this.title}) : super(key: key);
-
-  final String title;
-
-  @override
-  _MyHomePageState createState() => _MyHomePageState();
-}
-
-enum menuState { IsOpen, IsClosed }
-
-final BehaviorSubject<menuState> menuStream =
-    new BehaviorSubject<menuState>.seeded(menuState.IsClosed);
-
-class _MyHomePageState extends State<MyHomePage> {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      body: Stack(
-        children: [
-          ExerciseScreen(),
-          StreamBuilder(
-            stream: menuStream.stream,
-            builder: (context, snapshot) {
-              if (snapshot.data == menuState.IsClosed) return Container();
-
-              return Container(
-                alignment: Alignment.bottomCenter,
-                padding: EdgeInsets.only(
-                  bottom: 100,
-                ),
-                child: Container(
-                  width: 450,
-                  height: 450,
-                  color: Colors.red,
-                  child: Row(
-                    children: [
-                      FlatButton(onPressed: null, child: null),
-                    ],
-                  ),
-                ),
-              );
-            },
-          ),
-        ],
-      ),
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
-      floatingActionButton: Column(
-        mainAxisAlignment: MainAxisAlignment.end,
-        children: [
-          FlatButton(onPressed: null, child: null),
-          FloatingActionButton(
-            onPressed: _handleMenuState,
-            child: StreamBuilder(
-              stream: menuStream.stream,
-              builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
-                if (snapshot.data == menuState.IsClosed) return Icon(Icons.add);
-
-                return Icon(Icons.remove);
-              },
-            ),
-            backgroundColor: Colors.pink,
-          ),
-        ],
-      ),
-    );
-  }
-
-  _handleMenuState() {
-    print(menuStream.value);
-
-    if (menuStream.value == menuState.IsClosed)
-      menuStream.add(menuState.IsOpen);
-    else
-      menuStream.add(menuState.IsClosed);
   }
 }

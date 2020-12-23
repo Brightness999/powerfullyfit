@@ -9,16 +9,46 @@ environment:
   sdk: ">=2.7.0 <3.0.0"
 
 dependencies:
+  flutter_cached_pdfview:
+  pdf_viewer_plugin: ^1.1.1
+  video_player:
+  path_provider:
+  path:
+  camera:
+  json_annotation:
+  http: ^0.12.2
+  vector_math: ^2.0.8
+  font_awesome_flutter: ^8.10.1
+  flutter_sms: ^2.1.1
+  flutter_chat_bubble: ^1.0.2
+  expansion_tile_card: ^1.1.0
+  fl_chart: ^0.12.0
+  expansion_card: ^0.1.0
+  charts_flutter: ^0.9.0
+  material_floating_search_bar: ^0.2.3
+  step_progress_indicator: ^0.2.4+7
+  table_calendar: ^2.3.1
   rxdart: ^0.24.1
-  flare_flutter: ^2.0.6 
+  flare_flutter: ^2.0.6
+  adv_fab: ^1.0.5
   flutter:
     sdk: flutter
 
   cupertino_icons: ^1.0.0
 
 dev_dependencies:
+  build_runner:
+  json_serializable:
   flutter_test:
     sdk: flutter
 
 flutter:
   uses-material-design: true
+  assets:
+    - assets/
+    - assets/images/
+  fonts:
+    - family: Gotham
+      fonts:
+        - asset: fonts/Gotham-Black.ttf
+        - asset: fonts/Gotham-Medium5.ttf

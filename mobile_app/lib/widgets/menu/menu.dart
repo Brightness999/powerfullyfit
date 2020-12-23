@@ -1,90 +1,131 @@
+import 'package:adv_fab/adv_fab.dart';
 import 'package:flutter/material.dart';
+import 'package:mobile_app/screens/messaging/message/message_ui.dart';
+import 'package:mobile_app/theme/colors.dart';
+import 'package:rxdart/subjects.dart';
 
-class Indicator extends StatelessWidget {
-  Indicator({Key key, this.link, this.offset}) : super(key: key);
+import 'menu-item.dart';
+import 'package:mobile_app/screens/home/home_screen.state.dart';
 
-  final LayerLink link;
-  final Offset offset;
+class AppMenu extends StatelessWidget {
+  final AdvFabController mabialaFABController;
+  final BehaviorSubject stateStream;
+
+  AppMenu({
+    this.mabialaFABController,
+    this.stateStream,
+  });
 
   @override
   Widget build(BuildContext context) {
-    return CompositedTransformFollower(
-      offset: offset,
-      link: link,
-      child: Container(
-        color: Colors.green,
-      ),
-    );
-  }
-}
-
-class Slide extends StatefulWidget {
-  Slide({Key key}) : super(key: key);
-
-  @override
-  _SlideState createState() => _SlideState();
-}
-
-class _SlideState extends State<Slide> {
-  final double indicatorWidth = 24.0;
-  final double indicatorHeight = 300.0;
-  final double slideHeight = 200.0;
-  final double slideWidth = 400.0;
-
-  final LayerLink layerLink = LayerLink();
-  OverlayEntry overlayEntry;
-  Offset indicatorOffset;
-
-  Offset getIndicatorOffset(Offset dragOffset) {
-    final double x = (dragOffset.dx - (indicatorWidth / 2.0))
-        .clamp(0.0, slideWidth - indicatorWidth);
-    final double y = (slideHeight - indicatorHeight) / 2.0;
-    return Offset(x, y);
-  }
-
-  void showIndicator(DragStartDetails details) {
-    indicatorOffset = getIndicatorOffset(details.localPosition);
-    overlayEntry = OverlayEntry(
-      builder: (BuildContext context) {
-        return Positioned(
-          top: 0.0,
-          left: 0.0,
-          child: SizedBox(
-            width: indicatorWidth,
-            height: indicatorHeight,
-            child: Indicator(offset: indicatorOffset, link: layerLink),
+    return AdvFab(
+      showLogs: true,
+      onPannelTapped: () {
+        print('onPannelTapped');
+        mabialaFABController.collapseFAB();
+      },
+      onFloatingActionButtonTapped: () {
+        mabialaFABController.setExpandedWidgetConfiguration(
+          showLogs: true,
+          heightToExpandTo: 80,
+          expendedBackgroundColor: Colors.grey[500].withOpacity(
+            .9,
+          ),
+          withChild: Container(
+            margin: EdgeInsets.only(
+              top: MediaQuery.of(context).size.height * .05,
+            ),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                Wrap(
+                  direction: Axis.horizontal,
+                  alignment: WrapAlignment.center,
+                  runAlignment: WrapAlignment.center,
+                  spacing: 11.0,
+                  runSpacing: 16.0,
+                  children: [
+                    MenuItem(
+                      name: 'Workouts',
+                      icon: Icons.fitness_center,
+                      onPressed: () {
+                        stateStream.add(screenState.WorkoutList);
+                        mabialaFABController.collapseFAB();
+                      },
+                    ),
+                    MenuItem(
+                      name: 'Nutrition',
+                      icon: Icons.emoji_food_beverage_sharp,
+                      onPressed: () {
+                        stateStream.add(screenState.Nutrition);
+                        mabialaFABController.collapseFAB();
+                      },
+                    ),
+                    MenuItem(
+                      name: 'Inbox',
+                      icon: Icons.chat,
+                      onPressed: () {
+                        mabialaFABController.collapseFAB();
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (BuildContext context) {
+                            return ChatScreen();
+                          }),
+                        );
+                      },
+                    ),
+                    MenuItem(
+                      name: 'Education',
+                      icon: Icons.school,
+                      onPressed: () {
+                        stateStream.add(screenState.Education);
+                        mabialaFABController.collapseFAB();
+                      },
+                    ),
+                    MenuItem(
+                      name: 'Comunity',
+                      icon: Icons.people,
+                      onPressed: () {
+                        stateStream.add(screenState.CommunityBoard);
+                        mabialaFABController.collapseFAB();
+                      },
+                    ),
+                    MenuItem(
+                      name: 'Progress',
+                      icon: Icons.bar_chart,
+                      onPressed: () {
+                        stateStream.add(screenState.Progress);
+                        mabialaFABController.collapseFAB();
+                      },
+                    ),
+                    Center(
+                      child: MenuItem(
+                        name: 'Help',
+                        icon: Icons.info,
+                        onPressed: () {
+                          stateStream.add(screenState.Help);
+                          mabialaFABController.collapseFAB();
+                        },
+                      ),
+                    ),
+                  ],
+                ),
+              ],
+            ),
           ),
         );
+        mabialaFABController.isCollapsed
+            ? mabialaFABController.expandFAB()
+            : mabialaFABController.collapseFAB();
       },
-    );
-    Overlay.of(context).insert(overlayEntry);
-  }
-
-  void updateIndicator(DragUpdateDetails details) {
-    indicatorOffset = getIndicatorOffset(details.localPosition);
-    overlayEntry.markNeedsBuild();
-  }
-
-  void hideIndicator(DragEndDetails details) {
-    overlayEntry.remove();
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Center(
-      child: CompositedTransformTarget(
-        link: layerLink,
-        child: Container(
-          width: slideWidth,
-          height: slideHeight,
-          color: Colors.blue.withOpacity(0.2),
-          child: GestureDetector(
-            onPanStart: showIndicator,
-            // onPanUpdate: updateIndicator,
-            // onPanEnd: hideIndicator,
-          ),
-        ),
-      ),
+      floatingActionButtonIcon: Icons.add,
+      floatingActionButtonIconColor: lightBrown,
+      floatingActionButtonExpendedWidth:
+          (MediaQuery.of(context).size.width) * .23,
+      collapsedColor: darkGrey,
+      useAsFloatingActionButton: true,
+      controller: mabialaFABController,
+      animationDuration: Duration(milliseconds: 300),
     );
   }
 }
