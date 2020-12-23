@@ -1,15 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:mobile_app/constants/app-images.dart';
+import 'package:mobile_app/entities/client.entity.dart';
+import 'package:mobile_app/models/login.model.dart';
+import 'package:mobile_app/repositories/auth.repostory.dart';
 import 'package:mobile_app/screens/auth/forgot-password/forgot_password.dart';
 import 'package:mobile_app/screens/auth/login/login_bloc.dart';
 import 'package:mobile_app/screens/home/home_screen.ui.dart';
 import 'package:mobile_app/widgets/buttons/primary_button.dart';
 import 'package:mobile_app/widgets/fields/text_field.dart';
+import 'package:mobile_app/widgets/wrapper/app-wrapper.dart';
 
 import 'login_events.dart';
 
 class LoginScreen extends StatelessWidget {
-  final snackBar = SnackBar(content: Text('Yay! A SnackBar!'));
+  final snackBar = SnackBar(content: Text('There was a problem'));
 
   final LoginBloc loginBloc = LoginBloc();
 
@@ -47,7 +51,6 @@ class LoginScreen extends StatelessWidget {
                           StreamBuilder(
                             stream: loginBloc.stateStream,
                             builder: (context, AsyncSnapshot<LoginEvent> data) {
-                              print(data.data);
                               return AppTextField(
                                 hintText: 'Password',
                                 suffixIcon: GestureDetector(
@@ -77,13 +80,24 @@ class LoginScreen extends StatelessWidget {
                               vertical: 20,
                             ),
                             onPressed: () {
-                              Navigator.pushReplacement(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (BuildContext context) {
-                                  return HomeScreen();
-                                }),
+                              Scaffold.of(context).showSnackBar(
+                                snackBar,
                               );
+
+                              AuthRepository.login(
+                                Login(
+                                  username: 'test (edit)',
+                                  password: 'a',
+                                ),
+                              ).listen((Client user) {
+                                Navigator.pushReplacement(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (BuildContext context) {
+                                    return HomeScreen();
+                                  }),
+                                );
+                              });
                             },
                             child: Center(
                               child: Text(

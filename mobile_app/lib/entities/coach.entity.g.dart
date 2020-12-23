@@ -13,9 +13,6 @@ Coach _$CoachFromJson(Map<String, dynamic> json) {
         ?.map((e) =>
             e == null ? null : Client.fromJson(e as Map<String, dynamic>))
         ?.toList(),
-    organization: json['organization'] == null
-        ? null
-        : Organization.fromJson(json['organization'] as Map<String, dynamic>),
   )
     ..id = json['id'] as int
     ..firstname = json['firstname'] as String
@@ -23,7 +20,10 @@ Coach _$CoachFromJson(Map<String, dynamic> json) {
     ..imageUrl = json['imageUrl'] as String
     ..createTime = json['createTime'] == null
         ? null
-        : DateTime.parse(json['createTime'] as String);
+        : DateTime.parse(json['createTime'] as String)
+    ..organization = json['organization'] == null
+        ? null
+        : Organization.fromJson(json['organization'] as Map<String, dynamic>);
 }
 
 Map<String, dynamic> _$CoachToJson(Coach instance) => <String, dynamic>{
@@ -32,7 +32,7 @@ Map<String, dynamic> _$CoachToJson(Coach instance) => <String, dynamic>{
       'lastname': instance.lastname,
       'imageUrl': instance.imageUrl,
       'createTime': instance.createTime?.toIso8601String(),
+      'organization': instance.organization,
       'role': instance.role,
       'clients': instance.clients,
-      'organization': instance.organization,
     };

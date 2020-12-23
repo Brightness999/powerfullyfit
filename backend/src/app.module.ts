@@ -12,7 +12,6 @@ import { OrganizationModule } from './organization/organization.module';
 import { WorkoutModule } from './workout/workout.module';
 import { ExerciseModule } from './exercise/exercise.module';
 import { AuthModule } from './auth/auth.module';
-import { AppController } from './app.controller';
 
 @Module({
   imports: [
@@ -37,7 +36,7 @@ import { AppController } from './app.controller';
     WorkoutModule,
     ExerciseModule,
   ],
-  controllers: [AppController],
+  controllers: [],
   providers: [],
 })
 export class AppModule {}
