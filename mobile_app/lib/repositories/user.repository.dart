@@ -4,6 +4,8 @@ import 'package:mobile_app/repositories/backend.proxy.dart';
 class UserRepository {
   static String segment = '/user';
 
+  Client currentUser;
+
   static Stream<Client> getUserById(int userId,
       {List<String> relations}) async* {
     print(relations);

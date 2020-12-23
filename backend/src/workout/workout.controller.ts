@@ -17,7 +17,7 @@ import { AuthService } from '@app/auth/auth.service';
 
 import { ApiTags } from '@nestjs/swagger';
 
-import { CurrentUser } from '@app/common/decorators/current-user.decorator'
+import { CurrentUser } from '@app/common/decorators/current-user.decorator';
 
 import { WorkoutService } from './workout.service';
 import { CreateWorkoutDto } from './dto/create-workout.dto';
@@ -30,18 +30,18 @@ export class WorkoutController {
   constructor(private readonly workoutService: WorkoutService) {}
 
   @Post()
-  create(@Body() createWorkoutDto: CreateWorkoutDto) {
+  create(@Body() createWorkoutDto: CreateWorkoutDto, @CurrentUser() user: any) {
     return this.workoutService.create(createWorkoutDto);
   }
 
   @Get()
-  findAll() {
+  findAll(@CurrentUser() user: any) {
+    console.log(user);
     return this.workoutService.findAll();
   }
 
   @Get(':id')
   findOne(@Param('id', ParseIntPipe) id: number, @CurrentUser() user: any) {
-    console.log(user)
     return this.workoutService.findOne(id);
   }
 
@@ -54,12 +54,13 @@ export class WorkoutController {
   update(
     @Param('id', ParseIntPipe) id: number,
     @Body() updateWorkoutDto: UpdateWorkoutDto,
+    @CurrentUser() user: any,
   ) {
     return this.workoutService.update(id, updateWorkoutDto);
   }
 
   @Delete(':id')
-  remove(@Param('id', ParseIntPipe) id: number) {
+  remove(@Param('id', ParseIntPipe) id: number, @CurrentUser() user: any) {
     return this.workoutService.remove(id);
   }
 }

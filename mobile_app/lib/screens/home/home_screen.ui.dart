@@ -4,7 +4,6 @@ import 'package:mobile_app/screens/auth/login/login_ui.dart';
 import 'package:mobile_app/screens/community-board/board/board_ui.dart';
 import 'package:mobile_app/screens/education/education/education_ui.dart';
 import 'package:mobile_app/screens/help/help_screen.ui.dart';
-import 'package:mobile_app/screens/messaging/chat-list/chat-list_ui.dart';
 import 'package:mobile_app/screens/messaging/message/message_ui.dart';
 import 'package:mobile_app/screens/nutrition/daily-nutrition/daily-nutrition.ui.dart';
 import 'package:mobile_app/screens/progress/overall-progress/overall_progress_screen.ui.dart';

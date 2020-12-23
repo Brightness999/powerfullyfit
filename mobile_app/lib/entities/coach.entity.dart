@@ -10,9 +10,8 @@ part 'coach.entity.g.dart';
 class Coach extends User {
   String role;
   List<Client> clients;
-  Organization organization;
 
-  Coach({this.role, this.clients, this.organization});
+  Coach({this.role, this.clients});
 
   factory Coach.fromJson(Map<String, dynamic> json) => _$CoachFromJson(json);
   Map<String, dynamic> toJson() => _$CoachToJson(this);

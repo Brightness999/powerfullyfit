@@ -18,7 +18,10 @@ Client _$ClientFromJson(Map<String, dynamic> json) {
     ..imageUrl = json['imageUrl'] as String
     ..createTime = json['createTime'] == null
         ? null
-        : DateTime.parse(json['createTime'] as String);
+        : DateTime.parse(json['createTime'] as String)
+    ..organization = json['organization'] == null
+        ? null
+        : Organization.fromJson(json['organization'] as Map<String, dynamic>);
 }
 
 Map<String, dynamic> _$ClientToJson(Client instance) => <String, dynamic>{
@@ -27,5 +30,6 @@ Map<String, dynamic> _$ClientToJson(Client instance) => <String, dynamic>{
       'lastname': instance.lastname,
       'imageUrl': instance.imageUrl,
       'createTime': instance.createTime?.toIso8601String(),
+      'organization': instance.organization,
       'coach': instance.coach,
     };

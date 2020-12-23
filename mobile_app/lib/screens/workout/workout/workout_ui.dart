@@ -203,32 +203,50 @@ class _WorkoutScreen extends State {
                                         height: 1.0,
                                       ),
                                       if (exercise.sets != null)
-                                        Align(
-                                          alignment: Alignment.centerLeft,
-                                          child: Padding(
-                                            padding: const EdgeInsets.symmetric(
-                                              horizontal: 16.0,
-                                              vertical: 8.0,
-                                            ),
-                                            child: Column(
-                                              children: exercise.sets
-                                                  .map(
-                                                    (e) => Container(
-                                                      margin:
-                                                          const EdgeInsets.only(
-                                                        bottom: 16.0,
-                                                      ),
-                                                      child: Text(
-                                                        "Set 1 (4x12)",
-                                                        style: TextStyle(
-                                                          fontSize: 18,
+                                        Column(
+                                          children: exercise.sets
+                                              .map(
+                                                (e) => Row(
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment
+                                                          .spaceAround,
+                                                  children: [
+                                                    Align(
+                                                      alignment:
+                                                          Alignment.centerLeft,
+                                                      child: Container(
+                                                        margin: const EdgeInsets
+                                                            .only(
+                                                          bottom: 16.0,
+                                                        ),
+                                                        child: Text(
+                                                          "Set 1 (4x12)",
+                                                          style: TextStyle(
+                                                            fontSize: 18,
+                                                          ),
                                                         ),
                                                       ),
                                                     ),
-                                                  )
-                                                  .toList(),
-                                            ),
-                                          ),
+                                                    Align(
+                                                      alignment:
+                                                          Alignment.centerRight,
+                                                      child: Container(
+                                                        margin: const EdgeInsets
+                                                            .only(
+                                                          bottom: 16.0,
+                                                        ),
+                                                        child: Text(
+                                                          "Enter Weight",
+                                                          style: TextStyle(
+                                                            fontSize: 18,
+                                                          ),
+                                                        ),
+                                                      ),
+                                                    ),
+                                                  ],
+                                                ),
+                                              )
+                                              .toList(),
                                         ),
                                     ],
                                   ),

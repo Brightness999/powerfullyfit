@@ -1,4 +1,5 @@
 import 'package:mobile_app/entities/coach.entity.dart';
+import 'package:mobile_app/entities/organization.entity.dart';
 import 'package:mobile_app/entities/user.entity.dart';
 import 'package:json_annotation/json_annotation.dart';
 

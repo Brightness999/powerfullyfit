@@ -11,14 +11,31 @@ class BackendProxy {
 
   static Future<dynamic> get(String path) async {
     http.Response response;
+
     try {
       response = await http.get(localhost + path);
     } catch (exception) {
-      print(exception);
       throw new HttpException("message");
     }
 
     dynamic jsonResponse = convert.jsonDecode(response.body);
+
+    return jsonResponse;
+  }
+
+  static Future<dynamic> post(String path, body) async {
+    http.Response response;
+
+    try {
+      response = await http.post(localhost + path, body: body);
+    } catch (exception) {
+      throw new HttpException(exception);
+    }
+
+    dynamic jsonResponse = convert.jsonDecode(response.body);
+
+    // if (jsonResponse.statusCode != null && jsonResponse.statusCode >= 400)
+    //   throw new HttpException('Request Error: ${jsonResponse.statusCode}');
 
     return jsonResponse;
   }
