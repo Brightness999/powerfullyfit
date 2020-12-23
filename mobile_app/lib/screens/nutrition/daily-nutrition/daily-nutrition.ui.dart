@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mobile_app/screens/display-pdf-screen/display-pdf-screen.ui.dart';
 import 'package:mobile_app/screens/nutrition/macros-list/macros-list.ui.dart';
 import 'package:mobile_app/widgets/buttons/return_summary.button.dart';
 import 'package:mobile_app/widgets/cards/daily-nutrition-goal.card.dart';
@@ -42,14 +43,14 @@ class DailyNutritionScreen extends StatelessWidget {
                 margin: EdgeInsets.only(
                   bottom: 30,
                 ),
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (BuildContext context) {
-                      return MacrosListScreen();
-                    }),
-                  );
-                },
+                onPressed: () => Navigator.push(
+                  context,
+                  MaterialPageRoute<dynamic>(
+                    builder: (_) => const PDFViewerFromUrl(
+                      url: 'http://africau.edu/images/default/sample.pdf',
+                    ),
+                  ),
+                ),
                 child: Center(
                   child: Text(
                     'Nutrition Guide',
