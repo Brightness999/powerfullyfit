@@ -18,6 +18,7 @@ import { TrainersComponent } from './pages/trainers/trainers.component';
 import { MasterProgramsComponent } from './pages/master-programs/master-programs.component';
 import { MasterWorkoutsComponent } from './pages/master-workouts/master-workouts.component';
 import { SettingsComponent } from './pages/settings/settings.component';
+import { AppointmentsComponent } from './pages/appointments/appointments.component';
 
 
 @NgModule({
@@ -39,7 +40,8 @@ import { SettingsComponent } from './pages/settings/settings.component';
     TrainersComponent,
     MasterProgramsComponent,
     MasterWorkoutsComponent,
-    SettingsComponent
+    SettingsComponent,
+    AppointmentsComponent
   ],
   providers: [],
   bootstrap: [AppComponent]

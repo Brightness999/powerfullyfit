@@ -11,6 +11,7 @@ import { TrainersComponent } from "../../pages/trainers/trainers.component";
 import { MasterProgramsComponent } from "../../pages/master-programs/master-programs.component";
 import { MasterWorkoutsComponent } from "../../pages/master-workouts/master-workouts.component";
 import { SettingsComponent } from "../../pages/settings/settings.component";
+import { AppointmentsComponent } from '../../pages/appointments/appointments.component';
 
 export const AdminLayoutRoutes: Routes = [
   { path: "dashboard", component: DashboardComponent },
@@ -23,5 +24,6 @@ export const AdminLayoutRoutes: Routes = [
   { path: "trainers", component: TrainersComponent },
   { path: "master-programs", component: MasterProgramsComponent },
   { path: "master-workouts", component: MasterWorkoutsComponent },
+  { path: "appointments", component: AppointmentsComponent },
   { path: "settings", component: SettingsComponent },
 ];
