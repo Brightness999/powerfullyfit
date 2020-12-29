@@ -17,12 +17,59 @@
 
     <!-- User -->
     <ul class="navbar-nav align-items-center d-none d-md-flex">
-      <li class="nav-item">
-        <a class="nav-link mr-4 h1">
+      <li class="nav-item" ngbDropdown placement="bottom-right">
+        <div class="nav-link pr-4 h1">
+          <div class="media align-items-center">
+            <button class="btn btn-dark" role="button" ngbDropdownToggle>
+              <span class="mr-2"> ADD NEW </span> <i class="fas fa-chevron-down"></i>
+            </button>
+          </div>
+        </div>
+
+        <div class="dropdown-menu-arrow dropdown-menu-right" ngbDropdownMenu>
+          <!-- <div class=" dropdown-header noti-title">
+            <h6 class="text-overflow m-0"></h6>
+          </div> -->
+          <a routerLinkActive="active" [routerLink]="['/user-profile']" class="dropdown-item">
+            <i class="fas fa-book"></i>
+            <span>Program</span>
+          </a>
+          <a routerLinkActive="active" [routerLink]="['/user-profile']" class="dropdown-item">
+            <i class="ni ni-key-25"></i>
+            <span>Workout</span>
+          </a>
+          <!-- <a routerLinkActive="active" [routerLink]="['/user-profile']" class="dropdown-item">
+            <i class="ni ni-calendar-grid-58"></i>
+            <span>Activity</span>
+          </a> -->
+          <a routerLinkActive="active" [routerLink]="['/user-profile']" class="dropdown-item">
+            <i class="fas fa-chalkboard-teacher"></i>
+            <span>Trainer</span>
+          </a>
+          <a [routerLink]="['login']" class="dropdown-item">
+            <i class="ni ni-user-run"></i>
+            <span>Client</span>
+          </a>
+          <a [routerLink]="['login']" class="dropdown-item">
+            <i class="ni ni-calendar-grid-58"></i>
+            <span>Appointment</span>
+          </a>
+        </div>
+      </li>
+      <li class="nav-item" ngbDropdown placement="bottom-right">
+        <a class="nav-link mr-3 h1" role="button" ngbDropdownToggle>
           <div class="media align-items-center">
             <i class="ni ni-bell-55"></i>
           </div>
         </a>
+        <div class="dropdown-menu-arrow dropdown-menu-right" ngbDropdownMenu>
+          <div class=" dropdown-header noti-title">
+            <h6 class="text-overflow m-0">
+              Notifications
+            </h6>
+          </div>
+
+        </div>
       </li>
       <li class="nav-item" ngbDropdown placement="bottom-right">
         <a class="nav-link pr-0" role="button" ngbDropdownToggle>

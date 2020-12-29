@@ -1,9 +1,9 @@
 <div class="main-content">
   <nav class="navbar navbar-top navbar-horizontal navbar-expand-md navbar-dark">
     <div class="container px-4">
-      <a class="navbar-brand pt-0" routerLinkActive="active" [routerLink]="['/dashboard']">
+      <!-- <a class="navbar-brand pt-0" routerLinkActive="active" [routerLink]="['/dashboard']">
         <img src="./assets/img/brand/logo.png" class="navbar-brand-img" alt="...">
-      </a>
+      </a> -->
       <button class="navbar-toggler" type="button" (click)="isCollapsed=!isCollapsed"
          aria-controls="sidenav-collapse-main">
         <span class="navbar-toggler-icon"></span>
@@ -26,7 +26,7 @@
           </div>
         </div>
         <!-- Navbar items -->
-        <ul class="navbar-nav ml-auto">
+        <!-- <ul class="navbar-nav ml-auto">
           <li class="nav-item">
             <a class="nav-link nav-link-icon" routerLinkActive="active" [routerLink]="['/dashboard']">
               <i class="ni ni-planet"></i>
@@ -51,7 +51,7 @@
               <span class="nav-link-inner--text">Profile</span>
             </a>
           </li>
-        </ul>
+        </ul> -->
       </div>
     </div>
   </nav>
@@ -61,24 +61,24 @@
   <div class="container">
     <div class="row align-items-center justify-content-xl-between">
       <div class="col-xl-6">
-        <div class="copyright text-center text-xl-left text-muted">
-          &copy; {{ test | date: "yyyy" }} <a href="https://www.creative-tim.com?ref=ada-footer-auth-layout" class="font-weight-bold ml-1" target="_blank">Creative Tim</a>
+        <div class="copyright text-center text-xl-left text-white">
+          &copy; {{ test | date: "yyyy" }} <a href="https://www.creative-tim.com?ref=ada-footer-auth-layout" class="font-weight-bold text-white ml-1" target="_blank">Powerfully Fit</a>
         </div>
       </div>
       <div class="col-xl-6">
-        <ul class="nav nav-footer justify-content-center justify-content-xl-end">
-          <li class="nav-item">
+        <ul class="nav nav-footer justify-content-center justify-content-xl-end text-white">
+          <!-- <li class="nav-item">
             <a href="https://www.creative-tim.com?ref=ada-footer-auth-layout" class="nav-link" target="_blank">Creative Tim</a>
+          </li> -->
+          <li class="nav-item">
+            <a href="https://www.creative-tim.com/presentation?ref=ada-footer-auth-layout" class="text-white mr-2" target="_blank">About Us</a>
           </li>
           <li class="nav-item">
-            <a href="https://www.creative-tim.com/presentation?ref=ada-footer-auth-layout" class="nav-link" target="_blank">About Us</a>
+            <a href="http://blog.creative-tim.com?ref=ada-footer-auth-layout" class="text-white" target="_blank">Blog</a>
           </li>
-          <li class="nav-item">
-            <a href="http://blog.creative-tim.com?ref=ada-footer-auth-layout" class="nav-link" target="_blank">Blog</a>
-          </li>
-          <li class="nav-item">
+          <!-- <li class="nav-item">
             <a href="https://github.com/creativetimofficial/argon-dashboard-angular/blob/master/LICENSE.md" class="nav-link" target="_blank">MIT License</a>
-          </li>
+          </li> -->
         </ul>
       </div>
     </div>
