@@ -13,6 +13,7 @@ import {
 import { ApiTags } from '@nestjs/swagger';
 
 import { LocalAuthGuard } from '@app/auth/guards/local-auth.guard';
+import { AuthGuard } from '@nestjs/passport';
 
 import { OrganizationService } from './organization.service';
 import { CreateOrganizationDto } from './dto/create-organization.dto';
