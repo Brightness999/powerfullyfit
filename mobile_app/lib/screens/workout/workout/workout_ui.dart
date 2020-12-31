@@ -1,5 +1,6 @@
 import 'package:expansion_tile_card/expansion_tile_card.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:mobile_app/entities/Exercise.entity.dart';
 import 'package:mobile_app/entities/workout.dart';
 import 'package:mobile_app/models/workout-type.enum.dart';
@@ -52,233 +53,240 @@ class _WorkoutScreen extends State {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: CustomScrollView(
-        slivers: [
-          SliverAppBar(
-            floating: true,
-            pinned: true,
-            snap: false,
-            backgroundColor: Colors.transparent,
-            expandedHeight: MediaQuery.of(context).size.height * .27,
-            flexibleSpace: FlexibleSpaceBar(
-              title: Container(
-                constraints: BoxConstraints.expand(
-                  height: MediaQuery.of(context).size.height * .27,
-                ),
-                alignment: Alignment.bottomLeft,
-                padding: EdgeInsets.only(
-                  left: 16.0,
-                  bottom: 8.0,
-                ),
-                decoration: BoxDecoration(
-                  image: DecorationImage(
-                    image: AssetImage(workout.picture),
-                    fit: BoxFit.cover,
-                    colorFilter: ColorFilter.mode(
-                      Colors.grey[400],
-                      BlendMode.multiply,
+      body: GestureDetector(
+        onTap: () => FocusScope.of(context).unfocus(),
+        child: CustomScrollView(
+          slivers: [
+            SliverAppBar(
+              floating: true,
+              pinned: true,
+              snap: false,
+              backgroundColor: Colors.transparent,
+              expandedHeight: MediaQuery.of(context).size.height * .27,
+              flexibleSpace: FlexibleSpaceBar(
+                title: Container(
+                  constraints: BoxConstraints.expand(
+                    height: MediaQuery.of(context).size.height * .27,
+                  ),
+                  alignment: Alignment.bottomLeft,
+                  padding: EdgeInsets.only(
+                    left: 16.0,
+                    bottom: 8.0,
+                  ),
+                  decoration: BoxDecoration(
+                    image: DecorationImage(
+                      image: AssetImage(workout.picture),
+                      fit: BoxFit.cover,
+                      colorFilter: ColorFilter.mode(
+                        Colors.grey[400],
+                        BlendMode.multiply,
+                      ),
                     ),
                   ),
-                ),
-                child: Wrap(
-                  children: [
-                    RichText(
-                      text: TextSpan(
+                  child: Wrap(
+                    children: [
+                      RichText(
+                        text: TextSpan(
+                          children: [
+                            TextSpan(
+                              text: workout.name,
+                              style: new TextStyle(
+                                fontWeight: FontWeight.bold,
+                                fontSize: 26.0,
+                              ),
+                            ),
+                            TextSpan(
+                              text: " - ",
+                              style: new TextStyle(
+                                fontSize: 26.0,
+                              ),
+                            ),
+                            TextSpan(
+                              text: workout.duration,
+                              style: new TextStyle(
+                                fontSize: 26.0,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                      Row(
                         children: [
-                          TextSpan(
-                            text: workout.name,
-                            style: new TextStyle(
-                              fontWeight: FontWeight.bold,
-                              fontSize: 26.0,
+                          Container(
+                            padding: EdgeInsets.all(
+                              MediaQuery.of(context).size.height * .005,
+                            ),
+                            decoration: BoxDecoration(
+                              color: Colors.black,
+                              borderRadius: BorderRadius.all(
+                                Radius.circular(5),
+                              ),
+                            ),
+                            child: Text(
+                              workout.type.toString().split('.').last,
+                              style: new TextStyle(
+                                fontSize: 17.0,
+                              ),
                             ),
                           ),
-                          TextSpan(
-                            text: " - ",
-                            style: new TextStyle(
-                              fontSize: 26.0,
-                            ),
+                          SizedBox(
+                            width: 10,
                           ),
-                          TextSpan(
-                            text: workout.duration,
+                          Text(
+                            workout.status,
                             style: new TextStyle(
-                              fontSize: 26.0,
+                              fontSize: 17.0,
+                              color: Colors.greenAccent,
                             ),
                           ),
                         ],
                       ),
+                    ],
+                  ),
+                ),
+              ),
+            ),
+            Container(
+              child: SliverList(
+                delegate: SliverChildListDelegate(
+                  [
+                    Container(
+                      margin: EdgeInsets.symmetric(vertical: 20),
+                      child: WorkoutTimer(),
                     ),
-                    Row(
-                      children: [
-                        Container(
-                          padding: EdgeInsets.all(
-                            MediaQuery.of(context).size.height * .005,
-                          ),
-                          decoration: BoxDecoration(
-                            color: Colors.black,
-                            borderRadius: BorderRadius.all(
-                              Radius.circular(5),
-                            ),
-                          ),
-                          child: Text(
-                            workout.type.toString().split('.').last,
-                            style: new TextStyle(
-                              fontSize: 17.0,
-                            ),
-                          ),
-                        ),
-                        SizedBox(
-                          width: 10,
-                        ),
-                        Text(
-                          workout.status,
-                          style: new TextStyle(
-                            fontSize: 17.0,
-                            color: Colors.greenAccent,
-                          ),
-                        ),
-                      ],
+                    Container(
+                      margin: EdgeInsets.only(left: 16.0, bottom: 16.0),
+                      child: Text(
+                        "Exercises",
+                        style: new TextStyle(
+                            fontSize: 25.0,
+                            color: Colors.white,
+                            fontWeight: FontWeight.bold),
+                      ),
+                    ),
+                    Container(
+                      margin: EdgeInsets.symmetric(
+                          horizontal: MediaQuery.of(context).size.width * .01),
+                      child: Column(
+                        children: [
+                          ...workout.exercises.map((Exercise exercise) {
+                            return Container(
+                              margin: EdgeInsets.only(
+                                bottom:
+                                    MediaQuery.of(context).size.height * .01,
+                              ),
+                              child: Row(
+                                children: [
+                                  Expanded(
+                                    child: ExpansionTileCard(
+                                      baseColor: darkGrey,
+                                      expandedColor: darkGrey,
+                                      // key: cardA,
+                                      leading: CircleAvatar(
+                                        child: Icon(
+                                          Icons.fitness_center,
+                                        ),
+                                      ),
+                                      trailing: exercise.isDone
+                                          ? CircleAvatar(
+                                              radius: 13,
+                                              backgroundColor:
+                                                  Colors.greenAccent,
+                                              child: Icon(
+                                                Icons.check_sharp,
+                                                color: Colors.black,
+                                                size: 23,
+                                              ),
+                                            )
+                                          : null,
+                                      title: Text(
+                                        exercise.name.toString(),
+                                      ),
+                                      children: <Widget>[
+                                        Divider(
+                                          thickness: 1.0,
+                                          height: 1.0,
+                                        ),
+                                        if (exercise.sets != null)
+                                          Column(
+                                            children: exercise.sets
+                                                .map(
+                                                  (e) => Row(
+                                                    mainAxisAlignment:
+                                                        MainAxisAlignment
+                                                            .spaceAround,
+                                                    children: [
+                                                      Align(
+                                                        alignment: Alignment
+                                                            .centerLeft,
+                                                        child: Container(
+                                                          margin:
+                                                              const EdgeInsets
+                                                                  .only(
+                                                            bottom: 16.0,
+                                                          ),
+                                                          child: Text(
+                                                            "Set 1 (4x12)",
+                                                            style: TextStyle(
+                                                              fontSize: 18,
+                                                            ),
+                                                          ),
+                                                        ),
+                                                      ),
+                                                      Align(
+                                                        alignment: Alignment
+                                                            .centerRight,
+                                                        child: Container(
+                                                          width: 100,
+                                                          child: TextField(
+                                                            keyboardType:
+                                                                TextInputType
+                                                                    .number,
+                                                            inputFormatters: <
+                                                                TextInputFormatter>[
+                                                              FilteringTextInputFormatter
+                                                                  .digitsOnly
+                                                            ], // Only numbers can be entered
+                                                          ),
+                                                        ),
+                                                      ),
+                                                    ],
+                                                  ),
+                                                )
+                                                .toList(),
+                                          ),
+                                      ],
+                                    ),
+                                  ),
+                                  RawMaterialButton(
+                                    onPressed: _showMaterialDialog,
+                                    fillColor: darkGrey,
+                                    child: Icon(
+                                      Icons.play_arrow,
+                                      size: 25.0,
+                                      color: Colors.white,
+                                    ),
+                                    padding: EdgeInsets.all(15.0),
+                                    shape: CircleBorder(
+                                      side: BorderSide(
+                                        width: 2,
+                                        color: Colors.greenAccent,
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            );
+                          }).toList(),
+                        ],
+                      ),
                     ),
                   ],
                 ),
               ),
-            ),
-          ),
-          Container(
-            child: SliverList(
-              delegate: SliverChildListDelegate(
-                [
-                  Container(
-                    margin: EdgeInsets.symmetric(vertical: 20),
-                    child: WorkoutTimer(),
-                  ),
-                  Container(
-                    margin: EdgeInsets.only(left: 16.0, bottom: 16.0),
-                    child: Text(
-                      "Exercises",
-                      style: new TextStyle(
-                          fontSize: 25.0,
-                          color: Colors.white,
-                          fontWeight: FontWeight.bold),
-                    ),
-                  ),
-                  Container(
-                    margin: EdgeInsets.symmetric(
-                        horizontal: MediaQuery.of(context).size.width * .01),
-                    child: Column(
-                      children: [
-                        ...workout.exercises.map((Exercise exercise) {
-                          return Container(
-                            margin: EdgeInsets.only(
-                              bottom: MediaQuery.of(context).size.height * .01,
-                            ),
-                            child: Row(
-                              children: [
-                                Expanded(
-                                  child: ExpansionTileCard(
-                                    baseColor: darkGrey,
-                                    expandedColor: darkGrey,
-                                    // key: cardA,
-                                    leading: CircleAvatar(
-                                      child: Icon(
-                                        Icons.fitness_center,
-                                      ),
-                                    ),
-                                    trailing: exercise.isDone
-                                        ? CircleAvatar(
-                                            radius: 13,
-                                            backgroundColor: Colors.greenAccent,
-                                            child: Icon(
-                                              Icons.check_sharp,
-                                              color: Colors.black,
-                                              size: 23,
-                                            ),
-                                          )
-                                        : null,
-                                    title: Text(
-                                      exercise.name.toString(),
-                                    ),
-                                    children: <Widget>[
-                                      Divider(
-                                        thickness: 1.0,
-                                        height: 1.0,
-                                      ),
-                                      if (exercise.sets != null)
-                                        Column(
-                                          children: exercise.sets
-                                              .map(
-                                                (e) => Row(
-                                                  mainAxisAlignment:
-                                                      MainAxisAlignment
-                                                          .spaceAround,
-                                                  children: [
-                                                    Align(
-                                                      alignment:
-                                                          Alignment.centerLeft,
-                                                      child: Container(
-                                                        margin: const EdgeInsets
-                                                            .only(
-                                                          bottom: 16.0,
-                                                        ),
-                                                        child: Text(
-                                                          "Set 1 (4x12)",
-                                                          style: TextStyle(
-                                                            fontSize: 18,
-                                                          ),
-                                                        ),
-                                                      ),
-                                                    ),
-                                                    Align(
-                                                      alignment:
-                                                          Alignment.centerRight,
-                                                      child: Container(
-                                                        margin: const EdgeInsets
-                                                            .only(
-                                                          bottom: 16.0,
-                                                        ),
-                                                        child: Text(
-                                                          "Enter Weight",
-                                                          style: TextStyle(
-                                                            fontSize: 18,
-                                                          ),
-                                                        ),
-                                                      ),
-                                                    ),
-                                                  ],
-                                                ),
-                                              )
-                                              .toList(),
-                                        ),
-                                    ],
-                                  ),
-                                ),
-                                RawMaterialButton(
-                                  onPressed: _showMaterialDialog,
-                                  fillColor: darkGrey,
-                                  child: Icon(
-                                    Icons.play_arrow,
-                                    size: 25.0,
-                                    color: Colors.white,
-                                  ),
-                                  padding: EdgeInsets.all(15.0),
-                                  shape: CircleBorder(
-                                    side: BorderSide(
-                                      width: 2,
-                                      color: Colors.greenAccent,
-                                    ),
-                                  ),
-                                ),
-                              ],
-                            ),
-                          );
-                        }).toList(),
-                      ],
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          )
-        ],
+            )
+          ],
+        ),
       ),
     );
   }

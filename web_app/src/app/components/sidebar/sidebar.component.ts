@@ -8,13 +8,13 @@ declare interface RouteInfo {
     class: string;
 }
 export const ROUTES: RouteInfo[] = [
-    { path: '/dashboard', title: 'Dashboard',  icon: 'fas fa-columns text-primary', class: '' },
-    { path: '/messages', title: 'Inbox',  icon:'fas fa-inbox text-blue', class: '' },
-    { path: '/clients', title: 'Clients',  icon:'ni ni-user-run text-orange', class: '' },
-    { path: '/trainers', title: 'Trainers',  icon:'fas fa-chalkboard-teacher text-yellow', class: '' },
-    { path: '/master-programs', title: 'Master Programs',  icon:'fas fa-book text-red', class: '' },
-    { path: '/master-workouts', title: 'Master Workouts',  icon:'ni-key-25 text-info', class: '' },
-    { path: '/appointments', title: 'Appointments',  icon:'ni-calendar-grid-58 text-info', class: '' },
+    { path: '/dashboard', title: 'Dashboard',  icon: 'fas fa-columns', class: '' },
+    { path: '/messages', title: 'Inbox',  icon:'fas fa-inbox', class: '' },
+    { path: '/clients', title: 'Clients',  icon:'ni ni-user-run', class: '' },
+    { path: '/trainers', title: 'Trainers',  icon:'fas fa-chalkboard-teacher', class: '' },
+    { path: '/master-programs', title: 'Master Programs',  icon:'fas fa-book', class: '' },
+    { path: '/master-workouts', title: 'Master Workouts',  icon:'ni-key-25', class: '' },
+    { path: '/appointments', title: 'Appointments',  icon:'ni-calendar-grid-58', class: '' },
 ];
 export const EXTRA_ROUTES: RouteInfo[] = [
     { path: '/getting-started', title: 'Getting Started',  icon: 'fas fa-paper-plane', class: '' },

@@ -80,24 +80,24 @@ class LoginScreen extends StatelessWidget {
                               vertical: 20,
                             ),
                             onPressed: () {
-                              Scaffold.of(context).showSnackBar(
-                                snackBar,
-                              );
+                              // Scaffold.of(context).showSnackBar(
+                              //   snackBar,
+                              // );
 
-                              AuthRepository.login(
-                                Login(
-                                  username: 'test (edit)',
-                                  password: 'a',
-                                ),
-                              ).listen((Client user) {
-                                Navigator.pushReplacement(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (BuildContext context) {
-                                    return HomeScreen();
-                                  }),
-                                );
-                              });
+                              // AuthRepository.login(
+                              //   Login(
+                              //     username: 'test (edit)',
+                              //     password: 'a',
+                              //   ),
+                              // ).listen((Client user) {
+                              Navigator.pushReplacement(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (BuildContext context) {
+                                  return HomeScreen();
+                                }),
+                              );
+                              // });
                             },
                             child: Center(
                               child: Text(

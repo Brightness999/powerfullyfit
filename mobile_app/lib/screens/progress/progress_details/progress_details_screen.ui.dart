@@ -2,6 +2,7 @@ import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 import 'package:mobile_app/constants/app-images.dart';
 import 'package:mobile_app/screens/camera/camera_screen.dart';
+import 'package:mobile_app/screens/image-picker-screen/image-picker-screen.ui.dart';
 import 'package:mobile_app/theme/colors.dart';
 import 'package:mobile_app/widgets/buttons/primary_button.dart';
 import 'package:mobile_app/widgets/buttons/return_summary.button.dart';
@@ -153,6 +154,12 @@ class ProgressDetailsScreen extends StatelessWidget {
                   FlatButton(
                     onPressed: () {
                       Navigator.pop(context);
+                      // Navigator.push(
+                      //   context,
+                      //   MaterialPageRoute(builder: (BuildContext context) {
+                      //     return ImagePickerPage();
+                      //   }),
+                      // );
                     },
                     child: Container(
                       width: MediaQuery.of(context).size.width * .42,

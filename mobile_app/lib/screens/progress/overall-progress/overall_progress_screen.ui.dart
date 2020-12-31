@@ -75,7 +75,14 @@ class OverallProgressScreen extends StatelessWidget {
               height: 10,
             ),
             PrimaryButton(
-              onPressed: () {},
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (BuildContext context) {
+                    return ProgressDetailsScreen();
+                  }),
+                );
+              },
               child: Center(
                 child: Text(
                   'UPDATE PROGRESS',
