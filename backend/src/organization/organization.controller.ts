@@ -8,6 +8,7 @@ import {
   Param,
   Delete,
   ParseIntPipe,
+  UseGuards,
 } from '@nestjs/common';
 
 import { ApiTags } from '@nestjs/swagger';
