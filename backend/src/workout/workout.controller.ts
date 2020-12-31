@@ -13,7 +13,6 @@ import {
 
 import { AuthGuard } from '@nestjs/passport';
 import { LocalAuthGuard } from '@app/auth/guards/local-auth.guard';
-import { AuthService } from '@app/auth/auth.service';
 
 import { ApiTags } from '@nestjs/swagger';
 
