@@ -12,12 +12,15 @@ import {
 
 import { ApiTags } from '@nestjs/swagger';
 
+import { LocalAuthGuard } from '@app/auth/guards/local-auth.guard';
+
 import { OrganizationService } from './organization.service';
 import { CreateOrganizationDto } from './dto/create-organization.dto';
 import { UpdateOrganizationDto } from './dto/update-organization.dto';
 
 @ApiTags('organization')
 @Controller('organization')
+@UseGuards(LocalAuthGuard)
 export class OrganizationController {
   constructor(private readonly organizationService: OrganizationService) {}
 
