@@ -19,7 +19,7 @@ export class OrganizationService {
 
   findAllOrganizations() {
     return this.http.get(this.configUrl + "workout", {
-      withCredentials: true,
+      // withCredentials: true,
       observe: "response",
     });
   }
