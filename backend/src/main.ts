@@ -6,6 +6,7 @@ import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
+  const whitelist = ['http://localhost:4200', 'http://example2.com'];
 
   app.useGlobalPipes(
     new ValidationPipe({
@@ -19,6 +20,11 @@ async function bootstrap() {
   );
 
   app.enableCors({
+    origin: (origin, callback) => {
+      if (whitelist.includes(origin)) return callback(null, true);
+
+      callback(new Error('Not allowed by CORS'));
+    },
     allowedHeaders:
       'X-Requested-With, X-HTTP-Method-Override, Content-Type, Accept, Observe',
     methods: 'GET,PUT,POST,DELETE,UPDATE,OPTIONS',
