@@ -19,13 +19,14 @@ async function bootstrap() {
     }),
   );
 
-  app.enableCors();
-
-  app.use((req, res, next) => {
-    res.header('Access-Control-Allow-Origin', 'http://localhost:4200');
-    res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
-    res.header('Access-Control-Allow-Headers', 'Content-Type, Accept');
-    next();
+  app.enableCors({
+    origin: [/^(.*)/],
+    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+    preflightContinue: false,
+    optionsSuccessStatus: 200,
+    credentials: true,
+    allowedHeaders:
+      'Origin,X-Requested-With,Content-Type,Accept,Authorization,authorization,X-Forwarded-for',
   });
 
   app.setGlobalPrefix('api');
