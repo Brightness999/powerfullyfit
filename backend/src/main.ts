@@ -19,11 +19,7 @@ async function bootstrap() {
     }),
   );
 
-  app.enableCors({
-    origin: true,
-    methods: 'GET,PUT,POST,DELETE,UPDATE,OPTIONS',
-    credentials: true,
-  });
+  app.enableCors();
 
   app.use((req, res, next) => {
     res.header('Access-Control-Allow-Origin', 'http://localhost:4200');
