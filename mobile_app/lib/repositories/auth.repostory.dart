@@ -8,10 +8,12 @@ class AuthRepository {
   static String segment = '/auth';
 
   static Stream<Client> login(Login login, {List<String> relations}) async* {
-    print(login);
+    print(login.toString());
 
-    yield Client.fromJson(await BackendProxy.post(
+    Map<String, dynamic> response = await BackendProxy.post(
         AuthRepository.segment + '/login',
-        {'username': login.username, 'password': login.password}));
+        {'username': 'Admin', 'password': '12345'});
+
+    yield Client.fromJson(response);
   }
 }

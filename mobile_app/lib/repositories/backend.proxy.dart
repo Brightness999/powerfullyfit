@@ -9,13 +9,18 @@ class BackendProxy {
     return 'http://localhost:3000/api';
   }
 
+  static String get remoteHost {
+    return 'http://66.42.110.119:3000/api';
+  }
+
   static Future<dynamic> get(String path) async {
     http.Response response;
 
     try {
-      response = await http.get(localhost + path);
+      response = await http.get(remoteHost + path);
+      print("response: ${response.body}");
     } catch (exception) {
-      throw new HttpException("message");
+      throw new Exception(exception);
     }
 
     dynamic jsonResponse = convert.jsonDecode(response.body);
@@ -27,15 +32,13 @@ class BackendProxy {
     http.Response response;
 
     try {
-      response = await http.post(localhost + path, body: body);
+      response = await http.post(remoteHost + path, body: body);
+      print("response: ${response.body}");
     } catch (exception) {
-      throw new HttpException(exception);
+      throw new Exception("exception");
     }
 
     dynamic jsonResponse = convert.jsonDecode(response.body);
-
-    // if (jsonResponse.statusCode != null && jsonResponse.statusCode >= 400)
-    //   throw new HttpException('Request Error: ${jsonResponse.statusCode}');
 
     return jsonResponse;
   }
