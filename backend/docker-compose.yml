@@ -12,14 +12,13 @@
 version: "3.8"
 services:
     api:
-        # image: thomas-oliver/nestjs-dockerized 
         build:
             dockerfile: Dockerfile
             context: .
         depends_on: 
             - postgres
         environment: 
-            DATABASE_URL: postgres://user:password@postgres:5432/db
+            DATABASE_URL: postgres://user:password@postgres:5436/db
             NODE_ENV: development
             PORT: 3000
         ports:
