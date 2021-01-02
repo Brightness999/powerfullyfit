@@ -33,6 +33,7 @@ export class OrganizationController {
 
   @Get()
   findAll() {
+    console.log('dfsdfs');
     return this.organizationService.findAll();
   }
 

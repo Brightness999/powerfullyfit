@@ -3,7 +3,7 @@ import { Injectable } from "@angular/core";
 import { HttpClient, HttpHeaders, HttpResponse } from "@angular/common/http";
 
 import { Observable, throwError } from "rxjs";
-import { catchError, retry } from "rxjs/operators";
+import { catchError, retry, map } from "rxjs/operators";
 
 const headers = new HttpHeaders();
 
@@ -13,15 +13,16 @@ headers.append("Content-Type", "application/json");
   providedIn: "root",
 })
 export class OrganizationService {
-  configUrl = "http://66.42.110.119:3000/api/";
+  configUrl = "http://localhost:3001/api/";
 
   constructor(private http: HttpClient) {}
 
   findAllOrganizations() {
     return this.http.get(this.configUrl + "workout", {
-      // withCredentials: true,
+      withCredentials: true,
       observe: "response",
     });
+    // .pipe(map((response) => response.body));
   }
 
   findOrganizationById(organizationId: string | number) {

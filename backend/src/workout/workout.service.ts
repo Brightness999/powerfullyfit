@@ -9,7 +9,7 @@ export class WorkoutService {
   }
 
   findAll() {
-    return `This action returns all workout`;
+    return [{}];
   }
 
   findOne(id: number) {
