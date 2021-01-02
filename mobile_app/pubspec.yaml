@@ -48,6 +48,7 @@ flutter:
   assets:
     - assets/
     - assets/images/
+    - assets/config/
   fonts:
     - family: Gotham
       fonts:

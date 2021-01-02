@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:mobile_app/app_config.dart';
 
 import 'package:mobile_app/screens/auth/login/login_ui.dart';
 import 'package:mobile_app/theme/colors.dart';
 import 'package:mobile_app/widgets/wrapper/app-wrapper.dart';
 
-void main() {
+void main({String env}) async {
   WidgetsFlutterBinding.ensureInitialized();
   SystemChrome.setPreferredOrientations(
       [DeviceOrientation.portraitUp, DeviceOrientation.portraitDown]).then((_) {
