@@ -1,25 +1,5 @@
-# version: "3"
-
-# services:
-#   db:
-#     image: postgres
-#     restart: always
-#     ports:
-#       - "5436:5432"
-#     environment:
-#       POSTGRES_PASSWORD: pass123
-
 version: "3.8"
 services:
-  postgres:
-    image: postgres:10.4
-    restart: always
-    ports:
-      - "5432:5432"
-    environment:
-      POSTGRES_USER: user
-      POSTGRES_PASSWORD: password
-      POSTGRES_DB: db
   api:
     build:
       dockerfile: Dockerfile
@@ -31,4 +11,14 @@ services:
       NODE_ENV: development
       PORT: 3000
     ports:
-      - "6543:3000"
+      - "3000:3000"
+
+  postgres:
+    image: postgres:10.4
+    restart: always
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: db
