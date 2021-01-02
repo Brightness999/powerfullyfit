@@ -13,6 +13,7 @@ import {
 
 import { AuthGuard } from '@nestjs/passport';
 import { LocalAuthGuard } from '@app/auth/guards/local-auth.guard';
+import { JwtAuthGuard } from '@app/auth/guards/jwt-auth.guard';
 
 import { ApiTags } from '@nestjs/swagger';
 
@@ -24,7 +25,7 @@ import { UpdateWorkoutDto } from './dto/update-workout.dto';
 
 @ApiTags('workout')
 @Controller('workout')
-@UseGuards(LocalAuthGuard)
+@UseGuards(JwtAuthGuard)
 export class WorkoutController {
   constructor(private readonly workoutService: WorkoutService) {}
 
@@ -34,8 +35,8 @@ export class WorkoutController {
   }
 
   @Get()
-  findAll(@CurrentUser() user: any) {
-    console.log(user);
+  findAll() {
+    console.log('user');
     return this.workoutService.findAll();
   }
 

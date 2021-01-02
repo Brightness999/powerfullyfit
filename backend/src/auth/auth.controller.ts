@@ -27,7 +27,8 @@ export class AuthController {
 
   @Post('logout')
   async logout(@Request() req) {
-    // await req.session.destroy(function(err) {});
+    await req.session.destroy(function(err) {});
+    // console.log(req.session);
     return req.logOut();
   }
 }
