@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:jwt_decoder/jwt_decoder.dart';
 import 'package:mobile_app/constants/app-images.dart';
 import 'package:mobile_app/entities/client.entity.dart';
 import 'package:mobile_app/models/login.model.dart';
@@ -8,7 +9,6 @@ import 'package:mobile_app/screens/auth/login/login_bloc.dart';
 import 'package:mobile_app/screens/home/home_screen.ui.dart';
 import 'package:mobile_app/widgets/buttons/primary_button.dart';
 import 'package:mobile_app/widgets/fields/text_field.dart';
-import 'package:mobile_app/widgets/wrapper/app-wrapper.dart';
 
 import 'login_events.dart';
 
@@ -19,6 +19,36 @@ class LoginScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    String token =
+        "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoxLCJmaXJzdG5hbWUiOiJBZG1pbiIsImxhc3RuYW1lIjoiRml0IiwiZW1haWwiOiJhZG1pbkBmaXQuY29tIiwiY3JlYXRlVGltZSI6IjIwMjEtMDEtMDNUMDQ6NDQ6MjQuMTE1WiIsInJvbGUiOiJTVVBFUiBBRE1JTiIsIm9yZ2FuaXphdGlvbiI6bnVsbH0sImlhdCI6MTYwOTcxNzM3M30.EZw0p8umcu3IQbJ1ttX02xpCZI78OdtTCPq58dlGjBU";
+
+    /* decode() method will decode your token's payload */
+    Map<String, dynamic> decodedToken = JwtDecoder.decode(token);
+    // Now you can use your decoded token
+    print(decodedToken);
+
+    /* isExpired() - you can use this method to know if your token is already expired or not.
+    An useful method when you have to handle sessions and you want the user
+    to authenticate if has an expired token */
+    bool isTokenExpired = JwtDecoder.isExpired(token);
+    print("isTokenExpired: $isTokenExpired");
+
+    if (!isTokenExpired) {
+      // The user should authenticate
+    }
+
+    /* getExpirationDate() - this method returns the expiration date of the token */
+    // DateTime expirationDate = JwtDecoder.getExpirationDate(token);
+
+    // 2025-01-13 13:04:18.000
+    // print(expirationDate);
+
+    /* getTokenTime() - You can use this method to know how old your token is */
+    Duration tokenTime = JwtDecoder.getTokenTime(token);
+
+    // 15
+    print(tokenTime.inDays);
+
     return Scaffold(
       body: LayoutBuilder(
         builder: (BuildContext context, BoxConstraints viewportConstraints) {
