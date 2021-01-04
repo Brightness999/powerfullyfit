@@ -37,6 +37,7 @@ export class NavbarComponent implements OnInit {
     this.listTitles = ROUTES.concat(EXTRA_ROUTES);
     this.user = this.userService.currentUser;
   }
+
   getTitle() {
     var titlee = this.location.prepareExternalUrl(this.location.path());
     if (titlee.charAt(0) === "#") {
@@ -49,5 +50,11 @@ export class NavbarComponent implements OnInit {
       }
     }
     return "Dashboard";
+  }
+
+  logout() {
+    localStorage.removeItem("token");
+
+    this.router.navigate(["login"]);
   }
 }

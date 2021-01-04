@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core";
+import { Component } from "@angular/core";
 import { OrganizationService } from "@pf/services/organization.service";
 import { UserService } from "@pf/services/user.service";
 
@@ -7,20 +7,8 @@ import { UserService } from "@pf/services/user.service";
   templateUrl: "./app.component.html",
   styleUrls: ["./app.component.scss"],
 })
-export class AppComponent implements OnInit {
-  title = "argon-dashboard-angular";
+export class AppComponent {
+  title = "Powerfully Fit";
 
-  user;
-
-  constructor(
-    private organizationService: OrganizationService,
-    private userService: UserService
-  ) {}
-
-  ngOnInit() {
-    this.organizationService.login().subscribe((res) => {
-      console.log(res);
-      // this.router.navigate(["dashboard"]);
-    });
-  }
+  constructor() {}
 }
