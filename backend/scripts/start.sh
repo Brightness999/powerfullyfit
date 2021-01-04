@@ -1,3 +1,3 @@
-docker-compose --build up -d
+docker-compose up --build -d
 
 npx typeorm migration:run
