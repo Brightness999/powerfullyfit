@@ -2,7 +2,7 @@ import { Component, OnInit, OnDestroy } from "@angular/core";
 
 import { ActivatedRoute, Router } from "@angular/router";
 
-import { OrganizationService } from "@pf/services/organization.service";
+import { UserService } from "@pf/services/user.service";
 
 @Component({
   selector: "app-login",
@@ -10,8 +10,13 @@ import { OrganizationService } from "@pf/services/organization.service";
   styleUrls: ["./login.component.scss"],
 })
 export class LoginComponent implements OnInit, OnDestroy {
+  loginForm = {
+      username: "head@coach.com",
+      password: "12345",
+    };
+
   constructor(
-    private readonly organizationService: OrganizationService,
+    private readonly userService: UserService,
     private readonly activatedRoute: ActivatedRoute,
     private readonly router: Router
   ) {}
@@ -19,8 +24,10 @@ export class LoginComponent implements OnInit, OnDestroy {
   ngOnInit() {}
 
   login() {
-    this.organizationService.login().subscribe((res) => {
-      console.log(res);
+
+
+
+    this.userService.login(this.loginForm).subscribe((res) => {
       this.router.navigate(["dashboard"]);
     });
   }
