@@ -49,9 +49,9 @@ export class UserService {
     return this.coachRepository.find();
   }
 
-  async findOneByUserName(username: string) {
+  async findOneByEmail(email: string) {
     const user = await this.userRepository.findOne({
-      where: [{ firstname: username }],
+      where: [{ email }],
       relations: ['organization', 'coach'],
     });
 
