@@ -77,12 +77,21 @@ class LoginScreen extends StatelessWidget {
                         children: [
                           AppTextField(
                             hintText: 'Email',
+                            prefixIcon: Icon(
+                              Icons.email,
+                              size: MediaQuery.of(context).size.height * .02,
+                            ),
                           ),
                           StreamBuilder(
                             stream: loginBloc.stateStream,
                             builder: (context, AsyncSnapshot<LoginEvent> data) {
                               return AppTextField(
                                 hintText: 'Password',
+                                prefixIcon: Icon(
+                                  Icons.lock,
+                                  size:
+                                      MediaQuery.of(context).size.height * .02,
+                                ),
                                 suffixIcon: GestureDetector(
                                   onTap: () {
                                     data.data == LoginEvent.ShowPassword
@@ -110,10 +119,6 @@ class LoginScreen extends StatelessWidget {
                               vertical: 20,
                             ),
                             onPressed: () {
-                              // Scaffold.of(context).showSnackBar(
-                              //   snackBar,
-                              // );
-
                               AuthRepository.login(
                                 Login(
                                   username: 'Admin',
@@ -142,18 +147,20 @@ class LoginScreen extends StatelessWidget {
                               ),
                             ),
                           ),
+                          SizedBox(
+                            height: 15,
+                          ),
                           Center(
                             child: InkWell(
                               child: new Text(
                                 'Forgot Password',
                                 style: TextStyle(
                                   color: Colors.white,
-                                  fontSize: 20,
-                                  decoration: TextDecoration.underline,
+                                  fontSize: 17,
+                                  // decoration: TextDecoration.underline,
                                 ),
                               ),
                               onTap: () {
-                                // displayDeleteAccountBottomSheet(context);
                                 Navigator.push(
                                   context,
                                   MaterialPageRoute(

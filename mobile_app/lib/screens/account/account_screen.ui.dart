@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:mobile_app/screens/auth/login/login_ui.dart';
 import 'package:mobile_app/theme/colors.dart';
+import 'package:mobile_app/widgets/buttons/primary_button.dart';
 import 'package:mobile_app/widgets/cards/settings-option.card.dart';
 
 class AccountScreen extends StatefulWidget {
@@ -190,35 +191,20 @@ class _AccountScreen extends State {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
-                  FlatButton(
-                    onPressed: () {
-                      Navigator.pushAndRemoveUntil(context,
-                          MaterialPageRoute(builder: (BuildContext context) {
-                        return LoginScreen();
-                      }), (route) => false);
-                    },
-                    child: Container(
-                      width: MediaQuery.of(context).size.width * .42,
-                      padding: EdgeInsets.symmetric(
-                        vertical: 5,
-                      ),
-                      decoration: BoxDecoration(
-                        color: lightBrown,
-                        borderRadius: BorderRadius.all(
-                          Radius.circular(100),
-                        ),
-                        border: Border.all(
-                          color: lightBrown,
-                          width: 2,
-                        ),
-                      ),
-                      child: Center(
-                        child: Text(
-                          "Log Out",
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 26,
-                          ),
+                  Container(
+                    width: MediaQuery.of(context).size.width * .42,
+                    child: PrimaryButton(
+                      onPressed: () {
+                        Navigator.pushAndRemoveUntil(context,
+                            MaterialPageRoute(builder: (BuildContext context) {
+                          return LoginScreen();
+                        }), (route) => false);
+                      },
+                      child: Text(
+                        "Log Out",
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 26,
                         ),
                       ),
                     ),
@@ -294,30 +280,14 @@ class _AccountScreen extends State {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
-                  FlatButton(
-                    onPressed: () {},
-                    child: Container(
-                      width: MediaQuery.of(context).size.width * .42,
-                      padding: EdgeInsets.symmetric(
-                        vertical: 5,
-                      ),
-                      decoration: BoxDecoration(
-                        color: lightBrown,
-                        borderRadius: BorderRadius.all(
-                          Radius.circular(100),
-                        ),
-                        border: Border.all(
-                          color: lightBrown,
-                          width: 2,
-                        ),
-                      ),
-                      child: Center(
-                        child: Text(
-                          "Delete",
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 26,
-                          ),
+                  Container(
+                    width: MediaQuery.of(context).size.width * .42,
+                    child: PrimaryButton(
+                      child: Text(
+                        "Delete",
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 26,
                         ),
                       ),
                     ),

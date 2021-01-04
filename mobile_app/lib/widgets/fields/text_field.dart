@@ -4,8 +4,13 @@ class AppTextField extends StatelessWidget {
   final bool obscureText;
   final String hintText;
   final Widget suffixIcon;
+  final Widget prefixIcon;
 
-  AppTextField({this.hintText, this.obscureText = false, this.suffixIcon});
+  AppTextField(
+      {this.hintText,
+      this.obscureText = false,
+      this.suffixIcon,
+      this.prefixIcon});
 
   @override
   Widget build(BuildContext context) {
@@ -30,6 +35,7 @@ class AppTextField extends StatelessWidget {
           fillColor: Colors.white,
           hintText: hintText,
           suffixIcon: suffixIcon,
+          prefixIcon: prefixIcon,
         ),
       ),
     );
