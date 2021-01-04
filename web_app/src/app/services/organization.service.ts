@@ -15,12 +15,12 @@ export class OrganizationService {
   ) {}
 
   findAllOrganizations() {
-    return this.backendProxy.get(this.backendProxy.remoteUrl + "organization");
+    return this.backendProxy.get(this.backendProxy.url + "organization");
   }
 
   findOrganizationById(organizationId: string | number) {
     return this.backendProxy.get(
-      this.backendProxy.remoteUrl + "organization/" + organizationId.toString()
+      this.backendProxy.url + "organization/" + organizationId.toString()
     );
   }
 }

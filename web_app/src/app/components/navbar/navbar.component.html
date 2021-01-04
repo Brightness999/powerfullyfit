@@ -27,22 +27,22 @@
         </div>
 
         <div class="dropdown-menu-arrow dropdown-menu-right" ngbDropdownMenu>
-          <a routerLinkActive="active" [routerLink]="['/user-profile']" class="dropdown-item">
+          <button (click)="addProgram()" class="dropdown-item">
             <i class="fas fa-book"></i>
             <span>Program</span>
-          </a>
-          <a routerLinkActive="active" [routerLink]="['/user-profile']" class="dropdown-item">
+          </button>
+          <button (click)="addWorkout()" class="dropdown-item">
             <i class="fas fa-dumbbell"></i>
             <span>Workout</span>
-          </a>
-          <a routerLinkActive="active" [routerLink]="['/user-profile']" class="dropdown-item">
+          </button>
+          <button (click)="addTrainer()" class="dropdown-item">
             <i class="fas fa-chalkboard-teacher"></i>
             <span>Trainer</span>
-          </a>
-          <a [routerLink]="['login']" class="dropdown-item">
+          </button>
+          <button (click)="addClient()" class="dropdown-item">
             <i class="ni ni-user-run"></i>
             <span>Client</span>
-          </a>
+          </button>
         </div>
       </li>
       <li class="nav-item" ngbDropdown placement="bottom-right">
@@ -87,7 +87,7 @@
           <div class="dropdown-divider"></div>
           <a (click)="logout()" class="dropdown-item">
             <i class="fas fa-sign-out-alt"></i>
-             <span>Logout</span>
+            <span>Logout</span>
           </a>
         </div>
       </li>

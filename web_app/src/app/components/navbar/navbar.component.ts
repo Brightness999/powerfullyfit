@@ -9,7 +9,10 @@ import {
   LocationStrategy,
   PathLocationStrategy,
 } from "@angular/common";
+
 import { Router } from "@angular/router";
+
+import Swal from "sweetalert2";
 
 @Component({
   selector: "app-navbar",
@@ -19,19 +22,16 @@ import { Router } from "@angular/router";
 export class NavbarComponent implements OnInit {
   public focus;
   public listTitles: any[];
-  public location: Location;
 
-  user;
+  user: any;
 
   constructor(
     private organizationService: OrganizationService,
     private userService: UserService,
-    location: Location,
+    public location: Location,
     private element: ElementRef,
     private router: Router
-  ) {
-    this.location = location;
-  }
+  ) {}
 
   ngOnInit() {
     this.listTitles = ROUTES.concat(EXTRA_ROUTES);
@@ -50,6 +50,75 @@ export class NavbarComponent implements OnInit {
       }
     }
     return "Dashboard";
+  }
+
+  addProgram() {
+    Swal.fire({
+      title: "Build a New Master Program",
+      confirmButtonText: "Create Program",
+      denyButtonText: "Cancel",
+      showConfirmButton: true,
+      showDenyButton: true,
+      width: "55em",
+      reverseButtons: true,
+      position: "top",
+      html:
+        "Name and set the duration of your program. Clients can only see their current phase and will automatically get the next phase when the date elapses." +
+        "Progress photos and weigh-ins will be automatically scheduled at the start of each training plan or phase.",
+    }).then((result) => {
+      console.log(result);
+    });
+  }
+
+  addWorkout() {
+    Swal.fire({
+      title: "Build a New Master Program",
+      confirmButtonText: "Create Program",
+      denyButtonText: "Cancel",
+      showConfirmButton: true,
+      showDenyButton: true,
+      width: "55em",
+      reverseButtons: true,
+      html:
+        "Name and set the duration of your program. Clients can only see their current phase and will automatically get the next phase when the date elapses." +
+        "Progress photos and weigh-ins will be automatically scheduled at the start of each training plan or phase.",
+    }).then(function (result) {
+      console.log(result);
+    });
+  }
+
+  addTrainer() {
+    Swal.fire({
+      title: "Build a New Master Program",
+      confirmButtonText: "Create Program",
+      denyButtonText: "Cancel",
+      showConfirmButton: true,
+      showDenyButton: true,
+      width: "55em",
+      reverseButtons: true,
+      html:
+        "Name and set the duration of your program. Clients can only see their current phase and will automatically get the next phase when the date elapses." +
+        "Progress photos and weigh-ins will be automatically scheduled at the start of each training plan or phase.",
+    }).then(function (result) {
+      console.log(result);
+    });
+  }
+
+  addClient() {
+    Swal.fire({
+      title: "Build a New Master Program",
+      confirmButtonText: "Create Program",
+      denyButtonText: "Cancel",
+      showConfirmButton: true,
+      showDenyButton: true,
+      width: "55em",
+      reverseButtons: true,
+      html:
+        "Name and set the duration of your program. Clients can only see their current phase and will automatically get the next phase when the date elapses." +
+        "Progress photos and weigh-ins will be automatically scheduled at the start of each training plan or phase.",
+    }).then(function (result) {
+      console.log(result);
+    });
   }
 
   logout() {

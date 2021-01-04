@@ -8,12 +8,15 @@ import { RouterModule } from "@angular/router";
 import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
 import { AgGridModule } from "ag-grid-angular";
 
+import { SweetAlert2Module } from "@sweetalert2/ngx-sweetalert2";
+
 import { TableComponent } from "./table/table.component";
 
 @NgModule({
   imports: [
     CommonModule,
     RouterModule,
+    SweetAlert2Module,
     NgbModule,
     AgGridModule.withComponents([]),
   ],

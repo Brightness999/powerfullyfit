@@ -2,6 +2,8 @@ import { Component, OnInit } from "@angular/core";
 import { OrganizationService } from "@pf/services/organization.service";
 import { UserService } from "@pf/services/user.service";
 
+import Swal from "sweetalert2";
+
 import Chart from "chart.js";
 
 // core components
