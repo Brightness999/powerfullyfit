@@ -1,48 +1,48 @@
 import { Injectable } from "@angular/core";
 
-import { HttpClient, HttpHeaders, HttpResponse } from "@angular/common/http";
+import { BackendProxy } from "./backend.proxy";
+import { UserService } from "./user.service";
 
 import { Observable, throwError } from "rxjs";
-import { catchError, retry, map } from "rxjs/operators";
+import { tap, catchError, retry, map } from "rxjs/operators";
 
-const headers = new HttpHeaders();
-
-// headers.append("Content-Type", "application/json");
-headers.append(
-  "Authorization",
-  "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoxLCJmaXJzdG5hbWUiOiJBZG1pbiIsImxhc3RuYW1lIjoiRml0IiwiZW1haWwiOiJhZG1pbkBmaXQuY29tIiwiY3JlYXRlVGltZSI6IjIwMjEtMDEtMDNUMDQ6NDQ6MjQuMTE1WiIsInJvbGUiOiJTVVBFUiBBRE1JTiIsIm9yZ2FuaXphdGlvbiI6bnVsbH0sImlhdCI6MTYwOTcyMzQ0N30.4JAeTfKcaVOPQPBLwHGP1WmIlmdFLkET78FbMGI2ajA"
-);
+import jwt_decode from "jwt-decode";
 
 @Injectable({
   providedIn: "root",
 })
 export class OrganizationService {
-  configUrl = "http://localhost:3000/api/";
-  remoteUrl = "http://66.42.110.119:3000/api/";
-
-  constructor(private http: HttpClient) {}
+  constructor(
+    private backendProxy: BackendProxy,
+    private userService: UserService
+  ) {}
 
   findAllOrganizations() {
-    return this.http.get(this.remoteUrl + "workout", {
-      headers: {
-        Authorization:
-          "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoxLCJmaXJzdG5hbWUiOiJBZG1pbiIsImxhc3RuYW1lIjoiRml0IiwiZW1haWwiOiJhZG1pbkBmaXQuY29tIiwiY3JlYXRlVGltZSI6IjIwMjEtMDEtMDNUMDQ6NDQ6MjQuMTE1WiIsInJvbGUiOiJTVVBFUiBBRE1JTiIsIm9yZ2FuaXphdGlvbiI6bnVsbH0sImlhdCI6MTYwOTcxNzM3M30.EZw0p8umcu3IQbJ1ttX02xpCZI78OdtTCPq58dlGjBU",
-      },
-    });
-    // .pipe(map((response) => response.body));
+    return this.backendProxy.get(this.backendProxy.remoteUrl + "organization");
   }
 
   findOrganizationById(organizationId: string | number) {
-    return this.http.get(
-      this.remoteUrl + "organization/" + organizationId.toString(),
-      { headers }
+    return this.backendProxy.get(
+      this.backendProxy.remoteUrl + "organization/" + organizationId.toString()
     );
   }
 
   login() {
-    return this.http.post(this.remoteUrl + "auth/login", {
-      username: "Admin",
+    let login = {
+      username: "Head",
       password: "12345",
-    });
+    };
+
+    return this.backendProxy
+      .post(this.backendProxy.remoteUrl + "auth/login", login)
+      .pipe(
+        map((res: any) => {
+          let decoded: any = jwt_decode(res.access_token);
+
+          this.userService.currentUser = decoded.user;
+
+          return decoded.user;
+        })
+      );
   }
 }

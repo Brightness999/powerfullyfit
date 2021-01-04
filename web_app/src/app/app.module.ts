@@ -4,6 +4,8 @@ import { FormsModule } from "@angular/forms";
 import { HttpClientModule } from "@angular/common/http";
 import { RouterModule } from "@angular/router";
 
+import { BackendProxy } from "./services/backend.proxy";
+
 import { AppComponent } from "./app.component";
 import { AdminLayoutComponent } from "./layouts/admin-layout/admin-layout.component";
 import { AuthLayoutComponent } from "./layouts/auth-layout/auth-layout.component";
@@ -45,7 +47,7 @@ import { UserService } from "./services/user.service";
     SettingsComponent,
     AppointmentsComponent,
   ],
-  providers: [OrganizationService, UserService],
+  providers: [BackendProxy, OrganizationService, UserService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

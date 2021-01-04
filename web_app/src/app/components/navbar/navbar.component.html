@@ -78,14 +78,14 @@
               <img alt="Image placeholder" src="assets/img/theme/team-4-800x800.jpg">
             </span>
             <div class="media-body ml-3 d-none d-lg-block mr-2">
-              <span class="mb-0 text-lg font-weight-bold">Sam Davis</span>
+              <span class="mb-0 text-lg font-weight-bold">{{ user.firstname }} {{ user.lastname }} </span>
             </div>
             <i class="fas fa-chevron-down"></i>
           </div>
         </a>
         <div class="dropdown-menu-arrow dropdown-menu-right" ngbDropdownMenu>
           <div class=" dropdown-header noti-title">
-            <h6 class="text-overflow m-0">Welcome!</h6>
+            <h6 class="text-overflow m-0">{{ user.email }}</h6>
           </div>
           <a routerLinkActive="active" [routerLink]="['/user-profile']" class="dropdown-item">
             <i class="ni ni-single-02"></i>

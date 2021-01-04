@@ -1,5 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { OrganizationService } from "@pf/services/organization.service";
+import { UserService } from "@pf/services/user.service";
 
 import Chart from "chart.js";
 
@@ -23,7 +24,12 @@ export class DashboardComponent implements OnInit {
   public clicked: boolean = true;
   public clicked1: boolean = false;
 
-  constructor(private organizationService: OrganizationService) {}
+  user;
+
+  constructor(
+    private organizationService: OrganizationService,
+    private userService: UserService
+  ) {}
 
   ngOnInit() {
     this.datasets = [
@@ -42,9 +48,13 @@ export class DashboardComponent implements OnInit {
       data: chartExample2.data,
     });
 
-    this.organizationService.findAllOrganizations().subscribe((res) => {
+    this.organizationService.findOrganizationById(1).subscribe((res) => {
       console.log(res);
     });
+
+    console.log(this.userService.currentUser);
+
+    this.user = this.userService.currentUser;
   }
 
   public updateOptions() {
