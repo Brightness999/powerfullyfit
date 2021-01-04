@@ -1,3 +1,3 @@
-npx typeorm migration:run
+docker-compose --build up -d
 
-nest start --watch
+npx typeorm migration:run
