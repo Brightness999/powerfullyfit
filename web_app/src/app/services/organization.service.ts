@@ -29,7 +29,7 @@ export class OrganizationService {
 
   login() {
     let login = {
-      username: "Head",
+      username: "head@coach.com",
       password: "12345",
     };
 
@@ -37,6 +37,8 @@ export class OrganizationService {
       .post(this.backendProxy.remoteUrl + "auth/login", login)
       .pipe(
         map((res: any) => {
+          localStorage.setItem("token", res.access_token);
+
           let decoded: any = jwt_decode(res.access_token);
 
           this.userService.currentUser = decoded.user;

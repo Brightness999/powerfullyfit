@@ -14,6 +14,7 @@ import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
 
 import { AppRoutingModule } from "./app.routing";
 import { ComponentsModule } from "./components/components.module";
+
 import { MessagesComponent } from "./pages/messages/messages.component";
 import { ClientsComponent } from "./pages/clients/clients.component";
 import { TrainersComponent } from "./pages/trainers/trainers.component";

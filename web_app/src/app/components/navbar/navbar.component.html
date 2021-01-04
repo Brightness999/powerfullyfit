@@ -27,21 +27,14 @@
         </div>
 
         <div class="dropdown-menu-arrow dropdown-menu-right" ngbDropdownMenu>
-          <!-- <div class=" dropdown-header noti-title">
-            <h6 class="text-overflow m-0"></h6>
-          </div> -->
           <a routerLinkActive="active" [routerLink]="['/user-profile']" class="dropdown-item">
             <i class="fas fa-book"></i>
             <span>Program</span>
           </a>
           <a routerLinkActive="active" [routerLink]="['/user-profile']" class="dropdown-item">
-            <i class="ni ni-key-25"></i>
+            <i class="fas fa-dumbbell"></i>
             <span>Workout</span>
           </a>
-          <!-- <a routerLinkActive="active" [routerLink]="['/user-profile']" class="dropdown-item">
-            <i class="ni ni-calendar-grid-58"></i>
-            <span>Activity</span>
-          </a> -->
           <a routerLinkActive="active" [routerLink]="['/user-profile']" class="dropdown-item">
             <i class="fas fa-chalkboard-teacher"></i>
             <span>Trainer</span>
@@ -49,10 +42,6 @@
           <a [routerLink]="['login']" class="dropdown-item">
             <i class="ni ni-user-run"></i>
             <span>Client</span>
-          </a>
-          <a [routerLink]="['login']" class="dropdown-item">
-            <i class="ni ni-calendar-grid-58"></i>
-            <span>Appointment</span>
           </a>
         </div>
       </li>
@@ -78,35 +67,27 @@
               <img alt="Image placeholder" src="assets/img/theme/team-4-800x800.jpg">
             </span>
             <div class="media-body ml-3 d-none d-lg-block mr-2">
-              <span class="mb-0 text-lg font-weight-bold">{{ user.firstname }} {{ user.lastname }} </span>
+              <span class="mb-0 text-lg font-weight-bold">{{ user.firstname || ''}} {{ user.lastname || ''}} </span>
             </div>
             <i class="fas fa-chevron-down"></i>
           </div>
         </a>
         <div class="dropdown-menu-arrow dropdown-menu-right" ngbDropdownMenu>
           <div class=" dropdown-header noti-title">
-            <h6 class="text-overflow m-0">{{ user.email }}</h6>
+            <h6 class="text-overflow m-0">{{ user.email || ''}}</h6>
           </div>
           <a routerLinkActive="active" [routerLink]="['/user-profile']" class="dropdown-item">
             <i class="ni ni-single-02"></i>
             <span>My profile</span>
           </a>
-          <!-- <a routerLinkActive="active" [routerLink]="['/user-profile']" class="dropdown-item">
-            <i class="ni ni-settings-gear-65"></i>
-            <span>Settings</span>
-          </a> -->
-          <!-- <a routerLinkActive="active" [routerLink]="['/user-profile']" class="dropdown-item">
-            <i class="ni ni-calendar-grid-58"></i>
-            <span>Activity</span>
-          </a> -->
           <a routerLinkActive="active" [routerLink]="['/user-profile']" class="dropdown-item">
             <i class="ni ni-support-16"></i>
             <span>Support</span>
           </a>
           <div class="dropdown-divider"></div>
-          <a [routerLink]="['login']" class="dropdown-item">
-            <i class="ni ni-user-run"></i>
-            <span>Logout</span>
+          <a (click)="logout()" class="dropdown-item">
+            <i class="fas fa-sign-out-alt"></i>
+             <span>Logout</span>
           </a>
         </div>
       </li>

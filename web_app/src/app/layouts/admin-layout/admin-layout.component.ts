@@ -9,7 +9,7 @@ import { UserService } from "@pf/services/user.service";
   styleUrls: ["./admin-layout.component.scss"],
 })
 export class AdminLayoutComponent implements OnInit {
-  user;
+  user: any;
 
   constructor(
     private organizationService: OrganizationService,
@@ -17,6 +17,7 @@ export class AdminLayoutComponent implements OnInit {
   ) {}
 
   ngOnInit() {
+    
     this.user = this.userService.currentUser;
   }
 }
