@@ -3,7 +3,7 @@ import { CommonModule } from "@angular/common";
 import { BrowserModule } from "@angular/platform-browser";
 import { Routes, RouterModule } from "@angular/router";
 
-import { AuthenticatedUserGuard } from "./authenticated-user.guard";
+import { AuthenticatedUserGuard } from "./guards/authenticated-user.guard";
 
 import { AdminLayoutComponent } from "./layouts/admin-layout/admin-layout.component";
 import { AuthLayoutComponent } from "./layouts/auth-layout/auth-layout.component";

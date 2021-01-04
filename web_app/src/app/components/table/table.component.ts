@@ -11,19 +11,10 @@ import { AgGridAngular } from "ag-grid-angular";
 export class TableComponent implements OnInit {
   @ViewChild("agGrid") agGrid: AgGridAngular;
 
-  title = "Card Tables";
-
-  columnDefs = [{ field: "make" }, { field: "model" }, { field: "price" }];
+  columnDefs = [{ field: "Full Name" }, { field: "Start Date" }, { field: "" }];
 
   rowData = [
-    { id: 0, make: "Toyota", model: "Celica", price: 35000 },
-    { make: "Ford", model: "Mondeo", price: 32000 },
-    { make: "Porsche", model: "Boxter", price: 72000 },
-    { make: "Toyota", model: "Celica", price: 35000 },
-    { make: "Ford", model: "Mondeo", price: 32000 },
-    { make: "Porsche", model: "Boxter", price: 72000 },
-    { make: "Toyota", model: "Celica", price: 35000 },
-    { make: "Ford", model: "Mondeo", price: 32000 },
+    { id: 0, "Full Name": "Sam Davis", "Start Date": Date.now(), price: 35000 },
   ];
 
   gridOptions: GridOptions;
@@ -37,8 +28,6 @@ export class TableComponent implements OnInit {
       paginationAutoPageSize: true,
       suppressCellSelection: true,
       cacheQuickFilter: true,
-      domLayout: "autoHeight",
-      // rowSelection: "single",
 
       context: {
         componentParent: this,
@@ -47,6 +36,7 @@ export class TableComponent implements OnInit {
       // EVENTS
       onGridSizeChanged: () => {
         this.gridOptions.api.sizeColumnsToFit();
+        this.gridOptions.api.resetRowHeights();
       },
       onRowClicked: (event) => {
         console.log(event.data);

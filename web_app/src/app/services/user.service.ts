@@ -17,7 +17,7 @@ export class UserService {
 
   login(login: any) {
     return this.backendProxy
-      .post(this.backendProxy.remoteUrl + "auth/login", login)
+      .post(this.backendProxy.url + "auth/login", login)
       .pipe(
         map((res: any) => {
           localStorage.setItem("token", res.access_token);

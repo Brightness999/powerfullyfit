@@ -1,14 +1,9 @@
-<div class="card-header border-0">
-    <span class="h3 mb-0"> {{ title }} </span>
-    <div class="grid-search">
-        <input type="text" placeholder="Search" class="form-control" (input)="filter($event.target.value)" />
-    </div>
-</div>
 
-<ag-grid-angular #agGrid style="width: auto;" class="ag-theme-alpine table-responsive table align-items-center table-flush" [gridOptions]="gridOptions">
+
+<ag-grid-angular #agGrid style="width: auto; height: 70vh;" class="ag-theme-alpine table-responsive table align-items-center table-flush" [gridOptions]="gridOptions">
 </ag-grid-angular>
 
-<div class="card-footer py-4">
+<!-- <div class="card-footer py-4">
     <nav aria-label="...">
         <ul class="pagination justify-content-end mb-0">
             <li class="page-item disabled">
@@ -32,7 +27,7 @@
             </li>
         </ul>
     </nav>
-</div>
+</div> -->
 
 <!-- <div class="card-header border-0">
     <h3 class="mb-0">Card tables</h3>

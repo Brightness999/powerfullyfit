@@ -15,6 +15,8 @@ import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
 import { AppRoutingModule } from "./app.routing";
 import { ComponentsModule } from "./components/components.module";
 
+import { SweetAlert2Module } from "@sweetalert2/ngx-sweetalert2";
+
 import { MessagesComponent } from "./pages/messages/messages.component";
 import { ClientsComponent } from "./pages/clients/clients.component";
 import { TrainersComponent } from "./pages/trainers/trainers.component";
@@ -34,6 +36,7 @@ import { UserService } from "./services/user.service";
     ComponentsModule,
     NgbModule,
     RouterModule,
+    SweetAlert2Module.forRoot(),
     AppRoutingModule,
   ],
   declarations: [

@@ -16,6 +16,8 @@ export class BackendProxy {
   configUrl = "http://localhost:3000/api/";
   remoteUrl = "http://66.42.110.119:3000/api/";
 
+  url = this.remoteUrl
+
   constructor(private http: HttpClient) {}
 
   get(url: string) {
