@@ -24,6 +24,9 @@ export class User {
   @Column()
   password: string;
 
+  @Column()
+  email: string;
+
   logo: externalAsset; // TODO: external asset
 
   @Column({ default: new Date() })

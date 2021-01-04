@@ -16,6 +16,7 @@ RUN npm install
 COPY . .
 
 RUN npm run build
+# RUN npx typeorm migration:run
 
 EXPOSE 3000
 EXPOSE 5432

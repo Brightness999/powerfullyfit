@@ -1,7 +1,6 @@
 import 'package:adv_fab/adv_fab.dart';
 import 'package:flutter/material.dart';
-import 'package:mobile_app/entities/client.entity.dart';
-import 'package:mobile_app/entities/user.entity.dart';
+
 import 'package:mobile_app/repositories/user.repository.dart';
 import 'package:mobile_app/screens/account/account_screen.ui.dart';
 import 'package:mobile_app/screens/home/home_screen.bloc.dart';
@@ -32,8 +31,8 @@ class _SummaryScreen extends State {
   initState() {
     super.initState();
 
-    UserRepository.getUserById(5).listen((Client client) {
-      print(client.coach.organization.toJson());
+    UserRepository.getUserById(1).listen((client) {
+      print(client.toJson());
     });
   }
 
@@ -70,9 +69,11 @@ class _SummaryScreen extends State {
                       onTap: () {
                         Navigator.push(
                           context,
-                          MaterialPageRoute(builder: (BuildContext context) {
-                            return AccountScreen();
-                          }),
+                          MaterialPageRoute(
+                            builder: (BuildContext context) {
+                              return AccountScreen();
+                            },
+                          ),
                         );
                       },
                       child: Container(
@@ -110,9 +111,11 @@ class _SummaryScreen extends State {
                     onTap: () {
                       Navigator.push(
                         context,
-                        MaterialPageRoute(builder: (BuildContext context) {
-                          return DailyNutritionScreen();
-                        }),
+                        MaterialPageRoute(
+                          builder: (BuildContext context) {
+                            return DailyNutritionScreen();
+                          },
+                        ),
                       );
                     },
                     child: Container(
@@ -130,10 +133,6 @@ class _SummaryScreen extends State {
                                 fontSize: 17,
                               ),
                             ),
-                            // Icon(
-                            //   FontAwesomeIcons.longArrowAltRight,
-                            //   color: Colors.white,
-                            // )
                           ],
                         ),
                       ),
@@ -147,9 +146,11 @@ class _SummaryScreen extends State {
                   onTap: () {
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (BuildContext context) {
-                        return WorkoutScreen();
-                      }),
+                      MaterialPageRoute(
+                        builder: (BuildContext context) {
+                          return WorkoutScreen();
+                        },
+                      ),
                     );
                   },
                 ),
