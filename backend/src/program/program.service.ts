@@ -19,15 +19,13 @@ export class ProgramService {
   ) {}
 
   create(createProgramDto: CreateProgramDto) {
-    const program = this.programRepository.create(
-      createProgramDto,
-    );
+    const program = this.programRepository.create(createProgramDto);
 
     return this.programRepository.save(program);
   }
 
   findAll() {
-    return `This action returns all program`;
+    return this.programRepository.find();
   }
 
   findOne(id: number) {
