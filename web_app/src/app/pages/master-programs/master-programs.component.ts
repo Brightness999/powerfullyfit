@@ -14,8 +14,10 @@ export class MasterProgramsComponent implements OnInit {
   constructor(private programService: ProgramService) {}
 
   ngOnInit(): void {
-    this.programService.getAllPrograms().subscribe((res) => {
-      console.log(res);
+    this.programService.getAllPrograms().subscribe((programs: any) => {
+      console.log(programs);
+
+      this.programs = programs;
 
       this.loading = false;
     });
