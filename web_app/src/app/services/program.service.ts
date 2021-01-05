@@ -8,14 +8,14 @@ import { tap, catchError, retry, map } from "rxjs/operators";
 @Injectable({
   providedIn: "root",
 })
-export class OrganizationService {
+export class ProgramService {
   constructor(private backendProxy: BackendProxy) {}
 
-  findAllOrganizations(): Observable<any> {
-    return this.backendProxy.get("organization");
+  createProgram(program: any): Observable<any> {
+    return this.backendProxy.post("program", { name: "Program 1" });
   }
 
-  findOrganizationById(organizationId: string | number): Observable<any> {
-    return this.backendProxy.get("organization/" + organizationId.toString());
+  getAllPrograms(): Observable<any> {
+    return this.backendProxy.get("program");
   }
 }

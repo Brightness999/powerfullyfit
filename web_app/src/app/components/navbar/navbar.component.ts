@@ -1,4 +1,5 @@
-import { Component, OnInit, ElementRef } from "@angular/core";
+import { Component, OnInit, ElementRef, TemplateRef } from "@angular/core";
+import { BsModalService, BsModalRef } from "ngx-bootstrap/modal";
 
 import { OrganizationService } from "@pf/services/organization.service";
 import { UserService } from "@pf/services/user.service";
@@ -25,10 +26,13 @@ export class NavbarComponent implements OnInit {
 
   user: any;
 
+  modalRef: BsModalRef;
+
   constructor(
     private organizationService: OrganizationService,
     private userService: UserService,
     public location: Location,
+    private modalService: BsModalService,
     private element: ElementRef,
     private router: Router
   ) {}
@@ -125,5 +129,12 @@ export class NavbarComponent implements OnInit {
     localStorage.removeItem("token");
 
     this.router.navigate(["login"]);
+  }
+
+  openModal(template: TemplateRef<any>) {
+    this.modalRef = this.modalService.show(
+      template,
+      Object.assign({}, { class: "modal-lg" })
+    );
   }
 }

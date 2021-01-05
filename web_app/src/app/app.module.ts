@@ -16,6 +16,7 @@ import { AppRoutingModule } from "./app.routing";
 import { ComponentsModule } from "./components/components.module";
 
 import { SweetAlert2Module } from "@sweetalert2/ngx-sweetalert2";
+import { ModalModule } from "ngx-bootstrap/modal";
 
 import { MessagesComponent } from "./pages/messages/messages.component";
 import { ClientsComponent } from "./pages/clients/clients.component";
@@ -27,6 +28,7 @@ import { AppointmentsComponent } from "./pages/appointments/appointments.compone
 
 import { OrganizationService } from "./services/organization.service";
 import { UserService } from "./services/user.service";
+import { ProgramService } from "./services/program.service";
 
 @NgModule({
   imports: [
@@ -37,6 +39,7 @@ import { UserService } from "./services/user.service";
     NgbModule,
     RouterModule,
     SweetAlert2Module.forRoot(),
+    ModalModule.forRoot(),
     AppRoutingModule,
   ],
   declarations: [
@@ -51,7 +54,7 @@ import { UserService } from "./services/user.service";
     SettingsComponent,
     AppointmentsComponent,
   ],
-  providers: [BackendProxy, OrganizationService, UserService],
+  providers: [BackendProxy, OrganizationService, UserService, ProgramService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
