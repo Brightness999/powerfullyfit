@@ -28,8 +28,13 @@ export class ProgramService {
     return this.programRepository.find();
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} program`;
+  async findOne(id: number) {
+    const program = await this.programRepository.findOne(id);
+
+    if (!program)
+      throw new NotFoundException(`program with id: ${id} was not Found`);
+
+    return program;
   }
 
   update(id: number, updateProgramDto: UpdateProgramDto) {

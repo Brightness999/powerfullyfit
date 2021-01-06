@@ -1,5 +1,8 @@
-import 'ExerciseSet.entity.dart';
+import 'package:json_annotation/json_annotation.dart';
 
+part 'Exercise.entity.g.dart';
+
+@JsonSerializable()
 class Exercise {
   int id;
 
@@ -7,12 +10,15 @@ class Exercise {
 
   bool isDone = false;
 
-  List<ExerciseSet> sets = [ExerciseSet(), ExerciseSet(), ExerciseSet()];
+  int sets = 3;
 
   Exercise({this.id, this.name, this.sets, this.isDone});
 
   Exercise.example({this.id, this.name, this.isDone}) {
-    sets = [ExerciseSet(), ExerciseSet(), ExerciseSet()];
     if (isDone == null) isDone = false;
   }
+
+  factory Exercise.fromJson(Map<String, dynamic> json) =>
+      _$ExerciseFromJson(json);
+  Map<String, dynamic> toJson() => _$ExerciseToJson(this);
 }
