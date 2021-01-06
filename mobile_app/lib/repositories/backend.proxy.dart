@@ -4,8 +4,6 @@ import 'dart:convert' as convert;
 
 class BackendProxy {
   static Map<String, String> headers = {
-    // "Accept": "application/json",
-    // "Content-type": "application/json",
     "Authorization":
         "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoxLCJmaXJzdG5hbWUiOiJBZG1pbiIsImxhc3RuYW1lIjoiRml0IiwiZW1haWwiOiJhZG1pbkBmaXQuY29tIiwiY3JlYXRlVGltZSI6IjIwMjEtMDEtMDNUMDQ6NDQ6MjQuMTE1WiIsInJvbGUiOiJTVVBFUiBBRE1JTiIsIm9yZ2FuaXphdGlvbiI6bnVsbH0sImlhdCI6MTYwOTcxNzM3M30.EZw0p8umcu3IQbJ1ttX02xpCZI78OdtTCPq58dlGjBU"
   };

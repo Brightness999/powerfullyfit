@@ -39,127 +39,119 @@ class _SummaryScreen extends State {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SingleChildScrollView(
-        child: Container(
-          margin: EdgeInsets.symmetric(
-            vertical: MediaQuery.of(context).size.height * .025,
-            horizontal: MediaQuery.of(context).size.width * .03,
-          ),
-          child: SafeArea(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
+      body: SafeArea(
+        child: ListView(
+          // crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Flexible(
-                      child: Container(
-                        width: MediaQuery.of(context).size.width * .8,
-                        child: Text(
-                          "Take a look at your fitness Summary.",
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontWeight: FontWeight.bold,
-                            fontSize: 28,
-                          ),
-                        ),
-                      ),
-                    ),
-                    GestureDetector(
-                      onTap: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (BuildContext context) {
-                              return AccountScreen();
-                            },
-                          ),
-                        );
-                      },
-                      child: Container(
-                        height: MediaQuery.of(context).size.width * .12,
-                        width: MediaQuery.of(context).size.width * .12,
-                        decoration: new BoxDecoration(
-                          shape: BoxShape.circle,
-                          image: DecorationImage(
-                            fit: BoxFit.fill,
-                            image: NetworkImage(
-                              'https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fhips.hearstapps.com%2Fhbz.h-cdn.co%2Fassets%2F16%2F43%2Fhbz-dark-blonde-hair-magdalena-frackowiak.jpg%3Fcrop%3D1.0xw%3A1xh%3Bcenter%2Ctop%26resize%3D768%3A*&f=1&nofb=1',
-                            ),
-                          ),
-                        ),
-                      ),
-                    )
-                  ],
-                ),
-                SizedBox(
-                  height: 40,
-                ),
-                WeeklyGoals(),
-                SizedBox(
-                  height: 20,
-                ),
-                CalendarCard(
-                  calendarController: calendarController,
-                ),
-                SizedBox(
-                  height: 20,
-                ),
-                DailyNutrition(
-                  title: "Your Progress",
-                  child: GestureDetector(
-                    onTap: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (BuildContext context) {
-                            return DailyNutritionScreen();
-                          },
-                        ),
-                      );
-                    },
-                    child: Container(
-                      margin: EdgeInsets.only(
-                        top: MediaQuery.of(context).size.height * .03,
-                      ),
-                      child: Center(
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Text(
-                              "See Overall Progress",
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 17,
-                              ),
-                            ),
-                          ],
-                        ),
+                Flexible(
+                  child: Container(
+                    width: MediaQuery.of(context).size.width * .8,
+                    child: Text(
+                      "Take a look at your fitness Summary.",
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 28,
                       ),
                     ),
                   ),
                 ),
-                SizedBox(
-                  height: 20,
-                ),
-                TodayWorkoutCard(
+                GestureDetector(
                   onTap: () {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
                         builder: (BuildContext context) {
-                          return WorkoutScreen();
+                          return AccountScreen();
                         },
                       ),
                     );
                   },
-                ),
-                SizedBox(
-                  height: MediaQuery.of(context).size.height * .1,
-                ),
+                  child: Container(
+                    height: MediaQuery.of(context).size.width * .12,
+                    width: MediaQuery.of(context).size.width * .12,
+                    decoration: new BoxDecoration(
+                      shape: BoxShape.circle,
+                      image: DecorationImage(
+                        fit: BoxFit.fill,
+                        image: NetworkImage(
+                          'https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fhips.hearstapps.com%2Fhbz.h-cdn.co%2Fassets%2F16%2F43%2Fhbz-dark-blonde-hair-magdalena-frackowiak.jpg%3Fcrop%3D1.0xw%3A1xh%3Bcenter%2Ctop%26resize%3D768%3A*&f=1&nofb=1',
+                        ),
+                      ),
+                    ),
+                  ),
+                )
               ],
             ),
-          ),
+            SizedBox(
+              height: 40,
+            ),
+            WeeklyGoals(),
+            SizedBox(
+              height: 20,
+            ),
+            CalendarCard(
+              calendarController: calendarController,
+            ),
+            SizedBox(
+              height: 20,
+            ),
+            DailyNutrition(
+              title: "Your Progress",
+              child: GestureDetector(
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (BuildContext context) {
+                        return DailyNutritionScreen();
+                      },
+                    ),
+                  );
+                },
+                child: Container(
+                  margin: EdgeInsets.only(
+                    top: MediaQuery.of(context).size.height * .03,
+                  ),
+                  child: Center(
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(
+                          "See Overall Progress",
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 17,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+            ),
+            SizedBox(
+              height: 20,
+            ),
+            TodayWorkoutCard(
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (BuildContext context) {
+                      return WorkoutScreen();
+                    },
+                  ),
+                );
+              },
+            ),
+            SizedBox(
+              height: MediaQuery.of(context).size.height * .1,
+            ),
+          ],
         ),
       ),
     );

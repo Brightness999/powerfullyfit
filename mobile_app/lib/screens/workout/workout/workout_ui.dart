@@ -2,12 +2,16 @@ import 'package:expansion_tile_card/expansion_tile_card.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:mobile_app/entities/Exercise.entity.dart';
-import 'package:mobile_app/entities/workout.dart';
+import 'package:mobile_app/entities/workout.entity.dart';
 import 'package:mobile_app/models/workout-type.enum.dart';
+import 'package:mobile_app/repositories/program.repository.dart';
+import 'package:mobile_app/repositories/workout.repository.dart';
 import 'package:mobile_app/theme/colors.dart';
 
 import 'package:mobile_app/widgets/timer/timer.dart';
 import 'package:video_player/video_player.dart';
+import 'package:video_player_controls/video_player_controls.dart';
+import 'package:flutter/services.dart';
 
 // ignore: must_be_immutable
 class WorkoutScreen extends StatefulWidget {
@@ -18,6 +22,8 @@ class WorkoutScreen extends StatefulWidget {
 class _WorkoutScreen extends State {
   VideoPlayerController _controller;
   Future<void> _initializeVideoPlayerFuture;
+
+  Controller controller;
 
   Workout workout = Workout(
     name: "Biceps & Abs Workout",
@@ -41,13 +47,78 @@ class _WorkoutScreen extends State {
 
   @override
   initState() {
+    super.initState();
+
+    // WorkoutRepository.findWorkoutById(1);
+    ProgramRepository.findWProgramById(1).listen((e) {
+      print(e);
+    });
+
     _controller = VideoPlayerController.network(
       'https://flutter.github.io/assets-for-api-docs/assets/videos/butterfly.mp4',
     );
 
     _initializeVideoPlayerFuture = _controller.initialize();
 
-    super.initState();
+    controller = new Controller(
+      items: [
+        //
+        new PlayerItem(
+          title: 'video 1',
+          url:
+              'https://flutter.github.io/assets-for-api-docs/assets/videos/bee.mp4',
+          // subtitleUrl: "https://wecast.ch/posters/vt.vtt",
+        ),
+        new PlayerItem(
+          startAt: Duration(seconds: 2),
+          title: 'video 2',
+          aspectRatio: 16 / 4,
+          url:
+              'https://flutter.github.io/assets-for-api-docs/assets/videos/butterfly.mp4',
+          subtitleUrl: "https://wecast.ch/posters/vtt.vtt",
+        ),
+        new PlayerItem(
+          title: 'video 3',
+          aspectRatio: 16 / 9,
+          url:
+              'https://flutter.github.io/assets-for-api-docs/assets/videos/butterfly.mp4',
+          subtitleUrl: "https://wecast.ch/posters/vtt.vtt",
+        ),
+      ],
+      autoPlay: true,
+      errorBuilder: (context, message) {
+        return new Container(
+          child: new Text(message),
+        );
+      },
+      // index: 2,
+      autoInitialize: true,
+      // isLooping: false,
+      allowedScreenSleep: false,
+      // showControls: false,
+      hasSubtitles: true,
+      // isLive: true,
+      // showSeekButtons: false,
+      // showSkipButtons: false,
+      // allowFullScreen: false,
+      fullScreenByDefault: false,
+      // placeholder: new Container(
+      //   color: Colors.grey,
+      // ),
+      isPlaying: (isPlaying) {
+        //
+        // print(isPlaying);
+      },
+
+      playerItem: (playerItem) {
+        // print('Player title: ' + playerItem.title);
+        // print('position: ' + playerItem.position.inSeconds.toString());
+        // print('Duration: ' + playerItem.duration.inSeconds.toString());
+      },
+      videosCompleted: (isCompleted) {
+        print(isCompleted);
+      },
+    );
   }
 
   @override
@@ -209,7 +280,7 @@ class _WorkoutScreen extends State {
                                         ),
                                         if (exercise.sets != null)
                                           Column(
-                                            children: exercise.sets
+                                            children: new List(exercise.sets)
                                                 .map(
                                                   (e) => Row(
                                                     mainAxisAlignment:
@@ -239,14 +310,27 @@ class _WorkoutScreen extends State {
                                                         child: Container(
                                                           width: 100,
                                                           child: TextField(
+                                                            decoration:
+                                                                InputDecoration(
+                                                              labelText:
+                                                                  "Log weight",
+                                                              labelStyle:
+                                                                  TextStyle(
+                                                                color:
+                                                                    Colors.blue,
+                                                              ),
+                                                            ),
                                                             keyboardType:
                                                                 TextInputType
-                                                                    .number,
+                                                                    .numberWithOptions(),
                                                             inputFormatters: <
                                                                 TextInputFormatter>[
                                                               FilteringTextInputFormatter
                                                                   .digitsOnly
-                                                            ], // Only numbers can be entered
+                                                            ],
+                                                            textInputAction:
+                                                                TextInputAction
+                                                                    .done,
                                                           ),
                                                         ),
                                                       ),

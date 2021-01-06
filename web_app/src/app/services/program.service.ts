@@ -12,7 +12,7 @@ export class ProgramService {
   constructor(private backendProxy: BackendProxy) {}
 
   createProgram(program: any): Observable<any> {
-    return this.backendProxy.post("program", { name: "Program 1" });
+    return this.backendProxy.post("program", program);
   }
 
   getAllPrograms(): Observable<any> {

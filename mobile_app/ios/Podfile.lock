@@ -8,11 +8,15 @@ PODS:
     - Flutter
   - flutter_sms (1.1.0):
     - Flutter
+  - flutter_ui_mode_manager (0.0.1):
+    - Flutter
   - flutter_user_agent (1.2.2):
     - Flutter
   - FMDB (2.7.5):
     - FMDB/standard (= 2.7.5)
   - FMDB/standard (2.7.5)
+  - fullscreen (0.0.1):
+    - Flutter
   - image_picker (0.0.1):
     - Flutter
   - path_provider (0.0.1):
@@ -26,6 +30,8 @@ PODS:
     - Flutter
   - video_player (0.0.1):
     - Flutter
+  - wakelock (0.0.1):
+    - Flutter
 
 DEPENDENCIES:
   - camera (from `.symlinks/plugins/camera/ios`)
@@ -33,13 +39,16 @@ DEPENDENCIES:
   - flutter_chat_bubble (from `.symlinks/plugins/flutter_chat_bubble/ios`)
   - flutter_pdfview (from `.symlinks/plugins/flutter_pdfview/ios`)
   - flutter_sms (from `.symlinks/plugins/flutter_sms/ios`)
+  - flutter_ui_mode_manager (from `.symlinks/plugins/flutter_ui_mode_manager/ios`)
   - flutter_user_agent (from `.symlinks/plugins/flutter_user_agent/ios`)
+  - fullscreen (from `.symlinks/plugins/fullscreen/ios`)
   - image_picker (from `.symlinks/plugins/image_picker/ios`)
   - path_provider (from `.symlinks/plugins/path_provider/ios`)
   - pdf_viewer_plugin (from `.symlinks/plugins/pdf_viewer_plugin/ios`)
   - sqflite (from `.symlinks/plugins/sqflite/ios`)
   - url_launcher (from `.symlinks/plugins/url_launcher/ios`)
   - video_player (from `.symlinks/plugins/video_player/ios`)
+  - wakelock (from `.symlinks/plugins/wakelock/ios`)
 
 SPEC REPOS:
   trunk:
@@ -56,8 +65,12 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/flutter_pdfview/ios"
   flutter_sms:
     :path: ".symlinks/plugins/flutter_sms/ios"
+  flutter_ui_mode_manager:
+    :path: ".symlinks/plugins/flutter_ui_mode_manager/ios"
   flutter_user_agent:
     :path: ".symlinks/plugins/flutter_user_agent/ios"
+  fullscreen:
+    :path: ".symlinks/plugins/fullscreen/ios"
   image_picker:
     :path: ".symlinks/plugins/image_picker/ios"
   path_provider:
@@ -70,6 +83,8 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/url_launcher/ios"
   video_player:
     :path: ".symlinks/plugins/video_player/ios"
+  wakelock:
+    :path: ".symlinks/plugins/wakelock/ios"
 
 SPEC CHECKSUMS:
   camera: a0ca5080336f7af47b88436e5e26da3dee5568f0
@@ -77,14 +92,17 @@ SPEC CHECKSUMS:
   flutter_chat_bubble: cad6265ec611ba0f7bede70eabc26fdfce9bf2b0
   flutter_pdfview: 25f53dd6097661e6395b17de506e6060585946bd
   flutter_sms: 91ce41530f55c85d6524d82307a5d555844c086a
+  flutter_ui_mode_manager: 30f3559398eafa8a3c2d71a8b5763c59bd81a4e8
   flutter_user_agent: 27c45d034dc31b80948d29998cea52cd3a7bf936
   FMDB: 2ce00b547f966261cd18927a3ddb07cb6f3db82a
+  fullscreen: d93e707e6b36120f20e64e2f814ee0726164e70b
   image_picker: 9c3312491f862b28d21ecd8fdf0ee14e601b3f09
   path_provider: abfe2b5c733d04e238b0d8691db0cfd63a27a93c
   pdf_viewer_plugin: 96ce5d974dd18dd3a5f17a3f50641d178e355434
   sqflite: 6d358c025f5b867b29ed92fc697fd34924e11904
   url_launcher: 6fef411d543ceb26efce54b05a0a40bfd74cbbef
   video_player: 9cc823b1d9da7e8427ee591e8438bfbcde500e6e
+  wakelock: 0d4a70faf8950410735e3f61fb15d517c8a6efc4
 
 PODFILE CHECKSUM: 7368163408c647b7eb699d0d788ba6718e18fb8d
 

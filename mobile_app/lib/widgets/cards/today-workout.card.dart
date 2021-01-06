@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:mobile_app/entities/workout.dart';
+import 'package:mobile_app/entities/workout.entity.dart';
 
 class TodayWorkoutCard extends StatelessWidget {
   final String title = "Today's Workout";

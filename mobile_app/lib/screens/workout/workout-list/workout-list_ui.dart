@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:mobile_app/entities/workout.dart';
+import 'package:mobile_app/entities/workout.entity.dart';
 import 'package:mobile_app/models/workout-type.enum.dart';
 import 'package:mobile_app/screens/summary/summary_screen.ui.dart';
 import 'package:mobile_app/screens/workout/workout/workout_ui.dart';

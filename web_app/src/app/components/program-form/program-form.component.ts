@@ -16,15 +16,19 @@ export class ProgramFormComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  addClient(program) {
-    this.programService.createProgram(program).subscribe((res) => {
-      this.submitted.emit(true);
+  submit(program) {
 
-      Swal.fire("Program Created!", "Start Building", "success").then(function (
-        result
-      ) {
-        console.log(result);
+
+    this.programService
+      .createProgram({ name: "program" })
+      .subscribe((res) => {
+        this.submitted.emit(true);
+
+        Swal.fire("Program Created!", "Start Building", "success").then(
+          function (result) {
+            console.log(result);
+          }
+        );
       });
-    });
   }
 }

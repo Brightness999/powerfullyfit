@@ -1,6 +1,11 @@
 import 'package:mobile_app/entities/Exercise.entity.dart';
 import 'package:mobile_app/models/workout-type.enum.dart';
 
+import 'package:json_annotation/json_annotation.dart';
+
+part 'workout.entity.g.dart';
+
+@JsonSerializable()
 class Workout {
   int id;
 
@@ -22,4 +27,8 @@ class Workout {
   }) {
     this.picture = 'assets/images/today-workout-alt.jpeg';
   }
+
+  factory Workout.fromJson(Map<String, dynamic> json) =>
+      _$WorkoutFromJson(json);
+  Map<String, dynamic> toJson() => _$WorkoutToJson(this);
 }
