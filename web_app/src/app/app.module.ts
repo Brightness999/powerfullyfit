@@ -1,6 +1,6 @@
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { NgModule } from "@angular/core";
-import { FormsModule } from "@angular/forms";
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { HttpClientModule } from "@angular/common/http";
 import { RouterModule } from "@angular/router";
 
@@ -17,6 +17,8 @@ import { ComponentsModule } from "./components/components.module";
 
 import { SweetAlert2Module } from "@sweetalert2/ngx-sweetalert2";
 import { ModalModule } from "ngx-bootstrap/modal";
+
+import { NgSelectModule } from "@ng-select/ng-select";
 
 import { MessagesComponent } from "./pages/messages/messages.component";
 import { ClientsComponent } from "./pages/clients/clients.component";
@@ -40,6 +42,7 @@ import { ProgramService } from "./services/program.service";
     RouterModule,
     SweetAlert2Module.forRoot(),
     ModalModule.forRoot(),
+    NgSelectModule,
     AppRoutingModule,
   ],
   declarations: [

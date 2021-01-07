@@ -1,40 +1,48 @@
-<div class="modal-body">
-
-    <div class="mb-5">
-        Name and set the duration of your program. Clients can only see their current phase and will automatically get the next phase when the date elapses.
-    </div>
-    <div class="">
-        <div class="mb-3">
-            <label for="programName" class="form-label">Program Name</label>
-            <input type="text" class="form-control" id="programName" aria-describedby="emailHelp">
+<form [formGroup]="programForm" (submit)="onSubmit(programForm.value)">
+    <div class="modal-body">
+        <div class="mb-4">
+            Name and set the duration of your program. Clients can only see their current phase and will automatically
+            get
+            the next phase when the date elapses.
         </div>
-        <div class="mb-3">
-            <label for="exampleInputEmail1" class="form-label">Program Duration</label>
-            <div class="row">
-                <div class="col">
-                    <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-                </div>
-                of
-                <div class="col">
-                    <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+        <div class="">
+            <div class="mb-4">
+                <label for="programName" class="form-label">Program Name</label>
+                <input type="text" class="form-control" id="programName" formControlName="name">
+            </div>
+            <div class="mb-3">
+                <div for="exampleInputEmail1" class="form-label mb-2">Program Duration</div>
+                <div class="row">
+                    <div class="col form-group">
+                        <label for="inputEmail3" class="col"> Weeks </label>
+                        <input type="number" class="form-control col" id="exampleInputEmail1" formControlName="weeks">
+                    </div>
+                    of
+                    <div class="form-group col">
+                        <label for="inputEmail3" class=""> Phases </label>
+                        <input type="number" class="form-control" id="exampleInputEmail1" formControlName="phases">
+                    </div>
                 </div>
             </div>
+
+            <div class="mb-5">
+                <label for="programLength" class="form-label"> Program Length: </label>
+                {{ programLength | number }}
+            </div>
+            <div class="mb-0">
+                Progress photos and weigh-ins will be automatically scheduled at the start of each training plan or
+                phase.
+            </div>
         </div>
-        <div class="mb-5">
-            <label for="programLength" class="form-label">Program Length</label>
-            <input type="text" class="form-control" id="programLength" aria-describedby="emailHelp">
-        </div>
-        <div class="mb-0">
-            Progress photos and weigh-ins will be automatically scheduled at the start of each training plan or phase.
+
+    </div>
+
+    <div class="modal-footer">
+        <div class="btn-group">
+            <button class="btn btn-dark" type="submit">
+                <i class="fa fa-check mr-2"></i> Start Building
+            </button>
         </div>
     </div>
 
-</div>
-
-<div class="modal-footer">
-    <div class="btn-group">
-        <button class="btn btn-primary" (click)="submit('program')">
-            <i class="fa fa-check mr-2"></i> Start Building
-        </button>
-    </div>
-</div>
+</form>
