@@ -9,4 +9,6 @@ export class CreateProgramDto {
 
   @IsInt()
   phases: number;
+
+  coach: any;
 }
