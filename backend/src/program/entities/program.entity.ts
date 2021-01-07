@@ -21,6 +21,12 @@ export class Program {
 
   creator: any;
 
+  @Column()
+  weeks: number;
+
+  @Column()
+  phases: number;
+
   @Column({ default: new Date() })
   createTime: Date;
 
