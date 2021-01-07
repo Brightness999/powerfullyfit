@@ -8,21 +8,27 @@ import {
   Param,
   Delete,
   ParseIntPipe,
+  UseGuards,
 } from '@nestjs/common';
+
+import { CurrentUser } from '@app/common/decorators/current-user.decorator';
 
 import { ApiTags } from '@nestjs/swagger';
 
 import { ProgramService } from './program.service';
+
 import { CreateProgramDto } from './dto/create-program.dto';
 import { UpdateProgramDto } from './dto/update-program.dto';
 
 @ApiTags('program')
 @Controller('program')
+@UseGuards(JwtAuthGuard)
 export class ProgramController {
   constructor(private readonly programService: ProgramService) {}
 
   @Post()
-  create(@Body() createProgramDto: CreateProgramDto) {
+  create(@Body() createProgramDto: CreateProgramDto, @CurrentUser() user: any) {
+    console.log(user);
     return this.programService.create(createProgramDto);
   }
 
