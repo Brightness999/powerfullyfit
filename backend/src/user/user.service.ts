@@ -50,10 +50,14 @@ export class UserService {
   }
 
   async findOneByEmail(email: string) {
+    console.log(email);
+
     const user = await this.userRepository.findOne({
       where: [{ email }],
       relations: ['organization', 'coach'],
     });
+
+    console.log(user);
 
     return user;
   }
