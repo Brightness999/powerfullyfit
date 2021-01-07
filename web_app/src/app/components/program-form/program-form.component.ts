@@ -5,6 +5,7 @@ import Swal from "sweetalert2";
 import { ProgramService } from "@pf/services/program.service";
 
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
+import { Router } from "@angular/router";
 
 @Component({
   selector: "pf-program-form",
@@ -20,6 +21,8 @@ export class ProgramFormComponent implements OnInit {
     phases: [null, Validators.required],
   });
 
+  isLoading: boolean = false;
+
   get programLength() {
     return (
       this.programForm.get("phases").value * this.programForm.get("weeks").value
@@ -28,21 +31,33 @@ export class ProgramFormComponent implements OnInit {
 
   constructor(
     private formBuilder: FormBuilder,
-    private programService: ProgramService
+    private programService: ProgramService,
+    private router: Router
   ) {}
 
   ngOnInit(): void {}
 
   onSubmit(program) {
     console.log(program);
+    this.isLoading = true;
 
-    this.programService.createProgram(program).subscribe((res) => {
+    this.programService.createProgram(program).subscribe((program) => {
+      console.log(program);
+
+      this.isLoading = false;
+
       this.submitted.emit(true);
 
-      Swal.fire("Program Created!", "Start Building", "success").then(function (
-        result
-      ) {
-        console.log(result);
+      Swal.fire({
+        icon: "success",
+        text: "Program Created!",
+        focusConfirm: true,
+        showCancelButton: true,
+        cancelButtonText: "Close",
+        confirmButtonText: "Start Building!",
+      }).then((result) => {
+        console.log("result");
+        this.router.navigate(["/", "master-programs"]);
       });
     });
   }

@@ -29,22 +29,18 @@ export class ProgramController {
 
   @Post()
   create(@Body() createProgramDto: CreateProgramDto, @CurrentUser() user: any) {
-    console.log('current user: ' + user.userId);
-
     createProgramDto['coach'] = user;
-
-    console.log(createProgramDto);
 
     return this.programService.create(createProgramDto);
   }
 
   @Get()
-  findAll() {
+  findAll(@CurrentUser() user: any) {
     return this.programService.findAll();
   }
 
   @Get(':id')
-  findOne(@Param('id', ParseIntPipe) id: number) {
+  findOne(@Param('id', ParseIntPipe) id: number, @CurrentUser() user: any) {
     return this.programService.findOne(id);
   }
 
