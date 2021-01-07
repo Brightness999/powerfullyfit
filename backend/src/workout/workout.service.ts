@@ -27,6 +27,7 @@ export class WorkoutService {
 
   findAll() {
     return this.workoutRepository.find({
+      relations: ['coach'],
       order: {
         id: 'DESC',
       },
@@ -34,7 +35,9 @@ export class WorkoutService {
   }
 
   async findOne(id: number) {
-    const workout = await this.workoutRepository.findOne(id);
+    const workout = await this.workoutRepository.findOne(id, {
+      relations: ['coach'],
+    });
 
     if (!workout)
       throw new NotFoundException(`workout with id: ${id} was not Found`);
