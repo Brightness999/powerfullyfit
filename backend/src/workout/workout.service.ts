@@ -1,4 +1,8 @@
-import { Injectable } from '@nestjs/common';
+import {
+  Injectable,
+  NotFoundException,
+  ForbiddenException,
+} from '@nestjs/common';
 
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
@@ -29,8 +33,8 @@ export class WorkoutService {
     });
   }
 
-  findOne(id: number) {
-    const workout = await this.programRepository.findOne(id);
+  async findOne(id: number) {
+    const workout = await this.workoutRepository.findOne(id);
 
     if (!workout)
       throw new NotFoundException(`workout with id: ${id} was not Found`);
@@ -45,6 +49,6 @@ export class WorkoutService {
   async remove(id: number) {
     const workout: any = await this.findOne(id);
 
-    return this.programRepository.remove(workout);
+    return this.workoutRepository.remove(workout);
   }
 }
