@@ -23,7 +23,7 @@ import { AuthModule } from './auth/auth.module';
       // username: 'user', // username
       // password: 'password', // user password
       // database: 'postgres', // name of our database,
-      // type: 'postgres',
+      type: 'postgres',
       url: 'postgres://user:password@postgres:5432/db',
       autoLoadEntities: true,
       synchronize: true,
