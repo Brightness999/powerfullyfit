@@ -20,6 +20,10 @@ import { ModalModule } from "ngx-bootstrap/modal";
 
 import { NgSelectModule } from "@ng-select/ng-select";
 
+import { FullCalendarModule } from "@fullcalendar/angular"; // the main connector. must go first
+import dayGridPlugin from "@fullcalendar/daygrid"; // a plugin
+// import interactionPlugin from "@fullcalendar/interaction"; // a plugin
+
 import { MessagesComponent } from "./pages/messages/messages.component";
 import { ClientsComponent } from "./pages/clients/clients.component";
 import { TrainersComponent } from "./pages/trainers/trainers.component";
@@ -31,6 +35,13 @@ import { AppointmentsComponent } from "./pages/appointments/appointments.compone
 import { OrganizationService } from "./services/organization.service";
 import { UserService } from "./services/user.service";
 import { ProgramService } from "./services/program.service";
+import { WorkoutService } from "./services/workout.service";
+
+FullCalendarModule.registerPlugins([
+  // register FullCalendar plugins
+  dayGridPlugin,
+  // interactionPlugin,
+]);
 
 @NgModule({
   imports: [
@@ -43,6 +54,7 @@ import { ProgramService } from "./services/program.service";
     SweetAlert2Module.forRoot(),
     ModalModule.forRoot(),
     NgSelectModule,
+    FullCalendarModule, // register FullCalendar with you app
     AppRoutingModule,
   ],
   declarations: [
@@ -57,7 +69,13 @@ import { ProgramService } from "./services/program.service";
     SettingsComponent,
     AppointmentsComponent,
   ],
-  providers: [BackendProxy, OrganizationService, UserService, ProgramService],
+  providers: [
+    BackendProxy,
+    OrganizationService,
+    UserService,
+    ProgramService,
+    WorkoutService,
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

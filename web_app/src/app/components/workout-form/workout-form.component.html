@@ -1,0 +1,28 @@
+<form [formGroup]="workoutForm" (submit)="onSubmit(workoutForm.value)">
+    <div class="modal-body">
+        <div>
+            <div class="mb-4">
+                <label for="programName" class="form-label">Workout Name</label>
+                <input type="text" class="form-control" id="programName" formControlName="name">
+            </div>
+            <div class="mb-2"> Type Of Workout </div>
+            <div class="col mb-3">
+                <div class="row mb-3" *ngFor="let type of types">
+                    <div class="card w-100 p-3 d-inline"
+                        [ngClass]="{'bg-gradient-default': type === selectedType, 'bg-light': type !== selectedType}"
+                        (click)="selectType(type)">
+                        <i class="fa fa-dumbbell mr-1"></i> <span class=""> {{ type }} </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal-footer">
+        <div class="btn-group">
+            <button class="btn btn-dark" type="submit" [disabled]="isLoading">
+                <i class="fa fa-check mr-2"></i> Start Building
+            </button>
+        </div>
+    </div>
+</form>

@@ -6,6 +6,9 @@ import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 
 import { ClipboardModule } from "ngx-clipboard";
 
+import { FullCalendarModule } from "@fullcalendar/angular"; // the main connector. must go first
+import dayGridPlugin from "@fullcalendar/daygrid"; // a plugin
+
 import { AdminLayoutRoutes } from "./admin-layout.routing";
 import { DashboardComponent } from "../../pages/dashboard/dashboard.component";
 import { IconsComponent } from "../../pages/icons/icons.component";
@@ -17,6 +20,12 @@ import { SweetAlert2Module } from "@sweetalert2/ngx-sweetalert2";
 
 import { ProgramScheduleComponent } from "../../pages/program-schedule/program-schedule.component";
 
+FullCalendarModule.registerPlugins([
+  // register FullCalendar plugins
+  dayGridPlugin,
+  // interactionPlugin,
+]);
+
 @NgModule({
   imports: [
     CommonModule,
@@ -26,6 +35,7 @@ import { ProgramScheduleComponent } from "../../pages/program-schedule/program-s
     NgbModule,
     ClipboardModule,
     SweetAlert2Module,
+    FullCalendarModule, // register FullCalendar with you app
   ],
   declarations: [
     DashboardComponent,
