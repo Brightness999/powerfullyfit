@@ -12,6 +12,7 @@ import {
 } from '@nestjs/common';
 
 import { CurrentUser } from '@app/common/decorators/current-user.decorator';
+import { JwtAuthGuard } from '@app/auth/guards/jwt-auth.guard';
 
 import { ApiTags } from '@nestjs/swagger';
 
@@ -29,6 +30,7 @@ export class ProgramController {
   @Post()
   create(@Body() createProgramDto: CreateProgramDto, @CurrentUser() user: any) {
     console.log(user);
+
     return this.programService.create(createProgramDto);
   }
 
