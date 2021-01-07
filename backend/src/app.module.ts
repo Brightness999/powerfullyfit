@@ -18,13 +18,13 @@ import { AuthModule } from './auth/auth.module';
   imports: [
     ConfigModule.forRoot({ isGlobal: true }),
     TypeOrmModule.forRoot({
-      host: 'localhost', // database host
-      port: 5432, // database host
-      username: 'user', // username
-      password: 'password', // user password
-      database: 'postgres', // name of our database,
-      type: 'postgres',
-      // url: 'postgres://user:password@postgres:5432/db',
+      // host: 'localhost', // database host
+      // port: 5432, // database host
+      // username: 'user', // username
+      // password: 'password', // user password
+      // database: 'postgres', // name of our database,
+      // type: 'postgres',
+      url: 'postgres://user:password@postgres:5432/db',
       autoLoadEntities: true,
       synchronize: true,
     }),
