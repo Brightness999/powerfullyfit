@@ -16,7 +16,7 @@ export class WorkoutService {
   ) {}
 
   create(createWorkoutDto: CreateWorkoutDto) {
-    const workout = this.workoutRepository.create(createProgramDto);
+    const workout = this.workoutRepository.create(createWorkoutDto);
 
     return this.workoutRepository.save(workout);
   }
