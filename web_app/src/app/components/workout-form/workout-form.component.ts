@@ -17,6 +17,7 @@ export class WorkoutFormComponent implements OnInit {
 
   workoutForm: FormGroup = this.formBuilder.group({
     name: [null, Validators.required],
+    type: "HIIT",
   });
 
   types = ["Upper Body", "Lower Body", "Full Body", "HIIT", "Core", "Recovery"];
@@ -39,6 +40,7 @@ export class WorkoutFormComponent implements OnInit {
 
     this.zone.run(() => {
       this.selectedType = selectedType;
+      this.workoutForm.patchValue({ type: selectedType });
     });
   }
 
@@ -55,7 +57,7 @@ export class WorkoutFormComponent implements OnInit {
 
       Swal.fire({
         icon: "success",
-        text: "Program Created!",
+        text: "Workout Created!",
         focusConfirm: true,
         showCancelButton: true,
         cancelButtonText: "Close",

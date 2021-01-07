@@ -19,6 +19,7 @@ import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
 import { SweetAlert2Module } from "@sweetalert2/ngx-sweetalert2";
 
 import { ProgramScheduleComponent } from "../../pages/program-schedule/program-schedule.component";
+import { WorkoutPageComponent } from "../../pages/workout-page/workout-page.component";
 
 FullCalendarModule.registerPlugins([
   // register FullCalendar plugins
@@ -44,6 +45,7 @@ FullCalendarModule.registerPlugins([
     IconsComponent,
     MapsComponent,
     ProgramScheduleComponent,
+    WorkoutPageComponent,
   ],
 })
 export class AdminLayoutModule {}

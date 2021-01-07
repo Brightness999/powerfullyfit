@@ -3,11 +3,11 @@
         <div>
             <div class="mb-4">
                 <label for="programName" class="form-label">Workout Name</label>
-                <input type="text" class="form-control" id="programName" formControlName="name">
+                <input type="text" class="form-control" id="name" formControlName="name">
             </div>
             <div class="mb-2"> Type Of Workout </div>
             <div class="col mb-3">
-                <div class="row mb-3" *ngFor="let type of types">
+                <div class="row mx-2 mb-3" *ngFor="let type of types">
                     <div class="card w-100 p-3 d-inline"
                         [ngClass]="{'bg-gradient-default': type === selectedType, 'bg-light': type !== selectedType}"
                         (click)="selectType(type)">

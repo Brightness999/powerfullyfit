@@ -9,7 +9,15 @@ import { ProgramService } from "@pf/services/program.service";
 })
 export class MasterProgramsComponent implements OnInit {
   loading: boolean = true;
+
+  selectedProgram = null;
   programs: any = [];
+
+  get programDuration() {
+    if (this.selectedProgram)
+      return this.selectedProgram.weeks * this.selectedProgram.phases;
+    return 0;
+  }
 
   constructor(private programService: ProgramService) {}
 
@@ -21,5 +29,9 @@ export class MasterProgramsComponent implements OnInit {
 
       this.loading = false;
     });
+  }
+
+  selectProgram(program) {
+    this.selectedProgram = program;
   }
 }

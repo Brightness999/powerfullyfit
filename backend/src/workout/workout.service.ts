@@ -22,18 +22,29 @@ export class WorkoutService {
   }
 
   findAll() {
-    return [{}];
+    return this.workoutRepository.find({
+      order: {
+        id: 'DESC',
+      },
+    });
   }
 
   findOne(id: number) {
-    return `This action returns a #${id} workout`;
+    const workout = await this.programRepository.findOne(id);
+
+    if (!workout)
+      throw new NotFoundException(`workout with id: ${id} was not Found`);
+
+    return workout;
   }
 
   update(id: number, updateWorkoutDto: UpdateWorkoutDto) {
     return `This action updates a #${id} workout`;
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} workout`;
+  async remove(id: number) {
+    const workout: any = await this.findOne(id);
+
+    return this.programRepository.remove(workout);
   }
 }
