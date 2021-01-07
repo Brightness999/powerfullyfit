@@ -25,7 +25,9 @@ export class ProgramService {
   }
 
   findAll() {
-    return this.programRepository.find();
+    return this.programRepository.find({
+      relations: ['coach'],
+    });
   }
 
   async findOne(id: number) {
@@ -44,6 +46,8 @@ export class ProgramService {
   }
 
   remove(id: number) {
-    return `This action removes a #${id} program`;
+    const program: any = await this.findOne(id);
+
+    return this.programRepository.remove(program);
   }
 }

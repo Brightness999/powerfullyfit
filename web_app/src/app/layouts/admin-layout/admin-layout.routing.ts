@@ -9,6 +9,7 @@ import { ClientsComponent } from "../../pages/clients/clients.component";
 import { MessagesComponent } from "../../pages/messages/messages.component";
 import { TrainersComponent } from "../../pages/trainers/trainers.component";
 import { MasterProgramsComponent } from "../../pages/master-programs/master-programs.component";
+import { ProgramScheduleComponent } from "../../pages/program-schedule/program-schedule.component";
 import { MasterWorkoutsComponent } from "../../pages/master-workouts/master-workouts.component";
 import { SettingsComponent } from "../../pages/settings/settings.component";
 import { AppointmentsComponent } from '../../pages/appointments/appointments.component';
@@ -23,6 +24,7 @@ export const AdminLayoutRoutes: Routes = [
   { path: "clients", component: ClientsComponent },
   { path: "trainers", component: TrainersComponent },
   { path: "master-programs", component: MasterProgramsComponent },
+  { path: "master-programs/:id/schedule", component: ProgramScheduleComponent },
   { path: "master-workouts", component: MasterWorkoutsComponent },
   { path: "appointments", component: AppointmentsComponent },
   { path: "settings", component: SettingsComponent },
