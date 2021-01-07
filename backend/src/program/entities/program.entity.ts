@@ -19,8 +19,6 @@ export class Program {
   @Column()
   name: string;
 
-  creator: any;
-
   @Column()
   weeks: number;
 
