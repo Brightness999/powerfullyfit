@@ -4,6 +4,8 @@ import {
   NotFoundException,
 } from '@nestjs/common';
 
+import sgMail from '@sendgrid/mail';
+
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 
@@ -35,10 +37,37 @@ export class UserService {
     return this.coachRepository.save(user);
   }
 
-  createClient(createClientDto: CreateClientDto) {
-    const user = this.clientRepository.create(createClientDto);
+  x() {
+    sgMail.setApiKey(
+      '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',
+    );
 
-    return this.clientRepository.save(user);
+    const msg = {
+      to: 'faridgarciayala@icloud.com', // Change to your recipient
+      from: 'test@example.com', // Change to your verified sender
+      subject: 'Sending with SendGrid is Fun',
+      text: 'and easy to do anywhere, even with Node.js',
+      html: '<strong>and easy to do anywhere, even with Node.js</strong>',
+    };
+
+    sgMail
+      .send(msg)
+      .then(() => {
+        console.log('Email sent');
+      })
+      .catch(error => {
+        console.error(error);
+      });
+  }
+
+  createClient(createClientDto: CreateClientDto) {
+    // const user = this.clientRepository.create(createClientDto);
+
+    // return this.clientRepository.save(user);
+
+    this.x();
+
+    return {};
   }
 
   findAllClients() {
