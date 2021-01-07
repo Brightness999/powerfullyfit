@@ -36,6 +36,7 @@ import { OrganizationService } from "./services/organization.service";
 import { UserService } from "./services/user.service";
 import { ProgramService } from "./services/program.service";
 import { WorkoutService } from "./services/workout.service";
+import { WorkoutPageComponent } from "./pages/workout-page/workout-page.component";
 
 FullCalendarModule.registerPlugins([
   // register FullCalendar plugins

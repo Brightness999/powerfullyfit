@@ -27,6 +27,9 @@ export class ProgramService {
   findAll() {
     return this.programRepository.find({
       relations: ['coach'],
+      order: {
+        id: 'DESC',
+      },
     });
   }
 

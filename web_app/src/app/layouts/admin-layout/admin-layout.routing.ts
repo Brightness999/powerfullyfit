@@ -13,6 +13,7 @@ import { ProgramScheduleComponent } from "../../pages/program-schedule/program-s
 import { MasterWorkoutsComponent } from "../../pages/master-workouts/master-workouts.component";
 import { SettingsComponent } from "../../pages/settings/settings.component";
 import { AppointmentsComponent } from '../../pages/appointments/appointments.component';
+import { WorkoutPageComponent } from "../../pages/workout-page/workout-page.component";
 
 export const AdminLayoutRoutes: Routes = [
   { path: "dashboard", component: DashboardComponent },
@@ -26,6 +27,7 @@ export const AdminLayoutRoutes: Routes = [
   { path: "master-programs", component: MasterProgramsComponent },
   { path: "master-programs/:id/schedule", component: ProgramScheduleComponent },
   { path: "master-workouts", component: MasterWorkoutsComponent },
+  { path: "master-workouts/:id", component: WorkoutPageComponent },
   { path: "appointments", component: AppointmentsComponent },
   { path: "settings", component: SettingsComponent },
 ];

@@ -14,7 +14,8 @@
                     <div class="col-2 border-right">
                         <ul class="ni-ul ml-3">
                             <li *ngFor="let program of programs">
-                                <div class="row align-items-center bg-white py-2 border-bottom">
+                                <div class="row align-items-center bg-white py-2 border-bottom"
+                                    (click)="selectProgram(program)">
                                     <div class="col-auto">
                                         <i class="fa fa-book" style="font-size: 2em;"></i>
                                     </div>
@@ -25,7 +26,7 @@
                                         </h3>
                                         <div>
                                             <h5>
-                                                16 Weeks
+                                                {{ program.weeks * program.phases | number }} Weeks
                                             </h5>
                                         </div>
                                     </div>
@@ -33,19 +34,21 @@
                             </li>
                         </ul>
                     </div>
-                    <div class="col">
+                    <div class="col" *ngIf="selectedProgram">
                         <div class="col">
                             <div class="row align-items-center mb-2">
                                 <div class="col-auto">
-                                    <span class="h1"> <strong> Pro Program </strong> </span>
+                                    <span class="h1"> <strong> {{ selectedProgram.name }} </strong> </span>
                                 </div>
                                 <div class="col">
-                                    <i class="far fa-calendar-alt mr-2"></i> View Calendar
+                                    <a [routerLink]="[selectedProgram.id, 'schedule']">
+                                        <i class="far fa-calendar-alt mr-2"></i> View Calendar
+                                    </a>
                                 </div>
                             </div>
                             <div class="row align-items-center border-bottom mb-2">
                                 <div class="col-auto">
-                                    <span class="h3"> 16 Weeks </span>
+                                    <span class="h3"> {{ programDuration | number }} Weeks </span>
                                 </div>
                                 <div class="col">
                                     Description
