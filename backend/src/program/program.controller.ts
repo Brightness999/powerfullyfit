@@ -29,9 +29,11 @@ export class ProgramController {
 
   @Post()
   create(@Body() createProgramDto: CreateProgramDto, @CurrentUser() user: any) {
-    console.log('current user: ' + user);
+    console.log('current user: ' + JSON.parse(user));
 
     createProgramDto['coach'] = user;
+
+    console.log(createProgramDto);
 
     return this.programService.create(createProgramDto);
   }
