@@ -8,7 +8,6 @@ import { FullCalendarComponent, CalendarOptions } from "@fullcalendar/angular";
   styleUrls: ["./program-schedule.component.css"],
 })
 export class ProgramScheduleComponent implements OnInit {
-  // references the #calendar in the template
   @ViewChild("calendar") calendarComponent: FullCalendarComponent;
 
   calendarOptions: CalendarOptions = {

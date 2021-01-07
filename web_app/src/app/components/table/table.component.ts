@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from "@angular/core";
+import { Component, OnInit, Input, ViewChild } from "@angular/core";
 
 import { GridOptions } from "ag-grid-community";
 import { AgGridAngular } from "ag-grid-angular";
@@ -11,17 +11,16 @@ import { AgGridAngular } from "ag-grid-angular";
 export class TableComponent implements OnInit {
   @ViewChild("agGrid") agGrid: AgGridAngular;
 
-  columnDefs = [{ field: "Full Name" }, { field: "Start Date" }, { field: "" }];
+  @Input() columnDefs;
 
-  rowData = [
-    { id: 0, "Full Name": "Sam Davis", "Start Date": Date.now(), price: 35000 },
-  ];
+  @Input() rowData;
 
   gridOptions: GridOptions;
 
-  constructor() {
+  constructor() {}
+
+  ngOnInit(): void {
     this.gridOptions = <GridOptions>{
-      // PROPERTIES
       rowData: this.rowData,
       columnDefs: this.columnDefs,
       pagination: true,
@@ -50,8 +49,6 @@ export class TableComponent implements OnInit {
       },
     };
   }
-
-  ngOnInit(): void {}
 
   filter(search: string): void {
     if (!this.gridOptions.api) {

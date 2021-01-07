@@ -10,6 +10,7 @@ import { WorkoutService } from "@pf/services/workout.service";
 export class MasterWorkoutsComponent implements OnInit {
   loading: boolean = true;
   workouts: any = [];
+  columnDefs = this.buildColumnDefs();
 
   constructor(private workoutService: WorkoutService) {}
 
@@ -21,5 +22,14 @@ export class MasterWorkoutsComponent implements OnInit {
 
       this.loading = false;
     });
+  }
+
+  buildColumnDefs() {
+    return [
+      { field: "Name" },
+      { field: "Created By" },
+      ,
+      { field: "Create Date" },
+    ];
   }
 }
