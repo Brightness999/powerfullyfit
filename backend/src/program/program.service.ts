@@ -45,7 +45,7 @@ export class ProgramService {
     return `This action updates a #${id} program`;
   }
 
-  remove(id: number) {
+  async remove(id: number) {
     const program: any = await this.findOne(id);
 
     return this.programRepository.remove(program);
