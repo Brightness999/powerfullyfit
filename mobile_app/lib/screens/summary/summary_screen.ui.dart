@@ -40,8 +40,14 @@ class _SummaryScreen extends State {
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
+        bottom: false,
+        top: false,
         child: ListView(
           // crossAxisAlignment: CrossAxisAlignment.start,
+          padding: EdgeInsets.symmetric(
+            vertical: MediaQuery.of(context).size.height * .07,
+            horizontal: MediaQuery.of(context).size.width * .02,
+          ),
           children: [
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,

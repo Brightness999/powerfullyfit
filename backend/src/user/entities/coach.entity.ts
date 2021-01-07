@@ -15,7 +15,7 @@ import { User } from './user.entity';
 import { Client } from './client.entity';
 import { Organization } from '@app/organization/entities/organization.entity';
 import { Program } from '@app/program/entities/program.entity';
-import { workout } from '@app/workout/entities/workout.entity';
+import { Workout } from '@app/workout/entities/workout.entity';
 
 @ChildEntity()
 export class Coach extends User {
@@ -44,7 +44,7 @@ export class Coach extends User {
     type => Workout,
     workout => workout.coach,
   )
-  workouts: workout[];
+  workouts: Workout[];
 
   @ManyToOne(
     type => Organization,

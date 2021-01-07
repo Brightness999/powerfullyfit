@@ -28,7 +28,6 @@ export class MasterWorkoutsComponent implements OnInit {
     return [
       { field: "Name" },
       { field: "Created By" },
-      ,
       { field: "Create Date" },
     ];
   }
