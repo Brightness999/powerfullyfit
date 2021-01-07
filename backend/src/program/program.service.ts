@@ -29,7 +29,9 @@ export class ProgramService {
   }
 
   async findOne(id: number) {
-    const program = await this.programRepository.findOne(id);
+    const program = await this.programRepository.findOne(id, {
+      relations: ['coach'],
+    });
 
     if (!program)
       throw new NotFoundException(`program with id: ${id} was not Found`);
