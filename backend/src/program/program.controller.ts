@@ -31,7 +31,7 @@ export class ProgramController {
   create(@Body() createProgramDto: CreateProgramDto, @CurrentUser() user: any) {
     console.log('current user: ' + user);
 
-    createProgramDto = { ...createProgramDto, coach: ...user };
+    createProgramDto['coach'] = user;
 
     return this.programService.create(createProgramDto);
   }
