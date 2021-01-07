@@ -19,10 +19,7 @@ export class ProgramService {
   ) {}
 
   create(createProgramDto: CreateProgramDto) {
-    const program = this.programRepository.create({
-      ...createProgramDto,
-      coachId: createProgramDto.coach.id,
-    });
+    const program = this.programRepository.create(createProgramDto);
 
     return this.programRepository.save(program);
   }
