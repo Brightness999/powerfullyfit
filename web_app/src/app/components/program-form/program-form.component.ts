@@ -57,7 +57,7 @@ export class ProgramFormComponent implements OnInit {
         confirmButtonText: "Start Building!",
       }).then((result) => {
         console.log("result");
-        this.router.navigate(["/", "master-programs"]);
+        this.router.navigate(["/", "master-programs", program.id, "schedule"]);
       });
     });
   }
