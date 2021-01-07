@@ -35,11 +35,11 @@
             <i class="fas fa-dumbbell"></i>
             <span>Workout</span>
           </button>
-                <button (click)="openModal(template)" class="dropdown-item">
+                <button (click)="openModal(trainerTemplate)" class="dropdown-item">
             <i class="fas fa-chalkboard-teacher"></i>
             <span>Trainer</span>
           </button>
-                <button (click)="openModal(template)" class="dropdown-item">
+                <button (click)="openModal(clientTemplate)" class="dropdown-item">
             <i class="ni ni-user-run"></i>
             <span>Client</span>
           </button>
@@ -113,4 +113,24 @@
     </button>
     </div>
     <pf-workout-form (submitted)="modalRef.hide()"></pf-workout-form>
+</ng-template>
+
+<ng-template #trainerTemplate>
+    <div class="modal-header">
+        <h1 class="modal-title pull-left">Invite Trainer</h1>
+        <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+    </div>
+    <pf-trainer-form (submitted)="modalRef.hide()"></pf-trainer-form>
+</ng-template>
+
+<ng-template #clientTemplate>
+    <div class="modal-header">
+        <h1 class="modal-title pull-left">Invite Client</h1>
+        <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+    </div>
+    <pf-client-form (submitted)="modalRef.hide()"></pf-client-form>
 </ng-template>
