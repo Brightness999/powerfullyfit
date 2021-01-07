@@ -6,4 +6,6 @@ export class CreateWorkoutDto {
 
   @IsString()
   type: string;
+
+  coach: any;
 }

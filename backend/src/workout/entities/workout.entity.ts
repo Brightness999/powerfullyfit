@@ -8,6 +8,8 @@ import {
   ChildEntity,
 } from 'typeorm';
 
+import { Coach } from '@app/user/entities/coach.entity';
+
 @Entity()
 export class Workout {
   @PrimaryGeneratedColumn()
@@ -18,4 +20,13 @@ export class Workout {
 
   @Column()
   type: string;
+
+  @ManyToOne(
+    type => Coach,
+    coach => coach.workouts,
+  )
+  coach: Coach;
+
+  @Column({ default: new Date() })
+  createTime: Date;
 }

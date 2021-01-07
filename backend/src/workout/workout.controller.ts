@@ -31,6 +31,8 @@ export class WorkoutController {
 
   @Post()
   create(@Body() createWorkoutDto: CreateWorkoutDto, @CurrentUser() user: any) {
+    createWorkoutDto['coach'] = user;
+    
     return this.workoutService.create(createWorkoutDto);
   }
 
