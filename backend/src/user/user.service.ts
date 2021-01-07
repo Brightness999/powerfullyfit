@@ -57,6 +57,7 @@ export class UserService {
       })
       .catch(error => {
         console.error(error);
+        console.error(error.response.body.errors);
       });
   }
 

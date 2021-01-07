@@ -1,0 +1,19 @@
+<form [formGroup]="clientForm" (submit)="onSubmit(clientForm.value)">
+    <div class="modal-body">
+        <div>
+            <div class="mb-4">
+                <label for="programName" class="form-label">Client Email</label>
+                <input type="text" class="form-control" id="name" formControlName="email">
+            </div>
+
+        </div>
+    </div>
+
+    <div class="modal-footer">
+        <div class="btn-group">
+            <button class="btn btn-dark" type="submit" [disabled]="isLoading">
+                <i class="fa fa-paper-plane mr-2"></i> Invite Client
+            </button>
+        </div>
+    </div>
+</form>

@@ -18,6 +18,8 @@ import { FooterComponent } from "./footer/footer.component";
 import { TableComponent } from "./table/table.component";
 import { ProgramFormComponent } from "./program-form/program-form.component";
 import { WorkoutFormComponent } from './workout-form/workout-form.component';
+import { TrainerFormComponent } from './trainer-form/trainer-form.component';
+import { ClientFormComponent } from './client-form/client-form.component';
 
 @NgModule({
   imports: [
@@ -37,6 +39,8 @@ import { WorkoutFormComponent } from './workout-form/workout-form.component';
     TableComponent,
     ProgramFormComponent,
     WorkoutFormComponent,
+    TrainerFormComponent,
+    ClientFormComponent,
   ],
   exports: [FooterComponent, NavbarComponent, SidebarComponent, TableComponent],
 })
