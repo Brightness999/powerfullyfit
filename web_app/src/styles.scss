@@ -7,10 +7,13 @@
 
 @import "~@ng-select/ng-select/themes/default.theme.css";
 
+@import '~ngx-toastr/toastr';
+// @import "~ngx-toastr/toastr-bs4-alert";
+
 .ag-theme-alpine {
   @include ag-theme-alpine(
     (
-           // use theme parameters where pos
+           // use theme parameters wher
       alpine-active-color: deeppink
     )
   );

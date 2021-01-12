@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, OnChanges } from "@angular/core";
 
 import { WorkoutService } from "@pf/services/workout.service";
 
@@ -26,7 +26,7 @@ export class MasterWorkoutsComponent implements OnInit {
 
   buildColumnDefs() {
     return [
-      { field: "Name" },
+      { field: "name" },
       { field: "Created By" },
       { field: "Create Date" },
     ];

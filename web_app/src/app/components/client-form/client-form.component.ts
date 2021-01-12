@@ -17,6 +17,8 @@ export class ClientFormComponent implements OnInit {
 
   clientForm: FormGroup = this.formBuilder.group({
     email: [null, Validators.required],
+    firstName: [null, Validators.required],
+    lastName: [null, Validators.required],
   });
 
   isLoading: boolean = false;
@@ -35,7 +37,6 @@ export class ClientFormComponent implements OnInit {
     this.isLoading = true;
 
     // this.workoutService.createWorkout(email).subscribe((res) => {
-    // console.log(newWorkout);
 
     this.isLoading = false;
 

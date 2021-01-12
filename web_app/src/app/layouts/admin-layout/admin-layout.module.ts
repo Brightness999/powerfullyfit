@@ -32,11 +32,12 @@ FullCalendarModule.registerPlugins([
     CommonModule,
     RouterModule.forChild(AdminLayoutRoutes),
     FormsModule,
+    ReactiveFormsModule,
     HttpClientModule,
     NgbModule,
     ClipboardModule,
     SweetAlert2Module,
-    FullCalendarModule, // register FullCalendar with you app
+    FullCalendarModule,
   ],
   declarations: [
     DashboardComponent,

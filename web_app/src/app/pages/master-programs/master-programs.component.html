@@ -10,56 +10,81 @@
                 <div class="card-header border-0">
                     <span class="h1 mb-0"> Master Programs </span>
                 </div>
-                <div class="row">
-                    <div class="col-2 border-right">
-                        <ul class="ni-ul ml-3">
-                            <li *ngFor="let program of programs">
-                                <div class="row align-items-center bg-white py-2 border-bottom"
-                                    (click)="selectProgram(program)">
-                                    <div class="col-auto">
-                                        <i class="fa fa-book" style="font-size: 2em;"></i>
-                                    </div>
 
-                                    <div class="col">
-                                        <h3>
-                                            {{ program.name }}
-                                        </h3>
-                                        <div>
-                                            <h5>
-                                                {{ program.weeks * program.phases | number }} Weeks
-                                            </h5>
+                <div class="card mb-4 mb-xl-0 h-100">
+                    <div class="row no-gutters h-100">
+                        <div class="col-xl-3 col-md-4 border-right overflow-auto">
+                            <div class="d-flex py-3 program-drawer align-items-center"
+                                [ngClass]="{'bg-gradient-default': program.id === selectedProgram?.id}"
+                                *ngFor="let program of programs" (click)="selectProgram(program)">
+                                <div class="mr-3">
+                                    <i class="fa fa-book" style="font-size: 2em;"></i>
+                                </div>
+
+                                <div class="">
+                                    <div class="m-0" style="font-size: 1.4rem"> {{ program.name }} </div>
+                                    <p class="m-0"> {{ program.weeks * program.phases | number }} Weeks </p>
+                                </div>
+
+                            </div>
+                            <hr>
+                        </div>
+
+                        <div class="col-xl-9 col-md-8" *ngIf="selectedProgram">
+                            <ng-container [ngSwitch]="currentView">
+                                <ng-container *ngSwitchCase="'user-list'">
+                                    <div class="mx-3">
+                                        <div class="d-flex align-items-center mb-2">
+                                            <div class="border-right pr-4 mr-4">
+                                                <span class="h1" style="font-size: 2em">
+                                                    <strong>
+                                                        {{ selectedProgram.name }}
+                                                    </strong>
+                                                </span>
+                                            </div>
+                                            <div class="align-self-center">
+                                                <a (click)="viewSchedule()">
+                                                    <i class="far fa-calendar-alt mr-2"></i> View Calendar
+                                                </a>
+                                            </div>
+                                        </div>
+                                        <div class="row align-items-center border-bottom pb-3">
+                                            <div class="col-auto border-right">
+                                                <span class="h3"> {{ programDuration | number }} Weeks </span>
+                                            </div>
+                                            <div class="col">
+                                                Description
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="col" *ngIf="selectedProgram">
-                        <div class="col">
-                            <div class="row align-items-center mb-2">
-                                <div class="col-auto">
-                                    <span class="h1"> <strong> {{ selectedProgram.name }} </strong> </span>
-                                </div>
-                                <div class="col">
-                                    <a [routerLink]="[selectedProgram.id, 'schedule']">
-                                        <i class="far fa-calendar-alt mr-2"></i> View Calendar
-                                    </a>
-                                </div>
-                            </div>
-                            <div class="row align-items-center border-bottom mb-2">
-                                <div class="col-auto">
-                                    <span class="h3"> {{ programDuration | number }} Weeks </span>
-                                </div>
-                                <div class="col">
-                                    Description
-                                </div>
-                            </div>
-                        </div>
 
-                        <div class="ml--3">
-                            <pf-table></pf-table>
-                        </div>
+                                    <div class="">
+                                        <div class="m-2">
+                                            <button type="button" class="btn btn-secondary text-center d-inline">
+                                                <i class="fas fa-users-cog" style="height: auto; width: auto"></i>
+                                                Manage Users
+                                            </button>
+                                        </div>
 
+                                        <pf-table></pf-table>
+                                    </div>
+                                </ng-container>
+
+                                <ng-container *ngSwitchCase="'schedule'">
+                                    <div class="mx-3 mb-4">
+
+                                        <div class="">
+                                            <a class="h3" (click)="selectProgram(selectedProgram)">
+                                                <i class="fas fa-arrow-left mr-2"></i> Back to Summary
+                                            </a>
+                                        </div>
+
+                                    </div>
+
+                                    <full-calendar #calendar [options]="calendarOptions"></full-calendar>
+                                </ng-container>
+                            </ng-container>
+                        </div>
                     </div>
                 </div>
             </div>

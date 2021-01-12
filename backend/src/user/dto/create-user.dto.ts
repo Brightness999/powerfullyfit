@@ -6,4 +6,12 @@ export abstract class CreateUserDto {
 
   @IsString()
   lastname: string;
+
+  @IsString()
+  email: string;
+
+  @IsString()
+  password: string;
+
+
 }

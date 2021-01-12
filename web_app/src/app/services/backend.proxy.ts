@@ -13,10 +13,10 @@ const headers = {
   providedIn: "root",
 })
 export class BackendProxy {
-  configUrl = "http://localhost:3000/api/";
+  configUrl = "http://localhost:4000/api/";
   remoteUrl = "http://66.42.110.119:3000/api/";
 
-  url = this.remoteUrl;
+  url = this.configUrl;
 
   constructor(private http: HttpClient) {}
 

@@ -6,7 +6,7 @@ import {
   JoinTable,
 } from 'typeorm';
 
-import { externalAsset } from '@app/common/entities/external-asset.entity';
+import { ExternalAsset } from '@app/external-asset/entities/external-asset.entity';
 
 import { Coach } from '@app/user/entities/coach.entity';
 
@@ -18,7 +18,7 @@ export class Organization {
   @Column()
   name: string;
 
-  logo: externalAsset;
+  logo: ExternalAsset;
 
   @JoinTable()
   @OneToMany(

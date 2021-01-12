@@ -1,0 +1,143 @@
+// Video tutorial/codealong here: https://youtu.be/fCpw5i_2IYU
+$blue: #74b9ff;
+
+.card {
+  height: 80vh;
+}
+
+.container {
+  margin: 60px auto;
+  background: #fff;
+  padding: 0;
+  border-radius: 7px;
+}
+
+.profile-image {
+  width: 50px;
+  height: 50px;
+  border-radius: 40px;
+}
+
+.settings-tray {
+  background: #eee;
+  padding: 10px 15px;
+  border-radius: 7px;
+
+  .no-gutters {
+    padding: 0;
+  }
+
+  &--right {
+    float: right;
+
+    i {
+      margin-top: 10px;
+      font-size: 25px;
+      color: grey;
+      margin-left: 14px;
+      transition: 0.3s;
+
+      &:hover {
+        color: $blue;
+        cursor: pointer;
+      }
+    }
+  }
+}
+
+.friend-drawer {
+  padding: 10px 15px;
+  display: flex;
+  vertical-align: baseline;
+  background: #fff;
+  transition: 0.3s ease;
+
+  .text {
+    margin-left: 12px;
+    width: 70%;
+
+    h3 {
+      margin-top: 6px;
+      margin-bottom: 0;
+    }
+
+    p {
+      margin: 0;
+    }
+  }
+
+  .time {
+    color: grey;
+  }
+
+  &:hover {
+    background: $blue;
+    cursor: pointer;
+
+    p,
+    h6,
+    .time {
+      color: #fff !important;
+    }
+  }
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.offset-md-9 {
+  .chat-bubble {
+    background: $blue;
+    color: #fff;
+  }
+}
+
+.basic-textarea textarea.bas {
+  height: auto;
+}
+
+.card.chat-room img.rounded-circle {
+  border-radius: 50%;
+}
+
+.card.chat-room img.avatar {
+  height: 3rem;
+  width: 3rem;
+}
+
+.card.chat-room .text-small {
+  font-size: 0.95rem;
+}
+
+.card.chat-room .text-smaller {
+  font-size: 0.75rem;
+}
+
+ul.menu {
+  vertical-align: bottom;
+}
+
+.content {
+  display: flex;
+
+  justify-content: space-around;
+  flex-flow: column;
+  align-items: stretch;
+}
+
+.box {
+  // flex-grow: 1;
+  align-self: end;
+  // border: 3px solid rgba(0, 0, 0, 0.2);
+}
+
+.box1 {
+  // flex-grow: 5;
+  // border: 3px solid rgba(0, 0, 0, 0.2);
+}

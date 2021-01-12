@@ -9,7 +9,6 @@ import {
 } from 'typeorm';
 
 import { CoachRole } from './../models/coach-role.enum';
-import { externalAsset } from './../../common/entities/external-asset.entity';
 
 import { User } from './user.entity';
 import { Coach } from './coach.entity';

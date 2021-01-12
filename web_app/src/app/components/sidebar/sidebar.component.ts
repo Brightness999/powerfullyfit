@@ -37,6 +37,7 @@ export const EXTRA_ROUTES: RouteInfo[] = [
     icon: "fas fa-paper-plane",
     class: "",
   },
+  { path: "/invites", title: "Invites", icon: "fas fa-mail-bulk", class: "" },
   { path: "/settings", title: "Settings", icon: "fas fa-cog", class: "" },
 ];
 
