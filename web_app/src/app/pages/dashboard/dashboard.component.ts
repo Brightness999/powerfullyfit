@@ -25,10 +25,13 @@ export class DashboardComponent implements OnInit {
   public datasets: any;
   public data: any;
   public salesChart;
-  public clicked: boolean = true;
-  public clicked1: boolean = false;
 
-  user;
+  user: any;
+  notifications: any = [];
+
+  personalBests: any = [];
+  waitingForWorkouts: any = [];
+  needSomeLovings: any = [];
 
   modalRef: BsModalRef;
 
@@ -39,10 +42,9 @@ export class DashboardComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.datasets = [
-      [0, 20, 10, 30, 15, 40, 20, 60, 60],
-      [0, 20, 5, 25, 10, 30, 15, 40, 40],
-    ];
+    // this.datasets = [[0, 20, 10, 30, 15, 40, 20, 60, 60]];
+    this.datasets = [[]];
+
     this.data = this.datasets[0];
 
     parseOptions(Chart, chartOptions());
@@ -52,14 +54,8 @@ export class DashboardComponent implements OnInit {
     var clientComplianceChart = new Chart(chartClientCompliance, {
       type: "line",
       options: chartExample2.options,
-      data: chartExample2.data,
+      data: this.data,
     });
-
-    this.organizationService.findOrganizationById(1).subscribe((res) => {
-      console.log(res);
-    });
-
-    console.log(this.userService.currentUser);
 
     this.user = this.userService.currentUser;
   }

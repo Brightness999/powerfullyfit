@@ -22,7 +22,22 @@ import { NgSelectModule } from "@ng-select/ng-select";
 
 import { FullCalendarModule } from "@fullcalendar/angular"; // the main connector. must go first
 import dayGridPlugin from "@fullcalendar/daygrid"; // a plugin
-// import interactionPlugin from "@fullcalendar/interaction"; // a plugin
+import interactionPlugin from "@fullcalendar/interaction"; // a plugin
+
+import { SocketIoModule, SocketIoConfig } from "ngx-socket-io";
+
+import { ToastrModule } from "ngx-toastr";
+
+import { OrganizationService } from "./services/organization.service";
+import { UserService } from "./services/user.service";
+import { CoachService } from "./services/coach.service";
+import { ClientService } from "./services/client.service";
+import { ProgramService } from "./services/program.service";
+import { WorkoutService } from "./services/workout.service";
+import { MessageService } from "./services/message.service";
+import { NotificationsService } from "./services/notifications.service";
+import { ExerciseService } from "./services/exercise.service";
+import { ExternalAssetService } from "./services/external-asset.service";
 
 import { MessagesComponent } from "./pages/messages/messages.component";
 import { ClientsComponent } from "./pages/clients/clients.component";
@@ -31,18 +46,11 @@ import { MasterProgramsComponent } from "./pages/master-programs/master-programs
 import { MasterWorkoutsComponent } from "./pages/master-workouts/master-workouts.component";
 import { SettingsComponent } from "./pages/settings/settings.component";
 import { AppointmentsComponent } from "./pages/appointments/appointments.component";
-
-import { OrganizationService } from "./services/organization.service";
-import { UserService } from "./services/user.service";
-import { ProgramService } from "./services/program.service";
-import { WorkoutService } from "./services/workout.service";
 import { WorkoutPageComponent } from "./pages/workout-page/workout-page.component";
+import { InvitesComponent } from "./pages/invites/invites.component";
+import { NotificationsComponent } from "./pages/notifications/notifications.component";
 
-FullCalendarModule.registerPlugins([
-  // register FullCalendar plugins
-  dayGridPlugin,
-  // interactionPlugin,
-]);
+FullCalendarModule.registerPlugins([dayGridPlugin, interactionPlugin]);
 
 @NgModule({
   imports: [
@@ -55,8 +63,9 @@ FullCalendarModule.registerPlugins([
     SweetAlert2Module.forRoot(),
     ModalModule.forRoot(),
     NgSelectModule,
-    FullCalendarModule, // register FullCalendar with you app
+    FullCalendarModule,
     AppRoutingModule,
+    ToastrModule.forRoot(),
   ],
   declarations: [
     AppComponent,
@@ -69,13 +78,21 @@ FullCalendarModule.registerPlugins([
     MasterWorkoutsComponent,
     SettingsComponent,
     AppointmentsComponent,
+    InvitesComponent,
+    NotificationsComponent,
   ],
   providers: [
     BackendProxy,
     OrganizationService,
     UserService,
+    CoachService,
+    ClientService,
     ProgramService,
     WorkoutService,
+    MessageService,
+    NotificationsService,
+    ExerciseService,
+    ExternalAssetService,
   ],
   bootstrap: [AppComponent],
 })

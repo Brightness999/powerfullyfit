@@ -17,9 +17,15 @@ import { FooterComponent } from "./footer/footer.component";
 
 import { TableComponent } from "./table/table.component";
 import { ProgramFormComponent } from "./program-form/program-form.component";
-import { WorkoutFormComponent } from './workout-form/workout-form.component';
-import { TrainerFormComponent } from './trainer-form/trainer-form.component';
-import { ClientFormComponent } from './client-form/client-form.component';
+import { WorkoutFormComponent } from "./workout-form/workout-form.component";
+import { TrainerFormComponent } from "./trainer-form/trainer-form.component";
+import { ClientFormComponent } from "./client-form/client-form.component";
+import { InboxComponent } from "./inbox/inbox.component";
+import { ExerciseFormComponent } from "./exercise-form/exercise-form.component";
+import { DateCellRendererComponent } from "./date-cell-renderer/date-cell-renderer.component";
+import { UserCellRendererComponent } from "./user-cell-renderer/user-cell-renderer.component";
+import { FileUploaderComponent } from "./file-uploader/file-uploader.component";
+import { DomSanitizerPipe } from "./pipes/dom-sanitizer.pipe";
 
 @NgModule({
   imports: [
@@ -30,7 +36,10 @@ import { ClientFormComponent } from './client-form/client-form.component';
     NgSelectModule,
     FormsModule,
     ReactiveFormsModule,
-    AgGridModule.withComponents([]),
+    AgGridModule.withComponents([
+      DateCellRendererComponent,
+      UserCellRendererComponent,
+    ]),
   ],
   declarations: [
     FooterComponent,
@@ -41,7 +50,20 @@ import { ClientFormComponent } from './client-form/client-form.component';
     WorkoutFormComponent,
     TrainerFormComponent,
     ClientFormComponent,
+    InboxComponent,
+    ExerciseFormComponent,
+    DateCellRendererComponent,
+    UserCellRendererComponent,
+    FileUploaderComponent,
+    DomSanitizerPipe,
   ],
-  exports: [FooterComponent, NavbarComponent, SidebarComponent, TableComponent],
+  exports: [
+    FooterComponent,
+    NavbarComponent,
+    SidebarComponent,
+    TableComponent,
+    InboxComponent,
+    DomSanitizerPipe,
+  ],
 })
 export class ComponentsModule {}

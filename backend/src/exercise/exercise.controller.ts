@@ -21,7 +21,9 @@ export class ExerciseController {
   constructor(private readonly exerciseService: ExerciseService) {}
 
   @Post()
-  create(@Body() createExerciseDto: CreateExerciseDto) {
+  async create(@Body() createExerciseDto: CreateExerciseDto) {
+    console.log(createExerciseDto);
+
     return this.exerciseService.create(createExerciseDto);
   }
 

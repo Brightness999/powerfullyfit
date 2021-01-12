@@ -13,7 +13,8 @@ export class TableComponent implements OnInit {
 
   @Input() columnDefs;
 
-  @Input() rowData;
+  @Input() rowData = [];
+  @Input() height: string = "65vh";
 
   gridOptions: GridOptions;
 
@@ -21,12 +22,12 @@ export class TableComponent implements OnInit {
 
   ngOnInit(): void {
     this.gridOptions = <GridOptions>{
-      rowData: this.rowData,
       columnDefs: this.columnDefs,
       pagination: true,
       paginationAutoPageSize: true,
       suppressCellSelection: true,
       cacheQuickFilter: true,
+      rowHeight: 50,
 
       context: {
         componentParent: this,

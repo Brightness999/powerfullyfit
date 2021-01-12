@@ -4,13 +4,19 @@ import {
   PrimaryGeneratedColumn,
   OneToMany,
   JoinTable,
+  TableInheritance,
+  ManyToOne,
+  JoinColumn,
 } from 'typeorm';
 
-export class externalAsset {
+@Entity()
+export class Notification {
   @PrimaryGeneratedColumn()
   id: number;
 
-  url: string;
+  @Column()
+  text: string;
 
+  @Column({ default: new Date() })
   createTime: Date;
 }

@@ -1,0 +1,49 @@
+// Video tutorial/codealong here: https://youtu.be/fCpw5i_2IYU
+.card {
+  height: 80vh;
+}
+
+.program-drawer {
+  padding: 10px 15px;
+  display: flex;
+  vertical-align: baseline;
+  background: #fff;
+  transition: 0.3s ease;
+
+  .text {
+    margin-left: 12px;
+    width: 70%;
+
+    h2 {
+      margin-top: 6px;
+      margin-bottom: 0;
+    }
+
+    p {
+      margin: 0 !important;
+    }
+  }
+
+  .time {
+    color: grey;
+  }
+
+  &:hover {
+    // background: $;
+    cursor: pointer;
+  }
+}
+
+hr {
+  margin: 5px auto;
+  width: 60%;
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}

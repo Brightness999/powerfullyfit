@@ -3,9 +3,27 @@
         <div>
             <div class="mb-4">
                 <label for="programName" class="form-label">Client Email</label>
-                <input type="text" class="form-control" id="name" formControlName="email">
+                <input type="text" class="form-control" id="name" placeholder="Email" formControlName="email">
             </div>
 
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="inputEmail4">First Name</label>
+                    <input type="email" class="form-control" id="inputEmail4" placeholder="First Name" formControlName="firstName">
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="inputPassword4">Last Name</label>
+                    <input type="text" class="form-control" id="inputPassword4" placeholder="Last Name" formControlName="lastName">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="inputAddress">Assign To</label>
+                <ng-select 
+                    placeholder="Assign To"
+                >
+                </ng-select>
+            </div>
         </div>
     </div>
 

@@ -1,0 +1,70 @@
+<div class="card card-stats mb-4 mb-xl-0">
+    <div class="card-header border-0">
+        <span class="h1 mb-0"> Inbox </span>
+    </div>
+
+    <div class="row no-gutters h-100">
+        <div class="col-xl-3 col-md-4 border-right overflow-auto">
+            <div class="friend-drawer border-bottom" *ngFor="let chat of [1,2,3]">
+                <img class="profile-image" src="https://www.clarity-enhanced.net/wp-content/uploads/2020/06/robocop.jpg"
+                    alt="">
+                <div class="text">
+                    <h3>Robo Cop</h3>
+                    <p class="text-muted">Hey there!</p>
+                </div>
+                <span class="time text-muted small">13:21</span>
+            </div>
+        </div>
+        <div class="col-xl-9 col-md-8 h-100 px-4">
+            <div class="content h-100">
+                <div class="h-100 box1">
+                    <div class="d-flex justify-content-start mb-4" *ngFor="let chatMessage of chat">
+                        <img src="https://mdbootstrap.com/img/Photos/Avatars/avatar-6.jpg" alt="avatar"
+                            class="avatar rounded-circle d-flex align-self-start mr-2 z-depth-1 border">
+                        <div class="chat-body bg-dark text-white p-3 ml-2 z-depth-1">
+                            <div class="header">
+                                <strong class="primary-font">Brad Pitt</strong>
+                                <small class="pull-right text-muted"> 12 mins ago</small>
+                            </div>
+                            <hr class="w-100">
+                            <p class="mb-0">
+                                {{ chatMessage.text }}
+                            </p>
+                        </div>
+                    </div>
+                    <!-- <div class="d-flex justify-content-end mb-auto">
+                        <div class="chat-body bg-dark text-white p-3 z-depth-1">
+                            <div class="header">
+                                <strong class="primary-font">Lara Croft</strong>
+                                <small class="pull-right text-muted"> 13 mins ago</small>
+                            </div>
+                            <hr class="w-100">
+                            <p class="mb-0">
+                                Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque
+                                laudantium.
+                            </p>
+                        </div>
+                        <img src="https://mdbootstrap.com/img/Photos/Avatars/avatar-5.jpg" alt="avatar"
+                            class="avatar rounded-circle d-flex align-self-start ml-4 z-depth-1 border">
+                    </div> -->
+                </div>
+                <div class="box w-100">
+                    <form [formGroup]="message" (submit)="send(message.value)" class="form-group">
+                        <div class="input-group input-group-alternative shadow-lg border">
+                            <input class="form-control" placeholder="Type Message Here ..." formControlName="text"
+                                type="text">
+                            <div class="input-group-append">
+                                <div class=" my-auto h1 mr-4">
+                                    <i class="fas fa-cloud-upload-alt text-gray"></i>
+                                </div>
+                                <button class="btn btn-primary rounded">
+                                    <i class="fas fa-paper-plane mr-2"></i> SEND
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

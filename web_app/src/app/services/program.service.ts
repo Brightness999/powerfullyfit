@@ -18,4 +18,8 @@ export class ProgramService {
   getAllPrograms(): Observable<any> {
     return this.backendProxy.get("program");
   }
+
+  findProgramById(programId: string | number) {
+    return this.backendProxy.get("program/" + programId.toString());
+  }
 }

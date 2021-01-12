@@ -1,0 +1,6 @@
+<form [formGroup]="assetForm" (submit)="saveAsset(assetForm.value.url)" class="form-group">
+    <label for="asset" class="form-label"> Asset </label>
+    <input type="text" class="form-control" id="asset" formControlName="url">
+</form>
+
+<iframe *ngIf="savedAsset" [src]="savedAsset.url | domSanitizer" frameborder="0" allowfullscreen class="asset"></iframe>

@@ -1,7 +1,13 @@
 import { Component, OnInit } from "@angular/core";
 
+import { ToastrService } from "ngx-toastr";
+
 import { OrganizationService } from "@pf/services/organization.service";
 import { UserService } from "@pf/services/user.service";
+import { MessageService } from "@pf/services/message.service";
+import { NotificationsService } from "@pf/services/notifications.service";
+
+import { take } from "rxjs/operators";
 
 @Component({
   selector: "app-admin-layout",
@@ -13,11 +19,35 @@ export class AdminLayoutComponent implements OnInit {
 
   constructor(
     private organizationService: OrganizationService,
-    private userService: UserService
+    private userService: UserService,
+    private messageService: MessageService,
+    private notificationsService: NotificationsService,
+    private toastr: ToastrService
   ) {}
 
   ngOnInit() {
-    
     this.user = this.userService.currentUser;
+
+    this.notificationsService.notifications.subscribe((res) => {
+      console.log(res);
+
+      this.toastr
+        .info(res.text)
+        .onTap.pipe(take(1))
+        .subscribe(() => this.toasterClickedHandler());
+    });
+
+    this.messageService.messages.subscribe((res) => {
+      console.log(res);
+
+      this.toastr
+        .success(res.text)
+        .onTap.pipe(take(1))
+        .subscribe(() => this.toasterClickedHandler());
+    });
+  }
+
+  toasterClickedHandler() {
+    console.log("Toastr clicked");
   }
 }
