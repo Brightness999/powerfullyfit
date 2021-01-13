@@ -27,7 +27,7 @@ export class TableComponent implements OnInit {
       paginationAutoPageSize: true,
       suppressCellSelection: true,
       cacheQuickFilter: true,
-      rowHeight: 50,
+      rowHeight: 75,
 
       context: {
         componentParent: this,

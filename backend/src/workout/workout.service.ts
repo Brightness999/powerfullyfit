@@ -27,7 +27,7 @@ export class WorkoutService {
 
   findAll() {
     return this.workoutRepository.find({
-      relations: ['coach'],
+      relations: ['coach', 'coach.logo'],
       order: {
         id: 'DESC',
       },

@@ -5,6 +5,7 @@ import {
   ManyToOne,
   OneToMany,
   JoinTable,
+  JoinColumn,
 } from 'typeorm';
 
 import { User } from '@app/user/entities/user.entity';
@@ -17,16 +18,12 @@ export class Message {
   @Column()
   text: string;
 
-  @ManyToOne(
-    type => User,
-    user => user.deliveredMessages,
-  )
+  @JoinColumn({ name: 'to' })
+  @ManyToOne(() => User)
   to: User;
 
-  @ManyToOne(
-    type => User,
-    user => user.receivedMessages,
-  )
+  @JoinColumn({ name: 'from' })
+  @ManyToOne(() => User)
   from: User;
 
   @Column({ default: new Date() })

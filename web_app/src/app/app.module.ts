@@ -38,6 +38,7 @@ import { MessageService } from "./services/message.service";
 import { NotificationsService } from "./services/notifications.service";
 import { ExerciseService } from "./services/exercise.service";
 import { ExternalAssetService } from "./services/external-asset.service";
+import { InvitationService } from "./services/invitation.service";
 
 import { MessagesComponent } from "./pages/messages/messages.component";
 import { ClientsComponent } from "./pages/clients/clients.component";
@@ -93,6 +94,7 @@ FullCalendarModule.registerPlugins([dayGridPlugin, interactionPlugin]);
     NotificationsService,
     ExerciseService,
     ExternalAssetService,
+    InvitationService,
   ],
   bootstrap: [AppComponent],
 })

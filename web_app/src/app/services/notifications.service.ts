@@ -1,5 +1,11 @@
 import { Injectable } from "@angular/core";
+
 import { Socket } from "ngx-socket-io";
+
+import { BackendProxy } from "./backend.proxy";
+
+import { Observable, throwError } from "rxjs";
+import { tap, catchError, retry, map } from "rxjs/operators";
 
 @Injectable({
   providedIn: "root",
@@ -7,11 +13,15 @@ import { Socket } from "ngx-socket-io";
 export class NotificationsService extends Socket {
   notifications = this.fromEvent<any>("createNotification");
 
-  constructor() {
+  constructor(private backendProxy: BackendProxy) {
     super({ url: "http://localhost:4000/notifications", options: {} });
   }
 
   sendNotification(text: string) {
     this.emit("createNotification", { text });
+  }
+
+  getAllNotifications() {
+    return this.backendProxy.get("notification");
   }
 }

@@ -1,5 +1,11 @@
 import { Injectable } from "@angular/core";
+
 import { Socket } from "ngx-socket-io";
+
+import { BackendProxy } from "./backend.proxy";
+
+import { Observable, throwError } from "rxjs";
+import { tap, catchError, retry, map } from "rxjs/operators";
 
 @Injectable({
   providedIn: "root",
@@ -7,11 +13,19 @@ import { Socket } from "ngx-socket-io";
 export class MessageService extends Socket {
   messages = this.fromEvent<any>("createMessage");
 
-  constructor() {
-    super({ url: "http://localhost:4000/messages", options: {} });
+  constructor(private backendProxy: BackendProxy) {
+    super({
+      url: `http://localhost:4000/messages?token=${
+        (localStorage.getItem("token"))
+      }`,
+      options: {},
+    });
   }
 
-  sendMessage(text: string) {
-    this.emit("createMessage", { text });
+  sendMessage(message: any) {
+    console.log(message);
+
+    return this.backendProxy.post("message", message);
+    // this.emit("createMessage", text);
   }
 }

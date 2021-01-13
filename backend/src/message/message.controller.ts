@@ -24,6 +24,7 @@ import { UpdateMessageDto } from './dto/update-message.dto';
 
 @Controller('message')
 @ApiTags('message')
+@UseGuards(JwtAuthGuard)
 export class MessageController {
   constructor(
     private readonly messageService: MessageService,
@@ -31,8 +32,11 @@ export class MessageController {
   ) {}
 
   @Post()
-  create(@Body() createMessageDto: CreateMessageDto) {
-    console.log(createMessageDto);
+  create(@Body() createMessageDto: CreateMessageDto, @CurrentUser() user: any) {
+    console.log('user');
+    console.log(user);
+
+    createMessageDto['from'] = user;
 
     this.messageGateway.create(createMessageDto);
 
