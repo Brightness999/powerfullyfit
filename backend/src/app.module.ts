@@ -4,10 +4,10 @@ import { ConfigModule } from '@nestjs/config';
 import { ServeStaticModule } from '@nestjs/serve-static';
 import { join } from 'path';
 
-import { MulterModule } from '@nestjs/platform-express';
-
 // ----------- modules -------------
 import { TypeOrmModule } from '@nestjs/typeorm';
+
+import { MulterModule } from '@nestjs/platform-express';
 
 import { UserModule } from './user/user.module';
 import { ProgramModule } from './program/program.module';
@@ -29,7 +29,7 @@ import { InvitationModule } from './invitation/invitation.module';
       // username: 'user', // username
       // password: 'password', // user password
       // database: 'db', // name of our database,
-      // type: 'postgres',
+      type: 'postgres',
       url: 'postgres://user:password@postgres:5432/db',
       autoLoadEntities: true,
       synchronize: true,
@@ -41,6 +41,7 @@ import { InvitationModule } from './invitation/invitation.module';
     MulterModule.register({
       dest: './upload',
     }),
+
     AuthModule,
     UserModule,
     OrganizationModule,

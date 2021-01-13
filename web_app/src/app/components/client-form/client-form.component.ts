@@ -2,7 +2,9 @@ import { Component, OnInit, Output, EventEmitter, NgZone } from "@angular/core";
 
 import Swal from "sweetalert2";
 
-import { WorkoutService } from "@pf/services/workout.service";
+import { InvitationService } from "@pf/services/invitation.service";
+
+// import {  }
 
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { Router } from "@angular/router";
@@ -17,37 +19,51 @@ export class ClientFormComponent implements OnInit {
 
   clientForm: FormGroup = this.formBuilder.group({
     email: [null, Validators.required],
-    firstName: [null, Validators.required],
-    lastName: [null, Validators.required],
+    firstname: [null, Validators.required],
+    lastname: [null, Validators.required],
   });
+
+  errorMessage: string = "";
 
   isLoading: boolean = false;
 
   constructor(
     private formBuilder: FormBuilder,
-    private workoutService: WorkoutService,
+    private invitationService: InvitationService,
     private zone: NgZone,
     private router: Router
   ) {}
 
   ngOnInit(): void {}
 
-  onSubmit(client: string) {
+  onSubmit(client) {
     console.log(client);
     this.isLoading = true;
 
-    // this.workoutService.createWorkout(email).subscribe((res) => {
+    this.invitationService.inviteClient(client).subscribe(
+      (res) => {
+        this.isLoading = false;
 
-    this.isLoading = false;
+        this.submitted.emit(true);
 
-    this.submitted.emit(true);
+        Swal.fire({
+          icon: "success",
+          text: "Client Invited!",
+        }).then((result) => {
+          console.log("result");
+        });
+      },
+      (err) => {
+        console.log(err.error.message[0]);
 
-    Swal.fire({
-      icon: "success",
-      text: "Client Invited!",
-    }).then((result) => {
-      console.log("result");
-    });
-    // });
+        this.isLoading = false;
+
+        setTimeout(() => {
+          this.errorMessage = "";
+        }, 10000);
+
+        this.errorMessage = err.error.message[0];
+      }
+    );
   }
 }

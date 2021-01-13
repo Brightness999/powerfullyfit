@@ -17,6 +17,16 @@ export class InboxComponent implements OnInit {
 
   chat = [];
 
+  selectedUser = {
+    id: 1,
+    firstname: "Admin",
+    lastname: "Fit",
+    password: "12345",
+    email: "admin@fit.com",
+    createTime: "2021-01-03T11:44:24.115Z",
+    role: "SUPER ADMIN",
+  };
+
   constructor(
     private messageService: MessageService,
     private notificationsService: NotificationsService,
@@ -32,8 +42,10 @@ export class InboxComponent implements OnInit {
   }
 
   send(message) {
-    this.messageService.sendMessage(message);
+    message["to"] = this.selectedUser;
 
-    this.message.reset();
+    this.messageService.sendMessage(message).subscribe((res) => {
+      this.message.reset();
+    });
   }
 }

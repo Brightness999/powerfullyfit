@@ -9,11 +9,11 @@
             <div class="form-row">
                 <div class="form-group col-md-6">
                     <label for="inputEmail4">First Name</label>
-                    <input type="email" class="form-control" id="inputEmail4" placeholder="First Name" formControlName="firstName">
+                    <input type="email" class="form-control" id="inputEmail4" placeholder="First Name" formControlName="firstname">
                 </div>
                 <div class="form-group col-md-6">
                     <label for="inputPassword4">Last Name</label>
-                    <input type="text" class="form-control" id="inputPassword4" placeholder="Last Name" formControlName="lastName">
+                    <input type="text" class="form-control" id="inputPassword4" placeholder="Last Name" formControlName="lastname">
                 </div>
             </div>
 
@@ -28,6 +28,10 @@
     </div>
 
     <div class="modal-footer">
+        <div class="alert alert-danger" role="alert" *ngIf="errorMessage">
+            {{ errorMessage }}
+          </div>
+
         <div class="btn-group">
             <button class="btn btn-dark" type="submit" [disabled]="isLoading">
                 <i class="fa fa-paper-plane mr-2"></i> Invite Client

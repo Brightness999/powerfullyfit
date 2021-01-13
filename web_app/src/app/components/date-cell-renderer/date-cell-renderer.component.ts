@@ -9,13 +9,10 @@ import { ICellRendererAngularComp } from "ag-grid-angular";
 })
 export class DateCellRendererComponent implements ICellRendererAngularComp {
   rowData: any;
-  buttonTitle: string;
-  action: any;
-  buttonType: string;
-  icon: string;
+
   private params: any;
-  private url: any;
-  private baseUrl: ActivatedRoute;
+
+  displayFields: Array<string> = [];
 
   constructor() {}
 
@@ -24,6 +21,19 @@ export class DateCellRendererComponent implements ICellRendererAngularComp {
 
     this.params = params;
     this.rowData = params.data;
+
+    this.displayFields = params.displayFields;
+  }
+
+  displayField(fieldName: string): string {
+    const fieldNameParts = fieldName.split(".");
+    let returnValue = { ...this.rowData };
+    while (returnValue.hasOwnProperty(fieldNameParts[0])) {
+      returnValue = returnValue[fieldNameParts[0]] || [];
+      fieldNameParts.shift();
+    }
+
+    return returnValue.toString();
   }
 
   refresh(): boolean {

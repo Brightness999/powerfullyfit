@@ -1,5 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 
+import { InvitationService } from "@pf/services/invitation.service";
+
 @Component({
   selector: "pf-invites",
   templateUrl: "./invites.component.html",
@@ -10,15 +12,21 @@ export class InvitesComponent implements OnInit {
   invites: any = [];
   columnDefs = this.buildColumnDefs();
 
-  constructor() {}
+  constructor(private invitationService: InvitationService) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.invitationService.getAllInvitations().subscribe((res) => {
+      console.log(res);
+
+      this.invites = res;
+    });
+  }
 
   buildColumnDefs() {
     return [
+      { field: "email" },
       { field: "firstname" },
-      { field: "Created By" },
-      { field: "Create Date" },
+      { field: "lastname" },
     ];
   }
 }

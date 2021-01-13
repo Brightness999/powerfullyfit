@@ -2,6 +2,9 @@ import { Component, OnInit, OnChanges } from "@angular/core";
 
 import { WorkoutService } from "@pf/services/workout.service";
 
+import { UserCellRendererComponent } from "@pf/components/user-cell-renderer/user-cell-renderer.component";
+import { DateCellRendererComponent } from "@pf/components/date-cell-renderer/date-cell-renderer.component";
+
 @Component({
   selector: "app-master-workouts",
   templateUrl: "./master-workouts.component.html",
@@ -27,8 +30,16 @@ export class MasterWorkoutsComponent implements OnInit {
   buildColumnDefs() {
     return [
       { field: "name" },
-      { field: "Created By" },
-      { field: "Create Date" },
+      {
+        field: "Created By",
+        cellRendererFramework: UserCellRendererComponent,
+        cellRendererParams: { displayFields: ["coach"] },
+      },
+      {
+        headerName: "Created On",
+        field: "createTime",
+        cellRendererFramework: DateCellRendererComponent,
+      },
     ];
   }
 }

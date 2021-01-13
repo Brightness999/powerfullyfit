@@ -5,30 +5,55 @@ import {
   WsResponse,
   OnGatewayConnection,
   WebSocketServer,
+  ConnectedSocket,
 } from '@nestjs/websockets';
+
+import { UseGuards } from '@nestjs/common';
+
+import { JwtService } from '@nestjs/jwt';
+
+import { CurrentUser } from '@app/common/decorators/current-user.decorator';
+import { JwtAuthGuard } from '@app/auth/guards/jwt-auth.guard';
 
 import { MessageService } from './message.service';
 
 import { CreateMessageDto } from './dto/create-message.dto';
 import { UpdateMessageDto } from './dto/update-message.dto';
 
-import { Server } from 'socket.io';
+import { Server, Socket } from 'socket.io';
 
 @WebSocketGateway({ namespace: '/messages' })
+@UseGuards(JwtAuthGuard)
 export class MessageGateway implements OnGatewayConnection {
   @WebSocketServer() wss: Server;
 
-  constructor(private readonly messageService: MessageService) {}
+  connections = {};
 
-  handleConnection(client: any, ...args: any) {
+  constructor(
+    private readonly messageService: MessageService,
+    private readonly jwtService: JwtService,
+  ) {}
+
+  async handleConnection(client: any, ...args: any) {
     console.log('connected');
+
+    let user: any = await this.jwtService.verify(client.handshake.query.token)
+      .user;
+
+    console.log(user);
+
+    this.connections[user.id] = client.conn.id;
+
+    console.log(this.connections);
   }
 
   @SubscribeMessage('createMessage')
   create(@MessageBody() createMessageDto: CreateMessageDto) {
-    console.log('createMessage');
+    console.log('gateway');
+    console.log('createMessageDto');
+    console.log(createMessageDto);
 
-    this.wss.emit('createMessage', createMessageDto);
+    this.wss.to('Fhtm2yNOsWea8ElcAAAC').emit('createMessage', createMessageDto);
 
     // return { event: 'createMessage', data: createMessageDto.text };
   }

@@ -27,7 +27,7 @@ export class InvitationService {
   }
 
   findAll() {
-    return `This action returns all invitation`;
+    return this.invitationRepository.find();
   }
 
   findOne(id: number) {

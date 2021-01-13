@@ -1,1 +1,13 @@
-<img src="{{ rowData.logo.url }}" class="rounded-circle mr-2" height="50" width="50" alt=""> <span class="h3">{{ rowData.firstname }} {{ rowData.lastname }}</span>
+<ng-container *ngIf="displayFields && displayFields.length; else other">
+    <ng-container *ngFor="let key of displayFields">
+        <img src="{{ displayField(key).logo.url }}" class="rounded-circle mr-2" height="45" width="45" alt=""> <span
+            class="h3">{{
+            displayField(key).firstname }} {{ displayField(key).lastname }}</span>
+
+    </ng-container>
+</ng-container>
+
+<ng-template #other>
+    <img src="{{ rowData.logo.url }}" class="rounded-circle mr-2" height="45" width="45" alt=""> <span class="h3">{{
+        rowData.firstname }} {{ rowData.lastname }}</span>
+</ng-template>
