@@ -1,4 +1,12 @@
-import { Controller, Get, Post, Body, Put, Param, Delete } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Post,
+  Body,
+  Put,
+  Param,
+  Delete,
+} from '@nestjs/common';
 import { InvitationService } from './invitation.service';
 import { CreateInvitationDto } from './dto/create-invitation.dto';
 import { UpdateInvitationDto } from './dto/update-invitation.dto';
@@ -12,6 +20,11 @@ export class InvitationController {
     return this.invitationService.create(createInvitationDto);
   }
 
+  @Post(':id/accept')
+  acceptInvitation(@Param('id') id: number) {
+    return this.invitationService.acceptInvitation(id);
+  }
+
   @Get()
   findAll() {
     return this.invitationService.findAll();
@@ -23,7 +36,10 @@ export class InvitationController {
   }
 
   @Put(':id')
-  update(@Param('id') id: string, @Body() updateInvitationDto: UpdateInvitationDto) {
+  update(
+    @Param('id') id: string,
+    @Body() updateInvitationDto: UpdateInvitationDto,
+  ) {
     return this.invitationService.update(+id, updateInvitationDto);
   }
 

@@ -6,6 +6,8 @@ import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 
 import { ClipboardModule } from "ngx-clipboard";
 
+import { ComponentsModule } from "@pf/components/components.module";
+
 import { FullCalendarModule } from "@fullcalendar/angular"; // the main connector. must go first
 import dayGridPlugin from "@fullcalendar/daygrid"; // a plugin
 
@@ -38,6 +40,7 @@ FullCalendarModule.registerPlugins([
     ClipboardModule,
     SweetAlert2Module,
     FullCalendarModule,
+    ComponentsModule,
   ],
   declarations: [
     DashboardComponent,

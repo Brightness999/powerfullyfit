@@ -16,17 +16,11 @@ export class InvitesComponent implements OnInit {
 
   ngOnInit(): void {
     this.invitationService.getAllInvitations().subscribe((res) => {
-      console.log(res);
-
       this.invites = res;
     });
   }
 
   buildColumnDefs() {
-    return [
-      { field: "email" },
-      { field: "firstname" },
-      { field: "lastname" },
-    ];
+    return [{ field: "email" }, { field: "firstname" }, { field: "lastname" }];
   }
 }

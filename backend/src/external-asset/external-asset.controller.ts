@@ -43,7 +43,7 @@ export class ExternalAssetController {
   async uploadedFile(@UploadedFile() file) {
     return this.externalAssetService.create({
       type: 'image',
-      url: 'http://localhost:4000/api/external-asset/' + file.filename,
+      url: 'http://localhost:3000/api/external-asset/' + file.filename,
     });
   }
 

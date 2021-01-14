@@ -4,6 +4,8 @@
 
 export const environment = {
   production: false,
+  API_ENDPOINT:
+    (window ? window.location.protocol : "http:") + "//localhost:3000/api/",
 };
 
 /*

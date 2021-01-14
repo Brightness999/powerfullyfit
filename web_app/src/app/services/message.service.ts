@@ -15,7 +15,7 @@ export class MessageService extends Socket {
 
   constructor(private backendProxy: BackendProxy) {
     super({
-      url: `http://localhost:4000/messages?token=${
+      url: `${backendProxy.url}messages?token=${
         (localStorage.getItem("token"))
       }`,
       options: {},

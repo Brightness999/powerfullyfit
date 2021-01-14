@@ -14,7 +14,7 @@ export class NotificationsService extends Socket {
   notifications = this.fromEvent<any>("createNotification");
 
   constructor(private backendProxy: BackendProxy) {
-    super({ url: "http://localhost:4000/notifications", options: {} });
+    super({ url: `${backendProxy.url}notifications`, options: {} });
   }
 
   sendNotification(text: string) {

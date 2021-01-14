@@ -11,6 +11,8 @@ import { NgSelectModule } from "@ng-select/ng-select";
 
 import { SweetAlert2Module } from "@sweetalert2/ngx-sweetalert2";
 
+import { ModalModule } from "ngx-bootstrap/modal";
+
 import { SidebarComponent } from "./sidebar/sidebar.component";
 import { NavbarComponent } from "./navbar/navbar.component";
 import { FooterComponent } from "./footer/footer.component";
@@ -26,6 +28,7 @@ import { DateCellRendererComponent } from "./date-cell-renderer/date-cell-render
 import { UserCellRendererComponent } from "./user-cell-renderer/user-cell-renderer.component";
 import { FileUploaderComponent } from "./file-uploader/file-uploader.component";
 import { DomSanitizerPipe } from "./pipes/dom-sanitizer.pipe";
+import { UserModalComponent } from "./user-modal/user-modal.component";
 
 @NgModule({
   imports: [
@@ -40,6 +43,7 @@ import { DomSanitizerPipe } from "./pipes/dom-sanitizer.pipe";
       DateCellRendererComponent,
       UserCellRendererComponent,
     ]),
+    ModalModule.forRoot(),
   ],
   declarations: [
     FooterComponent,
@@ -56,6 +60,7 @@ import { DomSanitizerPipe } from "./pipes/dom-sanitizer.pipe";
     UserCellRendererComponent,
     FileUploaderComponent,
     DomSanitizerPipe,
+    UserModalComponent,
   ],
   exports: [
     FooterComponent,
@@ -63,7 +68,7 @@ import { DomSanitizerPipe } from "./pipes/dom-sanitizer.pipe";
     SidebarComponent,
     TableComponent,
     InboxComponent,
-    DomSanitizerPipe,
+    UserModalComponent,
   ],
 })
 export class ComponentsModule {}

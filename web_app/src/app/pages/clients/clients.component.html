@@ -11,8 +11,10 @@
                     <span class="h1 mb-0"> Clients </span>
                 </div>
 
-                <pf-table [rowData]="clients" [columnDefs]="columnDefs"></pf-table>
+                <pf-table [rowData]="clients" [columnDefs]="columnDefs" (rowClicked)="rowClicked($event)"></pf-table>
             </div>
         </div>
     </div>
 </div>
+
+<pf-user-modal #userModal></pf-user-modal>

@@ -25,9 +25,11 @@
                 </div>
             </div>
 
-            <div class="mb-5">
-                <label for="programLength" class="form-label"> Program Length: </label>
-                {{ programLength | number }}
+            <div class="mb-5 text-center">
+                <h2>
+                    <label for="programLength" class="form-label"> Program Length: </label>
+                    {{ programLength | number }} {{ programLength === 1 ? 'week' : 'weeks' }}
+                </h2>
             </div>
             <div class="mb-0">
                 Progress photos and weigh-ins will be automatically scheduled at the start of each training plan or
