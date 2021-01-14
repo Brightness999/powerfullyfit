@@ -61,20 +61,22 @@
                                     <div class="">
                                         <div class="m-2">
                                             <button type="button" class="btn btn-secondary text-center d-inline">
-                                                <i class="fas fa-users-cog" style="height: auto; width: auto"></i>
+                                                <i class="fas fa-users-cog mr-2" style="height: auto; width: auto"></i>
                                                 Add Users
                                             </button>
                                             <button type="button" class="btn btn-secondary text-center d-inline">
-                                                <i class="fas fa-trash" style="height: auto; width: auto"></i>
+                                                <i class="fas fa-trash mr-2" style="height: auto; width: auto"></i>
                                                 Remove Users
                                             </button>
                                             <button type="button" class="btn btn-secondary text-center d-inline">
-                                                <i class="fas fa-paper-plane" style="height: auto; width: auto"></i>
+                                                <i class="fas fa-paper-plane mr-2"
+                                                    style="height: auto; width: auto"></i>
                                                 Message Users
                                             </button>
                                         </div>
 
-                                        <pf-table></pf-table>
+                                        <pf-table [rowData]="users" [columnDefs]="columnDefs"
+                                            (rowClicked)="rowClicked($event)"></pf-table>
                                     </div>
                                 </ng-container>
 
@@ -89,7 +91,8 @@
 
                                     </div>
 
-                                    <full-calendar #calendar [options]="calendarOptions"></full-calendar>
+                                    <full-calendar #calendar [options]="calendarOptions"
+                                        (dateClick)="dateClick($event)"></full-calendar>
                                 </ng-container>
                             </ng-container>
                         </div>
@@ -99,3 +102,5 @@
         </div>
     </div>
 </div>
+
+<pf-user-modal #userModal></pf-user-modal>

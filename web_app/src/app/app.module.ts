@@ -62,7 +62,6 @@ FullCalendarModule.registerPlugins([dayGridPlugin, interactionPlugin]);
     NgbModule,
     RouterModule,
     SweetAlert2Module.forRoot(),
-    ModalModule.forRoot(),
     NgSelectModule,
     FullCalendarModule,
     AppRoutingModule,

@@ -7,10 +7,12 @@ import {
   ManyToMany,
   JoinTable,
   ChildEntity,
+  JoinColumn,
 } from 'typeorm';
 
 import { Coach } from '@app/user/entities/coach.entity';
 import { Program } from '@app/program/entities/program.entity';
+import { Exercise } from '@app/exercise/entities/exercise.entity';
 
 @Entity()
 export class Workout {
@@ -32,8 +34,16 @@ export class Workout {
   @ManyToMany(
     type => Program,
     program => program.workouts,
+    { lazy: true },
   )
   program: Program;
+
+  @JoinColumn()
+  @ManyToMany(
+    type => Exercise,
+    exercise => exercise.workouts,
+  )
+  exercises: Exercise[];
 
   @Column({ default: new Date() })
   createTime: Date;

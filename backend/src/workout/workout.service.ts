@@ -36,7 +36,7 @@ export class WorkoutService {
 
   async findOne(id: number) {
     const workout = await this.workoutRepository.findOne(id, {
-      relations: ['coach'],
+      relations: ['coach', 'exercises'],
     });
 
     if (!workout)

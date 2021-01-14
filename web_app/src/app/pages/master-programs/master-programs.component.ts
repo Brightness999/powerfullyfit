@@ -1,18 +1,31 @@
-import { Component, OnInit, ViewChild } from "@angular/core";
+import {
+  Component,
+  OnInit,
+  AfterViewInit,
+  ViewChild,
+  ElementRef,
+  TemplateRef,
+} from "@angular/core";
 
 import { FullCalendarComponent, CalendarOptions } from "@fullcalendar/angular";
 
 import { ProgramService } from "@pf/services/program.service";
 
+import { DateCellRendererComponent } from "@pf/components/date-cell-renderer/date-cell-renderer.component";
+import { UserCellRendererComponent } from "@pf/components/user-cell-renderer/user-cell-renderer.component";
+
 import { Router, ActivatedRoute } from "@angular/router";
+
+import interactionPlugin, { Draggable } from "@fullcalendar/interaction";
 
 @Component({
   selector: "app-master-programs",
   templateUrl: "./master-programs.component.html",
   styleUrls: ["./master-programs.component.scss"],
 })
-export class MasterProgramsComponent implements OnInit {
+export class MasterProgramsComponent implements OnInit, AfterViewInit {
   @ViewChild("calendar") calendarComponent: FullCalendarComponent;
+  @ViewChild("userModal") userModal: any;
 
   loading: boolean = true;
 
@@ -26,7 +39,24 @@ export class MasterProgramsComponent implements OnInit {
     aspectRatio: 16 / 8,
     headerToolbar: false,
     firstDay: 1,
+    plugins: [interactionPlugin],
   };
+
+  users = [
+    {
+      id: 5,
+      firstname: "other",
+      lastname: "lasr",
+      password: "",
+      email: "other@emil.com",
+      createTime: "2021-01-14T07:56:46.278Z",
+      coach: null,
+      assignedPrograms: [],
+      logo: null,
+    },
+  ];
+
+  columnDefs = this.buildColumnDefs();
 
   get programDuration() {
     if (this.selectedProgram)
@@ -59,6 +89,8 @@ export class MasterProgramsComponent implements OnInit {
     });
   }
 
+  ngAfterViewInit(): void {}
+
   selectProgram(program) {
     this.currentView = "user-list";
 
@@ -66,7 +98,6 @@ export class MasterProgramsComponent implements OnInit {
 
     this.router.navigate(["master-programs"], {
       queryParams: { programid: program.id },
-      // queryParamsHandling: "preserve",
       replaceUrl: true,
     });
   }
@@ -86,5 +117,26 @@ export class MasterProgramsComponent implements OnInit {
       queryParamsHandling: "preserve",
       replaceUrl: true,
     });
+  }
+
+  dateClick(e) {
+    console.log(e);
+  }
+
+  buildColumnDefs() {
+    return [
+      { headerName: "User", cellRendererFramework: UserCellRendererComponent },
+      {
+        headerName: "Joined On",
+        field: "createTime",
+        cellRendererFramework: DateCellRendererComponent,
+      },
+    ];
+  }
+
+  rowClicked(e) {
+    console.log(e);
+
+    this.userModal.openModal();
   }
 }

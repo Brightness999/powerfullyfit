@@ -1,7 +1,10 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
+
+import { ClientService } from '@app/user/client.service';
+import { CreateClientDto } from '@app/user/dto/create-client.dto';
 
 import { NotificationGateway } from '@app/notification/notification.gateway';
 
@@ -15,30 +18,54 @@ export class InvitationService {
   constructor(
     @InjectRepository(Invitation)
     private readonly invitationRepository: Repository<Invitation>,
+    private readonly clientService: ClientService,
     private notificationGateway: NotificationGateway,
   ) {}
 
   create(createInvitationDto: CreateInvitationDto) {
     const invitation = this.invitationRepository.create(createInvitationDto);
 
-    this.notificationGateway.create({});
+    // this.notificationGateway.create({});
 
     return this.invitationRepository.save(invitation);
+  }
+
+  async acceptInvitation(id: number) {
+    const invitation: Invitation = await this.invitationRepository.findOne(id);
+
+    if (!invitation)
+      throw new NotFoundException(`Invitation with id: ${id} was not Found`);
+
+    let newClient = {
+      ...invitation,
+      coach: null,
+      password: '',
+    } as CreateClientDto;
+
+    this.clientService.createClient(newClient);
+
+    this.invitationRepository.remove(invitation);
   }
 
   findAll() {
     return this.invitationRepository.find();
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} invitation`;
+  async findOne(id: number) {
+    const invite = await this.invitationRepository.findOne(id);
+
+    return invite;
   }
 
   update(id: number, updateInvitationDto: UpdateInvitationDto) {
     return `This action updates a #${id} invitation`;
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} invitation`;
+  async remove(id: number) {
+    const invite = await this.invitationRepository.findOne(id);
+
+    console.log(invite);
+
+    return this.invitationRepository.remove(invite);
   }
 }

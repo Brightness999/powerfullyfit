@@ -22,6 +22,6 @@ import { CoachController } from './coach.controller';
   ],
   controllers: [UserController, ClientController, CoachController],
   providers: [UserService, CoachService, ClientService],
-  exports: [UserService],
+  exports: [UserService, CoachService, ClientService],
 })
 export class UserModule {}

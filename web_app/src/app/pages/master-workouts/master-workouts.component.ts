@@ -2,6 +2,8 @@ import { Component, OnInit, OnChanges } from "@angular/core";
 
 import { WorkoutService } from "@pf/services/workout.service";
 
+import { Router, ActivatedRoute } from "@angular/router";
+
 import { UserCellRendererComponent } from "@pf/components/user-cell-renderer/user-cell-renderer.component";
 import { DateCellRendererComponent } from "@pf/components/date-cell-renderer/date-cell-renderer.component";
 
@@ -15,7 +17,11 @@ export class MasterWorkoutsComponent implements OnInit {
   workouts: any = [];
   columnDefs = this.buildColumnDefs();
 
-  constructor(private workoutService: WorkoutService) {}
+  constructor(
+    private workoutService: WorkoutService,
+    private activatedRoute: ActivatedRoute,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
     this.workoutService.getAllWorkouts().subscribe((workouts: any) => {
@@ -41,5 +47,9 @@ export class MasterWorkoutsComponent implements OnInit {
         cellRendererFramework: DateCellRendererComponent,
       },
     ];
+  }
+
+  rowClicked(workout) {
+    this.router.navigate([workout.id], { relativeTo: this.activatedRoute });
   }
 }

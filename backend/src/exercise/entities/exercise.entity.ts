@@ -7,7 +7,10 @@ import {
   TableInheritance,
   ManyToOne,
   JoinColumn,
+  ManyToMany,
 } from 'typeorm';
+
+import { Workout } from '@app/workout/entities/workout.entity';
 
 import { ExternalAsset } from '@app/external-asset/entities/external-asset.entity';
 
@@ -18,6 +21,13 @@ export class Exercise {
 
   @Column()
   name: string;
+
+  @ManyToMany(
+    type => Workout,
+    workout => workout.exercises,
+    { lazy: true },
+  )
+  workouts: Workout[];
 
   @ManyToOne(() => ExternalAsset)
   @JoinColumn({ name: 'logoId' })

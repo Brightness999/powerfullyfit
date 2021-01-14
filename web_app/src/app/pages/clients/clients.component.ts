@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, ViewChild } from "@angular/core";
 
 import { CoachService } from "@pf/services/coach.service";
 
@@ -11,6 +11,8 @@ import { UserCellRendererComponent } from "@pf/components/user-cell-renderer/use
   styleUrls: ["./clients.component.scss"],
 })
 export class ClientsComponent implements OnInit {
+  @ViewChild("userModal") userModal: any;
+
   loading: boolean = true;
   clients: any = [];
   columnDefs = this.buildColumnDefs();
@@ -19,8 +21,6 @@ export class ClientsComponent implements OnInit {
 
   ngOnInit(): void {
     this.coachService.findAllClients().subscribe((clients) => {
-      console.log(clients);
-
       this.clients = clients;
 
       this.loading = false;
@@ -29,14 +29,20 @@ export class ClientsComponent implements OnInit {
 
   buildColumnDefs() {
     return [
-      { field: "firstname", cellRendererFramework: UserCellRendererComponent },
+      { field: "User", cellRendererFramework: UserCellRendererComponent },
       {
         headerName: "Joined On",
         field: "createTime",
         cellRendererFramework: DateCellRendererComponent,
       },
-      { field: "Last Workout" },
+      { field: "Last Workout"  },
       { field: "Program" },
     ];
+  }
+
+  rowClicked(e) {
+    console.log(e);
+
+    this.userModal.openModal();
   }
 }

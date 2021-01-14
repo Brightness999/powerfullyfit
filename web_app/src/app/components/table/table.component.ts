@@ -1,4 +1,11 @@
-import { Component, OnInit, Input, ViewChild } from "@angular/core";
+import {
+  Component,
+  OnInit,
+  Input,
+  ViewChild,
+  Output,
+  EventEmitter,
+} from "@angular/core";
 
 import { GridOptions } from "ag-grid-community";
 import { AgGridAngular } from "ag-grid-angular";
@@ -15,6 +22,8 @@ export class TableComponent implements OnInit {
 
   @Input() rowData = [];
   @Input() height: string = "65vh";
+
+  @Output() rowClicked: EventEmitter<any> = new EventEmitter<any>();
 
   gridOptions: GridOptions;
 
@@ -40,12 +49,13 @@ export class TableComponent implements OnInit {
       },
       onRowClicked: (event) => {
         console.log(event.data);
+        this.rowClicked.emit(event.data)
       },
       onColumnResized: (event) => {
-        console.log("A column was resized");
+        // console.log("A column was resized");
       },
       onGridReady: (event) => {
-        console.log("The grid is now ready");
+        // console.log("The grid is now ready");
         this.gridOptions.api.sizeColumnsToFit();
       },
     };

@@ -1,8 +1,6 @@
 import { Injectable } from "@angular/core";
 
-// const process = require("process");
-
-import * as process from "process";
+import { environment } from "../../environments/environment";
 
 import { HttpClient, HttpHeaders, HttpResponse } from "@angular/common/http";
 
@@ -17,11 +15,7 @@ const headers = {
   providedIn: "root",
 })
 export class BackendProxy {
-  configUrl = "http://localhost:4000/api/";
-  dockerUrl = `/api/`;
-  remoteUrl = "http://66.42.110.119/api/";
-
-  url = this.dockerUrl;
+  url = environment.API_ENDPOINT;
 
   constructor(private http: HttpClient) {}
 
@@ -30,7 +24,6 @@ export class BackendProxy {
   }
 
   post(url: string, body: any) {
-    console.log(process.env.HOSTNAME);
     return this.http.post(this.url + url, body, { headers });
   }
 
