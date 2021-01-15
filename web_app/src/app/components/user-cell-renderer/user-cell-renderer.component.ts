@@ -16,8 +16,6 @@ export class UserCellRendererComponent implements ICellRendererAngularComp {
   constructor() {}
 
   agInit(params: any): void {
-    console.log(params);
-
     this.params = params;
     this.rowData = params.data;
 
@@ -27,7 +25,7 @@ export class UserCellRendererComponent implements ICellRendererAngularComp {
   displayField(fieldName: string): string {
     const fieldNameParts = fieldName.split(".");
     let returnValue = { ...this.rowData };
-    
+
     while (returnValue.hasOwnProperty(fieldNameParts[0])) {
       returnValue = returnValue[fieldNameParts[0]] || [];
       fieldNameParts.shift();

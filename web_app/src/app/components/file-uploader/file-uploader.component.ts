@@ -20,8 +20,6 @@ export class FileUploaderComponent implements OnInit {
     url: [null, Validators.required],
   });
 
-  url: string = "";
-
   constructor(
     private formBuilder: FormBuilder,
     private externalAssetService: ExternalAssetService,
@@ -33,8 +31,6 @@ export class FileUploaderComponent implements OnInit {
   saveAsset(url) {
     this.uploadStarted.emit(true);
 
-    console.log(url);
-
     const youTubeId = this._parseYoutubeId(url);
 
     let asset = {
@@ -43,7 +39,6 @@ export class FileUploaderComponent implements OnInit {
     };
 
     this.externalAssetService.saveAsset(asset).subscribe((res) => {
-      console.log(res);
       this.savedAsset = res;
 
       this.uploadStarted.emit(false);

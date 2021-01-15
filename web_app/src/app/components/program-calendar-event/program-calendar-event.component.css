@@ -1,0 +1,5 @@
+.selection-window {
+  height: 15vh;
+
+  overflow: auto;
+}

@@ -22,4 +22,11 @@ export class ProgramService {
   findProgramById(programId: string | number) {
     return this.backendProxy.get("program/" + programId.toString());
   }
+
+  addUsersToProgram(programId: string | number, users: any) {
+    return this.backendProxy.post(
+      "program/" + programId.toString() + "/add-users",
+      users
+    );
+  }
 }

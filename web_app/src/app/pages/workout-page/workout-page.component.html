@@ -7,8 +7,19 @@
     <div class="row">
         <div class="col">
             <div class="card shadow">
-                <div class="card-header border-0">
-                    <span class="h1 mb-0"> {{ workout?.name }} </span>
+                <div class="card-header d-flex align-items-center border-0">
+                    <div class="h1 mr-4">
+                        {{ workout?.name }}
+                    </div>
+                    <div class="h3 align-self-center mr-auto">
+                        <span class="text-muted">
+                            {{ workout?.type }}
+                        </span>
+                    </div>
+
+                    <button class="btn btn-dark" (click)="edit()">
+                        <i class="fa fa-edit mr-2"></i> Edit
+                    </button>
                 </div>
 
                 <pf-table [rowData]="exercises" [columnDefs]="columnDefs" (rowClicked)="rowClicked($event)"></pf-table>
@@ -16,3 +27,5 @@
         </div>
     </div>
 </div>
+
+<pf-workout-buildder #workoutBuilder></pf-workout-buildder>

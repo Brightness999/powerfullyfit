@@ -22,12 +22,17 @@
                                 </div>
 
                                 <div class="">
-                                    <div class="m-0" style="font-size: 1.4rem"> {{ program.name }} </div>
+                                    <div class="m-0" style="font-size: 1.2rem"> {{ program.name }} </div>
                                     <p class="m-0"> {{ program.weeks * program.phases | number }} Weeks </p>
                                 </div>
 
+                                <!-- <div class="mb-0" *ngIf="program.id === selectedProgram?.id">
+                                    <div *ngFor="let phase of programPhases">
+                                        {{ program.weeks }}
+                                    </div>
+                                </div> -->
                             </div>
-                            <hr>
+                            <hr />
                         </div>
 
                         <div class="col-xl-9 col-md-8" *ngIf="selectedProgram">
@@ -60,22 +65,25 @@
 
                                     <div class="">
                                         <div class="m-2">
-                                            <button type="button" class="btn btn-secondary text-center d-inline">
-                                                <i class="fas fa-users-cog mr-2" style="height: auto; width: auto"></i>
+                                            <button type="button" (click)="openClientsModal($event)"
+                                                class="btn btn-secondary text-center d-inline">
+                                                <i class="fa fa-user-plus mr-2" style="height: auto; width: auto"></i>
                                                 Add Users
                                             </button>
-                                            <button type="button" class="btn btn-secondary text-center d-inline">
-                                                <i class="fas fa-trash mr-2" style="height: auto; width: auto"></i>
+                                            <button type="button" class="btn btn-secondary text-center d-inline"
+                                                *ngIf="usersSelected">
+                                                <i class="fa fa-user-minus mr-2" style="height: auto; width: auto"></i>
                                                 Remove Users
                                             </button>
-                                            <button type="button" class="btn btn-secondary text-center d-inline">
+                                            <button type="button" class="btn btn-secondary text-center d-inline"
+                                                *ngIf="usersSelected">
                                                 <i class="fas fa-paper-plane mr-2"
                                                     style="height: auto; width: auto"></i>
                                                 Message Users
                                             </button>
                                         </div>
 
-                                        <pf-table [rowData]="users" [columnDefs]="columnDefs"
+                                        <pf-table [rowData]="clients" [columnDefs]="columnDefs"
                                             (rowClicked)="rowClicked($event)"></pf-table>
                                     </div>
                                 </ng-container>
@@ -91,8 +99,7 @@
 
                                     </div>
 
-                                    <full-calendar #calendar [options]="calendarOptions"
-                                        (dateClick)="dateClick($event)"></full-calendar>
+                                    <pf-calendar (dateClick)="dateClick($event)"></pf-calendar>
                                 </ng-container>
                             </ng-container>
                         </div>
@@ -104,3 +111,5 @@
 </div>
 
 <pf-user-modal #userModal></pf-user-modal>
+<pf-program-calendar-event #calendarEventModal></pf-program-calendar-event>
+<pf-program-client-modal #clientsModal (onUserSave)="onUserSave($event)"></pf-program-client-modal>

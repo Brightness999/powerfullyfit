@@ -36,6 +36,7 @@ export class MasterWorkoutsComponent implements OnInit {
   buildColumnDefs() {
     return [
       { field: "name" },
+      { field: "type" },
       {
         field: "Created By",
         cellRendererFramework: UserCellRendererComponent,

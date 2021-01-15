@@ -1,36 +1,45 @@
-
-
 <form [formGroup]="exerciseForm" (submit)="onSubmit(exerciseForm.value)">
     <div class="modal-body">
         <div class="row">
             <div class="col-6">
                 <div class="mb-4">
                     <label for="name" class="form-label">Exercise Name</label>
-                    <input type="text" class="form-control" id="name" formControlName="name">
+                    <div class="input-group input-group-alternative shadow-lg border">
+                        <input type="text" class="form-control" id="name" formControlName="name">
+                    </div>
                 </div>
                 <div class="mb-4">
                     <label for="type" class="form-label">Exercise Type</label>
-                    <input type="text" class="form-control" id="type" formControlName="type">
+
+                    <div class="input-group input-group-alternative shadow-lg border">
+                        <input type="text" class="form-control" id="type" formControlName="type">
+                    </div>
                 </div>
                 <div class="mb-4">
-                    <label for="description" class="form-label">Exercise Description</label>
-                    <input type="text" class="form-control" id="description" formControlName="description">
+                    <div class="form-group">
+                        <label for="description" class="form-label">Exercise Description</label>
+                        <div class="input-group input-group-alternative shadow-lg border">
+                            <textarea class="form-control" id="exampleFormControlTextarea1"
+                                formControlName="description" rows="5"></textarea>
+                        </div>
+                    </div>
                 </div>
             </div>
             <div class="col-6">
                 <div class="mb-4">
-                    <!-- <label for="programName" class="form-label">youtube</label>
-                    <input type="text" class="form-control" id="name" formControlName="name"> -->
-                    <pf-file-uploader
-                        (uploadStarted)="blockForm($event)"
-                        (uploadCompleted)="addAsset($event)"
-                    ></pf-file-uploader>
+                    <pf-file-uploader (uploadStarted)="blockForm($event)" (uploadCompleted)="addAsset($event)">
+                    </pf-file-uploader>
                 </div>
             </div>
         </div>
     </div>
 
     <div class="modal-footer">
+
+        <div class="alert alert-danger" role="alert" *ngIf="errorMessage">
+            {{ errorMessage }}
+        </div>
+
         <div class="btn-group">
             <button class="btn btn-dark" type="submit" [disabled]="isLoading || blockSubmit">
                 <i class="fa fa-check mr-2"></i> Save

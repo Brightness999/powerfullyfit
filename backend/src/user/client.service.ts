@@ -7,7 +7,7 @@ import {
 import * as sgMail from '@sendgrid/mail';
 
 import { InjectRepository } from '@nestjs/typeorm';
-import { Repository } from 'typeorm';
+import { Repository, IsNull } from 'typeorm';
 
 import { User } from './entities/user.entity';
 import { Client } from './entities/client.entity';
@@ -35,6 +35,13 @@ export class ClientService {
   findAllClients() {
     return this.clientRepository.find({
       relations: ['coach', 'coach.organization', 'logo', 'program'],
+    });
+  }
+
+  findAllNotAssignedClient() {
+    return this.clientRepository.find({
+      relations: ['coach', 'coach.organization', 'logo', 'program'],
+      where: { program: IsNull() },
     });
   }
 

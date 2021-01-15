@@ -134,7 +134,7 @@ export class NavbarComponent implements OnInit {
   openModal(template: TemplateRef<any>) {
     this.modalRef = this.modalService.show(
       template,
-      Object.assign({}, { class: "modal-lg" })
+      Object.assign({}, { class: "modal-xxl" })
     );
   }
 }

@@ -1,6 +1,14 @@
 <form [formGroup]="assetForm" (submit)="saveAsset(assetForm.value.url)" class="form-group">
-    <label for="asset" class="form-label"> Asset </label>
-    <input type="text" class="form-control" id="asset" formControlName="url">
+    <label for="asset" class="form-label"> Video Link </label>
+
+    <div class="input-group input-group-alternative shadow-lg border">
+        <input type="text" class="form-control" id="asset" formControlName="url">
+        <div class="input-group-append">
+            <button class="btn btn-primary rounded">
+                <i class="fas fa-cloud-upload-alt mr-2"></i> save
+            </button>
+        </div>
+    </div>
 </form>
 
 <iframe *ngIf="savedAsset" [src]="savedAsset.url | domSanitizer" frameborder="0" allowfullscreen class="asset"></iframe>

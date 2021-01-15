@@ -13,6 +13,11 @@ import { SweetAlert2Module } from "@sweetalert2/ngx-sweetalert2";
 
 import { ModalModule } from "ngx-bootstrap/modal";
 
+import { TreeModule } from "primeng/tree";
+
+import { FullCalendarModule } from "@fullcalendar/angular"; // the main connector. must go first
+import dayGridPlugin from "@fullcalendar/daygrid"; // a plugin
+
 import { SidebarComponent } from "./sidebar/sidebar.component";
 import { NavbarComponent } from "./navbar/navbar.component";
 import { FooterComponent } from "./footer/footer.component";
@@ -29,6 +34,12 @@ import { UserCellRendererComponent } from "./user-cell-renderer/user-cell-render
 import { FileUploaderComponent } from "./file-uploader/file-uploader.component";
 import { DomSanitizerPipe } from "./pipes/dom-sanitizer.pipe";
 import { UserModalComponent } from "./user-modal/user-modal.component";
+import { ProgramClientModalComponent } from "./program-client-modal/program-client-modal.component";
+import { WorkoutBuildderComponent } from "./workout-buildder/workout-buildder.component";
+import { ProgramCalendarEventComponent } from "./program-calendar-event/program-calendar-event.component";
+import { CalendarComponent } from "./calendar/calendar.component";
+
+FullCalendarModule.registerPlugins([dayGridPlugin]);
 
 @NgModule({
   imports: [
@@ -44,6 +55,7 @@ import { UserModalComponent } from "./user-modal/user-modal.component";
       UserCellRendererComponent,
     ]),
     ModalModule.forRoot(),
+    FullCalendarModule,
   ],
   declarations: [
     FooterComponent,
@@ -61,6 +73,10 @@ import { UserModalComponent } from "./user-modal/user-modal.component";
     FileUploaderComponent,
     DomSanitizerPipe,
     UserModalComponent,
+    ProgramClientModalComponent,
+    WorkoutBuildderComponent,
+    ProgramCalendarEventComponent,
+    CalendarComponent,
   ],
   exports: [
     FooterComponent,
@@ -69,6 +85,10 @@ import { UserModalComponent } from "./user-modal/user-modal.component";
     TableComponent,
     InboxComponent,
     UserModalComponent,
+    ProgramClientModalComponent,
+    WorkoutBuildderComponent,
+    ProgramCalendarEventComponent,
+    CalendarComponent,
   ],
 })
 export class ComponentsModule {}

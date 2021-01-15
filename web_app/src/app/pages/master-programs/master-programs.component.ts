@@ -1,13 +1,10 @@
 import {
   Component,
   OnInit,
-  AfterViewInit,
   ViewChild,
   ElementRef,
   TemplateRef,
 } from "@angular/core";
-
-import { FullCalendarComponent, CalendarOptions } from "@fullcalendar/angular";
 
 import { ProgramService } from "@pf/services/program.service";
 
@@ -16,16 +13,15 @@ import { UserCellRendererComponent } from "@pf/components/user-cell-renderer/use
 
 import { Router, ActivatedRoute } from "@angular/router";
 
-import interactionPlugin, { Draggable } from "@fullcalendar/interaction";
-
 @Component({
   selector: "app-master-programs",
   templateUrl: "./master-programs.component.html",
   styleUrls: ["./master-programs.component.scss"],
 })
-export class MasterProgramsComponent implements OnInit, AfterViewInit {
-  @ViewChild("calendar") calendarComponent: FullCalendarComponent;
+export class MasterProgramsComponent implements OnInit {
   @ViewChild("userModal") userModal: any;
+  @ViewChild("calendarEventModal") calendarEvent: any;
+  @ViewChild("clientsModal") clientsModal: any;
 
   loading: boolean = true;
 
@@ -34,27 +30,7 @@ export class MasterProgramsComponent implements OnInit, AfterViewInit {
 
   currentView = "user-list";
 
-  calendarOptions: CalendarOptions = {
-    initialView: "dayGridMonth",
-    aspectRatio: 16 / 8,
-    headerToolbar: false,
-    firstDay: 1,
-    plugins: [interactionPlugin],
-  };
-
-  users = [
-    {
-      id: 5,
-      firstname: "other",
-      lastname: "lasr",
-      password: "",
-      email: "other@emil.com",
-      createTime: "2021-01-14T07:56:46.278Z",
-      coach: null,
-      assignedPrograms: [],
-      logo: null,
-    },
-  ];
+  usersSelected: boolean = false;
 
   columnDefs = this.buildColumnDefs();
 
@@ -62,6 +38,16 @@ export class MasterProgramsComponent implements OnInit, AfterViewInit {
     if (this.selectedProgram)
       return this.selectedProgram.weeks * this.selectedProgram.phases;
     return 0;
+  }
+
+  get clients() {
+    if (this.selectedProgram) return this.selectedProgram.clients;
+    return [];
+  }
+
+  get programPhases() {
+    if (this.selectedProgram) return new Array(this.selectedProgram.phases);
+    return [];
   }
 
   constructor(
@@ -72,29 +58,24 @@ export class MasterProgramsComponent implements OnInit, AfterViewInit {
 
   ngOnInit(): void {
     this.programService.getAllPrograms().subscribe((programs: any) => {
-      console.log(programs);
-
       this.programs = programs;
 
       this.loading = false;
 
       this.activatedRoute.queryParams.subscribe((params) => {
-        if (params.programid)
-          this.programService
-            .findProgramById(params.programid)
-            .subscribe((program) => this.selectProgram(program));
+        if (params.programid) this.selectProgram({ id: params.programid });
 
         if (params.view) this.selectView(params.view);
       });
     });
   }
 
-  ngAfterViewInit(): void {}
-
   selectProgram(program) {
     this.currentView = "user-list";
 
-    this.selectedProgram = program;
+    this.programService.findProgramById(program.id).subscribe((program) => {
+      this.selectedProgram = program;
+    });
 
     this.router.navigate(["master-programs"], {
       queryParams: { programid: program.id },
@@ -119,7 +100,11 @@ export class MasterProgramsComponent implements OnInit, AfterViewInit {
     });
   }
 
-  dateClick(e) {
+  openClientsModal() {
+    this.clientsModal.openModal();
+  }
+
+  onNodeSelect(e) {
     console.log(e);
   }
 
@@ -137,6 +122,20 @@ export class MasterProgramsComponent implements OnInit, AfterViewInit {
   rowClicked(e) {
     console.log(e);
 
-    this.userModal.openModal();
+    this.userModal.openModal(e);
+  }
+
+  dateClick(e) {
+    console.log(e);
+    this.calendarEvent.openModal();
+  }
+
+  onUserSave(users) {
+    console.log(users);
+    this.programService
+      .addUsersToProgram(this.selectedProgram.id, users)
+      .subscribe((res) => {
+        console.log(res);
+      });
   }
 }

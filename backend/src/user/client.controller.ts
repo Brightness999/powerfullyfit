@@ -35,6 +35,11 @@ export class ClientController {
     return this.clientService.findAllClients();
   }
 
+  @Get('not-assigned')
+  findAllNotAssignedClient() {
+    return this.clientService.findAllNotAssignedClient();
+  }
+
   @Get(':id')
   findOneClient(@Param('id', ParseIntPipe) id: number) {
     return this.clientService.findOneClient(id);
