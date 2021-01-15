@@ -38,7 +38,7 @@ export class Workout {
   )
   program: Program;
 
-  @JoinColumn()
+  @JoinTable()
   @ManyToMany(
     type => Exercise,
     exercise => exercise.workouts,

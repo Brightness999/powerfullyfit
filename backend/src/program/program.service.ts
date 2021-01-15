@@ -24,6 +24,16 @@ export class ProgramService {
     return this.programRepository.save(program);
   }
 
+  async addUsersToProgram(id: number, clients: any) {
+    const program = await this.programRepository.findOne(id, {
+      relations: ['clients'],
+    });
+
+    program['clients'] = clients;
+
+    return this.programRepository.save(program);
+  }
+
   findAll() {
     return this.programRepository.find({
       relations: ['coach'],
@@ -35,7 +45,7 @@ export class ProgramService {
 
   async findOne(id: number) {
     const program = await this.programRepository.findOne(id, {
-      relations: ['coach'],
+      relations: ['coach', 'clients', 'clients.logo'],
     });
 
     if (!program)

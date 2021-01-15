@@ -21,6 +21,8 @@ import { ProgramService } from './program.service';
 import { CreateProgramDto } from './dto/create-program.dto';
 import { UpdateProgramDto } from './dto/update-program.dto';
 
+import { Client } from '@app/user/entities/client.entity';
+
 @ApiTags('program')
 @Controller('program')
 @UseGuards(JwtAuthGuard)
@@ -32,6 +34,19 @@ export class ProgramController {
     createProgramDto['coach'] = user;
 
     return this.programService.create(createProgramDto);
+  }
+
+  @Post(':id/add-users')
+  addUsersToProgram(
+    @Param('id', ParseIntPipe) id: number,
+    @Body() clients: Client[],
+    @CurrentUser() user: any,
+  ) {
+    // createProgramDto['coach'] = user;
+
+    console.log(clients);
+
+    return this.programService.addUsersToProgram(id, clients);
   }
 
   @Get()

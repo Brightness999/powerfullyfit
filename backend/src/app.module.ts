@@ -25,13 +25,13 @@ import { InvitationModule } from './invitation/invitation.module';
     ConfigModule.forRoot({ isGlobal: true }),
     TypeOrmModule.forRootAsync({
       useFactory: () => ({
-        host: 'localhost', // database host
-        port: 5432, // database host
-        username: 'user', // username
-        password: 'password', // user password
-        database: 'db', // name of our database,
+        // host: 'localhost', // database host
+        // port: 5432, // database host
+        // username: 'user', // username
+        // password: 'password', // user password
+        // database: 'db', // name of our database,
         type: 'postgres',
-        // url: 'postgres://user:password@postgres:5432/db',
+        url: 'postgres://user:password@postgres:5432/db',
         autoLoadEntities: true,
         synchronize: true,
       }),

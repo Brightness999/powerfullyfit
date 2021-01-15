@@ -43,6 +43,7 @@ export class CoachService {
           coach: 'client.coach',
           organization: 'coach.organization',
           logo: 'client.logo',
+          program: 'client.program',
         },
       },
     });
@@ -54,13 +55,13 @@ export class CoachService {
 
   findAllClientsForCoach(coach: Coach) {
     return this.clientRepository.find({
-      relations: ['logo'],
+      relations: ['logo', 'program'],
       where: { coach },
     });
   }
 
   findAllCoaches() {
-    return this.coachRepository.find();
+    return this.coachRepository.find({ relations: ['logo'] });
   }
 
   async findOneCoach(id: number) {

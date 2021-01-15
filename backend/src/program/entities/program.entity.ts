@@ -10,6 +10,7 @@ import {
 } from 'typeorm';
 
 import { Coach } from '@app/user/entities/coach.entity';
+import { Client } from '@app/user/entities/client.entity';
 import { Workout } from '@app/workout/entities/workout.entity';
 import { AssignedProgram } from './assigned-program.entity';
 
@@ -33,6 +34,13 @@ export class Program {
     workout => workout.program,
   )
   workouts: Workout[];
+ 
+  @JoinTable()
+  @OneToMany(
+    type => Client,
+    client => client.program,
+  )
+  clients: Client[];
 
   @Column({ default: new Date() })
   createTime: Date;
@@ -43,10 +51,10 @@ export class Program {
   )
   coach: Coach;
 
-  @JoinTable()
-  @OneToMany(
-    type => AssignedProgram,
-    assignedProgram => assignedProgram.program,
-  )
-  assignedPrograms: AssignedProgram[];
+  // @JoinTable()
+  // @OneToMany(
+  //   type => AssignedProgram,
+  //   assignedProgram => assignedProgram.program,
+  // )
+  // assignedPrograms: AssignedProgram[];
 }
