@@ -1,0 +1,31 @@
+<div bsModal #lgModal="bs-modal" class="modal fade modal-open" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-xxl">
+        <form>
+            <div class="modal-content">
+                <div class="modal-header w-100">
+                    <h1 class="modal-title mr-auto"> Workout Builder </h1>
+
+                    <button class="btn " (click)="hide()">
+                        <i class="fa fa-times"></i>
+                    </button>
+                </div>
+                <div class="modal-body member-modal-body pt-2 pb-1">
+
+                </div>
+
+                <div class="modal-footer">
+                    <div class="alert alert-danger" role="alert" *ngIf="errorMessage">
+                        {{ errorMessage }}
+                    </div>
+
+                    <div class="btn-group">
+                        <button class="btn btn-dark" type="submit" [disabled]="isLoading">
+                            <i class="fa fa-check mr-2"></i> Done
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+        </form>
+    </div>
+</div>

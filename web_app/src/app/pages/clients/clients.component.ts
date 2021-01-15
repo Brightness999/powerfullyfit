@@ -21,6 +21,8 @@ export class ClientsComponent implements OnInit {
 
   ngOnInit(): void {
     this.coachService.findAllClients().subscribe((clients) => {
+      console.log(clients);
+
       this.clients = clients;
 
       this.loading = false;
@@ -35,8 +37,8 @@ export class ClientsComponent implements OnInit {
         field: "createTime",
         cellRendererFramework: DateCellRendererComponent,
       },
-      { field: "Last Workout"  },
-      { field: "Program" },
+      { field: "Last Workout" },
+      { headerName: "Program", field: "program.name" },
     ];
   }
 

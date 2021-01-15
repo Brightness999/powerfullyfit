@@ -10,4 +10,8 @@ import { tap, catchError, retry, map } from "rxjs/operators";
 })
 export class ClientService {
   constructor(private backendProxy: BackendProxy) {}
+
+  findAllNotAssignedClient() {
+    return this.backendProxy.get("client/not-assigned");
+  }
 }

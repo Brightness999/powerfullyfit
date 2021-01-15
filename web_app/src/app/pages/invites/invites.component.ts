@@ -2,6 +2,8 @@ import { Component, OnInit } from "@angular/core";
 
 import { InvitationService } from "@pf/services/invitation.service";
 
+import { DateCellRendererComponent } from "@pf/components/date-cell-renderer/date-cell-renderer.component";
+
 @Component({
   selector: "pf-invites",
   templateUrl: "./invites.component.html",
@@ -21,6 +23,15 @@ export class InvitesComponent implements OnInit {
   }
 
   buildColumnDefs() {
-    return [{ field: "email" }, { field: "firstname" }, { field: "lastname" }];
+    return [
+      { field: "email" },
+      { field: "firstname" },
+      { field: "lastname" },
+      {
+        headerName: "Sent On",
+        field: "createTime",
+        cellRendererFramework: DateCellRendererComponent,
+      },
+    ];
   }
 }

@@ -17,8 +17,6 @@ export class DateCellRendererComponent implements ICellRendererAngularComp {
   constructor() {}
 
   agInit(params: any): void {
-    console.log(params);
-
     this.params = params;
     this.rowData = params.data;
 

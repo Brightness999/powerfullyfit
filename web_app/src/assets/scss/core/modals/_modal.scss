@@ -18,7 +18,9 @@
   align-self: center;
 }
 
-.modal-dialog {
+.modal-lg,
+.modal-xxl {
+  max-width: 1200px;
 }
 
 .modal-backdrop.show {

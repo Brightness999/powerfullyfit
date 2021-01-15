@@ -13,6 +13,7 @@
   "private": true,
   "dependencies": {
     "@angular/animations": "10.1.4",
+    "@angular/cdk": "^11.0.4",
     "@angular/common": "10.1.4",
     "@angular/compiler": "10.1.4",
     "@angular/core": "10.1.4",
@@ -43,6 +44,7 @@
     "ngx-socket-io": "^3.2.0",
     "ngx-toastr": "^13.0.0",
     "nouislider": "14.6.2",
+    "primeng": "^11.1.0",
     "rxjs": "6.6.3",
     "socket.io": "^3.0.5",
     "sweetalert2": "^10.12.7",

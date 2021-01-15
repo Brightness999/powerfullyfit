@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, ViewChild } from "@angular/core";
 
 import { Router, ActivatedRoute } from "@angular/router";
 
@@ -12,10 +12,15 @@ import { switchMap } from "rxjs/operators";
   styleUrls: ["./workout-page.component.css"],
 })
 export class WorkoutPageComponent implements OnInit {
-  exercises = [];
+  @ViewChild("workoutBuilder", { static: false }) workoutBuilder: any;
   workout = null;
 
   columnDefs = this.buildColumnDefs();
+
+  get exercises() {
+    if (this.workout) return this.workout.exercises;
+    return [];
+  }
 
   constructor(
     private workoutService: WorkoutService,
@@ -30,7 +35,14 @@ export class WorkoutPageComponent implements OnInit {
       )
       .subscribe((workout) => {
         this.workout = workout;
+        console.log(workout);
       });
+  }
+
+  edit() {
+    console.log("edit");
+
+    this.workoutBuilder.openModal();
   }
 
   buildColumnDefs() {

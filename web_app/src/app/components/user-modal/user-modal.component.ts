@@ -1,4 +1,10 @@
-import { Component, OnInit, ViewChild, TemplateRef } from "@angular/core";
+import {
+  Component,
+  OnInit,
+  Input,
+  ViewChild,
+  TemplateRef,
+} from "@angular/core";
 
 import {
   BsModalService,
@@ -16,11 +22,14 @@ export class UserModalComponent implements OnInit {
 
   modalRef: BsModalRef;
 
+  user: any = {};
+
   constructor(private modalService: BsModalService) {}
 
   ngOnInit(): void {}
 
-  openModal() {
+  openModal(user) {
+    this.user = user;
     this.modal.show();
   }
 

@@ -40,17 +40,6 @@ import { ExerciseService } from "./services/exercise.service";
 import { ExternalAssetService } from "./services/external-asset.service";
 import { InvitationService } from "./services/invitation.service";
 
-import { MessagesComponent } from "./pages/messages/messages.component";
-import { ClientsComponent } from "./pages/clients/clients.component";
-import { TrainersComponent } from "./pages/trainers/trainers.component";
-import { MasterProgramsComponent } from "./pages/master-programs/master-programs.component";
-import { MasterWorkoutsComponent } from "./pages/master-workouts/master-workouts.component";
-import { SettingsComponent } from "./pages/settings/settings.component";
-import { AppointmentsComponent } from "./pages/appointments/appointments.component";
-import { WorkoutPageComponent } from "./pages/workout-page/workout-page.component";
-import { InvitesComponent } from "./pages/invites/invites.component";
-import { NotificationsComponent } from "./pages/notifications/notifications.component";
-
 FullCalendarModule.registerPlugins([dayGridPlugin, interactionPlugin]);
 
 @NgModule({
@@ -67,20 +56,7 @@ FullCalendarModule.registerPlugins([dayGridPlugin, interactionPlugin]);
     AppRoutingModule,
     ToastrModule.forRoot(),
   ],
-  declarations: [
-    AppComponent,
-    AdminLayoutComponent,
-    AuthLayoutComponent,
-    MessagesComponent,
-    ClientsComponent,
-    TrainersComponent,
-    MasterProgramsComponent,
-    MasterWorkoutsComponent,
-    SettingsComponent,
-    AppointmentsComponent,
-    InvitesComponent,
-    NotificationsComponent,
-  ],
+  declarations: [AppComponent, AdminLayoutComponent, AuthLayoutComponent],
   providers: [
     BackendProxy,
     OrganizationService,

@@ -2,7 +2,7 @@ import { Component, OnInit, Output, EventEmitter, NgZone } from "@angular/core";
 
 import Swal from "sweetalert2";
 
-import { WorkoutService } from "@pf/services/workout.service";
+import { InvitationService } from "@pf/services/invitation.service";
 
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { Router } from "@angular/router";
@@ -17,13 +17,17 @@ export class TrainerFormComponent implements OnInit {
 
   trainerForm: FormGroup = this.formBuilder.group({
     email: [null, Validators.required],
+    firstname: [null, Validators.required],
+    lastname: [null, Validators.required],
   });
+
+  errorMessage: string = "";
 
   isLoading: boolean = false;
 
   constructor(
     private formBuilder: FormBuilder,
-    private workoutService: WorkoutService,
+    private invitationService: InvitationService,
     private zone: NgZone,
     private router: Router
   ) {}
@@ -34,19 +38,30 @@ export class TrainerFormComponent implements OnInit {
     console.log(trainer);
     this.isLoading = true;
 
-    // this.workoutService.createWorkout(workout).subscribe((newWorkout) => {
-      // console.log(newWorkout);
+    // this.invitationService.inviteCoach(trainer).subscribe(
+    //   (trainer) => {
+    //     this.isLoading = false;
 
-      this.isLoading = false;
+    //     this.submitted.emit(true);
 
-      this.submitted.emit(true);
+    //     Swal.fire({
+    //       icon: "success",
+    //       text: "Trainer Invited!",
+    //     }).then((result) => {
+    //       console.log("result");
+    //     });
+    //   },
+    //   (err) => {
+    //     console.log(err.error.message[0]);
 
-      Swal.fire({
-        icon: "success",
-        text: "trainer Invited!",
-      }).then((result) => {
-        console.log("result");
-      });
-    // });
+    //     this.isLoading = false;
+
+    //     setTimeout(() => {
+    //       this.errorMessage = "";
+    //     }, 10000);
+
+    //     this.errorMessage = err.error.message[0];
+    //   }
+    // );
   }
 }

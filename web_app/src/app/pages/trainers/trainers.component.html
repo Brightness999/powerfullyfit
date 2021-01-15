@@ -8,9 +8,12 @@
         <div class="col">
             <div class="card shadow">
                 <div class="card-header border-0">
-                    <h3 class="mb-0">Card tables</h3>
+                    <span class="h1 mb-0">Trainers</span>
                 </div>
-                <div class="table-responsive">
+
+                <pf-table [rowData]="coaches" [columnDefs]="columnDefs" (rowClicked)="rowClicked($event)"></pf-table>
+
+                <!-- <div class="table-responsive">
                     <table class="table align-items-center table-flush">
                         <thead class="thead-light">
                             <tr>
@@ -364,8 +367,8 @@
                             </tr>
                         </tbody>
                     </table>
-                </div>
-                <div class="card-footer py-4">
+                </div> -->
+                <!-- <div class="card-footer py-4">
                     <nav aria-label="...">
                         <ul class="pagination justify-content-end mb-0">
                             <li class="page-item disabled">
@@ -390,7 +393,7 @@
                             </li>
                         </ul>
                     </nav>
-                </div>
+                </div> -->
             </div>
         </div>
     </div>

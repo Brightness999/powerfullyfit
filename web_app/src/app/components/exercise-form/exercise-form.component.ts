@@ -22,6 +22,8 @@ export class ExerciseFormComponent implements OnInit {
     logo: [null, Validators.required],
   });
 
+  errorMessage = "";
+
   isLoading: boolean = false;
 
   blockSubmit: boolean = false;
@@ -35,32 +37,40 @@ export class ExerciseFormComponent implements OnInit {
   ngOnInit(): void {}
 
   onSubmit(exercise) {
-    console.log(exercise);
-
     this.isLoading = true;
 
-    this.exerciseService.createExercise(exercise).subscribe((exercise: any) => {
-      console.log(exercise);
+    this.exerciseService.createExercise(exercise).subscribe(
+      (exercise: any) => {
+        console.log(exercise);
 
-      this.isLoading = false;
+        this.isLoading = false;
 
-      this.submitted.emit(true);
+        this.submitted.emit(true);
 
-      Swal.fire({
-        icon: "success",
-        text: "Exercise Created!",
-        focusConfirm: true,
-        showCancelButton: true,
-        cancelButtonText: "Close",
-        confirmButtonText: "Start Building!",
-      }).then((result) => {
-        console.log("result");
-      });
-    });
+        Swal.fire({
+          icon: "success",
+          text: "Exercise Created!",
+          focusConfirm: true,
+          showCancelButton: true,
+          cancelButtonText: "Close",
+          confirmButtonText: "OK!",
+        }).then((result) => {
+          console.log("result");
+        });
+      },
+      (err) => {
+        this.isLoading = false;
+
+        setTimeout(() => {
+          this.errorMessage = "";
+        }, 10000);
+
+        this.errorMessage = err.error.message[0];
+      }
+    );
   }
 
   addAsset(file) {
-    console.log(file);
     this.exerciseForm.patchValue({ logo: file });
   }
 

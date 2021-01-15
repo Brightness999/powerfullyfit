@@ -1,0 +1,40 @@
+<div bsModal #lgModal="bs-modal" class="modal fade modal-open" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div>
+            <div class="modal-content">
+                <div class="modal-header w-100">
+                    <h1 class="modal-title mr-auto"> Add Client To Program </h1>
+
+                    <button class="btn " (click)="hide()">
+                        <i class="fa fa-times"></i>
+                    </button>
+                </div>
+                <div class="modal-body member-modal-body pt-2 pb-1">
+
+                    <div *ngFor="let user of users">
+                        <div class="form-check">
+                            <input type="checkbox" class="form-check-input" id="exampleCheck1" (click)="selectUser(user)">
+                            <!-- <label class="form-check-label" for="exampleCheck1">Check me out</label> -->
+                            <img [src]="user.logo?.url" alt="" class="rounded-circle" height="45" width="45"> {{
+                            user.firstname }} {{ user.lastname }}
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="modal-footer">
+                    <div class="alert alert-danger" role="alert" *ngIf="errorMessage">
+                        {{ errorMessage }}
+                    </div>
+
+                    <div class="btn-group">
+                        <button class="btn btn-dark" type="button" [disabled]="isLoading" (click)="saveUser()">
+                            <i class="fa fa-check mr-2"></i> Done
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
