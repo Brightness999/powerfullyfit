@@ -13,6 +13,7 @@ import { CoachRole } from './../models/coach-role.enum';
 import { User } from './user.entity';
 import { Coach } from './coach.entity';
 import { Organization } from '@app/organization/entities/organization.entity';
+import { Program } from '@app/program/entities/program.entity';
 import { AssignedProgram } from '@app/program/entities/assigned-program.entity';
 
 @ChildEntity()
@@ -23,10 +24,16 @@ export class Client extends User {
   )
   coach: Coach;
 
-  @JoinTable()
-  @OneToMany(
-    type => AssignedProgram,
-    assignedProgram => assignedProgram.assignedClient,
+  // @JoinTable()
+  // @OneToMany(
+  //   type => AssignedProgram,
+  //   assignedProgram => assignedProgram.assignedClient,
+  // )
+  // assignedPrograms: AssignedProgram[];
+
+  @ManyToOne(
+    type => Program,
+    program => program.clients,
   )
-  assignedPrograms: AssignedProgram[];
+  program: Program;
 }

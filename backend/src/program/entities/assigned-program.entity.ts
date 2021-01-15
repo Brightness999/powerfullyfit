@@ -13,18 +13,18 @@ import { Client } from '@app/user/entities/client.entity';
 
 @Entity()
 export class AssignedProgram extends Program {
-  @ManyToOne(
-    type => Client,
-    client => client.assignedPrograms,
-  )
-  assignedClient: Client;
+  // @ManyToOne(
+  //   type => Client,
+  //   client => client.assignedPrograms,
+  // )
+  // assignedClient: Client;
 
   @Column()
   status: string;
 
-  @ManyToOne(
-    type => Program,
-    program => program.assignedPrograms,
-  )
-  program: Program;
+  // @ManyToOne(
+  //   type => Program,
+  //   program => program.assignedPrograms,
+  // )
+  // program: Program;
 }

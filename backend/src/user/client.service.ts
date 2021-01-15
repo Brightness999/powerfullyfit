@@ -34,13 +34,13 @@ export class ClientService {
 
   findAllClients() {
     return this.clientRepository.find({
-      relations: ['coach', 'coach.organization', 'assignedPrograms', 'logo'],
+      relations: ['coach', 'coach.organization', 'logo', 'program'],
     });
   }
 
   async findOneClient(id: number) {
     const user = await this.clientRepository.findOne(id, {
-      relations: ['coach', 'coach.organization', 'assignedPrograms', 'logo'],
+      relations: ['coach', 'coach.organization', 'logo'],
     });
 
     if (!user)
