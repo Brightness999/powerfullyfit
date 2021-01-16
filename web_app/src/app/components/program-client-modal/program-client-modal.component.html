@@ -1,8 +1,8 @@
 <div bsModal #lgModal="bs-modal" class="modal fade modal-open" tabindex="-1" role="dialog" aria-hidden="true">
-    <div class="modal-dialog modal-lg">
+    <div class="modal-dialog modal-md">
         <div>
             <div class="modal-content">
-                <div class="modal-header w-100">
+                <div class="modal-header w-100 border-bottom">
                     <h1 class="modal-title mr-auto"> Add Client To Program </h1>
 
                     <button class="btn " (click)="hide()">
@@ -12,11 +12,13 @@
                 <div class="modal-body member-modal-body pt-2 pb-1">
 
                     <div *ngFor="let user of users">
-                        <div class="form-check">
-                            <input type="checkbox" class="form-check-input" id="exampleCheck1" (click)="selectUser(user)">
-                            <!-- <label class="form-check-label" for="exampleCheck1">Check me out</label> -->
-                            <img [src]="user.logo?.url" alt="" class="rounded-circle" height="45" width="45"> {{
-                            user.firstname }} {{ user.lastname }}
+                        <div class="form-check d-flex">
+                            <input type="checkbox" class="form-check-input align-self-center" id="exampleCheck1"
+                                (click)="selectUser(user)">
+                            <img [src]="user.logo?.url" alt="" class="rounded-circle mr-3" height="45" width="45">
+                            <div class="h2 align-self-center">
+                                {{ user.firstname }} {{ user.lastname }}
+                            </div>
                         </div>
                     </div>
 
@@ -29,7 +31,7 @@
 
                     <div class="btn-group">
                         <button class="btn btn-dark" type="button" [disabled]="isLoading" (click)="saveUser()">
-                            <i class="fa fa-check mr-2"></i> Done
+                            <i class="fa fa-check mr-2"></i> Add Users
                         </button>
                     </div>
                 </div>

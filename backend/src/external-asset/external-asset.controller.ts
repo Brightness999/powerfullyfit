@@ -22,6 +22,8 @@ import { FileInterceptor, FilesInterceptor } from '@nestjs/platform-express';
 import { diskStorage } from 'multer';
 import { extname } from 'path';
 
+var ip = require('ip');
+
 @Controller('external-asset')
 export class ExternalAssetController {
   constructor(private readonly externalAssetService: ExternalAssetService) {}
@@ -43,7 +45,7 @@ export class ExternalAssetController {
   async uploadedFile(@UploadedFile() file) {
     return this.externalAssetService.create({
       type: 'image',
-      url: 'http://localhost:3000/api/external-asset/' + file.filename,
+      url: 'http://' + ip.address() + '/api/external-asset/' + file.filename,
     });
   }
 

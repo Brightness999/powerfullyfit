@@ -4,7 +4,7 @@ import {
   NotFoundException,
 } from '@nestjs/common';
 
-import * as sgMail from '@sendgrid/mail';
+import { NotificationService } from '@app/notification/notification.service';
 
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository, IsNull } from 'typeorm';
@@ -24,6 +24,7 @@ export class ClientService {
     private readonly userRepository: Repository<User>,
     @InjectRepository(Client)
     private readonly clientRepository: Repository<Client>,
+    private readonly notificationService: NotificationService,
   ) {}
 
   createClient(createClientDto: CreateClientDto) {

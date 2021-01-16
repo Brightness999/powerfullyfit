@@ -28,6 +28,14 @@ export class AdminLayoutComponent implements OnInit {
   ngOnInit() {
     this.user = this.userService.currentUser;
 
+    console.log(this.user);
+
+    (<any>window).Intercom("boot", {
+      app_id: "sgvd9vlh",
+      name: this.user.firstname + " " + this.user.lastname,
+      email: this.user.email,
+    });
+
     this.notificationsService.notifications.subscribe((res) => {
       console.log(res);
 

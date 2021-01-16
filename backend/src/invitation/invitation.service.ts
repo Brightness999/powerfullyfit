@@ -6,7 +6,8 @@ import { Repository } from 'typeorm';
 import { ClientService } from '@app/user/client.service';
 import { CreateClientDto } from '@app/user/dto/create-client.dto';
 
-import { NotificationGateway } from '@app/notification/notification.gateway';
+// import { NotificationGateway } from '@app/notification/notification.gateway';
+import { EmailService } from '@app/notification/email.service';
 
 import { Invitation } from './entities/invitation.entity';
 
@@ -19,13 +20,15 @@ export class InvitationService {
     @InjectRepository(Invitation)
     private readonly invitationRepository: Repository<Invitation>,
     private readonly clientService: ClientService,
-    private notificationGateway: NotificationGateway,
+    private readonly emailService: EmailService,
   ) {}
 
   create(createInvitationDto: CreateInvitationDto) {
     const invitation = this.invitationRepository.create(createInvitationDto);
 
     // this.notificationGateway.create({});
+
+    this.emailService.sendEmail();
 
     return this.invitationRepository.save(invitation);
   }
