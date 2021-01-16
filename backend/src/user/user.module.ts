@@ -3,6 +3,7 @@ import { Module, forwardRef } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 
 import { AuthModule } from '@app/auth/auth.module';
+import { NotificationModule } from '@app/notification/notification.module';
 
 import { Coach } from './entities/coach.entity';
 import { User } from './entities/user.entity';
@@ -19,6 +20,7 @@ import { CoachController } from './coach.controller';
   imports: [
     TypeOrmModule.forFeature([Coach, User, Client]),
     forwardRef(() => AuthModule),
+    NotificationModule,
   ],
   controllers: [UserController, ClientController, CoachController],
   providers: [UserService, CoachService, ClientService],
