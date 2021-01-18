@@ -46,7 +46,9 @@ export class User {
   )
   receivedMessages;
 
-  @ManyToOne(() => ExternalAsset)
+  @ManyToOne(() => ExternalAsset, {
+    eager: true,
+  })
   @JoinColumn({ name: 'logoId' })
   logo: ExternalAsset; // TODO: external asset
 

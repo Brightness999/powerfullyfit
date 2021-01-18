@@ -55,6 +55,8 @@ export class ProgramClientModalComponent implements OnInit {
 
   saveUser() {
     this.onUserSave.emit(this.selectedUsers);
+
+    this.modal.hide();
   }
 
   openModal() {

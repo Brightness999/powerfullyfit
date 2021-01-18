@@ -12,7 +12,7 @@ export class InvitationService {
   constructor(private backendProxy: BackendProxy) {}
 
   inviteClient(invitation) {
-    return this.backendProxy.post("invitation", invitation);
+    return this.backendProxy.post("invitation/client", invitation);
   }
 
   getAllInvitations() {

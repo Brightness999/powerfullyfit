@@ -11,7 +11,10 @@ import {
 
 import { Coach } from '@app/user/entities/coach.entity';
 import { Client } from '@app/user/entities/client.entity';
-import { Workout } from '@app/workout/entities/workout.entity';
+// import { Workout } from '@app/workout/entities/workout.entity';
+
+import { ProgramDay } from './program-day.entity';
+import { CalendarEvent } from '@app/calendar-event/entities/calendar-event.entity';
 import { AssignedProgram } from './assigned-program.entity';
 
 @Entity()
@@ -28,13 +31,22 @@ export class Program {
   @Column()
   phases: number;
 
-  @JoinTable()
-  @ManyToMany(
-    type => Workout,
-    workout => workout.program,
-  )
-  workouts: Workout[];
- 
+  // @JoinTable()
+  // @ManyToMany(
+  //   type => Workout,
+  //   workout => workout.program,
+  // )
+  // workouts: Workout[];
+
+  // @JoinTable()
+  // @OneToMany(
+  //   type => CalendarEvent,
+  //   calendarEvent => calendarEvent.program,
+  // )
+  // calendarEvents: CalendarEvent[];
+
+  days: ProgramDay[];
+
   @JoinTable()
   @OneToMany(
     type => Client,

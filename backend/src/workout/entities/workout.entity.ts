@@ -11,7 +11,8 @@ import {
 } from 'typeorm';
 
 import { Coach } from '@app/user/entities/coach.entity';
-import { Program } from '@app/program/entities/program.entity';
+// import { Program } from '@app/program/entities/program.entity';
+import { CalendarEvent } from '@app/calendar-event/entities/calendar-event.entity';
 import { Exercise } from '@app/exercise/entities/exercise.entity';
 
 @Entity()
@@ -32,11 +33,10 @@ export class Workout {
   coach: Coach;
 
   @ManyToMany(
-    type => Program,
-    program => program.workouts,
-    { lazy: true },
+    type => CalendarEvent,
+    calendarEvent => calendarEvent.workout,
   )
-  program: Program;
+  calendarEvents: CalendarEvent;
 
   @JoinTable()
   @ManyToMany(

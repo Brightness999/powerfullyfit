@@ -23,12 +23,18 @@ export class InvitationService {
     private readonly emailService: EmailService,
   ) {}
 
-  create(createInvitationDto: CreateInvitationDto) {
+  createClientInvitation(createInvitationDto: CreateInvitationDto) {
     const invitation = this.invitationRepository.create(createInvitationDto);
 
-    // this.notificationGateway.create({});
+    this.emailService.sendEmail(createInvitationDto.email);
 
-    this.emailService.sendEmail();
+    return this.invitationRepository.save(invitation);
+  }
+
+  createCoachInvitation(createInvitationDto: CreateInvitationDto) {
+    const invitation = this.invitationRepository.create(createInvitationDto);
+
+    this.emailService.sendEmail(createInvitationDto.email);
 
     return this.invitationRepository.save(invitation);
   }
