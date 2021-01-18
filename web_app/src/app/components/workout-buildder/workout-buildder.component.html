@@ -1,31 +1,71 @@
 <div bsModal #lgModal="bs-modal" class="modal fade modal-open" tabindex="-1" role="dialog" aria-hidden="true">
-    <div class="modal-dialog modal-xxl">
-        <form>
-            <div class="modal-content">
-                <div class="modal-header w-100">
-                    <h1 class="modal-title mr-auto"> Workout Builder </h1>
-
-                    <button class="btn " (click)="hide()">
-                        <i class="fa fa-times"></i>
-                    </button>
+    <div class="modal-dialog modal-xxxl">
+        <div class="modal-content">
+            <div class="modal-header w-100">
+                <div class="h1 mr-4">
+                    {{ workout?.name }}
                 </div>
-                <div class="modal-body member-modal-body pt-2 pb-1">
-
+                <div class="h3 align-self-center mr-auto">
+                    <span class="text-muted">
+                        {{ workout?.type }}
+                    </span>
                 </div>
 
-                <div class="modal-footer">
-                    <div class="alert alert-danger" role="alert" *ngIf="errorMessage">
-                        {{ errorMessage }}
+                <button class="btn " (click)="hide()">
+                    <i class="fa fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body member-modal-body pt-2 pb-1">
+                <div class="row" cdkDropListGroup>
+                    <div cdkDropList #todoList="cdkDropList" [cdkDropListData]="workout.exercises"
+                        [cdkDropListConnectedTo]="[doneList]" class="col-5 border-right example-list"
+                        (cdkDropListDropped)="drop($event)">
+                        <div class="example-box" *ngFor="let item of workout.exercises" cdkDrag>{{ item.name }}</div>
                     </div>
 
-                    <div class="btn-group">
-                        <button class="btn btn-dark" type="submit" [disabled]="isLoading">
-                            <i class="fa fa-check mr-2"></i> Done
-                        </button>
+
+                    <div cdkDropList #doneList="cdkDropList" [cdkDropListData]="organizationExercises.slice()"
+                        [cdkDropListConnectedTo]="[todoList]" class="col-7 row">
+                        <div class="col-4 example-box" *ngFor="let exercise of organizationExercises.slice()" cdkDrag>
+                            {{ exercise.logo.url }}
+                            {{ exercise.name }}
+                        </div>
                     </div>
+                    <!-- <div cdkDropList #doneList="cdkDropList" [cdkDropListData]="done"
+                            [cdkDropListConnectedTo]="[todoList]" class="example-list"
+                            (cdkDropListDropped)="drop($event)">
+                            <div cdkDropList *ngFor="let exercise of organizationExercises.slice(0, 4)">
+                                <div cdkDrag class="card">
+                                    <iframe [src]="exercise.logo.url | domSanitizer" frameborder="0" allowfullscreen
+                                        class="asset"></iframe>
+                                    {{ exercise.name }}
+                                </div>
+                            </div>
+                        </div> -->
+                    <!-- <div cdkDropList [cdkDropListData]="basket" class="col-7 overflow-auto example-list"
+                            (cdkDropListDropped)="drop($event)">
+                            <div cdkDropList *ngFor="let exercise of organizationExercises.slice(0, 4)">
+                                <div cdkDrag class="card">
+                                    <iframe [src]="exercise.logo.url | domSanitizer" frameborder="0" allowfullscreen
+                                        class="asset"></iframe>
+                                    {{ exercise.name }}
+                                </div>
+                            </div>
+                        </div> -->
                 </div>
             </div>
 
-        </form>
+            <div class="modal-footer">
+                <div class="alert alert-danger" role="alert" *ngIf="errorMessage">
+                    {{ errorMessage }}
+                </div>
+
+                <div class="btn-group">
+                    <button class="btn btn-dark" type="button" (click)="save()" [disabled]="isLoading">
+                        <i class="fa fa-check mr-2"></i> Done
+                    </button>
+                </div>
+            </div>
+        </div>
     </div>
 </div>

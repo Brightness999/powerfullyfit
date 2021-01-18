@@ -42,7 +42,7 @@ export class WorkoutPageComponent implements OnInit {
   edit() {
     console.log("edit");
 
-    this.workoutBuilder.openModal();
+    this.workoutBuilder.openModal(this.workout);
   }
 
   buildColumnDefs() {

@@ -22,4 +22,8 @@ export class WorkoutService {
   findWorkoutById(workoutId: string | number): Observable<any> {
     return this.backendProxy.get("workout/" + workoutId);
   }
+
+  updateWorkoutById(workout: any) {
+    return this.backendProxy.patch("workout/" + workout.id.toString(), workout);
+  }
 }
