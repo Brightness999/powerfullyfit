@@ -34,34 +34,6 @@ import { ExerciseService } from "@pf/services/exercise.service";
 export class WorkoutBuildderComponent implements OnInit {
   @ViewChild(ModalDirective, { static: false }) modal: ModalDirective;
 
-  items = ["Carrots", "Tomatoes", "Onions", "Apples", "Avocados"];
-
-  todo = [];
-
-  done = ["Get up", "Brush teeth", "Take a shower", "Check e-mail", "Walk dog"];
-
-  basket = ["Oranges", "Bananas", "Cucumbers"];
-
-  drop(event: CdkDragDrop<string[]>) {
-    if (event.previousContainer === event.container) {
-      moveItemInArray(
-        event.container.data,
-        event.previousIndex,
-        event.currentIndex
-      );
-    } else {
-      transferArrayItem(
-        event.previousContainer.data,
-        event.container.data,
-        event.previousIndex,
-        event.currentIndex
-      );
-    }
-
-    console.log(this.workout);
-    console.log(this.done);
-  }
-
   isLoading: boolean = false;
 
   errorMessage = "";
@@ -71,8 +43,6 @@ export class WorkoutBuildderComponent implements OnInit {
   workout: any = {};
 
   organizationExercises = [];
-
-  workouts = [{}];
 
   columnDefs = this.buildColumnDefs();
 
@@ -86,14 +56,11 @@ export class WorkoutBuildderComponent implements OnInit {
 
   ngOnInit(): void {
     this.exerciseService.findAllExercises().subscribe((res: any) => {
-      console.log(res);
-
       this.organizationExercises = res;
     });
   }
 
   openModal(workout) {
-    console.log(workout);
     this.workout = workout;
 
     this.modal.show();
@@ -124,11 +91,28 @@ export class WorkoutBuildderComponent implements OnInit {
     this.router.navigate([workout.id], { relativeTo: this.activatedRoute });
   }
 
-  save() {
-    console.log(this.workout);
+  drop(event: CdkDragDrop<string[]>) {
+    if (event.previousContainer === event.container) {
+      moveItemInArray(
+        event.container.data,
+        event.previousIndex,
+        event.currentIndex
+      );
+    } else {
+      transferArrayItem(
+        event.previousContainer.data,
+        event.container.data,
+        event.previousIndex,
+        event.currentIndex
+      );
+    }
+  }
 
+  save() {
     this.workoutService.updateWorkoutById(this.workout).subscribe((res) => {
       console.log(res);
+
+      this.hide();
     });
   }
 }

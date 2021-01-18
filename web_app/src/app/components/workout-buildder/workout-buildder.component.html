@@ -17,12 +17,20 @@
             </div>
             <div class="modal-body member-modal-body pt-2 pb-1">
                 <div class="row" cdkDropListGroup>
-                    <div cdkDropList #todoList="cdkDropList" [cdkDropListData]="workout.exercises"
-                        [cdkDropListConnectedTo]="[doneList]" class="col-5 border-right example-list"
+                    <table cdkDropList #todoList="cdkDropList" [cdkDropListData]="workout.exercises"
+                        [cdkDropListConnectedTo]="[doneList]" class="col-5 w-100 table border-right example-list"
                         (cdkDropListDropped)="drop($event)">
-                        <div class="example-box" *ngFor="let item of workout.exercises" cdkDrag>{{ item.name }}</div>
-                    </div>
-
+                        <tr>
+                            <th scope="col">Name</th>
+                            <!-- <th scope="col">Sets</th>
+                            <th scope="col">Country</th> -->
+                        </tr>
+                        <tr *ngFor="let exercise of workout.exercises" cdkDrag>
+                            <td>{{ exercise.name }}</td>
+                            <!-- <td>Maria Anders</td>
+                            <td>Germany</td> -->
+                        </tr>
+                    </table>
 
                     <div cdkDropList #doneList="cdkDropList" [cdkDropListData]="organizationExercises.slice()"
                         [cdkDropListConnectedTo]="[todoList]" class="col-7 row">
@@ -31,17 +39,6 @@
                             {{ exercise.name }}
                         </div>
                     </div>
-                    <!-- <div cdkDropList #doneList="cdkDropList" [cdkDropListData]="done"
-                            [cdkDropListConnectedTo]="[todoList]" class="example-list"
-                            (cdkDropListDropped)="drop($event)">
-                            <div cdkDropList *ngFor="let exercise of organizationExercises.slice(0, 4)">
-                                <div cdkDrag class="card">
-                                    <iframe [src]="exercise.logo.url | domSanitizer" frameborder="0" allowfullscreen
-                                        class="asset"></iframe>
-                                    {{ exercise.name }}
-                                </div>
-                            </div>
-                        </div> -->
                     <!-- <div cdkDropList [cdkDropListData]="basket" class="col-7 overflow-auto example-list"
                             (cdkDropListDropped)="drop($event)">
                             <div cdkDropList *ngFor="let exercise of organizationExercises.slice(0, 4)">

@@ -26,11 +26,6 @@ export class NotificationController {
     return this.notificationService.findAll();
   }
 
-  @Get('email')
-  sendEmail() {
-    return this.emailService.sendEmail();
-  }
-
   @Get(':id')
   findOne(@Param('id', ParseIntPipe) id: number) {
     return this.notificationService.findOne(id);

@@ -7,17 +7,26 @@ import {
   Param,
   Delete,
 } from '@nestjs/common';
+
+import { ApiTags } from '@nestjs/swagger';
+
 import { InvitationService } from './invitation.service';
 import { CreateInvitationDto } from './dto/create-invitation.dto';
 import { UpdateInvitationDto } from './dto/update-invitation.dto';
 
+@ApiTags('invitation')
 @Controller('invitation')
 export class InvitationController {
   constructor(private readonly invitationService: InvitationService) {}
 
-  @Post()
-  create(@Body() createInvitationDto: CreateInvitationDto) {
-    return this.invitationService.create(createInvitationDto);
+  @Post('client')
+  createClientInvitation(@Body() createInvitationDto: CreateInvitationDto) {
+    return this.invitationService.createClientInvitation(createInvitationDto);
+  }
+
+  @Post('coach')
+  createCoachInvitation(@Body() createInvitationDto: CreateInvitationDto) {
+    return this.invitationService.createCoachInvitation(createInvitationDto);
   }
 
   @Post(':id/accept')

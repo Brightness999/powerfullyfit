@@ -4,6 +4,8 @@ import {
   PrimaryGeneratedColumn,
   OneToMany,
   JoinTable,
+  JoinColumn,
+  ManyToOne,
 } from 'typeorm';
 
 import { ExternalAsset } from '@app/external-asset/entities/external-asset.entity';
@@ -18,6 +20,10 @@ export class Organization {
   @Column()
   name: string;
 
+  @ManyToOne(() => ExternalAsset, {
+    eager: true,
+  })
+  @JoinColumn({ name: 'logoId' })
   logo: ExternalAsset;
 
   @JoinTable()

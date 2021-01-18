@@ -12,12 +12,18 @@
                 <div class="modal-body member-modal-body pt-2 pb-1">
 
                     <div *ngFor="let user of users">
-                        <div class="form-check d-flex">
+                        <div class="form-check d-flex py-3">
                             <input type="checkbox" class="form-check-input align-self-center" id="exampleCheck1"
                                 (click)="selectUser(user)">
                             <img [src]="user.logo?.url" alt="" class="rounded-circle mr-3" height="45" width="45">
-                            <div class="h2 align-self-center">
-                                {{ user.firstname }} {{ user.lastname }}
+                            <div class="flex-col">
+                                <div class="h2 align-self-center mb-0">
+                                    {{ user.firstname }} {{ user.lastname }}
+                                </div>
+
+                                <div class="text-muted">
+                                    {{ user.email }}
+                                </div>
                             </div>
                         </div>
                     </div>

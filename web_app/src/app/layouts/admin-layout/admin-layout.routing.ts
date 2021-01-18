@@ -16,6 +16,7 @@ import { AppointmentsComponent } from '../../pages/appointments/appointments.com
 import { WorkoutPageComponent } from "../../pages/workout-page/workout-page.component";
 import { InvitesComponent } from "../../pages/invites/invites.component";
 import { NotificationsComponent } from "../../pages/notifications/notifications.component";
+import { GettingStartedComponent } from "../../pages/getting-started/getting-started.component";
 
 export const AdminLayoutRoutes: Routes = [
   { path: "dashboard", component: DashboardComponent },
@@ -34,4 +35,5 @@ export const AdminLayoutRoutes: Routes = [
   { path: "invites", component: InvitesComponent },
   { path: "settings", component: SettingsComponent },
   { path: "notifications", component: NotificationsComponent },
+  { path: "getting-started", component: GettingStartedComponent },
 ];

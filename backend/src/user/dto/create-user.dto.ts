@@ -12,6 +12,4 @@ export abstract class CreateUserDto {
 
   @IsString()
   password: string;
-
-
 }

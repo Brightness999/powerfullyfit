@@ -2,25 +2,30 @@ import { Injectable } from '@nestjs/common';
 
 import * as sgMail from '@sendgrid/mail';
 
+// import template from './templates/email.template.html';
+
 @Injectable()
 export class EmailService {
-  sendEmail() {
+  sendEmail(
+    email: string,
+    subject: string = 'Welcome to Powerfully Fit',
+    type: string = 'welcome',
+  ) {
     sgMail.setApiKey(
       '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',
     );
 
     const msg = {
-      to: 'faridgarciayala@icloud.com', // Change to your recipient
+      to: email, // Change to your recipient
       from: 'app@powerfullyfittraining.com', // Change to your verified sender
-      subject: 'Sending with SendGrid is Fun',
-      text: 'and easy to do anywhere, even with Node.js',
-      html: '<strong>and easy to do anywhere, even with Node.js</strong>',
+      subject: subject,
+      html: 'easy',
     };
 
     sgMail
       .send(msg)
       .then(() => {
-        console.log('Email sent');
+        console.log(`Email Sent to ${email}`);
       })
       .catch(error => {
         console.error(error);

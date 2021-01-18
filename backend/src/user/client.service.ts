@@ -35,20 +35,20 @@ export class ClientService {
 
   findAllClients() {
     return this.clientRepository.find({
-      relations: ['coach', 'coach.organization', 'logo', 'program'],
+      relations: ['coach', 'coach.organization', 'program'],
     });
   }
 
   findAllNotAssignedClient() {
     return this.clientRepository.find({
-      relations: ['coach', 'coach.organization', 'logo', 'program'],
+      relations: ['coach', 'coach.organization', 'program'],
       where: { program: IsNull() },
     });
   }
 
   async findOneClient(id: number) {
     const user = await this.clientRepository.findOne(id, {
-      relations: ['coach', 'coach.organization', 'logo'],
+      relations: ['coach', 'coach.organization'],
     });
 
     if (!user)

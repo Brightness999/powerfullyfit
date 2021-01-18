@@ -15,7 +15,7 @@ import { ModalModule } from "ngx-bootstrap/modal";
 
 import { TreeModule } from "primeng/tree";
 
-import { DragDropModule } from "@angular/cdk/drag-drop";
+import { DragDropModule, CDK_DRAG_CONFIG } from "@angular/cdk/drag-drop";
 
 import { FullCalendarModule } from "@fullcalendar/angular"; // the main connector. must go first
 import dayGridPlugin from "@fullcalendar/daygrid"; // a plugin
@@ -43,6 +43,12 @@ import { CalendarComponent } from "./calendar/calendar.component";
 
 FullCalendarModule.registerPlugins([dayGridPlugin]);
 
+const DragConfig = {
+  dragStartThreshold: 0,
+  pointerDirectionChangeThreshold: 5,
+  zIndex: 10000,
+};
+
 @NgModule({
   imports: [
     CommonModule,
@@ -60,6 +66,7 @@ FullCalendarModule.registerPlugins([dayGridPlugin]);
     DragDropModule,
     FullCalendarModule,
   ],
+  providers: [{ provide: CDK_DRAG_CONFIG, useValue: DragConfig }],
   declarations: [
     FooterComponent,
     NavbarComponent,
