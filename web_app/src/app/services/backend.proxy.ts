@@ -28,7 +28,7 @@ export class BackendProxy {
   }
 
   patch(url: string, body: any) {
-    return this.http.patch(this.url + url, { headers });
+    return this.http.patch(this.url + url, body, { headers });
   }
 
   put(url: string, body: any) {

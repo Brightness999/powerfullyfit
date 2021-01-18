@@ -32,7 +32,7 @@ export class WorkoutController {
   @Post()
   create(@Body() createWorkoutDto: CreateWorkoutDto, @CurrentUser() user: any) {
     createWorkoutDto['coach'] = user;
-    
+
     return this.workoutService.create(createWorkoutDto);
   }
 
@@ -55,9 +55,10 @@ export class WorkoutController {
   @Patch(':id')
   update(
     @Param('id', ParseIntPipe) id: number,
-    @Body() updateWorkoutDto: UpdateWorkoutDto,
+    @Body() updateWorkoutDto: any,
     @CurrentUser() user: any,
   ) {
+    console.log(updateWorkoutDto);
     return this.workoutService.update(id, updateWorkoutDto);
   }
 

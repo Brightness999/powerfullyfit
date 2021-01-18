@@ -45,8 +45,15 @@ export class WorkoutService {
     return workout;
   }
 
-  update(id: number, updateWorkoutDto: UpdateWorkoutDto) {
-    return `This action updates a #${id} workout`;
+  async update(id: number, updateWorkoutDto: UpdateWorkoutDto) {
+    const workout = await this.workoutRepository.preload({
+      id: id,
+      ...updateWorkoutDto,
+    });
+
+    if (!workout) throw new NotFoundException();
+
+    return this.workoutRepository.save(workout);
   }
 
   async remove(id: number) {

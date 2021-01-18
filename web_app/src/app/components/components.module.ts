@@ -15,6 +15,8 @@ import { ModalModule } from "ngx-bootstrap/modal";
 
 import { TreeModule } from "primeng/tree";
 
+import { DragDropModule } from "@angular/cdk/drag-drop";
+
 import { FullCalendarModule } from "@fullcalendar/angular"; // the main connector. must go first
 import dayGridPlugin from "@fullcalendar/daygrid"; // a plugin
 
@@ -55,6 +57,7 @@ FullCalendarModule.registerPlugins([dayGridPlugin]);
       UserCellRendererComponent,
     ]),
     ModalModule.forRoot(),
+    DragDropModule,
     FullCalendarModule,
   ],
   declarations: [
