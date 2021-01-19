@@ -11,7 +11,11 @@ import {
 import { ApiTags } from '@nestjs/swagger';
 
 import { InvitationService } from './invitation.service';
+
 import { CreateInvitationDto } from './dto/create-invitation.dto';
+import { CreateClientInvitationDto } from './dto/create-client-invitation.dto';
+import { CreateCoachInvitationDto } from './dto/create-coach-invitation.dto';
+
 import { UpdateInvitationDto } from './dto/update-invitation.dto';
 
 @ApiTags('invitation')
@@ -20,12 +24,12 @@ export class InvitationController {
   constructor(private readonly invitationService: InvitationService) {}
 
   @Post('client')
-  createClientInvitation(@Body() createInvitationDto: CreateInvitationDto) {
-    return this.invitationService.createClientInvitation(createInvitationDto);
+  createClientInvitation(@Body() createClientInvitationDto: CreateClientInvitationDto) {
+    return this.invitationService.createClientInvitation(createClientInvitationDto);
   }
 
   @Post('coach')
-  createCoachInvitation(@Body() createInvitationDto: CreateInvitationDto) {
+  createCoachInvitation(@Body() createInvitationDto: CreateCoachInvitationDto) {
     return this.invitationService.createCoachInvitation(createInvitationDto);
   }
 

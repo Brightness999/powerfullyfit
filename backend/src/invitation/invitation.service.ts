@@ -10,8 +10,13 @@ import { CreateClientDto } from '@app/user/dto/create-client.dto';
 import { EmailService } from '@app/notification/email.service';
 
 import { Invitation } from './entities/invitation.entity';
+import { ClientInvitation } from './entities/client-invitation.entity';
+import { CoachInvitation } from './entities/coach-invitation.entity';
 
 import { CreateInvitationDto } from './dto/create-invitation.dto';
+import { CreateClientInvitationDto } from './dto/create-client-invitation.dto';
+import { CreateCoachInvitationDto } from './dto/create-coach-invitation.dto';
+
 import { UpdateInvitationDto } from './dto/update-invitation.dto';
 
 @Injectable()
@@ -19,20 +24,28 @@ export class InvitationService {
   constructor(
     @InjectRepository(Invitation)
     private readonly invitationRepository: Repository<Invitation>,
+    @InjectRepository(ClientInvitation)
+    private readonly clientInvitationRepository: Repository<ClientInvitation>,
+    @InjectRepository(CoachInvitation)
+    private readonly coachInvitationRepository: Repository<CoachInvitation>,
     private readonly clientService: ClientService,
     private readonly emailService: EmailService,
   ) {}
 
-  createClientInvitation(createInvitationDto: CreateInvitationDto) {
-    const invitation = this.invitationRepository.create(createInvitationDto);
+  createClientInvitation(createClientInvitationDto: CreateClientInvitationDto) {
+    const invitation = this.clientInvitationRepository.create(
+      createClientInvitationDto,
+    );
 
-    this.emailService.sendEmail(createInvitationDto.email);
+    this.emailService.sendEmail(createClientInvitationDto.email);
 
     return this.invitationRepository.save(invitation);
   }
 
-  createCoachInvitation(createInvitationDto: CreateInvitationDto) {
-    const invitation = this.invitationRepository.create(createInvitationDto);
+  createCoachInvitation(createInvitationDto: CreateCoachInvitationDto) {
+    const invitation = this.coachInvitationRepository.create(
+      createInvitationDto,
+    );
 
     this.emailService.sendEmail(createInvitationDto.email);
 
