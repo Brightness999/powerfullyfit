@@ -10,6 +10,7 @@ import {
 } from 'typeorm';
 
 @Entity()
+@TableInheritance({ column: { type: 'varchar', name: 'type' } })
 export class Invitation {
   @PrimaryGeneratedColumn()
   id: number;
