@@ -12,9 +12,9 @@
                         {{ workout?.name }}
                     </div>
                     <div class="h3 align-self-center mr-auto">
-                        <span class="text-muted">
+                        <div class="text-white rounded bg-secondary px-3 py-1">
                             {{ workout?.type }}
-                        </span>
+                        </div>
                     </div>
 
                     <button class="btn btn-dark" (click)="edit()">
@@ -22,7 +22,7 @@
                     </button>
                 </div>
 
-                <pf-table [rowData]="exercises" [columnDefs]="columnDefs" (rowClicked)="rowClicked($event)"></pf-table>
+                <pf-table [rowData]="exercises" [columnDefs]="columnDefs"></pf-table>
             </div>
         </div>
     </div>

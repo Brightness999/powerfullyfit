@@ -6,9 +6,9 @@
                     {{ workout?.name }}
                 </div>
                 <div class="h3 align-self-center mr-auto">
-                    <span class="text-muted">
+                    <div class="text-white rounded bg-secondary px-3 py-1">
                         {{ workout?.type }}
-                    </span>
+                    </div>
                 </div>
 
                 <button class="btn " (click)="hide()">
@@ -18,41 +18,68 @@
             <div class="modal-body member-modal-body pt-2 pb-1">
                 <div class="row" cdkDropListGroup>
                     <table cdkDropList #todoList="cdkDropList" [cdkDropListData]="workout.exercises"
-                        [cdkDropListConnectedTo]="[doneList]" class="col-5 w-100 table border-right example-list"
+                        style="height: 60vh" [cdkDropListConnectedTo]="[doneList]"
+                        class="col-4 w-100 table border-right example-list overflow-auto m-0 p-0"
                         (cdkDropListDropped)="drop($event)">
-                        <tr>
-                            <th scope="col">Name</th>
-                            <!-- <th scope="col">Sets</th>
-                            <th scope="col">Country</th> -->
-                        </tr>
-                        <tr *ngFor="let exercise of workout.exercises" cdkDrag>
-                            <td>{{ exercise.name }}</td>
-                            <!-- <td>Maria Anders</td>
-                            <td>Germany</td> -->
-                        </tr>
+                        <thead class="thead-light">
+                            <tr>
+                                <th scope="col">Name</th>
+                                <th scope="col">Reps</th>
+                                <th scope="col">Sets</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let exercise of workout.exercises" cdkDrag>
+                                <td style="width: 70%">
+                                    <img [src]="exercise.logo.thumbnail" class="rounded mr-2" width="150" />
+                                    <span class="h3">
+                                        {{ exercise.name }}
+                                    </span>
+                                </td>
+                                <td style="width: 15%">
+                                    <input type="number" name="" class="form-control" id="">
+                                </td>
+                                <td style="width: 15%">
+                                    <input type="number" name="" class="form-control" id="">
+                                </td>
+                            </tr>
+                        </tbody>
                     </table>
 
                     <div cdkDropList #doneList="cdkDropList" [cdkDropListData]="organizationExercises.slice()"
-                        [cdkDropListConnectedTo]="[todoList]" class="col-7 row">
-                        <div class="col-4 example-box" *ngFor="let exercise of organizationExercises.slice()" cdkDrag>
-                            {{ exercise.logo.url }}
-                            {{ exercise.name }}
+                        cdkDropListSortingDisabled [cdkDropListConnectedTo]="[todoList]"
+                        class="col-7 row mx-auto overflow-auto p-0" style="height: 60vh">
+                        <div class="col-12 h4 mb-4 text-white text-uppercase d-none d-lg-inline-block">
+                            <form class="navbar-search navbar-search-dark form-inline mr-9 d-none d-md-flex ml-lg-auto">
+                                <div class="form-group mb-0" [ngClass]="{ 'focused': focus === true }">
+                                    <div class="input-group input-group-alternative bg-dark">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text"><i class="fas fa-search"></i></span>
+                                        </div>
+                                        <input class="form-control" placeholder="Search" type="text"
+                                            (focus)="focus = true" (blur)="focus = false"
+                                            (keyup)="filter($event.target.value)">
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+
+                        <div class="col-4 example-box d-flex flex-column justify-content-start flex-grow-0"
+                            *ngFor="let exercise of visibleExercises.slice()" cdkDrag>
+                            <div class="example-custom-placeholder" *cdkDragPlaceholder></div>
+
+                            <div class="mb-2">
+                                <img [src]="exercise.logo.thumbnail" class="rounded" width="100%" />
+                            </div>
+                            <div class="h2">
+                                {{ exercise.name }}
+                            </div>
                         </div>
                     </div>
-                    <!-- <div cdkDropList [cdkDropListData]="basket" class="col-7 overflow-auto example-list"
-                            (cdkDropListDropped)="drop($event)">
-                            <div cdkDropList *ngFor="let exercise of organizationExercises.slice(0, 4)">
-                                <div cdkDrag class="card">
-                                    <iframe [src]="exercise.logo.url | domSanitizer" frameborder="0" allowfullscreen
-                                        class="asset"></iframe>
-                                    {{ exercise.name }}
-                                </div>
-                            </div>
-                        </div> -->
                 </div>
             </div>
 
-            <div class="modal-footer">
+            <div class="modal-footer border-top">
                 <div class="alert alert-danger" role="alert" *ngIf="errorMessage">
                     {{ errorMessage }}
                 </div>

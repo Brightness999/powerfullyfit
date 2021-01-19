@@ -46,6 +46,7 @@ export class ExternalAssetController {
     return this.externalAssetService.create({
       type: 'image',
       url: 'http://' + ip.address() + '/api/external-asset/' + file.filename,
+      thumbnail: '',
     });
   }
 

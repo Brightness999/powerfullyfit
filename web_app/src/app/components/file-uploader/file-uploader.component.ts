@@ -36,6 +36,7 @@ export class FileUploaderComponent implements OnInit {
     let asset = {
       type: "youtube",
       url: `https://www.youtube.com/embed/${youTubeId}`,
+      thumbnail: `https://img.youtube.com/vi/${youTubeId}/maxresdefault.jpg`,
     };
 
     this.externalAssetService.saveAsset(asset).subscribe((res) => {

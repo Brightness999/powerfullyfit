@@ -29,7 +29,9 @@ export class Exercise {
   )
   workouts: Workout[];
 
-  @ManyToOne(() => ExternalAsset)
+  @ManyToOne(() => ExternalAsset, {
+    eager: true,
+  })
   @JoinColumn({ name: 'logoId' })
   logo: ExternalAsset;
 
