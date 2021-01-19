@@ -70,7 +70,7 @@ export class ExternalAssetController {
       return this.externalAssetService.create({
         type: 'image',
         url:
-          'https://app.powerfullyfittraining.com/' +
+          'https://app.powerfullyfittraining.com' +
           '/api/external-asset/' +
           file.filename,
         thumbnail: '',
