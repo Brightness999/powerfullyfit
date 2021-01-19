@@ -19,7 +19,7 @@ export class EmailService {
       to: email, // Change to your recipient
       from: 'app@powerfullyfittraining.com', // Change to your verified sender
       subject: subject,
-      html: '',
+      html: 'Powerfully Fit Invitation',
     };
 
     sgMail
