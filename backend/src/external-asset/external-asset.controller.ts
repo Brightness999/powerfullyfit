@@ -22,7 +22,10 @@ import { FileInterceptor, FilesInterceptor } from '@nestjs/platform-express';
 import { diskStorage } from 'multer';
 import { extname } from 'path';
 
-var ip = require('ip');
+const getDockerHost = require('get-docker-host');
+const isInDocker = require('is-in-docker');
+
+const ip = require('ip');
 
 @Controller('external-asset')
 export class ExternalAssetController {
@@ -43,9 +46,40 @@ export class ExternalAssetController {
     }),
   )
   async uploadedFile(@UploadedFile() file) {
+    let checkDocker = () => {
+      return new Promise((resolve, reject) => {
+        if (isInDocker()) {
+          getDockerHost((error, result) => {
+            if (result) {
+              resolve(result);
+            } else {
+              reject(error);
+            }
+          });
+        } else {
+          resolve(null);
+        }
+      });
+    };
+
+    let addr = await checkDocker();
+
+    if (addr) {
+      return this.externalAssetService.create({
+        type: 'image',
+        url: 'http://' + addr + '/api/external-asset/' + file.filename,
+        thumbnail: '',
+      });
+    }
+
+    // return this.externalAssetService.create({
+    //   type: 'image',
+    //   url: 'http://' + ip.address() + '/api/external-asset/' + file.filename,
+    //   thumbnail: '',
+    // });
     return this.externalAssetService.create({
       type: 'image',
-      url: 'http://' + ip.address() + '/api/external-asset/' + file.filename,
+      url: 'http://loclahost:3000/api/external-asset/' + file.filename,
       thumbnail: '',
     });
   }
