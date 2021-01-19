@@ -64,6 +64,8 @@ export class ExternalAssetController {
 
     let addr = await checkDocker();
 
+    console.log(addr);
+
     if (addr) {
       return this.externalAssetService.create({
         type: 'image',
@@ -79,7 +81,7 @@ export class ExternalAssetController {
     // });
     return this.externalAssetService.create({
       type: 'image',
-      url: 'http://loclahost:3000/api/external-asset/' + file.filename,
+      url: 'http://localhost:3000/api/external-asset/' + file.filename,
       thumbnail: '',
     });
   }
