@@ -3,6 +3,7 @@ import { Component, OnInit, Output, EventEmitter, NgZone } from "@angular/core";
 import Swal from "sweetalert2";
 
 import { InvitationService } from "@pf/services/invitation.service";
+import { UserService } from "@pf/services/user.service";
 
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { Router } from "@angular/router";
@@ -27,6 +28,7 @@ export class TrainerFormComponent implements OnInit {
 
   constructor(
     private formBuilder: FormBuilder,
+    private userService: UserService,
     private invitationService: InvitationService,
     private zone: NgZone,
     private router: Router
@@ -35,33 +37,34 @@ export class TrainerFormComponent implements OnInit {
   ngOnInit(): void {}
 
   onSubmit(trainer) {
-    console.log(trainer);
+    trainer["organization"] = this.userService.currentUser.organization;
+
     this.isLoading = true;
 
-    // this.invitationService.inviteCoach(trainer).subscribe(
-    //   (trainer) => {
-    //     this.isLoading = false;
+    this.invitationService.inviteCoach(trainer).subscribe(
+      (trainer) => {
+        this.isLoading = false;
 
-    //     this.submitted.emit(true);
+        this.submitted.emit(true);
 
-    //     Swal.fire({
-    //       icon: "success",
-    //       text: "Trainer Invited!",
-    //     }).then((result) => {
-    //       console.log("result");
-    //     });
-    //   },
-    //   (err) => {
-    //     console.log(err.error.message[0]);
+        Swal.fire({
+          icon: "success",
+          text: "Trainer Invited!",
+        }).then((result) => {
+          console.log("result");
+        });
+      },
+      (err) => {
+        console.log(err.error.message[0]);
 
-    //     this.isLoading = false;
+        this.isLoading = false;
 
-    //     setTimeout(() => {
-    //       this.errorMessage = "";
-    //     }, 10000);
+        setTimeout(() => {
+          this.errorMessage = "";
+        }, 10000);
 
-    //     this.errorMessage = err.error.message[0];
-    //   }
-    // );
+        this.errorMessage = err.error.message[0];
+      }
+    );
   }
 }

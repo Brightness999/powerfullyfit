@@ -2,6 +2,7 @@ import { Component, OnInit, Output, EventEmitter, NgZone } from "@angular/core";
 
 import Swal from "sweetalert2";
 
+import { CoachService } from "@pf/services/coach.service";
 import { InvitationService } from "@pf/services/invitation.service";
 
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
@@ -19,20 +20,32 @@ export class ClientFormComponent implements OnInit {
     email: [null, Validators.required],
     firstname: [null, Validators.required],
     lastname: [null, Validators.required],
+    coach: [null, Validators.required],
   });
 
   errorMessage: string = "";
 
   isLoading: boolean = false;
 
+  availableCoaches: any = [];
+
+  selectedCoachId = 0;
+
   constructor(
     private formBuilder: FormBuilder,
+    private coachService: CoachService,
     private invitationService: InvitationService,
     private zone: NgZone,
     private router: Router
   ) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.coachService.findAllCoaches().subscribe((availableCoaches) => {
+      console.log(availableCoaches);
+
+      this.availableCoaches = availableCoaches;
+    });
+  }
 
   onSubmit(client) {
     console.log(client);

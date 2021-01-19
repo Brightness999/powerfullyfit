@@ -12,7 +12,7 @@ import { MasterProgramsComponent } from "../../pages/master-programs/master-prog
 import { ProgramScheduleComponent } from "../../pages/program-schedule/program-schedule.component";
 import { MasterWorkoutsComponent } from "../../pages/master-workouts/master-workouts.component";
 import { SettingsComponent } from "../../pages/settings/settings.component";
-import { AppointmentsComponent } from '../../pages/appointments/appointments.component';
+import { AppointmentsComponent } from "../../pages/appointments/appointments.component";
 import { WorkoutPageComponent } from "../../pages/workout-page/workout-page.component";
 import { InvitesComponent } from "../../pages/invites/invites.component";
 import { NotificationsComponent } from "../../pages/notifications/notifications.component";

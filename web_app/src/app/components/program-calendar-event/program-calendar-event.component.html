@@ -3,27 +3,27 @@
         <form>
             <div class="modal-content">
                 <div class="modal-header w-100">
-                    <h1 class="modal-title mr-auto">Add Calendar Event</h1>
+                    <h1 class="modal-title mr-auto">Add an Activity for day {{ dayOfTheMonth }}</h1>
 
                     <button class="btn " (click)="hide()">
                         <i class="fa fa-times"></i>
                     </button>
                 </div>
-                <div class="modal-body member-modal-body pt-2 pb-1">
+                <div class="modal-body member-modal-body pt-2 pb-1 ml-4">
 
-                    <fieldset class="form-group mx-auto">
+                    <fieldset class="form-group">
                         <div class="row">
                             <div class="col-sm-10">
-                                <div class="form-check">
+                                <div class="form-check mb-3">
                                     <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios1"
                                         value="option1" checked>
-                                    <label class="form-check-label" for="gridRadios1">
-                                        Workout
+                                    <label class="form-check-label h4" for="gridRadios1">
+                                        Do Workout
                                     </label>
                                 </div>
 
-                                <div class="selection-window border">
-                                    <div class="d-flex py-3 px-4 align-items-center" *ngFor="let workout of workouts">
+                                <div class="selection-window border mb-4 ml-4">
+                                    <div class="d-flex py-3 px-4 align-items-center border-bottom" [ngClass]="{'bg-gradient-default': selectedWorkout?.id === workout.id}" *ngFor="let workout of workouts" (click)="selectWorkout(workout)">
                                         <div class="mr-3">
                                             <i class="fa fa-dumbbell" style="font-size: .8em;"></i>
                                         </div>
@@ -38,7 +38,7 @@
                                     <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios2"
                                         value="option2">
                                     <label class="form-check-label" for="gridRadios2">
-                                        Photo
+                                        Take Photo
                                     </label>
                                 </div>
                             </div>
@@ -54,7 +54,7 @@
 
                     <div class="btn-group">
                         <button class="btn btn-dark" type="submit" [disabled]="isLoading">
-                            <i class="fa fa-check mr-2"></i> Add Event
+                            <i class="fa fa-check mr-2"></i> Add Activity
                         </button>
                     </div>
                 </div>
