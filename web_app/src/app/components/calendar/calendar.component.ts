@@ -2,6 +2,7 @@ import {
   Component,
   OnInit,
   ViewChild,
+  Input,
   Output,
   EventEmitter,
 } from "@angular/core";
@@ -18,6 +19,8 @@ import interactionPlugin, { Draggable } from "@fullcalendar/interaction";
 export class CalendarComponent implements OnInit {
   @ViewChild("calendar") fullcalendar: FullCalendarComponent;
 
+  @Input() initialDate: Date;
+
   @Output() dateClick: EventEmitter<any> = new EventEmitter<any>();
 
   calendarOptions: CalendarOptions = {
@@ -25,11 +28,17 @@ export class CalendarComponent implements OnInit {
     aspectRatio: 16 / 8,
     headerToolbar: false,
     firstDay: 1,
+    initialDate: "2020-06-01",
     plugins: [interactionPlugin],
-    dateClick: (e) => this.dateClick.emit(),
+    dateClick: (e) => {
+      // console.log(e.date.getDate());
+      this.dateClick.emit(e.date);
+    },
   };
 
   constructor() {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    // this.fullcalendar.api.
+  }
 }

@@ -15,10 +15,10 @@
                     <i class="fa fa-times"></i>
                 </button>
             </div>
-            <div class="modal-body member-modal-body pt-2 pb-1">
+            <div class="modal-body member-modal-body p-3 pt-2 pb-1">
                 <div class="row" cdkDropListGroup>
                     <table cdkDropList #todoList="cdkDropList" [cdkDropListData]="workout.exercises"
-                        style="height: 60vh" [cdkDropListConnectedTo]="[doneList]"
+                        style="height: 65vh" [cdkDropListConnectedTo]="[doneList]"
                         class="col-4 w-100 table border-right example-list overflow-auto m-0 p-0"
                         (cdkDropListDropped)="drop($event)">
                         <thead class="thead-light">
@@ -46,9 +46,8 @@
                         </tbody>
                     </table>
 
-                    <div cdkDropList #doneList="cdkDropList" [cdkDropListData]="organizationExercises.slice()"
-                        cdkDropListSortingDisabled [cdkDropListConnectedTo]="[todoList]"
-                        class="col-7 row mx-auto overflow-auto p-0" style="height: 60vh">
+                    <div cdkDropList #doneList="cdkDropList" [cdkDropListData]="visibleExercises.slice()"
+                        cdkDropListSortingDisabled [cdkDropListConnectedTo]="[todoList]" class="col-7 mx-auto p-0">
                         <div class="col-12 h4 mb-4 text-white text-uppercase d-none d-lg-inline-block">
                             <form class="navbar-search navbar-search-dark form-inline mr-9 d-none d-md-flex ml-lg-auto">
                                 <div class="form-group mb-0" [ngClass]="{ 'focused': focus === true }">
@@ -64,15 +63,17 @@
                             </form>
                         </div>
 
-                        <div class="col-4 example-box d-flex flex-column justify-content-start flex-grow-0"
-                            *ngFor="let exercise of visibleExercises.slice()" cdkDrag>
-                            <div class="example-custom-placeholder" *cdkDragPlaceholder></div>
+                        <div class="row overflow-auto" style="height: 60vh">
+                            <div class="col-4 example-box d-flex flex-column justify-content-start flex-grow-0"
+                                *ngFor="let exercise of visibleExercises.slice()" cdkDrag>
+                                <div class="example-custom-placeholder" *cdkDragPlaceholder></div>
 
-                            <div class="mb-2">
-                                <img [src]="exercise.logo.thumbnail" class="rounded" width="100%" />
-                            </div>
-                            <div class="h2">
-                                {{ exercise.name }}
+                                <div class="mb-2">
+                                    <img [src]="exercise.logo.thumbnail" class="rounded" width="100%" />
+                                </div>
+                                <div class="h2">
+                                    {{ exercise.name }}
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -86,7 +87,7 @@
 
                 <div class="btn-group">
                     <button class="btn btn-dark" type="button" (click)="save()" [disabled]="isLoading">
-                        <i class="fa fa-check mr-2"></i> Done
+                        <i class="fa fa-check mr-2"></i> Save Workout
                     </button>
                 </div>
             </div>

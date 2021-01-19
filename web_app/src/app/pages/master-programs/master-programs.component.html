@@ -6,33 +6,39 @@
 <div class="container-fluid mt--9">
     <div class="row">
         <div class="col">
-            <div class="card shadow">
-                <div class="card-header border-0">
+            <div class="card border-0 shadow">
+                <div class="card-header border-bottom">
                     <span class="h1 mb-0"> Master Programs </span>
                 </div>
 
-                <div class="card mb-4 mb-xl-0 h-100">
+                <div class="card border-0 mb-4 mb-xl-0 h-100">
                     <div class="row no-gutters h-100">
-                        <div class="col-xl-3 col-md-4 border-right overflow-auto">
-                            <div class="d-flex py-3 program-drawer align-items-center"
-                                [ngClass]="{'bg-gradient-default': program.id === selectedProgram?.id}"
-                                *ngFor="let program of programs" (click)="selectProgram(program)">
-                                <div class="mr-3">
-                                    <i class="fa fa-book" style="font-size: 2em;"></i>
-                                </div>
+                        <div class="col-xl-3 col-md-4 border-right overflow-auto h-100">
+                            <div class="border-bottom" *ngFor="let program of programs"
+                                (click)="selectProgram(program)">
+                                <div class="flex-column w-100">
+                                    <div class="d-flex py-3 program-drawer align-items-center w-100"
+                                        [ngClass]="{'bg-gradient-default': program.id === selectedProgram?.id}">
+                                        <div class="mr-3">
+                                            <i class="fa fa-book" style="font-size: 2em;"></i>
+                                        </div>
 
-                                <div class="">
-                                    <div class="m-0" style="font-size: 1.2rem"> {{ program.name }} </div>
-                                    <p class="m-0"> {{ program.weeks * program.phases | number }} Weeks </p>
-                                </div>
-
-                                <!-- <div class="mb-0" *ngIf="program.id === selectedProgram?.id">
-                                    <div *ngFor="let phase of programPhases">
-                                        {{ program.weeks }}
+                                        <div class="">
+                                            <div class="m-0" style="font-size: 1.2rem"> {{ program.name }} </div>
+                                            <p class="m-0"> {{ program.weeks * program.phases | number }} Weeks </p>
+                                        </div>
                                     </div>
-                                </div> -->
+
+                                    <div class="flex-row ml-4 pl-2 border-left">
+                                        <div class="mb-0" *ngIf="program.id === selectedProgram?.id">
+                                            <div *ngFor="let phase of programPhases; let i = index"
+                                                class="py-3 border-bottom">
+                                                Weeks {{ program.weeks * i + 1 }} - {{ program.weeks * (i + 1) }}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
-                            <hr />
                         </div>
 
                         <div class="col-xl-9 col-md-8" *ngIf="selectedProgram">

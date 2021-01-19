@@ -7,6 +7,7 @@ import { AuthenticatedUserGuard } from "./guards/authenticated-user.guard";
 
 import { AdminLayoutComponent } from "./layouts/admin-layout/admin-layout.component";
 import { AuthLayoutComponent } from "./layouts/auth-layout/auth-layout.component";
+import { ProfileCompletionComponent } from "./pages/profile-completion/profile-completion.component";
 
 const routes: Routes = [
   {
@@ -14,6 +15,8 @@ const routes: Routes = [
     redirectTo: "dashboard",
     pathMatch: "full",
   },
+  { path: "client-invitation/:id", component: ProfileCompletionComponent },
+  { path: "coach-invitation/:id", component: ProfileCompletionComponent },
   {
     path: "",
     component: AdminLayoutComponent,

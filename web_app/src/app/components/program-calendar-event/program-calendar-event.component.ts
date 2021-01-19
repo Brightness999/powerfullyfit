@@ -32,6 +32,10 @@ export class ProgramCalendarEventComponent implements OnInit {
 
   workouts = [];
 
+  dayOfTheMonth: number = 0;
+
+  selectedWorkout;
+
   constructor(
     private workoutService: WorkoutService,
     private modalService: BsModalService
@@ -45,12 +49,23 @@ export class ProgramCalendarEventComponent implements OnInit {
     });
   }
 
-  openModal(user) {
-    this.user = user;
+  openModal(dateOfTheMonth) {
+    // this.user = user;
+
+    console.log(dateOfTheMonth);
+
+    this.dayOfTheMonth = dateOfTheMonth;
+
     this.modal.show();
   }
 
   hide() {
     this.modal.hide();
+  }
+
+  selectWorkout(workout) {
+    console.log(workout);
+
+    this.selectedWorkout = workout;
   }
 }

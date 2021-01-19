@@ -125,9 +125,8 @@ export class MasterProgramsComponent implements OnInit {
     this.userModal.openModal(e);
   }
 
-  dateClick(e) {
-    console.log(e);
-    this.calendarEvent.openModal();
+  dateClick(dateClicked) {
+    this.calendarEvent.openModal(dateClicked.getDate());
   }
 
   onUserSave(users) {

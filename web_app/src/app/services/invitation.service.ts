@@ -15,6 +15,10 @@ export class InvitationService {
     return this.backendProxy.post("invitation/client", invitation);
   }
 
+  inviteCoach(invitation) {
+    return this.backendProxy.post("invitation/coach", invitation);
+  }
+
   getAllInvitations() {
     return this.backendProxy.get("invitation");
   }

@@ -9,19 +9,29 @@
             <div class="form-row">
                 <div class="form-group col-md-6">
                     <label for="inputEmail4">First Name</label>
-                    <input type="email" class="form-control" id="inputEmail4" placeholder="First Name" formControlName="firstname">
+                    <input type="email" class="form-control" id="inputEmail4" placeholder="First Name"
+                        formControlName="firstname">
                 </div>
                 <div class="form-group col-md-6">
                     <label for="inputPassword4">Last Name</label>
-                    <input type="text" class="form-control" id="inputPassword4" placeholder="Last Name" formControlName="lastname">
+                    <input type="text" class="form-control" id="inputPassword4" placeholder="Last Name"
+                        formControlName="lastname">
                 </div>
             </div>
 
             <div class="form-group">
-                <label for="inputAddress">Assign To</label>
-                <ng-select 
-                    placeholder="Assign To"
-                >
+                <label for="coach">Assign To</label>
+                <ng-select appearance="outline" [clearable]="false" labelForId="coach" [items]="availableCoaches"
+                    formControlName="coach">
+                    <ng-template ng-label-tmp let-item="item">
+                        <img height="25" width="25" [src]="item.logo.url" class="rounded-circle mr-2" />
+                        {{item.firstname}} {{item.lastname}}
+                    </ng-template>
+
+                    <ng-template ng-option-tmp let-item="item" let-search="searchTerm">
+                        <img height="25" width="25" [src]="item.logo.url" class="rounded-circle mr-2" />
+                        {{item.firstname}} {{item.lastname}}
+                    </ng-template>
                 </ng-select>
             </div>
         </div>
@@ -30,7 +40,7 @@
     <div class="modal-footer">
         <div class="alert alert-danger" role="alert" *ngIf="errorMessage">
             {{ errorMessage }}
-          </div>
+        </div>
 
         <div class="btn-group">
             <button class="btn btn-dark" type="submit" [disabled]="isLoading">
