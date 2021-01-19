@@ -6,4 +6,7 @@ export class CreateExternalAssetDto {
 
   @IsString()
   type: string;
+
+  @IsString()
+  thumbnail: string;
 }

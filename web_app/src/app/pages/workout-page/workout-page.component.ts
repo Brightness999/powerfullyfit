@@ -48,8 +48,4 @@ export class WorkoutPageComponent implements OnInit {
   buildColumnDefs() {
     return [{ field: "name" }];
   }
-
-  rowClicked(workout) {
-    this.router.navigate([workout.id], { relativeTo: this.activatedRoute });
-  }
 }

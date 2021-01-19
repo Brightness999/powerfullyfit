@@ -34,6 +34,8 @@ import { ExerciseService } from "@pf/services/exercise.service";
 export class WorkoutBuildderComponent implements OnInit {
   @ViewChild(ModalDirective, { static: false }) modal: ModalDirective;
 
+  public focus;
+
   isLoading: boolean = false;
 
   errorMessage = "";
@@ -43,6 +45,8 @@ export class WorkoutBuildderComponent implements OnInit {
   workout: any = {};
 
   organizationExercises = [];
+
+  visibleExercises = [];
 
   columnDefs = this.buildColumnDefs();
 
@@ -57,6 +61,7 @@ export class WorkoutBuildderComponent implements OnInit {
   ngOnInit(): void {
     this.exerciseService.findAllExercises().subscribe((res: any) => {
       this.organizationExercises = res;
+      this.visibleExercises = res;
     });
   }
 
@@ -114,5 +119,20 @@ export class WorkoutBuildderComponent implements OnInit {
 
       this.hide();
     });
+  }
+
+  filter(e) {
+    console.log(e);
+
+    if (!e) this.visibleExercises = this.organizationExercises;
+    else {
+      let results = this.organizationExercises.filter((exercise) => {
+        return exercise.name.toLowerCase().includes(e.toLowerCase());
+      });
+
+      this.visibleExercises = results;
+    }
+
+    // console.log(results);
   }
 }
