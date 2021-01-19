@@ -69,7 +69,10 @@ export class ExternalAssetController {
     if (addr) {
       return this.externalAssetService.create({
         type: 'image',
-        url: 'http://' + addr + '/api/external-asset/' + file.filename,
+        url:
+          'https://app.powerfullyfittraining.com/' +
+          '/api/external-asset/' +
+          file.filename,
         thumbnail: '',
       });
     }
