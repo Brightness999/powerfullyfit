@@ -22,7 +22,7 @@ import { UpdateMessageDto } from './dto/update-message.dto';
 
 import { Server, Socket } from 'socket.io';
 
-@WebSocketGateway({ namespace: '/messages' })
+@WebSocketGateway()
 @UseGuards(JwtAuthGuard)
 export class MessageGateway implements OnGatewayConnection {
   @WebSocketServer() wss: Server;
@@ -37,20 +37,22 @@ export class MessageGateway implements OnGatewayConnection {
   async handleConnection(client: any, ...args: any) {
     console.log('connected');
 
+    client.join('asdf')
+
+    console.log(this.wss);
+
     let user: any = await this.jwtService.verify(client.handshake.query.token)
       .user;
 
-    console.log(user);
+    // console.log(user);
 
-    this.connections[user.id] = client.conn.id;
+    // this.connections[user.id] = client.conn.id;
 
-    console.log(this.connections);
+    // console.log(this.connections);
   }
 
   @SubscribeMessage('createMessage')
   create(@MessageBody() createMessageDto: CreateMessageDto) {
-    console.log('gateway');
-    console.log('createMessageDto');
     console.log(createMessageDto);
 
     this.wss.to('Fhtm2yNOsWea8ElcAAAC').emit('createMessage', createMessageDto);

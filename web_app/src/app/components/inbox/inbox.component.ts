@@ -1,5 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 
+import { CoachService } from "@pf/services/coach.service";
 import { MessageService } from "@pf/services/message.service";
 import { NotificationsService } from "@pf/services/notifications.service";
 
@@ -27,17 +28,20 @@ export class InboxComponent implements OnInit {
     role: "SUPER ADMIN",
   };
 
+  clients: any = [];
+
   constructor(
     private messageService: MessageService,
+    private coachService: CoachService,
     private notificationsService: NotificationsService,
     private formBuilder: FormBuilder
   ) {}
 
   ngOnInit(): void {
-    this.messageService.messages.subscribe((res) => {
+    this.coachService.findAllClients().subscribe((res) => {
       console.log(res);
 
-      this.chat.push(res);
+      this.clients = res;
     });
   }
 

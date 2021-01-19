@@ -15,11 +15,11 @@ export class MessageService extends Socket {
 
   constructor(private backendProxy: BackendProxy) {
     super({
-      url: `${backendProxy.url}messages?token=${
-        (localStorage.getItem("token"))
-      }`,
+      url: `${backendProxy.url}?token=${localStorage.getItem("token")}`,
       options: {},
     });
+
+    console.log("connecting ...");
   }
 
   sendMessage(message: any) {
