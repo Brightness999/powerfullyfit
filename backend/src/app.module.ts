@@ -27,8 +27,8 @@ import { CalendarEventModule } from './calendar-event/calendar-event.module';
     TypeOrmModule.forRootAsync({
       useFactory: () => ({
         type: 'postgres',
-        // url: 'postgres://user:password@postgres:5432/db',
-        url: 'postgres://user:password@localhost:5432/db',
+        url: 'postgres://user:password@postgres:5432/db',
+        // url: 'postgres://user:password@localhost:5432/db',
         autoLoadEntities: true,
         synchronize: true,
       }),
