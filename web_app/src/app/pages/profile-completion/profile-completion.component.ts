@@ -2,6 +2,8 @@ import { Component, OnInit } from "@angular/core";
 
 import { Router, ActivatedRoute } from "@angular/router";
 
+import { UserService } from "@pf/services/user.service";
+
 import { InvitationService } from "@pf/services/invitation.service";
 
 import { switchMap, tap } from "rxjs/operators";
@@ -23,6 +25,7 @@ export class ProfileCompletionComponent implements OnInit {
   });
 
   constructor(
+    private readonly userService: UserService,
     private invitationService: InvitationService,
     private formBuilder: FormBuilder,
     private activatedRoute: ActivatedRoute,
@@ -44,27 +47,28 @@ export class ProfileCompletionComponent implements OnInit {
       });
   }
 
-  acceptInvitation(password) {
-    console.log(this.invitation);
-
+  acceptInvitation(registrationForm) {
     this.invitationService
-      .acceptInvitation(this.invitation.id)
+      .acceptCoachInvitation(this.invitation.id, registrationForm)
       .subscribe((res) => {
         console.log(res);
-        this.router.navigate(["login"], { replaceUrl: true });
+        this.login({
+          username: this.invitation.email,
+          password: registrationForm.password,
+        });
       });
   }
 
-  // login(loginForm: any) {
-  //   console.log(loginForm);
+  login(loginForm: any) {
+    console.log(loginForm);
 
-  //   this.userService.login(loginForm).subscribe(
-  //     (res) => {
-  //       this.router.navigate(["dashboard"], { replaceUrl: true });
-  //     },
-  //     (err) => {
-  //       this.formError = true;
-  //     }
-  //   );
-  // }
+    this.userService.login(loginForm).subscribe(
+      (res) => {
+        this.router.navigate(["dashboard"], { replaceUrl: true });
+      },
+      (err) => {
+        this.formError = true;
+      }
+    );
+  }
 }

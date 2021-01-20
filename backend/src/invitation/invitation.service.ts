@@ -3,10 +3,12 @@ import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 
-import { ClientService } from '@app/user/client.service';
 import { CreateClientDto } from '@app/user/dto/create-client.dto';
+import { CreateCoachDto } from '@app/user/dto/create-coach.dto';
 
-// import { NotificationGateway } from '@app/notification/notification.gateway';
+import { OrganizationService } from '@app/organization/organization.service';
+import { ClientService } from '@app/user/client.service';
+import { CoachService } from '@app/user/coach.service';
 import { EmailService } from '@app/notification/email.service';
 
 import { Invitation } from './entities/invitation.entity';
@@ -28,6 +30,7 @@ export class InvitationService {
     private readonly clientInvitationRepository: Repository<ClientInvitation>,
     @InjectRepository(CoachInvitation)
     private readonly coachInvitationRepository: Repository<CoachInvitation>,
+    private readonly coachService: CoachService,
     private readonly clientService: ClientService,
     private readonly emailService: EmailService,
   ) {}
@@ -60,7 +63,26 @@ export class InvitationService {
     return insertedInvitation;
   }
 
-  async acceptInvitation(id: number) {
+  async acceptCoachInvitation(id: number, password: string) {
+    const invitation: CoachInvitation = await this.coachInvitationRepository.findOne(
+      id,
+    );
+
+    if (!invitation)
+      throw new NotFoundException(`Invitation with id: ${id} was not Found`);
+
+    let newCoach = {
+      ...invitation,
+      role: 'SUPER ADMIN',
+      password,
+    } as CreateCoachDto;
+
+    this.coachService.createCoach(newCoach);
+
+    this.coachInvitationRepository.remove(invitation);
+  }
+
+  async acceptClientInvitation(id: number, password: string) {
     const invitation: Invitation = await this.invitationRepository.findOne(id);
 
     if (!invitation)
@@ -69,7 +91,7 @@ export class InvitationService {
     let newClient = {
       ...invitation,
       coach: null,
-      password: '',
+      password,
     } as CreateClientDto;
 
     this.clientService.createClient(newClient);
