@@ -40,6 +40,7 @@ import { ProgramClientModalComponent } from "./program-client-modal/program-clie
 import { WorkoutBuildderComponent } from "./workout-buildder/workout-buildder.component";
 import { ProgramCalendarEventComponent } from "./program-calendar-event/program-calendar-event.component";
 import { CalendarComponent } from "./calendar/calendar.component";
+import { VideoCellRendererComponent } from './video-cell-renderer/video-cell-renderer.component';
 
 FullCalendarModule.registerPlugins([dayGridPlugin]);
 
@@ -87,6 +88,7 @@ const DragConfig = {
     WorkoutBuildderComponent,
     ProgramCalendarEventComponent,
     CalendarComponent,
+    VideoCellRendererComponent,
   ],
   exports: [
     FooterComponent,

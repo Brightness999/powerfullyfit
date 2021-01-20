@@ -17,34 +17,43 @@
             </div>
             <div class="modal-body member-modal-body p-3 pt-2 pb-1">
                 <div class="row" cdkDropListGroup>
-                    <table cdkDropList #todoList="cdkDropList" [cdkDropListData]="workout.exercises"
-                        style="height: 65vh" [cdkDropListConnectedTo]="[doneList]"
+                    <div cdkDropList #todoList="cdkDropList" [cdkDropListData]="workout.exercises" style="height: 65vh"
+                        [cdkDropListConnectedTo]="[doneList]"
                         class="col-4 w-100 table border-right example-list overflow-auto m-0 p-0"
                         (cdkDropListDropped)="drop($event)">
-                        <thead class="thead-light">
-                            <tr>
-                                <th scope="col">Name</th>
-                                <th scope="col">Reps</th>
-                                <th scope="col">Sets</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr *ngFor="let exercise of workout.exercises" cdkDrag>
-                                <td style="width: 70%">
-                                    <img [src]="exercise.logo.thumbnail" class="rounded mr-2" width="150" />
-                                    <span class="h3">
-                                        {{ exercise.name }}
-                                    </span>
-                                </td>
-                                <td style="width: 15%">
-                                    <input type="number" name="" class="form-control" id="">
-                                </td>
-                                <td style="width: 15%">
-                                    <input type="number" name="" class="form-control" id="">
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
+
+                        <table *ngIf="workout.exercises?.length; else noExercises">
+                            <thead class="thead-light">
+                                <tr>
+                                    <th scope="col">Name</th>
+                                    <th scope="col">Reps</th>
+                                    <th scope="col">Sets</th>
+                                    <th scope="col">Time</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let exercise of workout.exercises" cdkDrag>
+                                    <td style="width: 60%">
+                                        <img [src]="exercise.logo.thumbnail" class="rounded mr-2" width="150" />
+                                        <span class="h3">
+                                            {{ exercise.name }}
+                                        </span>
+                                    </td>
+                                    <td style="width: 12%">
+                                        <input type="number" name="" class="form-control" id="">
+                                    </td>
+                                    <td style="width: 12%">
+                                        <input type="number" name="" class="form-control" id="">
+                                    </td>
+                                    <td style="width: 12%">
+                                        <input type="number" name="" class="form-control" id="">
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                    </div>
+
 
                     <div cdkDropList #doneList="cdkDropList" [cdkDropListData]="visibleExercises.slice()"
                         cdkDropListSortingDisabled [cdkDropListConnectedTo]="[todoList]" class="col-7 mx-auto p-0">
@@ -85,7 +94,10 @@
                     {{ errorMessage }}
                 </div>
 
-                <div class="btn-group">
+                <div class="btn-row">
+                    <button class="btn btn-default mr-3" type="button" (click)="openModalTemplate(exerciseTemplate)" [disabled]="isLoading">
+                        <i class="fa fa-plus mr-2"></i> Create Exercise
+                    </button>
                     <button class="btn btn-dark" type="button" (click)="save()" [disabled]="isLoading">
                         <i class="fa fa-check mr-2"></i> Save Workout
                     </button>
@@ -94,3 +106,21 @@
         </div>
     </div>
 </div>
+
+<ng-template #noExercises>
+    <div class="d-flex justify-content-center align-items-center h-100" >
+        <div class="d-flex justify-content-center align-items-center text-muted border p-6 h-75 h1">
+           <i class="fa fa-plus mr-2"></i> Drop Exercises Here
+        </div>
+    </div>
+</ng-template>
+
+<ng-template #exerciseTemplate>
+    <div class="modal-header">
+        <h1 class="modal-title pull-left">Build New Exercise</h1>
+        <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <pf-exercise-form (submitted)="modalRef.hide()"></pf-exercise-form>
+</ng-template>

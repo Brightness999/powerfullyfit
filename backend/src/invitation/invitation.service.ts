@@ -32,24 +32,32 @@ export class InvitationService {
     private readonly emailService: EmailService,
   ) {}
 
-  createClientInvitation(createClientInvitationDto: CreateClientInvitationDto) {
+  async createClientInvitation(createInvitationDto: CreateClientInvitationDto) {
     const invitation = this.clientInvitationRepository.create(
-      createClientInvitationDto,
+      createInvitationDto,
     );
 
-    this.emailService.sendEmail(createClientInvitationDto.email);
+    let insertedInvitation = await this.clientInvitationRepository.save(
+      invitation,
+    );
 
-    return this.invitationRepository.save(invitation);
+    this.emailService.sendClientInvitationEmail(insertedInvitation);
+
+    return insertedInvitation;
   }
 
-  createCoachInvitation(createInvitationDto: CreateCoachInvitationDto) {
+  async createCoachInvitation(createInvitationDto: CreateCoachInvitationDto) {
     const invitation = this.coachInvitationRepository.create(
       createInvitationDto,
     );
 
-    this.emailService.sendEmail(createInvitationDto.email);
+    let insertedInvitation = await this.coachInvitationRepository.save(
+      invitation,
+    );
 
-    return this.invitationRepository.save(invitation);
+    this.emailService.sendCoachInvitationEmail(insertedInvitation);
+
+    return insertedInvitation;
   }
 
   async acceptInvitation(id: number) {
@@ -75,6 +83,18 @@ export class InvitationService {
 
   async findOne(id: number) {
     const invite = await this.invitationRepository.findOne(id);
+
+    return invite;
+  }
+
+  async findCoachOne(id: number) {
+    const invite = await this.coachInvitationRepository.findOne(id);
+
+    return invite;
+  }
+
+  async findClientOne(id: number) {
+    const invite = await this.clientInvitationRepository.findOne(id);
 
     return invite;
   }
