@@ -41,10 +41,23 @@ export class InvitationService {
     );
   }
 
-  acceptInvitation(invitationId: string | number) {
+  acceptClientInvitation(
+    invitationId: string | number,
+    payload: { password: string }
+  ) {
     return this.backendProxy.post(
-      "invitation/" + invitationId.toString() + "/accept",
-      {}
+      "invitation/client/" + invitationId.toString() + "/accept",
+      payload
+    );
+  }
+
+  acceptCoachInvitation(
+    invitationId: string | number,
+    payload: { password: string }
+  ) {
+    return this.backendProxy.post(
+      "invitation/coach/" + invitationId.toString() + "/accept",
+      payload
     );
   }
 }

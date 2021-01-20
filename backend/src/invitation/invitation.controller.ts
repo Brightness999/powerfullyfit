@@ -24,8 +24,12 @@ export class InvitationController {
   constructor(private readonly invitationService: InvitationService) {}
 
   @Post('client')
-  createClientInvitation(@Body() createClientInvitationDto: CreateClientInvitationDto) {
-    return this.invitationService.createClientInvitation(createClientInvitationDto);
+  createClientInvitation(
+    @Body() createClientInvitationDto: CreateClientInvitationDto,
+  ) {
+    return this.invitationService.createClientInvitation(
+      createClientInvitationDto,
+    );
   }
 
   @Post('coach')
@@ -33,9 +37,20 @@ export class InvitationController {
     return this.invitationService.createCoachInvitation(createInvitationDto);
   }
 
-  @Post(':id/accept')
-  acceptInvitation(@Param('id') id: number) {
-    return this.invitationService.acceptInvitation(id);
+  @Post('client/:id/accept')
+  acceptClientInvitation(
+    @Param('id') id: number,
+    @Body() payload: { password: string },
+  ) {
+    return this.invitationService.acceptClientInvitation(id, payload.password);
+  }
+
+  @Post('coach/:id/accept')
+  acceptCoachInvitation(
+    @Param('id') id: number,
+    @Body() payload: { password: string },
+  ) {
+    return this.invitationService.acceptCoachInvitation(id, payload.password);
   }
 
   @Get()

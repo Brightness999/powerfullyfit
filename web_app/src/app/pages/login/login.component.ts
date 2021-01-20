@@ -35,8 +35,6 @@ export class LoginComponent implements OnInit, OnDestroy {
   ngOnInit() {}
 
   login(loginForm: any) {
-    console.log(loginForm);
-
     this.userService.login(loginForm).subscribe(
       (res) => {
         this.router.navigate(["dashboard"], { replaceUrl: true });
