@@ -19,6 +19,12 @@ export class EmailService {
       to: email, // Change to your recipient
       from: 'app@powerfullyfittraining.com', // Change to your verified sender
       subject: subject,
+      templateId: 'd-a17a867402784f1ab8ebdd0d372fcaef',
+
+      dynamic_template_data: {
+        name: 'farid',
+        invitation_id: 3,
+      },
       html: 'Powerfully Fit Invitation',
     };
 
