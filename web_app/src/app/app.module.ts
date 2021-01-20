@@ -10,6 +10,8 @@ import { AppComponent } from "./app.component";
 import { AdminLayoutComponent } from "./layouts/admin-layout/admin-layout.component";
 import { AuthLayoutComponent } from "./layouts/auth-layout/auth-layout.component";
 
+import { ProfileCompletionComponent } from "./pages/profile-completion/profile-completion.component";
+
 import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
 
 import { AppRoutingModule } from "./app.routing";
@@ -46,6 +48,7 @@ FullCalendarModule.registerPlugins([dayGridPlugin, interactionPlugin]);
   imports: [
     BrowserAnimationsModule,
     FormsModule,
+    ReactiveFormsModule,
     HttpClientModule,
     ComponentsModule,
     NgbModule,
@@ -56,7 +59,12 @@ FullCalendarModule.registerPlugins([dayGridPlugin, interactionPlugin]);
     AppRoutingModule,
     ToastrModule.forRoot(),
   ],
-  declarations: [AppComponent, AdminLayoutComponent, AuthLayoutComponent],
+  declarations: [
+    AppComponent,
+    AdminLayoutComponent,
+    AuthLayoutComponent,
+    ProfileCompletionComponent,
+  ],
   providers: [
     BackendProxy,
     OrganizationService,

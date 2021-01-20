@@ -6,6 +6,8 @@ import { WorkoutService } from "@pf/services/workout.service";
 
 import { switchMap } from "rxjs/operators";
 
+import { VideoCellRendererComponent } from "@pf/components/video-cell-renderer/video-cell-renderer.component";
+
 @Component({
   selector: "pf-workout-page",
   templateUrl: "./workout-page.component.html",
@@ -46,6 +48,16 @@ export class WorkoutPageComponent implements OnInit {
   }
 
   buildColumnDefs() {
-    return [{ field: "name" }];
+    return [
+      // { field: "logo.url" },
+      {
+        headerName: "Exercise",
+        cellRendererFramework: VideoCellRendererComponent,
+        width: 100,
+      },
+      { field: "reps", width: 50 },
+      { field: "sets", width: 50 },
+      { field: "time", width: 50 },
+    ];
   }
 }

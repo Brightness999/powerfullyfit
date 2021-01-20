@@ -25,8 +25,6 @@ export class MasterWorkoutsComponent implements OnInit {
 
   ngOnInit(): void {
     this.workoutService.getAllWorkouts().subscribe((workouts: any) => {
-      console.log(workouts);
-
       this.workouts = workouts;
 
       this.loading = false;
@@ -35,8 +33,22 @@ export class MasterWorkoutsComponent implements OnInit {
 
   buildColumnDefs() {
     return [
-      { field: "name" },
-      { field: "type" },
+      {
+        field: "name",
+        cellRenderer: (params) => {
+          return '<div class="h2">' + params.value + "</div>";
+        },
+      },
+      {
+        field: "type",
+        cellRenderer: (params) => {
+          return (
+            '<div class="text-white rounded bg-secondary px-3 py-1">' +
+            params.value +
+            "</div>"
+          );
+        },
+      },
       {
         field: "Created By",
         cellRendererFramework: UserCellRendererComponent,

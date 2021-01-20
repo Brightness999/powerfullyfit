@@ -15,8 +15,6 @@ const routes: Routes = [
     redirectTo: "dashboard",
     pathMatch: "full",
   },
-  { path: "client-invitation/:id", component: ProfileCompletionComponent },
-  { path: "coach-invitation/:id", component: ProfileCompletionComponent },
   {
     path: "",
     component: AdminLayoutComponent,
@@ -40,6 +38,8 @@ const routes: Routes = [
       },
     ],
   },
+  { path: "client-invitation/:id", component: ProfileCompletionComponent },
+  { path: "coach-invitation/:id", component: ProfileCompletionComponent },
   {
     path: "**",
     redirectTo: "dashboard",

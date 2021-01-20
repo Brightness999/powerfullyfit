@@ -48,6 +48,16 @@ export class InvitationController {
     return this.invitationService.findOne(+id);
   }
 
+  @Get('coach-invitation/:id')
+  findCoachOne(@Param('id') id: string) {
+    return this.invitationService.findOne(+id);
+  }
+
+  @Get('client-invitation/:id')
+  findClientOne(@Param('id') id: string) {
+    return this.invitationService.findOne(+id);
+  }
+
   @Put(':id')
   update(
     @Param('id') id: string,

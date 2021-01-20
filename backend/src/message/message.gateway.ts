@@ -37,9 +37,7 @@ export class MessageGateway implements OnGatewayConnection {
   async handleConnection(client: any, ...args: any) {
     console.log('connected');
 
-    client.join('asdf')
-
-    console.log(this.wss);
+    // console.log(this.wss);
 
     let user: any = await this.jwtService.verify(client.handshake.query.token)
       .user;

@@ -33,7 +33,7 @@ import { InvitesComponent } from "../../pages/invites/invites.component";
 import { NotificationsComponent } from "../../pages/notifications/notifications.component";
 import { ProgramScheduleComponent } from "../../pages/program-schedule/program-schedule.component";
 import { GettingStartedComponent } from "../../pages/getting-started/getting-started.component";
-import { ProfileCompletionComponent } from "../../pages/profile-completion/profile-completion.component";
+// import { ProfileCompletionComponent } from "../../pages/profile-completion/profile-completion.component";
 
 FullCalendarModule.registerPlugins([
   // register FullCalendar plugins
@@ -71,7 +71,7 @@ FullCalendarModule.registerPlugins([
     ProgramScheduleComponent,
     WorkoutPageComponent,
     GettingStartedComponent,
-    ProfileCompletionComponent,
+    // ProfileCompletionComponent,
   ],
 })
 export class AdminLayoutModule {}

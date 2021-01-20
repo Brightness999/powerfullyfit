@@ -22,4 +22,29 @@ export class InvitationService {
   getAllInvitations() {
     return this.backendProxy.get("invitation");
   }
+
+  getInvitationById(invitationId: string | number) {
+    return this.backendProxy.get("invitation");
+  }
+
+  getCoachInvitationById(invitationId: string | number) {
+    console.log(invitationId);
+
+    return this.backendProxy.get(
+      "invitation/coach-invitation/" + invitationId.toString()
+    );
+  }
+
+  getClientInvitationById(invitationId: string | number) {
+    return this.backendProxy.get(
+      "invitation/client-invitation/" + invitationId.toString()
+    );
+  }
+
+  acceptInvitation(invitationId: string | number) {
+    return this.backendProxy.post(
+      "invitation/" + invitationId.toString() + "/accept",
+      {}
+    );
+  }
 }

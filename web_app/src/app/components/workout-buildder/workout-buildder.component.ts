@@ -71,6 +71,13 @@ export class WorkoutBuildderComponent implements OnInit {
     this.modal.show();
   }
 
+  openModalTemplate(template: TemplateRef<any>) {
+    this.modalRef = this.modalService.show(
+      template,
+      Object.assign({}, { class: "modal-xxl" })
+    );
+  }
+
   hide() {
     this.modal.hide();
   }

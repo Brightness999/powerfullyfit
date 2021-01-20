@@ -36,7 +36,16 @@ export class TableComponent implements OnInit {
       paginationAutoPageSize: true,
       suppressCellSelection: true,
       cacheQuickFilter: true,
-      rowHeight: 75,
+
+      defaultColDef: {
+        flex: 1,
+        cellClass:
+          "d-flex flex-row justify-content-start align-items-center flex-grow-0 my-1",
+        wrapText: true,
+        autoHeight: true,
+        sortable: true,
+        resizable: true,
+      },
 
       context: {
         componentParent: this,
@@ -48,14 +57,13 @@ export class TableComponent implements OnInit {
         this.gridOptions.api.resetRowHeights();
       },
       onRowClicked: (event) => {
-        console.log(event.data);
-        this.rowClicked.emit(event.data)
+        this.rowClicked.emit(event.data);
       },
       onColumnResized: (event) => {
-        // console.log("A column was resized");
+        this.gridOptions.api.resetRowHeights();
       },
       onGridReady: (event) => {
-        // console.log("The grid is now ready");
+        this.gridOptions.api.resetRowHeights();
         this.gridOptions.api.sizeColumnsToFit();
       },
     };
