@@ -104,23 +104,42 @@ export class WorkoutBuildderComponent implements OnInit {
   }
 
   drop(event: CdkDragDrop<string[]>) {
+    console.log(event);
+
     if (event.previousContainer === event.container) {
       moveItemInArray(
         event.container.data,
         event.previousIndex,
         event.currentIndex
       );
+
+      this.workout.exercises = this.workout.exercises.map((exercise, index) => {
+        exercise.order = index;
+
+        console.log(exercise);
+        return exercise;
+      });
     } else {
-      transferArrayItem(
-        event.previousContainer.data,
-        event.container.data,
-        event.previousIndex,
-        event.currentIndex
-      );
+      // transferArrayItem(
+      //   event.previousContainer.data,
+      //   event.container.data,
+      //   event.previousIndex,
+      //   event.currentIndex
+      // );
+
+      this.workout.exercises.splice(event.currentIndex, 0, {
+        order: event.currentIndex,
+        sets: 0,
+        reps: 0,
+        time: "",
+        exercise: this.organizationExercises[event.previousIndex],
+      });
     }
   }
 
   save() {
+    console.log(this.workout);
+
     this.workoutService.updateWorkoutById(this.workout).subscribe((res) => {
       console.log(res);
 

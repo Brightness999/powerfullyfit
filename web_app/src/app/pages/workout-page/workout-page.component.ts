@@ -36,6 +36,7 @@ export class WorkoutPageComponent implements OnInit {
         switchMap((params) => this.workoutService.findWorkoutById(params.id))
       )
       .subscribe((workout) => {
+        // workout["exercises"] = [];
         this.workout = workout;
         console.log(workout);
       });
@@ -52,6 +53,7 @@ export class WorkoutPageComponent implements OnInit {
       // { field: "logo.url" },
       {
         headerName: "Exercise",
+        field: "exercise",
         cellRendererFramework: VideoCellRendererComponent,
         width: 100,
       },

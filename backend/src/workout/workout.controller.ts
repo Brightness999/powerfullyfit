@@ -58,7 +58,9 @@ export class WorkoutController {
     @Body() updateWorkoutDto: any,
     @CurrentUser() user: any,
   ) {
+    console.log('Patching Workout');
     console.log(updateWorkoutDto);
+
     return this.workoutService.update(id, updateWorkoutDto);
   }
 

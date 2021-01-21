@@ -10,7 +10,7 @@ import {
   ManyToMany,
 } from 'typeorm';
 
-import { Workout } from '@app/workout/entities/workout.entity';
+import { WorkoutExercise } from '@app/workout/entities/workout-exercise.entity';
 
 import { ExternalAsset } from '@app/external-asset/entities/external-asset.entity';
 
@@ -22,12 +22,13 @@ export class Exercise {
   @Column()
   name: string;
 
-  @ManyToMany(
-    type => Workout,
-    workout => workout.exercises,
+  @OneToMany(
+    type => WorkoutExercise,
+    workoutExercise => workoutExercise.exercise,
     { lazy: true },
   )
-  workouts: Workout[];
+  @JoinTable()
+  workouts: WorkoutExercise[];
 
   @ManyToOne(() => ExternalAsset, {
     eager: true,

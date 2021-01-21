@@ -39,6 +39,10 @@ export class WorkoutService {
       relations: ['coach', 'exercises'],
     });
 
+    workout.exercises.sort((a, b) => {
+      return a.order - b.order;
+    });
+
     if (!workout)
       throw new NotFoundException(`workout with id: ${id} was not Found`);
 
