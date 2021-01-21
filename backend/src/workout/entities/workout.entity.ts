@@ -11,7 +11,7 @@ import {
 } from 'typeorm';
 
 import { Coach } from '@app/user/entities/coach.entity';
-// import { Program } from '@app/program/entities/program.entity';
+import { WorkoutExercise } from './workout-exercise.entity';
 import { CalendarEvent } from '@app/calendar-event/entities/calendar-event.entity';
 import { Exercise } from '@app/exercise/entities/exercise.entity';
 
@@ -38,12 +38,15 @@ export class Workout {
   )
   calendarEvents: CalendarEvent;
 
-  @JoinTable()
-  @ManyToMany(
-    type => Exercise,
-    exercise => exercise.workouts,
+  @OneToMany(
+    type => WorkoutExercise,
+    workoutExercise => workoutExercise.workout,
+    {
+      cascade: true,
+    },
   )
-  exercises: Exercise[];
+  @JoinTable()
+  exercises: WorkoutExercise[];
 
   @Column({ default: new Date() })
   createTime: Date;

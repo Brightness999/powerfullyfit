@@ -16,6 +16,7 @@
                 </button>
             </div>
             <div class="modal-body member-modal-body p-3 pt-2 pb-1">
+                <!-- {{ workout.exercises | json }} -->
                 <div class="row" cdkDropListGroup>
                     <div cdkDropList #todoList="cdkDropList" [cdkDropListData]="workout.exercises" style="height: 65vh"
                         [cdkDropListConnectedTo]="[doneList]"
@@ -34,7 +35,7 @@
                             <tbody>
                                 <tr *ngFor="let exercise of workout.exercises" cdkDrag>
                                     <td style="width: 60%">
-                                        <img [src]="exercise.logo.thumbnail" class="rounded mr-2" width="150" />
+                                        <img [src]="exercise.exercise.logo.thumbnail" class="rounded mr-2" width="150" />
                                         <span class="h3">
                                             {{ exercise.name }}
                                         </span>
@@ -95,7 +96,8 @@
                 </div>
 
                 <div class="btn-row">
-                    <button class="btn btn-default mr-3" type="button" (click)="openModalTemplate(exerciseTemplate)" [disabled]="isLoading">
+                    <button class="btn btn-default mr-3" type="button" (click)="openModalTemplate(exerciseTemplate)"
+                        [disabled]="isLoading">
                         <i class="fa fa-plus mr-2"></i> Create Exercise
                     </button>
                     <button class="btn btn-dark" type="button" (click)="save()" [disabled]="isLoading">
@@ -108,9 +110,9 @@
 </div>
 
 <ng-template #noExercises>
-    <div class="d-flex justify-content-center align-items-center h-100" >
+    <div class="d-flex justify-content-center align-items-center h-100">
         <div class="d-flex justify-content-center align-items-center text-muted border p-6 h-75 h1">
-           <i class="fa fa-plus mr-2"></i> Drop Exercises Here
+            <i class="fa fa-plus mr-2"></i> Drop Exercises Here
         </div>
     </div>
 </ng-template>

@@ -9,6 +9,7 @@ import { ICellRendererAngularComp } from "ag-grid-angular";
 })
 export class VideoCellRendererComponent implements ICellRendererAngularComp {
   rowData: any;
+  rowValue: any;
   private params: any;
 
   displayFields: Array<string> = [];
@@ -18,6 +19,7 @@ export class VideoCellRendererComponent implements ICellRendererAngularComp {
   agInit(params: any): void {
     this.params = params;
     this.rowData = params.data;
+    this.rowValue = params.value;
 
     this.displayFields = params.displayFields;
   }
