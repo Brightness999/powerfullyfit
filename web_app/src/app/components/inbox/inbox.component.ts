@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, AfterViewChecked } from "@angular/core";
 
 import { UserService } from "@pf/services/user.service";
 import { CoachService } from "@pf/services/coach.service";
@@ -12,7 +12,7 @@ import { FormBuilder, FormGroup, Validators } from "@angular/forms";
   templateUrl: "./inbox.component.html",
   styleUrls: ["./inbox.component.scss"],
 })
-export class InboxComponent implements OnInit {
+export class InboxComponent implements OnInit, AfterViewChecked {
   user: any;
   message: FormGroup = this.formBuilder.group({
     text: [null, Validators.required],
@@ -32,6 +32,7 @@ export class InboxComponent implements OnInit {
   selectedUser: any;
 
   clients: any = [];
+  container: HTMLElement;  
 
   constructor(
     private userService: UserService,
@@ -50,15 +51,24 @@ export class InboxComponent implements OnInit {
     });
     this.messageService.messages.subscribe((res) => {
       let result = JSON.parse(res);
-      if(result.from.id === this.user.id || result.to.id === this.user.id) {
+      if (result.from.id === this.user.id || result.to.id === this.user.id) {
         this.chat.push(result);
+        // var container = document.getElementById("msgContainer");
+        // container.scrollTop = container.scrollHeight;
         this.message.reset();
       }
     });
     this.messageService.get_messages.subscribe((res) => {
       this.chat = JSON.parse(res);
+      // var container = document.getElementById("msgContainer");
+      // container.scrollTop = container.scrollHeight;
     });
   }
+
+  ngAfterViewChecked() {         
+    this.container = document.getElementById("msgContainer");           
+    this.container.scrollTop = this.container.scrollHeight;     
+  } 
 
   send(message) {
     message["to"] = this.selectedUser;
