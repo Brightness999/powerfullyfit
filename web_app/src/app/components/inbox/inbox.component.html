@@ -19,7 +19,7 @@
         </div>
         <div class="col-xl-9 col-md-8 h-100">
             <div class="content h-100">
-                <div class="h-100 box1 overflow-auto">
+                <div class="h-100 box1 overflow-auto" id="msgContainer">
                     <div [class]="chatMessage.from.id===user.id? 'd-flex justify-content-end mb-4 px-4' : 'd-flex justify-content-start mb-4 px-4'" *ngFor="let chatMessage of chat">
                         <!-- <img [src]="chatMessage.from.logo.url" alt="avatar"
                             class="avatar rounded-circle d-flex align-self-start mr-2 z-depth-1 border"> -->
