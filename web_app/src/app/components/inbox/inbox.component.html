@@ -5,8 +5,9 @@
 
     <div class="row no-gutters h-100">
         <div class="col-xl-3 col-md-4 border-right overflow-auto">
-            <div class="d-flex align-items-center friend-drawer border-bottom" *ngFor="let client of clients">
-                <img class="profile-image" [src]="client.logo.url">
+            <div class="d-flex align-items-center friend-drawer border-bottom" *ngFor="let client of clients" (click)="onSelectedClientClick(client)">
+                <!-- <img class="profile-image" [src]="client.logo.url"> -->
+                <img class="profile-image" src="assets/img/theme/team-4-800x800.jpg">
                 <div class="text">
                     <h3>{{ client.firstname }} {{ client.lastname }} </h3>
                     <p class="text-muted"> {{ client.email }} </p>
@@ -16,40 +17,27 @@
                 </span>
             </div>
         </div>
-        <div class="col-xl-9 col-md-8 h-100 px-4">
+        <div class="col-xl-9 col-md-8 h-100">
             <div class="content h-100">
-                <div class="h-100 box1">
-                    <div class="d-flex justify-content-start mb-4" *ngFor="let chatMessage of chat">
-                        <img [src]="chatMessage.logo.url" alt="avatar"
+                <div class="h-100 box1 overflow-auto">
+                    <div [class]="chatMessage.from.id===user.id? 'd-flex justify-content-end mb-4 px-4' : 'd-flex justify-content-start mb-4 px-4'" *ngFor="let chatMessage of chat">
+                        <!-- <img [src]="chatMessage.from.logo.url" alt="avatar"
+                            class="avatar rounded-circle d-flex align-self-start mr-2 z-depth-1 border"> -->
+                        <img src="assets/img/theme/team-4-800x800.jpg" alt="avatar"
                             class="avatar rounded-circle d-flex align-self-start mr-2 z-depth-1 border">
                         <div class="chat-body bg-dark text-white p-3 ml-2 z-depth-1">
                             <div class="header">
-                                <strong class="primary-font">Brad Pitt</strong>
+                                <strong class="primary-font">{{ chatMessage.from.firstname}} {{ chatMessage.from.lastname}}</strong>
                                 <small class="pull-right text-muted"> 12 mins ago</small>
                             </div>
-                            <hr class="w-100">
+                            <!-- <hr class="w-100"> -->
                             <p class="mb-0">
                                 {{ chatMessage.text }}
                             </p>
                         </div>
                     </div>
-                    <!-- <div class="d-flex justify-content-end mb-auto">
-                        <div class="chat-body bg-dark text-white p-3 z-depth-1">
-                            <div class="header">
-                                <strong class="primary-font">Lara Croft</strong>
-                                <small class="pull-right text-muted"> 13 mins ago</small>
-                            </div>
-                            <hr class="w-100">
-                            <p class="mb-0">
-                                Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque
-                                laudantium.
-                            </p>
-                        </div>
-                        <img src="https://mdbootstrap.com/img/Photos/Avatars/avatar-5.jpg" alt="avatar"
-                            class="avatar rounded-circle d-flex align-self-start ml-4 z-depth-1 border">
-                    </div> -->
                 </div>
-                <div class="box w-100">
+                <div class="box w-100 px-4">
                     <form [formGroup]="message" (submit)="send(message.value)" class="form-group">
                         <div class="input-group input-group-alternative shadow-lg border">
                             <input class="form-control" placeholder="Type Message Here ..." formControlName="text"

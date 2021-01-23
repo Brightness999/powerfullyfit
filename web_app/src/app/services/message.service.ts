@@ -2,7 +2,8 @@ import { Injectable } from "@angular/core";
 
 import { Socket } from "ngx-socket-io";
 
-import { BackendProxy } from "./backend.proxy";
+// import { BackendProxy } from "./backend.proxy";
+import { socketEnvironment } from "../../environments/environment";
 
 import { Observable, throwError } from "rxjs";
 import { tap, catchError, retry, map } from "rxjs/operators";
@@ -12,10 +13,12 @@ import { tap, catchError, retry, map } from "rxjs/operators";
 })
 export class MessageService extends Socket {
   messages = this.fromEvent<any>("createMessage");
+  get_messages = this.fromEvent<any>("getMessagesBetweenSelectedClientAndUser");
+  connected = this.fromEvent<any>("connected");
 
-  constructor(private backendProxy: BackendProxy) {
+  constructor() {
     super({
-      url: `${backendProxy.url}?token=${localStorage.getItem("token")}`,
+      url: `${socketEnvironment}?token=${localStorage.getItem("token")}`,
       options: {},
     });
 
@@ -23,9 +26,12 @@ export class MessageService extends Socket {
   }
 
   sendMessage(message: any) {
-    console.log(message);
-
-    return this.backendProxy.post("message", message);
-    // this.emit("createMessage", text);
+    // console.log(message);
+    this.emit("createMessage", message);
   }
+
+  getMessages(to: number) {
+    this.emit("getMessagesBetweenSelectedClientAndUser", to);
+  }
+
 }

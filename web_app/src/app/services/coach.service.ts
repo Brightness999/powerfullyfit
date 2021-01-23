@@ -20,6 +20,7 @@ export class CoachService {
   }
 
   findCoachClients(coachId: number | string) {
-    return this.backendProxy.get("coach/clients" + coachId.toString());
+    // return this.backendProxy.get("coach/clients" + coachId.toString());
+    return this.backendProxy.get("coach/" + coachId.toString() + "/clients");
   }
 }
