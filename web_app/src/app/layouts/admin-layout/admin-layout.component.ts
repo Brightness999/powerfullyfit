@@ -28,7 +28,7 @@ export class AdminLayoutComponent implements OnInit {
   ngOnInit() {
     this.user = this.userService.currentUser;
 
-    console.log(this.user);
+    // console.log(this.user);
 
     (<any>window).Intercom("boot", {
       app_id: "sgvd9vlh",
@@ -38,21 +38,29 @@ export class AdminLayoutComponent implements OnInit {
 
     this.notificationsService.notifications.subscribe((res) => {
       console.log(res);
+      let result = JSON.parse(res);
 
       this.toastr
-        .info(res.text)
+        .info(result.text)
         .onTap.pipe(take(1))
         .subscribe(() => this.toasterClickedHandler());
     });
 
+    // show the message when client that isn't a selected client sends the message to user
     this.messageService.messages.subscribe((res) => {
-      console.log(res);
-
-      this.toastr
-        .success(res.text)
-        .onTap.pipe(take(1))
-        .subscribe(() => this.toasterClickedHandler());
+      let result = JSON.parse(res);
+      if(result.from.id !== this.user.id && result.to.id !== this.user.id) {
+        this.toastr
+          .success(result.text)
+          .onTap.pipe(take(1))
+          .subscribe(() => this.toasterClickedHandler());
+      }
     });
+
+    // when socket is connected, 'connected' is appeared in console
+    this.messageService.connected.subscribe((res) => {
+      console.log(res);
+    })
   }
 
   toasterClickedHandler() {

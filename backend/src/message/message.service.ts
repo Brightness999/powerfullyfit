@@ -21,8 +21,18 @@ export class MessageService {
     return this.messageRepository.save(message);
   }
 
-  findAll() {
-    return `This action returns all message`;
+  async findAll(data: any) {
+    const messages = await this.messageRepository.find({
+      where: [{'from': data.from, 'to': data.to}, {'from': data.to, 'to': data.from}],
+      join: {
+        alias: 'message',
+        leftJoinAndSelect: {
+          from: 'message.from',
+          to: 'message.to'
+        },
+      }
+    });
+    return messages;
   }
 
   findOne(id: number) {

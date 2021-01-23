@@ -25,8 +25,8 @@ import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { UpdateCoachDto } from './dto/update-coach.dto';
 
-@ApiTags('coach')
 @Controller('coach')
+@ApiTags('coach')
 @UseGuards(JwtAuthGuard)
 export class CoachController {
   constructor(private readonly coachService: CoachService) {}
@@ -46,7 +46,7 @@ export class CoachController {
   async findAllClients(@CurrentUser() user: any) {
     let coach: Coach = await this.coachService.findOneCoach(user.id);
 
-    // console.log(coach);
+    // console.log('coach.controller-findAllClients-coach', coach);
 
     return this.coachService.findAllClients(coach);
   }

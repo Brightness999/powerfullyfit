@@ -60,7 +60,7 @@ export class ClientController {
 
   @Post('invite')
   inviteClient(@Body() email: string) {
-    console.log(email);
+    console.log('email--------', email);
     // return this.clientService.inviteClient(email);
   }
 }

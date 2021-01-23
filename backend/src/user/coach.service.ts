@@ -35,6 +35,18 @@ export class CoachService {
     return this.coachRepository.save(user);
   }
 
+  compare = (a:any, b:any) => {
+    const m = a.createTime;
+    const n = b.createTime;
+    let comparison = 0;
+    if (m > n) {
+      comparison = -1;
+    } else if (m < n) {
+      comparison = 1;
+    }
+    return comparison;
+  }
+
   async findAllClients(coach: Coach) {
     const clients = await this.clientRepository.find({
       join: {
@@ -44,13 +56,27 @@ export class CoachService {
           organization: 'coach.organization',
           logo: 'client.logo',
           program: 'client.program',
+          // deliveredMessages: 'client.deliveredMessages',
+          // receivedMessages: 'client.receivedMessages',
         },
       },
+      where: {coach : coach.id}
     });
 
-    return clients.filter(client => {
-      return client.coach.organization.id === coach.organization.id;
-    });
+    // return clients.filter(client => {
+    //   console.log('____+++++++++', client.coach.organization.id, coach.organization.id);
+    //   return client.coach.organization.id === coach.organization.id;
+    // });
+
+    // let result: any = [];
+    // clients.map((client:any)=>{
+    //   let temp = client.deliveredMessages.concat(client.receivedMessages);
+    //   temp.sort(this.compare);
+    //   let {deliveredMessages, receivedMessages, ...rest} = client;
+    //   result.push({...rest, latestChat: temp.length? temp[0]: {}});
+    // });
+    // return result;
+    return clients;
   }
 
   findAllClientsForCoach(coach: Coach) {
@@ -61,6 +87,7 @@ export class CoachService {
   }
 
   findAllCoaches() {
+    console.log('findAllCoaches-------');
     return this.coachRepository.find({ relations: ['logo'] });
   }
 
