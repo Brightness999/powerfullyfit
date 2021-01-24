@@ -26,12 +26,10 @@ export class MessageService extends Socket {
   }
 
   sendMessage(message: any) {
-    // console.log(message);
     this.emit("createMessage", message);
   }
 
   getMessages(to: number) {
     this.emit("getMessagesBetweenSelectedClientAndUser", to);
   }
-
 }
