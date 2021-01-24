@@ -20,6 +20,7 @@ import { NotificationModule } from './notification/notification.module';
 import { ExternalAssetModule } from './external-asset/external-asset.module';
 import { InvitationModule } from './invitation/invitation.module';
 import { CalendarEventModule } from './calendar-event/calendar-event.module';
+import { TermModule } from './term-condition/term.module';
 
 @Module({
   imports: [
@@ -51,6 +52,7 @@ import { CalendarEventModule } from './calendar-event/calendar-event.module';
     ExternalAssetModule,
     InvitationModule,
     CalendarEventModule,
+    TermModule,
   ],
   controllers: [],
   providers: [],

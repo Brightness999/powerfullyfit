@@ -26,6 +26,7 @@ export class MessageService extends Socket {
   }
 
   sendMessage(message: any) {
+    console.log(JSON.stringify(message));
     this.emit("createMessage", message);
   }
 
