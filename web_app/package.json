@@ -34,6 +34,7 @@
     "@types/socket.io": "^2.1.12",
     "ag-grid-angular": "^24.1.0",
     "ag-grid-community": "^24.1.0",
+    "angular-froala-wysiwyg": "^3.2.5-2",
     "bootstrap": "4.5.2",
     "chart.js": "2.9.3",
     "clipboard": "2.0.6",
