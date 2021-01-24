@@ -33,6 +33,9 @@ import { InvitesComponent } from "../../pages/invites/invites.component";
 import { NotificationsComponent } from "../../pages/notifications/notifications.component";
 import { ProgramScheduleComponent } from "../../pages/program-schedule/program-schedule.component";
 import { GettingStartedComponent } from "../../pages/getting-started/getting-started.component";
+import { FroalaEditorModule, FroalaViewModule } from 'angular-froala-wysiwyg';
+import 'froala-editor/js/plugins.pkgd.min.js';
+
 // import { ProfileCompletionComponent } from "../../pages/profile-completion/profile-completion.component";
 
 FullCalendarModule.registerPlugins([
@@ -54,6 +57,8 @@ FullCalendarModule.registerPlugins([
     FullCalendarModule,
     ComponentsModule,
     TreeModule,
+    FroalaEditorModule.forRoot(), 
+    FroalaViewModule.forRoot()
   ],
   declarations: [
     DashboardComponent,
