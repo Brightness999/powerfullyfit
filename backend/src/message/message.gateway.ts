@@ -28,22 +28,20 @@ import { json } from 'express';
 export class MessageGateway implements OnGatewayConnection {
   @WebSocketServer() wss: Server;
 
-  // connections = {};
-  wsClients=[];
+  wsClients = [];
 
   constructor(
     private readonly messageService: MessageService,
     private readonly jwtService: JwtService,
-  ) { }
+  ) {}
 
   async handleConnection(client: any, ...args: any) {
-    console.log('connected');
-
     this.wsClients.push(client);
+
     client.emit('connected', 'connected');
   }
 
-  handleDisconnect(client:any) {
+  handleDisconnect(client: any) {
     for (let i = 0; i < this.wsClients.length; i++) {
       if (this.wsClients[i] === client) {
         this.wsClients.splice(i, 1);
@@ -51,7 +49,7 @@ export class MessageGateway implements OnGatewayConnection {
       }
     }
     console.log('disconnected');
-    this.broadcast('disconnect',{});
+    this.broadcast('disconnect', {});
   }
 
   private broadcast(event, message: any) {
@@ -61,7 +59,6 @@ export class MessageGateway implements OnGatewayConnection {
     }
   }
 
-
   @SubscribeMessage('createMessage')
   create(
     @MessageBody() data: CreateMessageDto,
@@ -69,9 +66,10 @@ export class MessageGateway implements OnGatewayConnection {
   ): any {
     let user: any = this.jwtService.verify(client.handshake.query.token).user;
     data['from'] = user;
+
     this.messageService.create(data);
-    // client.emit('createMessage', { ...data, from: user })
-    this.broadcast('createMessage', { ...data, from: user })
+
+    this.broadcast('createMessage', { ...data, from: user });
   }
 
   @SubscribeMessage('getMessagesBetweenSelectedClientAndUser')
@@ -79,15 +77,13 @@ export class MessageGateway implements OnGatewayConnection {
     @MessageBody() to: number,
     @ConnectedSocket() client: Socket,
   ): Promise<any> {
-    let from: any = this.jwtService.verify(client.handshake.query.token).user.id;
-    let result = await this.messageService.findAll({from: from, to: to});
+    let from: any = this.jwtService.verify(client.handshake.query.token).user
+      .id;
+
+    let result = await this.messageService.findAll({ from: from, to: to });
+
     this.broadcast('getMessagesBetweenSelectedClientAndUser', result);
   }
-
-  // @SubscribeMessage('findAllMessage')
-  // findAll() {
-  //   return this.messageService.findAll();
-  // }
 
   @SubscribeMessage('findOneMessage')
   findOne(@MessageBody() id: number) {

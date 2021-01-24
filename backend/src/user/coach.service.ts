@@ -35,7 +35,7 @@ export class CoachService {
     return this.coachRepository.save(user);
   }
 
-  compare = (a:any, b:any) => {
+  compare = (a: any, b: any) => {
     const m = a.createTime;
     const n = b.createTime;
     let comparison = 0;
@@ -45,9 +45,11 @@ export class CoachService {
       comparison = 1;
     }
     return comparison;
-  }
+  };
 
   async findAllClients(coach: Coach) {
+    // const clients = this.userRepository.find();
+
     const clients = await this.clientRepository.find({
       join: {
         alias: 'client',
