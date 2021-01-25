@@ -14,8 +14,11 @@ export class UserProfileComponent implements OnInit {
     placeholderText: 'Edit Your Content Here!',
     charCounterCount: false,
     attribution: false,
-    height: '150px',
+    height: '70vh',
   }
+  editorStyle = {
+    height: '70vh'
+  };
 
   constructor(
     private termService: TermService,

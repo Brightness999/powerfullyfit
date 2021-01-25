@@ -24,5 +24,21 @@
   }
 }
 
+@font-face {
+  font-family: "GothamBlack";
+  src: local("GothamBlack"), url(./assets/fonts/Gotham-Black.ttf) format("truetype");
+}
+
+@font-face {
+  font-family: "GothamMedium";
+  src: local("GothamMedium"), url(./assets/fonts/Gotham-Medium5.ttf) format("truetype");
+}
+
+@font-face {
+  font-family: "OpenSansRegular";
+  src: local("OpenSansRegular"), url(./assets/fonts/Open-Sans-Regular.ttf) format("truetype");
+}
+
+
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

@@ -35,6 +35,7 @@ import { ProgramScheduleComponent } from "../../pages/program-schedule/program-s
 import { GettingStartedComponent } from "../../pages/getting-started/getting-started.component";
 import { FroalaEditorModule, FroalaViewModule } from 'angular-froala-wysiwyg';
 import 'froala-editor/js/plugins.pkgd.min.js';
+import { QuillModule } from 'ngx-quill';
 
 // import { ProfileCompletionComponent } from "../../pages/profile-completion/profile-completion.component";
 
@@ -58,7 +59,8 @@ FullCalendarModule.registerPlugins([
     ComponentsModule,
     TreeModule,
     FroalaEditorModule.forRoot(), 
-    FroalaViewModule.forRoot()
+    FroalaViewModule.forRoot(),
+    QuillModule.forRoot(),
   ],
   declarations: [
     DashboardComponent,

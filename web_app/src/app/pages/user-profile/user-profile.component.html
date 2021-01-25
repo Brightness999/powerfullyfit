@@ -1,23 +1,16 @@
-<div class="header pb-8 pt-5 pt-lg-8 d-flex align-items-center"
+<!-- <div class="header pb-8 pt-5 pt-lg-8 d-flex align-items-center"
   style="min-height: 600px; background-image: url(assets/img/theme/profile-cover.jpg); background-size: cover; background-position: center top;">
-  <!-- Mask -->
-  <span class="mask bg-gradient-danger opacity-8"></span>
-  <!-- Header container -->
-  <div class="container-fluid d-flex align-items-center">
-    <div class="row">
-      <div class="col-lg-7 col-md-10">
-        <h1 class="display-2 text-white">Hello Jesse</h1>
-        <p class="text-white mt-0 mb-5">This is your profile page. You can see the progress you've made with your work
-          and manage your projects or assigned tasks</p>
-        <a href="#!" class="btn btn-info">Edit profile</a>
-      </div>
-    </div>
-  </div>
+  <span class="mask bg-gradient-default opacity-8"></span>
+</div> -->
+<div class="header bg-gradient-default pb-9 pt-5 pt-md-8" style="height: 24rem;">
 </div>
-<div class="container-fluid mt--7">
+<div class="container-fluid" style="margin-top: -16rem !important;">
   <div class="row">
     <div class="col-xl-4 order-xl-2 mb-5 mb-xl-0">
       <div class="card card-profile shadow">
+        <div>
+          <img src="assets/img/theme/profile-exercise.png" width="100%" style="border-top-left-radius: 0.375rem; border-top-right-radius: 0.375rem;">
+        </div>
         <div class="row justify-content-center">
           <div class="col-lg-3 order-lg-2">
             <div class="card-profile-image">
@@ -74,14 +67,58 @@
       </div>
     </div>
     <div class="col-xl-8 order-xl-1">
-      <div class="card bg-secondary shadow">
-        <div class="card-header bg-white border-0">
+      <div class="row mb-5">
+        <div class="col-xl-6 col-lg-6">
+          <div class="card card-stats mb-4 mb-xl-0">
+            <div class="card-body">
+              <div class="row">
+                <div class="col">
+                  <h2 class="card-title text-uppercase text-muted mb-0">WORKOUTS</h2>
+                  <span class="h2 font-weight-bold mb-0"> 208 </span>
+                </div>
+                <div class="col-auto">
+                  <div class="icon icon-shape bg-gradient-default text-white rounded-circle shadow">
+                    <i class="fas fa-dumbbell"></i>
+                  </div>
+                </div>
+              </div>
+              <p class="mt-3 mb-0 text-muted text-sm">
+                <span class="text-success mr-2"><i class="fa fa-arrow-up"></i> 12.48% </span>
+                <span class="text-nowrap">Since last month</span>
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="col-xl-6 col-lg-6">
+          <div class="card card-stats mb-4 mb-xl-0">
+            <div class="card-body">
+              <div class="row">
+                <div class="col">
+                  <h2 class="card-title text-uppercase text-muted mb-0">CLIENTS</h2>
+                  <span class="h2 font-weight-bold mb-0"> +5 </span>
+                </div>
+                <div class="col-auto">
+                  <div class="icon icon-shape bg-gradient-default text-white rounded-circle shadow">
+                    <i class="ni ni-user-run"></i>
+                  </div>
+                </div>
+              </div>
+              <p class="mt-3 mb-0 text-muted text-sm">
+                <span class="text-success mr-2"><i class="fa fa-arrow-up"></i> 3.48% </span>
+                <span class="text-nowrap">Since last week</span>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="card shadow">
+        <div class="card-header bg-white" style="border-bottom: 1px #e9ecef  solid;">
           <div class="row align-items-center">
             <div class="col-8">
-              <h3 class="mb-0">My account</h3>
+              <h3 class="mb-0">My Profile</h3>
             </div>
             <div class="col-4 text-right">
-              <a href="#!" class="btn btn-sm btn-primary">Settings</a>
+              <a href="#!" class="btn btn-sm btn-primary">SAVE PROFILE</a>
             </div>
           </div>
         </div>
@@ -175,9 +212,12 @@
             <div class="pl-lg-4">
               <div class="form-group">
                 <label>My Terms and Conditions</label>
-                <div [froalaEditor]='options' [(froalaModel)]="editorContent"></div>
+                <quill-editor [styles]="editorStyle" placeholder="Enter Text" [(ngModel)]="editorContent"
+                  name="quill_editor"></quill-editor>
+                <!-- <div [froalaEditor]='options' [(froalaModel)]="editorContent"></div> -->
                 <div style="margin: auto; margin-top: 10px;">
-                  <button type="button" class="btn btn-primary" (click)="saveTermCondition()" [disabled]="!editorContent"
+                  <button type="button" class="btn btn-primary" (click)="saveTermCondition()"
+                    [disabled]="!editorContent"
                     style="width: 100%; border-radius: 5px; background: #5e72e4 !important;">
                     Save my Terms & conditions</button>
                 </div>
