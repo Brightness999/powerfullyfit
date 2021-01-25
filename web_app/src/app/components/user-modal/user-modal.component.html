@@ -2,77 +2,108 @@
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header w-100">
-                <h1 class="modal-title mr-auto">Client Summary</h1>
+                <h1 class="modal-title mr-auto" style="font-family: 'GothamBlack';">Client Summary</h1>
 
-                <button class="btn btn-dark">
+                <button class="btn btn-dark" style="font-family: 'GothamMedium';">
                     MESSAGE
                 </button>
-                <button class="btn btn-dark">
+                <button class="btn btn-dark" style="font-family: 'GothamMedium';">
                     OPEN
                 </button>
                 <button class="btn " (click)="hide()">
                     <i class="fa fa-times"></i>
                 </button>
             </div>
-            <div class="modal-body member-modal-body pt-2 pb-1">
-                <div class="row">
+            <div class="modal-body member-modal-body pt-2 pb-1" style="font-family: 'OpenSansRegular';">
+                <div class="row" style="border-top: 1px solid #e9ecef;">
                     <div class="col-6 border-right">
                         <div class="py-3 border-bottom">
-                            <img [src]="user.logo?.url" alt="" class="rounded-circle mr-3" height="90" width="90">
+                            <!-- <img [src]="user.logo?.url" alt="" class="rounded-circle mr-3" height="90" width="90"> -->
+                            <img src="assets/img/theme/team-4-800x800.jpg" alt="" class="rounded-circle mr-3" height="90" width="90">
 
-                            <span class="h1"> {{ user.firstname }} {{ user.lastname }} </span>
+                            <!-- <span class="h1"> {{ user.firstname }} {{ user.lastname }} </span> -->
+                            <span class="h1" style="font-family: 'GothamBlack';"> Sam Davis </span>
                         </div>
                         <div class="py-3 border-bottom">
-                            <div>
-                                Total Workouts
+                            <div class="row">
+                                <div class="col-4">Total Workouts</div>
+                                <div class="col-8">115</div>
                             </div>
-                            <div>
-                                Last Signed in
+                            <div class="row">
+                                <div class="col-4">Last Signed in</div>
+                                <div class="col-8">20 DEC 2020</div>
                             </div>
-                            <div>
-                                Member Since
+                            <div class="row">
+                                <div class="col-4">Member Since</div>
+                                <div class="col-8">4 JUL 2020</div>
                             </div>
                         </div>
-                        <div class="border-bottom">
+                        <div class="py-3 border-bottom">
                             MyMacros
                         </div>
                         <div class="py-3 border-bottom">
                             <div>
                                 Training Program
                             </div>
+                            <div>
+                                The Legacy Program
+                            </div>
+                            <div>
+                                6 Week Program (9 Nov - 20 Dec)
+                            </div>
                         </div>
                         <div class="py-3">
-                            <div>
-                                Assigned to Trainer
+                            <div class="row">
+                                <div class="col-4">Assigned to Trainer</div>
+                                <div class="col-8">Sam Davis</div>
                             </div>
 
-                            <div>
-                                Email
+                            <div class="row">
+                                <div class="col-4">Email</div>
+                                <div class="col-8">samdavisfit@gmail.com</div>
                             </div>
 
-                            <div class="">
-                                phone number
+                            <div class="row">
+                                <div class="col-4">phone number</div>
+                                <div class="col-8">(602) 452 - 4352</div>
                             </div>
 
-                            <div>
-                                Age
+                            <div class="row">
+                                <div class="col-4">Age</div>
+                                <div class="col-8">28</div>
                             </div>
 
-                            <div>
-                                Date of Birth
+                            <div class="row">
+                                <div class="col-4">Date of Birth</div>
+                                <div class="col-8">4 Jul 1992</div>
                             </div>
 
-                            <div>
-                                Height
+                            <div class="row">
+                                <div class="col-4">Height</div>
+                                <div class="col-8">6' 2</div>
                             </div>
 
-                            <div class="">
-                                Sex
+                            <div class="row">
+                                <div class="col-4">Sex</div>
+                                <div class="col-8">Female</div>
                             </div>
+
                         </div>
                     </div>
                     <div class="col-6">
-
+                        <div class="py-3 border-bottom">
+                            <div>
+                                Meal Plan
+                            </div>
+                            <div>
+                                Sam Davis Nutrition
+                            </div>
+                        </div>
+                        <div class="py-3">
+                            <div>
+                                Trainer's Notes
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
