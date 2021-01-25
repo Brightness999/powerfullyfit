@@ -1,4 +1,4 @@
-<nav class="navbar navbar-top navbar-expand-md navbar-dark" id="navbar-main">
+<nav class="navbar navbar-top navbar-expand-md navbar-dark" id="navbar-main" style="font-family: 'OpenSansRegular';">
     <div class="container-fluid">
         <!-- Brand -->
         <span class="h4 mb-0 text-white text-uppercase d-none d-lg-inline-block">
@@ -20,7 +20,7 @@
         <ul class="navbar-nav align-items-center d-none d-md-flex">
             <li class="nav-item" ngbDropdown placement="bottom-right">
                 <div class="nav-link pr-4 h1">
-                    <div class="media align-items-center">
+                    <div class="media align-items-center" style="font-family: 'GothamMedium';">
                         <button class="btn btn-dark" role="button" ngbDropdownToggle>
                             <span class="mr-2"> ADD NEW </span> <i class="fas fa-chevron-down"></i>
                         </button>
@@ -101,7 +101,7 @@
     </div>
 </nav>
 
-<ng-template #template>
+<ng-template #template style="font-family: 'OpenSansRegular';">
     <div class="modal-header">
         <h1 class="modal-title pull-left">Create a New Master Program</h1>
         <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
@@ -111,7 +111,7 @@
     <pf-program-form (submitted)="modalRef.hide()"></pf-program-form>
 </ng-template>
 
-<ng-template #workoutTemplate>
+<ng-template #workoutTemplate style="font-family: 'OpenSansRegular';">
     <div class="modal-header">
         <h1 class="modal-title pull-left">Build New Workout</h1>
         <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
@@ -121,7 +121,7 @@
     <pf-workout-form (submitted)="modalRef.hide()"></pf-workout-form>
 </ng-template>
 
-<ng-template #exerciseTemplate>
+<ng-template #exerciseTemplate style="font-family: 'OpenSansRegular';">
     <div class="modal-header">
         <h1 class="modal-title pull-left">Build New Exercise</h1>
         <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
@@ -131,7 +131,7 @@
     <pf-exercise-form (submitted)="modalRef.hide()"></pf-exercise-form>
 </ng-template>
 
-<ng-template #trainerTemplate>
+<ng-template #trainerTemplate style="font-family: 'OpenSansRegular';">
     <div class="modal-header">
         <h1 class="modal-title pull-left">Invite Trainer</h1>
         <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
@@ -141,7 +141,7 @@
     <pf-trainer-form (submitted)="modalRef.hide()"></pf-trainer-form>
 </ng-template>
 
-<ng-template #clientTemplate>
+<ng-template #clientTemplate style="font-family: 'OpenSansRegular';">
     <div class="modal-header">
         <h1 class="modal-title pull-left">Invite Client</h1>
         <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
