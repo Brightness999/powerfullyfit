@@ -33,5 +33,4 @@ export class MessageService extends Socket {
   getMessages(to: number) {
     this.emit("getMessagesBetweenSelectedClientAndUser", to);
   }
-
 }
