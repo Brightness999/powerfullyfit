@@ -89,7 +89,7 @@
         </div>
       </form>
       <!-- Navigation -->
-      <ul class="navbar-nav">
+      <ul class="navbar-nav" style="font-family: GothamMedium;">
         <li *ngFor="let menuItem of menuItems" class="{{menuItem.class}} nav-item">
           <a routerLinkActive="active" [routerLink]="[menuItem.path]" class="nav-link">
             <i class="ni {{menuItem.icon}}"></i>
@@ -102,7 +102,7 @@
       <!-- Heading -->
       <h6 class="navbar-heading text-muted">Extra</h6>
       <!-- Navigation -->
-      <ul class="navbar-nav mb-md-3">
+      <ul class="navbar-nav mb-md-3" style="font-family: GothamMedium;">
         <li *ngFor="let menuItem of extraMenuItems" class="{{menuItem.class}} nav-item">
           <a routerLinkActive="active" [routerLink]="[menuItem.path]" class="nav-link">
             <i class="ni {{menuItem.icon}}"></i>

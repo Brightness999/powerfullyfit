@@ -32,6 +32,24 @@ export class User {
   @Column()
   email: string;
 
+  @Column('text')
+  aboutme: string;
+
+  @Column()
+  city: string;
+
+  @Column()
+  country: string;
+
+  @Column('int4')
+  postcode: number;
+
+  @Column()
+  address: string;
+
+  @Column()
+  username: string;
+
   @JoinTable()
   @OneToMany(
     type => Message,

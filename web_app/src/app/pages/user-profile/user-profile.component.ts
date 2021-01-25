@@ -8,14 +8,15 @@ import { UserService } from "@pf/services/user.service";
   styleUrls: ['./user-profile.component.scss']
 })
 export class UserProfileComponent implements OnInit {
+  user: any;
   public termId: number = -1;
   public editorContent: string = '';
-  public options: Object = {
-    placeholderText: 'Edit Your Content Here!',
-    charCounterCount: false,
-    attribution: false,
-    height: '70vh',
-  }
+  // public options: Object = {
+  //   placeholderText: 'Edit Your Content Here!',
+  //   charCounterCount: false,
+  //   attribution: false,
+  //   height: '70vh',
+  // }
   editorStyle = {
     height: '70vh'
   };
@@ -31,6 +32,8 @@ export class UserProfileComponent implements OnInit {
           this.termId = res.id;
         }
       });
+      console.log('currentUser', this.userService.currentUser);
+      this.user = this.userService.currentUser;
     }
 
   ngOnInit() {
