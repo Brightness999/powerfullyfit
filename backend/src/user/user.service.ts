@@ -12,6 +12,7 @@ import { Repository } from 'typeorm';
 import { Coach } from './entities/coach.entity';
 import { Client } from './entities/client.entity';
 import { User } from './entities/user.entity';
+import { JwtService } from '@nestjs/jwt';
 
 import { CreateClientDto } from './dto/create-client.dto';
 import { CreateCoachDto } from './dto/create-coach.dto';
@@ -29,6 +30,7 @@ export class UserService {
     private readonly coachRepository: Repository<Coach>,
     @InjectRepository(Client)
     private readonly clientRepository: Repository<Client>,
+    private readonly jwtService: JwtService,
   ) {}
 
   x() {
@@ -56,7 +58,6 @@ export class UserService {
   }
 
   findOneByEmail(email: string) {
-    console.log(email);
 
     const user = this.userRepository.findOne({
       where: [{ email }],
@@ -64,5 +65,19 @@ export class UserService {
     });
 
     return user;
+  }
+
+  async updateUser(id: number, updateUserDto: UpdateUserDto) {
+    try {
+      await this.userRepository.update({id: id}, updateUserDto);
+      let user = updateUserDto;
+      const payload = { user };
+      return {
+        access_token: this.jwtService.sign(payload),
+      };
+    }
+    catch (err) {
+      return 'Failed to update user';
+    }
   }
 }

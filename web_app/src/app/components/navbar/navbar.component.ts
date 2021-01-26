@@ -3,6 +3,7 @@ import { BsModalService, BsModalRef } from "ngx-bootstrap/modal";
 
 import { OrganizationService } from "@pf/services/organization.service";
 import { UserService } from "@pf/services/user.service";
+import { UploaderService } from "@pf/services/profileImgUpload.service";
 
 import { ROUTES, EXTRA_ROUTES } from "../sidebar/sidebar.component";
 import {
@@ -25,21 +26,32 @@ export class NavbarComponent implements OnInit {
   public listTitles: any[];
 
   user: any;
+  imageUrl: string = "";
 
   modalRef: BsModalRef;
 
   constructor(
     private organizationService: OrganizationService,
     private userService: UserService,
+    private uploader: UploaderService,
     public location: Location,
     private modalService: BsModalService,
     private element: ElementRef,
     private router: Router
-  ) {}
+  ) { }
 
   ngOnInit() {
     this.listTitles = ROUTES.concat(EXTRA_ROUTES);
     this.user = this.userService.currentUser;
+    this.uploader.imageUrl.subscribe((res) => {
+      if (res)
+        this.imageUrl = res;
+      else
+        this.imageUrl = this.user.logo.url;
+    });
+    this.userService.updatedUser.subscribe((res)=>{
+      if(res) this.user = res;
+    })
   }
 
   getTitle() {

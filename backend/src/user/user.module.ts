@@ -15,12 +15,17 @@ import { ClientService } from './client.service';
 import { UserController } from './user.controller';
 import { ClientController } from './client.controller';
 import { CoachController } from './coach.controller';
+import { JwtModule } from '@nestjs/jwt';
+import { jwtConstants } from './../auth/constants';
 
 @Module({
   imports: [
     TypeOrmModule.forFeature([Coach, User, Client]),
     forwardRef(() => AuthModule),
     NotificationModule,
+    JwtModule.register({
+      secret: jwtConstants.secret,
+    }),
   ],
   controllers: [UserController, ClientController, CoachController],
   providers: [UserService, CoachService, ClientService],
