@@ -5,20 +5,24 @@
     <div class="col-xl-4 order-xl-2 mb-5 mb-xl-0">
       <div class="card card-profile shadow">
         <div>
-          <img src="assets/img/theme/profile-exercise.png" width="100%" style="border-top-left-radius: 0.375rem; border-top-right-radius: 0.375rem;">
+          <img src="assets/img/theme/profile-exercise.jpg" width="100%"
+            style="border-top-left-radius: 0.375rem; border-top-right-radius: 0.375rem;">
         </div>
-        <div class="row justify-content-center">
+        <div class="row justify-content-center" (click)="photoInput.click()">
           <div class="col-lg-3 order-lg-2">
             <div class="card-profile-image">
-              <a href="javascript:void(0)">
-                <img src="assets/img/theme/team-4-800x800.jpg" class="rounded-circle">
+              <input type="file" class="filepicker" #photoInput (change)="onChange($event)">
+              <a>
+                <img [src]="imageUrl" class="rounded-circle upload-img-background" width="180px" height="180px">
               </a>
+              <img src="assets/img/theme/camera.png" class="rounded-circle img-hover-upload" width="60px"
+                height="60px">
             </div>
           </div>
         </div>
         <div class="card-header text-center border-0 pt-8 pt-md-4 pb-0 pb-md-4">
           <div class="d-flex justify-content-between">
-            <a href="javascript:void(0)" class="btn btn-sm btn-info mr-4">Connect</a>
+            <a href="javascript:void(0)"></a>
             <a href="javascript:void(0)" class="btn btn-sm btn-default float-right">Message</a>
           </div>
         </div>
@@ -43,17 +47,17 @@
           </div>
           <div class="text-center">
             <h3>
-              {{user.firstname}} {{user.lastname}}<span class="font-weight-light">, 27</span>
+              {{username}}<span class="font-weight-light">, 27</span>
             </h3>
             <div class="h5 font-weight-300">
-              <i class="ni location_pin mr-2"></i>{{user.city}}
+              <i class="ni location_pin mr-2"></i>{{city}}
             </div>
             <hr class="my-4" />
             <div>
               <div class="form-group">
                 <label>About Me</label>
                 <textarea rows="4" class="form-control form-control-alternative"
-                  placeholder="A few words about you ...">{{ user.aboutme }}</textarea>
+                  placeholder="A few words about you ..." [(ngModel)]="user.aboutme" name="aboutme">{{ user.aboutme }}</textarea>
               </div>
             </div>
           </div>
@@ -112,7 +116,7 @@
               <h3 class="mb-0">My Profile</h3>
             </div>
             <div class="col-4 text-right">
-              <a href="#!" class="btn btn-sm btn-primary">SAVE PROFILE</a>
+              <a class="btn btn-sm btn-primary" (click)="saveProfile()">SAVE PROFILE</a>
             </div>
           </div>
         </div>
@@ -125,14 +129,14 @@
                   <div class="form-group">
                     <label class="form-control-label" for="input-username">Username</label>
                     <input type="text" id="input-username" class="form-control form-control-alternative"
-                      placeholder="Username" [value]="user.username">
+                      placeholder="Username" [(ngModel)]="user.username" name="username">
                   </div>
                 </div>
                 <div class="col-lg-6">
                   <div class="form-group">
                     <label class="form-control-label" for="input-email">Email address</label>
                     <input type="email" id="input-email" class="form-control form-control-alternative"
-                      placeholder="jesse@example.com" [value]='user.email'>
+                      placeholder="jesse@example.com" [(ngModel)]="user.email" name="email">
                   </div>
                 </div>
               </div>
@@ -141,14 +145,14 @@
                   <div class="form-group">
                     <label class="form-control-label" for="input-first-name">First name</label>
                     <input type="text" id="input-first-name" class="form-control form-control-alternative"
-                      placeholder="First name" [value]="user.firstname">
+                      placeholder="First name" [(ngModel)]="user.firstname" name="firstname">
                   </div>
                 </div>
                 <div class="col-lg-6">
                   <div class="form-group">
                     <label class="form-control-label" for="input-last-name">Last name</label>
                     <input type="text" id="input-last-name" class="form-control form-control-alternative"
-                      placeholder="Last name" [value]="user.lastname">
+                      placeholder="Last name" [(ngModel)]="user.lastname" name="lastname">
                   </div>
                 </div>
               </div>
@@ -162,7 +166,7 @@
                   <div class="form-group">
                     <label class="form-control-label" for="input-address">Address</label>
                     <input id="input-address" class="form-control form-control-alternative" placeholder="Home Address"
-                      [value]="user.address" type="text">
+                      [(ngModel)]="user.address" name="address" type="text">
                   </div>
                 </div>
               </div>
@@ -171,21 +175,21 @@
                   <div class="form-group">
                     <label class="form-control-label" for="input-city">City</label>
                     <input type="text" id="input-city" class="form-control form-control-alternative" placeholder="City"
-                      [value]="user.city">
+                      [(ngModel)]="user.city" name="city">
                   </div>
                 </div>
                 <div class="col-lg-4">
                   <div class="form-group">
                     <label class="form-control-label" for="input-country">Country</label>
                     <input type="text" id="input-country" class="form-control form-control-alternative"
-                      placeholder="Country" [value]="user.country">
+                      placeholder="Country" [(ngModel)]="user.country" name="country">
                   </div>
                 </div>
                 <div class="col-lg-4">
                   <div class="form-group">
                     <label class="form-control-label" for="input-country">Postal code</label>
                     <input type="number" id="input-postal-code" class="form-control form-control-alternative"
-                      placeholder="Postal code" [value]='user.postcode'>
+                      placeholder="Postal code" [(ngModel)]="user.postcode" name="postcode">
                   </div>
                 </div>
               </div>

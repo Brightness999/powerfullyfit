@@ -69,7 +69,7 @@
                 <a class="nav-link pr-0" role="button" ngbDropdownToggle>
                     <div class="media align-items-center">
                         <span class="avatar avatar-sm rounded-circle">
-                            <img alt="Image placeholder" src="assets/img/theme/team-4-800x800.jpg">
+                            <img alt="Image placeholder" [src]="imageUrl" width="36px" height="36px">
                         </span>
                         <div class="media-body ml-3 d-none d-lg-block mr-2">
                             <span class="mb-0 text-lg font-weight-bold">{{ user.firstname || ''}} {{ user.lastname ||

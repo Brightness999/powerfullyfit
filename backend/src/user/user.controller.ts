@@ -24,4 +24,12 @@ import { UpdateClientDto } from './dto/update-client.dto';
 @Controller('user')
 export class UserController {
   constructor(private readonly userService: UserService) {}
+
+  @Patch(':id')
+  update(
+    @Param('id', ParseIntPipe) id: number,
+    @Body() data: any,
+  ) {
+    return this.userService.updateUser(id, data);
+  }
 }

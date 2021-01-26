@@ -11,6 +11,7 @@ import {
   UploadedFiles,
   Res,
   HttpStatus,
+  ParseIntPipe,
 } from '@nestjs/common';
 
 import { ExternalAssetService } from './external-asset.service';
@@ -31,7 +32,7 @@ const ip = require('ip');
 export class ExternalAssetController {
   constructor(private readonly externalAssetService: ExternalAssetService) {}
 
-  @Post('file')
+  @Post('file/:id')
   @UseInterceptors(
     FileInterceptor('file', {
       storage: diskStorage({
@@ -45,7 +46,7 @@ export class ExternalAssetController {
       }),
     }),
   )
-  async uploadedFile(@UploadedFile() file) {
+  async uploadedFile(@UploadedFile() file, @Body() user: any, @Param('id', ParseIntPipe) id: number) {
     let checkDocker = () => {
       return new Promise((resolve, reject) => {
         if (isInDocker()) {
@@ -82,11 +83,11 @@ export class ExternalAssetController {
     //   url: 'http://' + ip.address() + '/api/external-asset/' + file.filename,
     //   thumbnail: '',
     // });
-    return this.externalAssetService.create({
+    return this.externalAssetService.update(id, {
       type: 'image',
       url: 'http://localhost:3000/api/external-asset/' + file.filename,
       thumbnail: '',
-    });
+    }, user);
   }
 
   @Post()
