@@ -32,22 +32,22 @@ export class User {
   @Column()
   email: string;
 
-  @Column('text')
+  @Column('text', { default: '' })
   aboutme: string;
 
-  @Column()
+  @Column({ default: '' })
   city: string;
 
-  @Column()
+  @Column({ default: '' })
   country: string;
 
-  @Column('int4')
+  @Column('int4', { default: 0 })
   postcode: number;
 
-  @Column()
+  @Column({ default: '' })
   address: string;
 
-  @Column()
+  @Column({ default: '' })
   username: string;
 
   @JoinTable()
