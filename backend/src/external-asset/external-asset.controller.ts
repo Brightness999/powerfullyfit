@@ -68,14 +68,14 @@ export class ExternalAssetController {
     console.log(addr);
 
     if (addr) {
-      return this.externalAssetService.create({
+      return this.externalAssetService.update(id, {
         type: 'image',
         url:
           'https://app.powerfullyfittraining.com' +
           '/api/external-asset/' +
           file.filename,
         thumbnail: '',
-      });
+      }, user);
     }
 
     // return this.externalAssetService.create({

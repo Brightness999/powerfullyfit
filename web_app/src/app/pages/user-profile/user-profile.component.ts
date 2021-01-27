@@ -44,10 +44,12 @@ export class UserProfileComponent implements OnInit {
         this.termId = res.id;
       }
     });
-    this.user = {...this.userService.currentUser};
+    this.user = { ...this.userService.currentUser };
     this.username = this.user.firstname + ' ' + this.user.lastname;
     this.city = this.user.city;
-    this.imageUrl = this.user.logo.url;
+    if (this.user.logo && this.user.logo.url)
+      this.imageUrl = this.user.logo.url;
+    else this.imageUrl = 'assets/img/theme/user.png'
   }
 
   ngOnInit() {
@@ -92,7 +94,7 @@ export class UserProfileComponent implements OnInit {
 
   saveProfile = () => {
     this.userService.updateUser(this.user.id, this.user).subscribe((res) => {
-      if(res !== 'Failed to update user') {
+      if (res !== 'Failed to update user') {
         this.username = res.firstname + ' ' + res.lastname;
         this.city = res.city;
         this.userService.currentUser = res;

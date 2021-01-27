@@ -46,8 +46,11 @@ export class NavbarComponent implements OnInit {
     this.uploader.imageUrl.subscribe((res) => {
       if (res)
         this.imageUrl = res;
-      else
-        this.imageUrl = this.user.logo.url;
+      else {
+        if(this.user.logo && this.user.logo.url)
+          this.imageUrl = this.user.logo.url;
+        else this.imageUrl = 'assets/img/theme/user.png'
+      }
     });
     this.userService.updatedUser.subscribe((res)=>{
       if(res) this.user = res;

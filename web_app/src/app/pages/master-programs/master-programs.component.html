@@ -8,10 +8,10 @@
         <div class="col">
             <div class="card border-0 shadow">
                 <div class="card-header border-bottom" style="font-family: GothamBlack;">
-                    <span class="h1 mb-0"> Master Programs </span>
+                    <span class="h1 mb-0" style="color: #545454"> Master Programs </span>
                 </div>
 
-                <div class="card border-0 mb-4 mb-xl-0 h-100">
+                <div class="card border-0 mb-4 mb-xl-0 h-100" style="color: #545454">
                     <div class="row no-gutters h-100">
                         <div class="col-xl-3 col-md-4 border-right overflow-auto h-100">
                             <div class="border-bottom" *ngFor="let program of programs"
@@ -24,8 +24,20 @@
                                         </div>
 
                                         <div class="">
-                                            <div class="m-0" style="font-size: 1.2rem"> {{ program.name }} </div>
+                                            <div class="m-0" style="font-size: 1.2rem;"> {{ program.name }} </div>
                                             <p class="m-0"> {{ program.weeks * program.phases | number }} Weeks </p>
+                                        </div>
+                                        <div class="d-flex ml-auto">
+                                            <li class="nav-item" ngbDropdown placement="bottom-right">
+                                                <img src='assets/img/icons/3dots-menu.png' alt="3 dots style menu"
+                                                    width="30px" height="30px" ngbDropdownToggle />
+                                                <div ngbDropdownMenu style="min-width: 3rem !important; text-align: center;">
+                                                    <button
+                                                        style="height: 30px; width: 30px; border-radius: 10%; border: 1px solid red;">
+                                                        <i class="fa fa-trash" style="color: red"></i>
+                                                    </button>
+                                                </div>
+                                            </li>
                                         </div>
                                     </div>
 
@@ -48,7 +60,7 @@
                                         <div class="d-flex align-items-center mb-2">
                                             <div class="border-right pr-4 mr-4">
                                                 <span class="h1" style="font-size: 2em">
-                                                    <strong>
+                                                    <strong style="color: #545454">
                                                         {{ selectedProgram.name }}
                                                     </strong>
                                                 </span>
@@ -61,7 +73,8 @@
                                         </div>
                                         <div class="row align-items-center border-bottom pb-3">
                                             <div class="col-auto border-right">
-                                                <span class="h3"> {{ programDuration | number }} Weeks </span>
+                                                <span class="h3" style="color: #545454"> {{ programDuration | number }}
+                                                    Weeks </span>
                                             </div>
                                             <div class="col">
                                                 Description
@@ -118,4 +131,5 @@
 
 <pf-user-modal #userModal style="font-family: 'OpenSansRegular';"></pf-user-modal>
 <pf-program-calendar-event #calendarEventModal style="font-family: 'OpenSansRegular';"></pf-program-calendar-event>
-<pf-program-client-modal #clientsModal (onUserSave)="onUserSave($event)" style="font-family: 'OpenSansRegular';"></pf-program-client-modal>
+<pf-program-client-modal #clientsModal (onUserSave)="onUserSave($event)" style="font-family: 'OpenSansRegular';">
+</pf-program-client-modal>
