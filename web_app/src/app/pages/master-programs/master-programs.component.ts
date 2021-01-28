@@ -6,6 +6,8 @@ import {
   TemplateRef,
 } from "@angular/core";
 
+import Swal from "sweetalert2";
+
 import { ProgramService } from "@pf/services/program.service";
 
 import { DateCellRendererComponent } from "@pf/components/date-cell-renderer/date-cell-renderer.component";
@@ -54,7 +56,7 @@ export class MasterProgramsComponent implements OnInit {
     private programService: ProgramService,
     private activatedRoute: ActivatedRoute,
     private router: Router
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     this.programService.getAllPrograms().subscribe((programs: any) => {
@@ -136,5 +138,40 @@ export class MasterProgramsComponent implements OnInit {
       .subscribe((res) => {
         console.log(res);
       });
+  }
+
+  del_program(program: any) {
+    Swal.fire({
+      icon: "warning",
+      text:
+        "Are you sure you want to delete the program " +
+        program.name +
+        "?",
+      focusConfirm: true,
+      showCancelButton: true,
+      cancelButtonText: "Close",
+      confirmButtonText: "Delete Program",
+      customClass: {
+        confirmButton: "btn btn-danger",
+        cancelButton: "btn btn-info",
+      },
+      buttonsStyling: false,
+      reverseButtons: true,
+    }).then((result) => {
+      if (result.isConfirmed)
+        this.programService
+          .deleteProgram(program.id)
+          .subscribe((res) => {
+            this.programService
+              .getAllPrograms()
+              .subscribe((programs: any) => {
+                this.programs = programs;
+
+                this.loading = false;
+
+                Swal.fire(program.name + " deleted");
+              });
+          });
+    });
   }
 }

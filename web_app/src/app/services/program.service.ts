@@ -29,4 +29,7 @@ export class ProgramService {
       users
     );
   }
+  deleteProgram(programId: string | number) {
+    return this.backendProxy.delete('program/' + programId.toString())
+  }
 }
